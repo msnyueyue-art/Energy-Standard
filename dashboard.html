@@ -997,6 +997,10 @@
     </style>
 </head>
 <body data-page="dashboard">
+    <!-- 导航栏容器 -->
+    <div id="navbar-container"></div>
+    <div id="sidebar-container"></div>
+
     <!-- 主内容区域 -->
     <main class="main-content" id="mainContent">
         <!-- 移除页面标题 -->
@@ -3822,8 +3826,18 @@
             });
         }
 
-        // 在页面加载时初始化表格排序
+        // 在页面加载时初始化表格排序和导航栏
         document.addEventListener('DOMContentLoaded', function() {
+            // 初始化导航栏
+            if (typeof createTopNavbar === 'function' && typeof createSidebar === 'function') {
+                document.getElementById('navbar-container').innerHTML = createTopNavbar();
+                document.getElementById('sidebar-container').innerHTML = createSidebar('dashboard');
+                // 初始化导航栏功能（如果有）
+                if (typeof initNavbarEvents === 'function') {
+                    initNavbarEvents();
+                }
+            }
+
             initStationTableSort();
         });
     </script>
