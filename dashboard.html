@@ -3833,6 +3833,41 @@
             });
         }
 
+        // ==================== 货币符号处理函数 ====================
+        // 获取当前货币符号
+        function getCurrencySymbol() {
+            const lang = localStorage.getItem('language') || 'zh';
+            return lang === 'zh' ? '¥' : '$';
+        }
+
+        // 格式化收益（添加货币符号）
+        function formatRevenue(value) {
+            const symbol = getCurrencySymbol();
+            return symbol + value;
+        }
+
+        // 更新所有收益的货币符号
+        function updateRevenueCurrency() {
+            const symbol = getCurrencySymbol();
+
+            // 更新所有带 data-revenue 属性的元素
+            document.querySelectorAll('[data-revenue]').forEach(element => {
+                const value = element.getAttribute('data-revenue');
+                if (value) {
+                    element.textContent = symbol + value;
+                }
+            });
+
+            // 更新所有 class="revenue" 的元素
+            document.querySelectorAll('.revenue').forEach(element => {
+                const value = element.getAttribute('data-revenue');
+                if (value) {
+                    element.textContent = symbol + value;
+                }
+            });
+        }
+        // ==================== 货币符号处理函数结束 ====================
+
         // 在页面加载时初始化表格排序
         document.addEventListener('DOMContentLoaded', function() {
             initStationTableSort();
@@ -3843,6 +3878,9 @@
                 if (typeof updateDashboardTranslations === 'function') {
                     updateDashboardTranslations();
                 }
+
+                // 更新所有收益的货币符号
+                updateRevenueCurrency();
 
                 // 如果地图已初始化且有打开的弹窗，关闭并重新生成标记
                 if (map && markers.length > 0) {
