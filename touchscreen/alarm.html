@@ -2131,17 +2131,17 @@
                                 <i class="fas fa-times-circle" style="margin-right: 8px; color: #666;"></i>
                                 <span data-i18n="resolveTimeLabel">Resolve Time</span>
                             </div>
-                            <div class="detail-value" style="font-size: 18px; color: #666;">未解决</div>
+                            <div class="detail-value" style="font-size: 18px; color: #666;" data-i18n="unresolvedStatus">Unresolved</div>
                         </div>
                     `}
                 </div>
-                
+
                 <!-- 底部操作按钮 -->
                 ${alarm.status === 'unresolved' ? `
                     <div style="display: flex; justify-content: center; margin-top: 20px; padding-top: 16px; border-top: 1px solid rgba(0, 150, 255, 0.2);">
                         <button class="action-btn success" onclick="resolveAlarmFromDetail()" style="padding: 14px 36px; font-size: 18px; font-weight: 600; border-radius: 10px; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);">
                             <i class="fas fa-check" style="margin-right: 8px;"></i>
-                            解决告警
+                            <span data-i18n="resolveAlarmButton">Resolve Alarm</span>
                         </button>
                     </div>
                 ` : ''}
