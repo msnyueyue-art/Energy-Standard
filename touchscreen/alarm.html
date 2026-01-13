@@ -2146,10 +2146,15 @@
                     </div>
                 ` : ''}
             `;
-            
+
             // 解决按钮已移至告警类型行右侧，不再需要底部按钮控制
-            
+
             document.getElementById('alarmDetailModal').style.display = 'block';
+
+            // 应用国际化翻译到动态生成的内容
+            if (typeof applyTouchscreenTranslations === 'function') {
+                applyTouchscreenTranslations();
+            }
         }
 
         // 从详情页解决告警
