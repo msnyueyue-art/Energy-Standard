@@ -2997,18 +2997,18 @@
                     }).sort((a, b) => parseFloat(b.value) - parseFloat(a.value)),
 
                     revenue: stationsData.map(s => {
-                        const todayValue = parseFloat(s.revenue.replace(/[¥,]/g, ''));
+                        const todayValue = parseFloat(s.revenue.replace(/[¥$,]/g, ''));
                         const waveFactor = 0.93 + Math.random() * 0.10;
                         const yesterdayValue = Math.round(todayValue * yesterdayFactor * waveFactor);
                         return {
                             name: s.name,
                             nameKey: s.nameKey,
                             capacity: s.capacity,
-                            value: `¥${yesterdayValue.toLocaleString()}`
+                            value: formatRevenue(yesterdayValue.toLocaleString())
                         };
                     }).sort((a, b) => {
-                        const aVal = parseFloat(a.value.replace(/[¥,]/g, ''));
-                        const bVal = parseFloat(b.value.replace(/[¥,]/g, ''));
+                        const aVal = parseFloat(a.value.replace(/[¥$,]/g, ''));
+                        const bVal = parseFloat(b.value.replace(/[¥$,]/g, ''));
                         return bVal - aVal;
                     })
                 };
@@ -3035,10 +3035,10 @@
                         name: s.name,
                         nameKey: s.nameKey,
                         capacity: s.capacity,
-                        value: s.revenue
+                        value: formatRevenue(s.revenue)
                     })).sort((a, b) => {
-                        const aVal = parseFloat(a.value.replace(/[¥,]/g, ''));
-                        const bVal = parseFloat(b.value.replace(/[¥,]/g, ''));
+                        const aVal = parseFloat(a.value.replace(/[¥$,]/g, ''));
+                        const bVal = parseFloat(b.value.replace(/[¥$,]/g, ''));
                         return bVal - aVal;
                     })
                 };
@@ -3073,18 +3073,18 @@
                     }).sort((a, b) => parseFloat(b.value) - parseFloat(a.value)),
 
                     revenue: stationsData.map(s => {
-                        const dailyValue = parseFloat(s.revenue.replace(/[¥,]/g, ''));
+                        const dailyValue = parseFloat(s.revenue.replace(/[¥$,]/g, ''));
                         const waveFactor = 0.93 + Math.random() * 0.14;
                         const monthValue = Math.round(dailyValue * monthMultiplier * waveFactor);
                         return {
                             name: s.name,
                             nameKey: s.nameKey,
                             capacity: s.capacity,
-                            value: `¥${monthValue.toLocaleString()}`
+                            value: formatRevenue(monthValue.toLocaleString())
                         };
                     }).sort((a, b) => {
-                        const aVal = parseFloat(a.value.replace(/[¥,]/g, ''));
-                        const bVal = parseFloat(b.value.replace(/[¥,]/g, ''));
+                        const aVal = parseFloat(a.value.replace(/[¥$,]/g, ''));
+                        const bVal = parseFloat(b.value.replace(/[¥$,]/g, ''));
                         return bVal - aVal;
                     })
                 };
@@ -3120,18 +3120,18 @@
                     }).sort((a, b) => parseFloat(b.value) - parseFloat(a.value)),
 
                     revenue: stationsData.map(s => {
-                        const dailyValue = parseFloat(s.revenue.replace(/[¥,]/g, ''));
+                        const dailyValue = parseFloat(s.revenue.replace(/[¥$,]/g, ''));
                         const waveFactor = 0.91 + Math.random() * 0.16;
                         const lastMonthValue = Math.round(dailyValue * lastMonthMultiplier * lastMonthFactor * waveFactor);
                         return {
                             name: s.name,
                             nameKey: s.nameKey,
                             capacity: s.capacity,
-                            value: `¥${lastMonthValue.toLocaleString()}`
+                            value: formatRevenue(lastMonthValue.toLocaleString())
                         };
                     }).sort((a, b) => {
-                        const aVal = parseFloat(a.value.replace(/[¥,]/g, ''));
-                        const bVal = parseFloat(b.value.replace(/[¥,]/g, ''));
+                        const aVal = parseFloat(a.value.replace(/[¥$,]/g, ''));
+                        const bVal = parseFloat(b.value.replace(/[¥$,]/g, ''));
                         return bVal - aVal;
                     })
                 };
@@ -3166,18 +3166,18 @@
                     }).sort((a, b) => parseFloat(b.value) - parseFloat(a.value)),
 
                     revenue: stationsData.map(s => {
-                        const dailyValue = parseFloat(s.revenue.replace(/[¥,]/g, ''));
+                        const dailyValue = parseFloat(s.revenue.replace(/[¥$,]/g, ''));
                         const waveFactor = 0.90 + Math.random() * 0.20;
                         const totalValue = Math.round(dailyValue * totalMultiplier * waveFactor);
                         return {
                             name: s.name,
                             nameKey: s.nameKey,
                             capacity: s.capacity,
-                            value: `¥${totalValue.toLocaleString()}`
+                            value: formatRevenue(totalValue.toLocaleString())
                         };
                     }).sort((a, b) => {
-                        const aVal = parseFloat(a.value.replace(/[¥,]/g, ''));
-                        const bVal = parseFloat(b.value.replace(/[¥,]/g, ''));
+                        const aVal = parseFloat(a.value.replace(/[¥$,]/g, ''));
+                        const bVal = parseFloat(b.value.replace(/[¥$,]/g, ''));
                         return bVal - aVal;
                     })
                 };
@@ -3298,8 +3298,8 @@
                 status: 'online',
                 dailyCharge: '98.2kWh',      // 总充电486.3的20.2% (按容量比例)
                 dailyDischarge: '75.2kWh',   // 总放电372.5的20.2%
-                revenue: '¥319',             // 今日收益
-                yesterdayRevenue: '¥287'     // 昨日收益
+                revenue: '319',              // 今日收益（纯数字，货币符号由函数添加）
+                yesterdayRevenue: '287'      // 昨日收益（纯数字，货币符号由函数添加）
             },
             {
                 id: 'site2',
@@ -3313,8 +3313,8 @@
                 status: 'online',
                 dailyCharge: '140.5kWh',     // 总充电486.3的28.9% (按容量比例)
                 dailyDischarge: '107.6kWh',  // 总放电372.5的28.9%
-                revenue: '¥457',             // 今日收益
-                yesterdayRevenue: '¥425'     // 昨日收益
+                revenue: '457',              // 今日收益（纯数字，货币符号由函数添加）
+                yesterdayRevenue: '425'      // 昨日收益（纯数字，货币符号由函数添加）
             },
             {
                 id: 'site3',
@@ -3328,8 +3328,8 @@
                 status: 'online',
                 dailyCharge: '91.0kWh',      // 总充电486.3的18.7% (按容量比例)
                 dailyDischarge: '69.7kWh',   // 总放电372.5的18.7%
-                revenue: '¥295',             // 今日收益
-                yesterdayRevenue: '¥312'     // 昨日收益
+                revenue: '295',              // 今日收益（纯数字，货币符号由函数添加）
+                yesterdayRevenue: '312'      // 昨日收益（纯数字，货币符号由函数添加）
             },
             {
                 id: 'site4',
@@ -3343,8 +3343,8 @@
                 status: 'online',
                 dailyCharge: '83.6kWh',      // 总充电486.3的17.2% (按容量比例)
                 dailyDischarge: '64.1kWh',   // 总放电372.5的17.2%
-                revenue: '¥272',             // 今日收益
-                yesterdayRevenue: '¥298'     // 昨日收益
+                revenue: '272',              // 今日收益（纯数字，货币符号由函数添加）
+                yesterdayRevenue: '298'      // 昨日收益（纯数字，货币符号由函数添加）
             },
             {
                 id: 'site5',
@@ -3358,8 +3358,8 @@
                 status: 'online',
                 dailyCharge: '73.0kWh',      // 总充电486.3的15.0% (按容量比例)
                 dailyDischarge: '55.9kWh',   // 总放电372.5的15.0%
-                revenue: '¥237',             // 今日收益
-                yesterdayRevenue: '¥258'     // 昨日收益
+                revenue: '237',              // 今日收益（纯数字，货币符号由函数添加）
+                yesterdayRevenue: '258'      // 昨日收益（纯数字，货币符号由函数添加）
             }
         ];
 
@@ -3871,6 +3871,9 @@
         // 在页面加载时初始化表格排序
         document.addEventListener('DOMContentLoaded', function() {
             initStationTableSort();
+
+            // 初始化货币符号显示
+            updateRevenueCurrency();
 
             // 监听语言切换事件，更新地图弹窗中的货币符号
             window.addEventListener('languageChanged', function() {
