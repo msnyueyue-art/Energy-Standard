@@ -1319,8 +1319,8 @@
                         </select>
                     </div>
                     <div style="position: absolute; bottom: 24px; left: 24px; right: 24px; display: flex; gap: 12px;">
-                        <button type="button" class="btn" onclick="closeAddDeviceDrawer()" style="flex: 1; height: 40px;">取消</button>
-                        <button type="submit" class="btn btn-primary" style="flex: 1; height: 40px;">确定</button>
+                        <button type="button" class="btn" onclick="closeAddDeviceDrawer()" style="flex: 1; height: 40px;" data-translate="siteManagementBtnCancel">取消</button>
+                        <button type="submit" class="btn btn-primary" style="flex: 1; height: 40px;" data-translate="siteManagementBtnConfirm">确定</button>
                     </div>
                 </form>
             </div>
@@ -1963,7 +1963,7 @@
                                     align-items: center;
                                     min-height: 42px;
                                 ">
-                                    <span id="address-display-text" style="color: #9ca3af;">点击选择地址</span>
+                                    <span id="address-display-text" style="color: #9ca3af;" data-translate="siteManagementClickToSelect">点击选择地址</span>
                                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2">
                                         <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                                         <circle cx="12" cy="10" r="3"></circle>
@@ -2022,7 +2022,7 @@
                 <div class="wizard-footer" style="justify-content: flex-end; border-top: none; background: none; padding: 1.5rem 0 0 0; width: 733.2px;">
                     <div class="wizard-nav">
                         <button class="btn btn-cancel" onclick="closeCreateStationModal()" style="white-space: nowrap;">
-                            <span id="btnCancel1">取消</span>
+                            <span id="btnCancel1" data-translate="siteManagementBtnCancel">取消</span>
                         </button>
                         <button class="btn btn-secondary" id="wizard-prev" onclick="prevWizardStep()" style="display: none; white-space: nowrap;">
                             <span id="btnPrevious">上一步</span>
@@ -2067,8 +2067,8 @@
                     <span id="selected-coords">经纬度：未选择</span>
                 </div>
                 <div class="map-actions">
-                    <button class="btn btn-cancel" onclick="closeMapModal()">取消</button>
-                    <button class="btn btn-primary" onclick="confirmLocation()">确认选择</button>
+                    <button class="btn btn-cancel" onclick="closeMapModal()" data-translate="siteManagementBtnCancel">取消</button>
+                    <button class="btn btn-primary" onclick="confirmLocation()" data-translate="siteManagementBtnConfirmSelection">确认选择</button>
                 </div>
             </div>
         </div>
@@ -2087,13 +2087,13 @@
                 <div style="width: 60px; height: 60px; background: #fee2e2; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 16px;">
                     <i class="fas fa-exclamation-triangle" style="font-size: 24px; color: #ef4444;"></i>
                 </div>
-                <h3 style="margin: 0 0 8px 0; font-size: 18px; color: var(--text-primary);"><span id="confirmDeleteTitle">确认删除</span></h3>
-                <p style="margin: 0; font-size: 14px; color: var(--text-secondary);"><span id="confirmDeleteText1">您确定要删除站点</span> <span id="deleteDeviceName" style="font-weight: 600;"></span> <span id="confirmDeleteText2">吗？此操作无法撤销。</span></p>
+                <h3 style="margin: 0 0 8px 0; font-size: 18px; color: var(--text-primary);"><span id="confirmDeleteTitle" data-translate="siteManagementConfirmDeleteTitle">确认删除</span></h3>
+                <p style="margin: 0; font-size: 14px; color: var(--text-secondary);"><span id="confirmDeleteText1" data-translate="siteManagementConfirmDeleteText1">您确定要删除站点</span> <span id="deleteDeviceName" style="font-weight: 600;"></span> <span id="confirmDeleteText2" data-translate="siteManagementConfirmDeleteText2">吗？此操作无法撤销。</span></p>
                 <div id="deleteErrorMessage" style="display: none; margin-top: 16px; padding: 12px; background: #fee2e2; border-radius: 8px; color: #dc2626; font-size: 14px;"></div>
             </div>
             <div id="deleteConfirmButtons" style="display: flex; gap: 12px;">
-                <button class="btn" onclick="closeDeleteConfirm()" style="flex: 1; height: 40px;"><span id="btnCancel2">取消</span></button>
-                <button class="btn" onclick="confirmDelete()" style="flex: 1; height: 40px; background: #ef4444; color: white;"><span id="btnDelete">删除</span></button>
+                <button class="btn" onclick="closeDeleteConfirm()" style="flex: 1; height: 40px;"><span id="btnCancel2" data-translate="siteManagementBtnCancel">取消</span></button>
+                <button class="btn" onclick="confirmDelete()" style="flex: 1; height: 40px; background: #ef4444; color: white;"><span id="btnDelete" data-translate="siteManagementBtnDelete">删除</span></button>
             </div>
             <div id="deleteErrorButtons" style="display: none; justify-content: center;">
                 <button class="btn" onclick="closeDeleteConfirm()" style="height: 40px; padding: 0 32px;"><span id="btnGotIt">知道了</span></button>
@@ -2180,7 +2180,8 @@
                 '深圳市福田区中心区福华三路': 'Fuhua 3rd Road, Central District, Futian District, Shenzhen',
                 '广州市白云区钟落潭物流园': 'Zhongluotan Logistics Park, Baiyun District, Guangzhou',
                 '杭州市滨江区网商路599号': '599 Wangshang Road, Binjiang District, Hangzhou',
-                '南京市江宁区秣周东路9号': '9 Mozhou East Road, Jiangning District, Nanjing'
+                '南京市江宁区秣周东路9号': '9 Mozhou East Road, Jiangning District, Nanjing',
+                '北京市海淀区中关村软件园': 'Zhongguancun Software Park, Haidian District, Beijing'
             };
             return addressMap[zhAddress] || zhAddress;
         }
@@ -2488,7 +2489,7 @@
                 closeDeleteConfirm();
                 
                 // 显示成功提示
-                showToast('站点删除成功！', '#ef4444');
+                showToast(getTranslation('siteManagementDeleteSuccess'), '#ef4444');
             }
         }
 
@@ -3683,42 +3684,90 @@
         }
 
         // 省市区数据
-        const addressData = {
-            '中国': {
-                '上海市': {
-                    '上海市': ['浦东新区', '黄浦区', '徐汇区', '长宁区', '静安区', '普陀区', '虹口区', '杨浦区', '闵行区', '宝山区', '嘉定区', '松江区']
+        // 地址数据 - 支持中英文
+        const addressDataTranslations = {
+            zh: {
+                '中国': {
+                    '上海市': {
+                        '上海市': ['浦东新区', '黄浦区', '徐汇区', '长宁区', '静安区', '普陀区', '虹口区', '杨浦区', '闵行区', '宝山区', '嘉定区', '松江区']
+                    },
+                    '北京市': {
+                        '北京市': ['东城区', '西城区', '朝阳区', '海淀区', '丰台区', '石景山区', '通州区', '顺义区', '大兴区', '昌平区']
+                    },
+                    '广东省': {
+                        '广州市': ['天河区', '越秀区', '海珠区', '荔湾区', '白云区', '黄埔区', '番禺区', '花都区', '南沙区'],
+                        '深圳市': ['福田区', '罗湖区', '南山区', '盐田区', '宝安区', '龙岗区', '龙华区', '坪山区', '光明区']
+                    },
+                    '江苏省': {
+                        '南京市': ['玄武区', '秦淮区', '鼓楼区', '建邺区', '栖霞区', '雨花台区', '江宁区', '浦口区'],
+                        '苏州市': ['姑苏区', '虎丘区', '吴中区', '相城区', '吴江区', '工业园区']
+                    },
+                    '浙江省': {
+                        '杭州市': ['上城区', '下城区', '江干区', '拱墅区', '西湖区', '滨江区', '萧山区', '余杭区', '富阳区'],
+                        '宁波市': ['海曙区', '江北区', '北仑区', '镇海区', '鄞州区', '奉化区']
+                    },
+                    '四川省': {
+                        '成都市': ['锦江区', '青羊区', '金牛区', '武侯区', '成华区', '龙泉驿区', '青白江区', '新都区', '温江区', '高新区']
+                    },
+                    '湖北省': {
+                        '武汉市': ['江岸区', '江汉区', '硚口区', '汉阳区', '武昌区', '青山区', '洪山区', '东西湖区', '蔡甸区', '江夏区']
+                    }
                 },
-                '北京市': {
-                    '北京市': ['东城区', '西城区', '朝阳区', '海淀区', '丰台区', '石景山区', '通州区', '顺义区', '大兴区', '昌平区']
-                },
-                '广东省': {
-                    '广州市': ['天河区', '越秀区', '海珠区', '荔湾区', '白云区', '黄埔区', '番禺区', '花都区', '南沙区'],
-                    '深圳市': ['福田区', '罗湖区', '南山区', '盐田区', '宝安区', '龙岗区', '龙华区', '坪山区', '光明区']
-                },
-                '江苏省': {
-                    '南京市': ['玄武区', '秦淮区', '鼓楼区', '建邺区', '栖霞区', '雨花台区', '江宁区', '浦口区'],
-                    '苏州市': ['姑苏区', '虎丘区', '吴中区', '相城区', '吴江区', '工业园区']
-                },
-                '浙江省': {
-                    '杭州市': ['上城区', '下城区', '江干区', '拱墅区', '西湖区', '滨江区', '萧山区', '余杭区', '富阳区'],
-                    '宁波市': ['海曙区', '江北区', '北仑区', '镇海区', '鄞州区', '奉化区']
-                },
-                '四川省': {
-                    '成都市': ['锦江区', '青羊区', '金牛区', '武侯区', '成华区', '龙泉驿区', '青白江区', '新都区', '温江区', '高新区']
-                },
-                '湖北省': {
-                    '武汉市': ['江岸区', '江汉区', '硚口区', '汉阳区', '武昌区', '青山区', '洪山区', '东西湖区', '蔡甸区', '江夏区']
+                '澳大利亚': {
+                    '新南威尔士州': {
+                        '悉尼': ['悉尼CBD', '北悉尼', '帕拉马塔', '邦迪']
+                    },
+                    '维多利亚州': {
+                        '墨尔本': ['墨尔本CBD', '南岸', '里士满', '卡尔顿']
+                    }
                 }
             },
-            '澳大利亚': {
-                '新南威尔士州': {
-                    '悉尼': ['悉尼CBD', '北悉尼', '帕拉马塔', '邦迪']
+            en: {
+                'China': {
+                    'Shanghai': {
+                        'Shanghai': ['Pudong District', 'Huangpu District', 'Xuhui District', 'Changning District', 'Jing\'an District', 'Putuo District', 'Hongkou District', 'Yangpu District', 'Minhang District', 'Baoshan District', 'Jiading District', 'Songjiang District']
+                    },
+                    'Beijing': {
+                        'Beijing': ['Dongcheng District', 'Xicheng District', 'Chaoyang District', 'Haidian District', 'Fengtai District', 'Shijingshan District', 'Tongzhou District', 'Shunyi District', 'Daxing District', 'Changping District']
+                    },
+                    'Guangdong Province': {
+                        'Guangzhou': ['Tianhe District', 'Yuexiu District', 'Haizhu District', 'Liwan District', 'Baiyun District', 'Huangpu District', 'Panyu District', 'Huadu District', 'Nansha District'],
+                        'Shenzhen': ['Futian District', 'Luohu District', 'Nanshan District', 'Yantian District', 'Bao\'an District', 'Longgang District', 'Longhua District', 'Pingshan District', 'Guangming District']
+                    },
+                    'Jiangsu Province': {
+                        'Nanjing': ['Xuanwu District', 'Qinhuai District', 'Gulou District', 'Jianye District', 'Qixia District', 'Yuhuatai District', 'Jiangning District', 'Pukou District'],
+                        'Suzhou': ['Gusu District', 'Huqiu District', 'Wuzhong District', 'Xiangcheng District', 'Wujiang District', 'Industrial Park']
+                    },
+                    'Zhejiang Province': {
+                        'Hangzhou': ['Shangcheng District', 'Xiacheng District', 'Jianggan District', 'Gongshu District', 'Xihu District', 'Binjiang District', 'Xiaoshan District', 'Yuhang District', 'Fuyang District'],
+                        'Ningbo': ['Haishu District', 'Jiangbei District', 'Beilun District', 'Zhenhai District', 'Yinzhou District', 'Fenghua District']
+                    },
+                    'Sichuan Province': {
+                        'Chengdu': ['Jinjiang District', 'Qingyang District', 'Jinniu District', 'Wuhou District', 'Chenghua District', 'Longquanyi District', 'Qingbaijiang District', 'Xindu District', 'Wenjiang District', 'Hi-tech Zone']
+                    },
+                    'Hubei Province': {
+                        'Wuhan': ['Jiang\'an District', 'Jianghan District', 'Qiaokou District', 'Hanyang District', 'Wuchang District', 'Qingshan District', 'Hongshan District', 'Dongxihu District', 'Caidian District', 'Jiangxia District']
+                    }
                 },
-                '维多利亚州': {
-                    '墨尔本': ['墨尔本CBD', '南岸', '里士满', '卡尔顿']
+                'Australia': {
+                    'New South Wales': {
+                        'Sydney': ['Sydney CBD', 'North Sydney', 'Parramatta', 'Bondi']
+                    },
+                    'Victoria': {
+                        'Melbourne': ['Melbourne CBD', 'Southbank', 'Richmond', 'Carlton']
+                    }
                 }
             }
         };
+
+        // 获取当前语言的地址数据
+        function getAddressData() {
+            const currentLang = localStorage.getItem('language') || 'zh';
+            return addressDataTranslations[currentLang];
+        }
+
+        // 兼容性:保留原addressData变量名
+        let addressData = getAddressData();
 
         // 更新省份选项
         function updateProvinces() {
@@ -3884,7 +3933,7 @@
                 padding: 20px 24px;
                 border-bottom: 1px solid #f0f0f0;
             ">
-                <h2 style="margin: 0; font-size: 18px; font-weight: 600; color: #1f2937;">选择地址</h2>
+                <h2 style="margin: 0; font-size: 18px; font-weight: 600; color: #1f2937;" data-translate="siteManagementSelectAddress">选择地址</h2>
                 <button onclick="closeAddressModal()" style="
                     background: none;
                     border: none;
@@ -3914,7 +3963,7 @@
                         border-bottom: 2px solid #3b82f6;
                         margin-bottom: -1px;
                         font-weight: 500;
-                    ">使用定位</div>
+                    " data-translate="siteManagementUseLocation">使用定位</div>
                     <div id="tab-manual-btn" onclick="switchMainTab('manual')" style="
                         padding: 16px 0;
                         cursor: pointer;
@@ -3922,7 +3971,7 @@
                         color: #6b7280;
                         border-bottom: 2px solid transparent;
                         margin-bottom: -1px;
-                    ">手动选择</div>
+                    " data-translate="siteManagementManualSelect">手动选择</div>
                 </div>
             </div>
 
@@ -3948,7 +3997,7 @@
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
                             </svg>
-                            <span id="get-location-btn-text">获取当前位置</span>
+                            <span id="get-location-btn-text" data-translate="siteManagementGetCurrentLocation">获取当前位置</span>
                         </button>
                     </div>
 
@@ -3973,7 +4022,7 @@
                             box-sizing: border-box;
                             transition: border-color 0.2s;
                         " onmouseover="this.style.borderColor='#3b82f6'" onmouseout="this.style.borderColor='#d1d5db'">
-                            <span id="cascader-text" style="color: #9ca3af; font-size: 14px;">请选择地区</span>
+                            <span id="cascader-text" style="color: #9ca3af; font-size: 14px;" data-translate="siteManagementPleaseSelectRegion">请选择地区</span>
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2">
                                 <polyline points="6 9 12 15 18 9"></polyline>
                             </svg>
@@ -4017,8 +4066,8 @@
 
                     <!-- 详细地址输入 -->
                     <div style="margin-bottom: 16px;">
-                        <label style="display: block; margin-bottom: 8px; font-size: 14px; color: #374151;">详细地址</label>
-                        <input type="text" id="detail-address-input" placeholder="请输入详细地址（门牌号、楼栋等）" style="
+                        <label style="display: block; margin-bottom: 8px; font-size: 14px; color: #374151;" data-translate="siteManagementDetailAddress">详细地址</label>
+                        <input type="text" id="detail-address-input" data-translate-placeholder="siteManagementDetailAddressPlaceholder" placeholder="请输入详细地址（门牌号、楼栋等）" style="
                             width: 100%;
                             padding: 12px 16px;
                             border: 1px solid #d1d5db;
@@ -4048,7 +4097,7 @@
                     cursor: pointer;
                     font-size: 14px;
                     transition: all 0.2s;
-                " onmouseover="this.style.borderColor='#9ca3af'" onmouseout="this.style.borderColor='#d1d5db'">取消</button>
+                " onmouseover="this.style.borderColor='#9ca3af'" onmouseout="this.style.borderColor='#d1d5db'" data-translate="siteManagementBtnCancel">取消</button>
                 <button id="confirm-address-btn" onclick="confirmAddressFromModal()" style="
                     padding: 10px 24px;
                     background: #3b82f6;
@@ -4058,7 +4107,7 @@
                     cursor: pointer;
                     font-size: 14px;
                     transition: background 0.2s;
-                " onmouseover="this.style.background='#2563eb'" onmouseout="this.style.background='#3b82f6'">确认</button>
+                " onmouseover="this.style.background='#2563eb'" onmouseout="this.style.background='#3b82f6'" data-translate="siteManagementBtnConfirm">确认</button>
             </div>
         </div>
     </div>
@@ -4088,7 +4137,7 @@
             resetLocationButton();
             document.getElementById('location-result').style.display = 'none';
             document.getElementById('location-result').innerHTML = '';
-            document.getElementById('cascader-text').textContent = '请选择地区';
+            document.getElementById('cascader-text').textContent = getTranslation('siteManagementPleaseSelectRegion');
             document.getElementById('cascader-text').style.color = '#9ca3af';
             document.getElementById('cascader-dropdown').style.display = 'none';
             document.getElementById('detail-address-input').value = '';
@@ -4138,7 +4187,7 @@
             const btnText = document.getElementById('get-location-btn-text');
             btn.disabled = false;
             btn.style.background = '#3b82f6';
-            btnText.textContent = '获取当前位置';
+            btnText.textContent = getTranslation('siteManagementGetCurrentLocation');
         }
 
         // 获取当前位置（简化版，参考 vppservice 样式）
@@ -4150,7 +4199,7 @@
             // 设置按钮为加载状态
             btn.disabled = true;
             btn.style.background = '#93c5fd';
-            btnText.textContent = '定位中...';
+            btnText.textContent = getTranslation('siteManagementLocating');
             resultDiv.style.display = 'none';
 
             // 模拟定位延迟
@@ -4186,7 +4235,7 @@
                 // 恢复按钮
                 btn.disabled = false;
                 btn.style.background = '#3b82f6';
-                btnText.textContent = '获取当前位置';
+                btnText.textContent = getTranslation('siteManagementGetCurrentLocation');
             }, 1500);
         }
 
@@ -4217,6 +4266,9 @@
 
         // 初始化级联选择器
         function initCascader() {
+            // 重新获取当前语言的地址数据
+            addressData = getAddressData();
+
             const col1 = document.getElementById('cascader-col-1');
             col1.innerHTML = '';
 
@@ -4360,7 +4412,7 @@
                 textEl.textContent = display;
                 textEl.style.color = '#374151';
             } else {
-                textEl.textContent = '请选择地区';
+                textEl.textContent = getTranslation('siteManagementPleaseSelectRegion');
                 textEl.style.color = '#9ca3af';
             }
         }

@@ -136,7 +136,7 @@
         .nav-menu {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 5px;
             flex: 1;
             justify-content: center;
             flex-wrap: nowrap;
@@ -144,7 +144,7 @@
         }
 
         .nav-item {
-            padding: 12px 28px;
+            padding: 12px 20px;
             color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
             font-size: 17px;
@@ -978,12 +978,15 @@
             cursor: pointer;
             transition: all 0.2s;
             text-align: center;
-            white-space: nowrap;
+            white-space: normal;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
             min-height: 48px;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
+            line-height: 1.2;
         }
 
         .select-btn:hover:not(:disabled) {
@@ -1001,6 +1004,24 @@
         .select-btn:disabled {
             opacity: 0.5;
             cursor: not-allowed;
+        }
+
+        /* 英文环境下按钮文本优化 */
+        html[lang="en"] .select-btn {
+            font-size: 14px;
+            padding: 12px 14px;
+            line-height: 1.3;
+        }
+
+        html[lang="en"] .control-row .select-btn {
+            font-size: 13px;
+            padding: 10px 12px;
+        }
+
+        html[lang="en"] .select-btn span {
+            display: inline-block;
+            max-width: 100%;
+            word-break: break-word;
         }
         
         /* 两列布局时的按钮调整 */
@@ -1220,6 +1241,9 @@
 
 
     </style>
+    <script src="touchscreen-i18n.js"></script>
+    <link rel="stylesheet" href="english-text-optimization.css">
+    <script src="page-transition.js"></script>
 </head>
 <body>
     <!-- 背景效果 -->
@@ -1232,19 +1256,19 @@
                 <div class="logo-icon">
                     <img src="logo.png" alt="Logo">
                 </div>
-                <div class="logo-text">储能柜管理系统</div>
+                <div class="logo-text">Energy Storage System</div>
             </div>
         </div>
         
         <!-- 导航菜单 -->
         <nav class="nav-menu">
-            <div class="nav-item" onclick="switchPage('home')">首页</div>
-            <a href="#data" class="nav-item" onclick="switchPage('data')">数据</a>
-            <a href="#" class="nav-item" onclick="switchPage('history')">历史</a>
-            <a href="#control" class="nav-item active" onclick="switchPage('control')">控制</a>
-            <a href="#alarm" class="nav-item" onclick="switchPage('alarm')">告警</a>
-            <a href="#log" class="nav-item" onclick="switchPage('log')">日志</a>
-            <a href="#settings" class="nav-item" onclick="switchPage('settings')">设置</a>
+            <div class="nav-item" onclick="smoothSwitchPage('home')">Home</div>
+            <a href="#data" class="nav-item" onclick="smoothSwitchPage('data')">Data</a>
+            <a href="#" class="nav-item" onclick="smoothSwitchPage('history')">History</a>
+            <a href="#control" class="nav-item active" onclick="smoothSwitchPage('control')">Control</a>
+            <a href="#alarm" class="nav-item" onclick="smoothSwitchPage('alarm')">Alarm</a>
+            <a href="#log" class="nav-item" onclick="smoothSwitchPage('log')">Log</a>
+            <a href="#settings" class="nav-item" onclick="smoothSwitchPage('settings')">Settings</a>
         </nav>
         
         <div class="header-right">
@@ -1293,13 +1317,13 @@
         <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px 32px; background: transparent;">
             <h1 class="page-title" style="margin: 0;">
                 <i class="fas fa-sliders-h"></i>
-                设备控制
+                <span data-i18n="deviceControl">Device Control</span>
             </h1>
             <!-- 编辑控制按钮 -->
             <div id="editControls">
                 <button class="edit-btn" id="editModeBtn" onclick="window.toggleEditMode()">
                     <i class="fas fa-edit"></i>
-                    编辑
+                    <span data-i18n="edit">Edit</span>
                 </button>
             </div>
         </div>
@@ -1308,20 +1332,20 @@
         <div class="control-panel">
             <div class="control-section-title">
                 <i class="fas fa-play-circle"></i>
-                运行模式控制
+                <span data-i18n="operationModeControl">Operation Mode Control</span>
             </div>
             
             <!-- 运行模式选择 -->
             <div style="margin-bottom: 20px;">
-                <label style="display: block; font-size: 14px; color: rgba(255, 255, 255, 0.6); margin-bottom: 10px;">运行模式</label>
+                <label style="display: block; font-size: 14px; color: rgba(255, 255, 255, 0.6); margin-bottom: 10px;"><span data-i18n="operationMode">Operation Mode</span></label>
                 <div style="display: flex; gap: 20px;" id="modeRadioGroup">
                     <label style="display: flex; align-items: center; gap: 12px; cursor: not-allowed; opacity: 0.6; padding: 8px;" class="mode-label">
                         <input type="radio" name="mode" value="auto" checked disabled onchange="window.changeMode(this.value)" style="width: 24px; height: 24px;">
-                        <span style="font-size: 20px; color: #e2e8f0;">自动模式</span>
+                        <span style="font-size: 20px; color: #e2e8f0;"><span data-i18n="autoMode">Auto Mode</span></span>
                     </label>
                     <label style="display: flex; align-items: center; gap: 12px; cursor: not-allowed; opacity: 0.6; padding: 8px;" class="mode-label">
                         <input type="radio" name="mode" value="manual" disabled onchange="window.changeMode(this.value)" style="width: 24px; height: 24px;">
-                        <span style="font-size: 20px; color: #e2e8f0;">手动模式</span>
+                        <span style="font-size: 20px; color: #e2e8f0;"><span data-i18n="manualMode">Manual Mode</span></span>
                     </label>
                 </div>
             </div>
@@ -1333,13 +1357,13 @@
                             style="flex: 1; padding: 16px 12px; border: 3px solid rgba(0, 150, 255, 0.3); border-radius: 12px; 
                                    background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-size: 18px; font-weight: 600; cursor: pointer; 
                                    transition: all 0.2s; min-height: 56px;">
-                        <i class="fas fa-battery-three-quarters" style="margin-right: 10px; font-size: 20px;"></i>充电
+                        <i class="fas fa-battery-three-quarters" style="margin-right: 10px; font-size: 20px;"></i><span data-i18n="charging">Charging</span>
                     </button>
                     <button class="manual-mode-btn" data-mode="discharge" onclick="window.selectManualMode('discharge')"
                             style="flex: 1; padding: 16px 12px; border: 3px solid rgba(0, 150, 255, 0.3); border-radius: 12px; 
                                    background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-size: 18px; font-weight: 600; cursor: pointer; 
                                    transition: all 0.2s; min-height: 56px;">
-                        <i class="fas fa-bolt" style="margin-right: 10px; font-size: 20px;"></i>放电
+                        <i class="fas fa-bolt" style="margin-right: 10px; font-size: 20px;"></i><span data-i18n="discharging">Discharging</span>
                     </button>
                 </div>
                 
@@ -1355,10 +1379,10 @@
             <div id="timePolicyPanel" style="display: block; margin-top: 16px; margin-bottom: 24px;">
                 <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
                     <i class="fas fa-robot" style="color: #10b981; font-size: 24px;"></i>
-                    <div style="font-size: 18px; color: rgba(255, 255, 255, 0.7);">系统根据下方时间轴自动控制充放电</div>
+                    <div style="font-size: 18px; color: rgba(255, 255, 255, 0.7);"><span data-i18n="autoControlDesc">System automatically controls charging/discharging based on the timeline below</span></div>
                 </div>
                 <div class="time-axis">
-                    <div class="time-axis-title">峰谷电价时段</div>
+                    <div class="time-axis-title"><span data-i18n="peakValleyPeriod">Peak-Valley Electricity Price Period</span></div>
                     <div id="timeBlocksContainer">
                         <!-- 第一行：0-11点 -->
                         <div class="time-blocks-row" id="timeBlocksRow1">
@@ -1394,15 +1418,15 @@
                     <div class="time-legend">
                         <div class="legend-item">
                             <div class="legend-color" style="background: #ef4444;"></div>
-                            <span>峰值时段</span>
+                            <span><span data-i18n="peakPeriod">Peak Period</span></span>
                         </div>
                         <div class="legend-item">
                             <div class="legend-color" style="background: #3b82f6;"></div>
-                            <span>谷值时段</span>
+                            <span><span data-i18n="valleyPeriod">Valley Period</span></span>
                         </div>
                         <div class="legend-item">
                             <div class="legend-color" style="background: #6b7280;"></div>
-                            <span>平价时段</span>
+                            <span><span data-i18n="normalPeriod">Normal Period</span></span>
                         </div>
                     </div>
                 </div>
@@ -1415,12 +1439,12 @@
         <div class="control-panel">
             <div class="control-section-title">
                 <i class="fas fa-battery-full"></i>
-                电池参数设置
+                <span data-i18n="batteryParameterSettings">Battery Parameter Settings</span>
             </div>
             <div class="control-group">
                 <div class="control-row-two">
                     <div class="control-item">
-                        <label class="control-label">充电停止SOC</label>
+                        <label class="control-label"><span data-i18n="chargeStopSOC">Charge Stop SOC</span></label>
                         <div class="stepper-group">
                             <button class="stepper-btn minus" onclick="stepperChange('chargeStopSOC', -1)" disabled>
                                 <i class="fas fa-minus"></i>
@@ -1433,7 +1457,7 @@
                         </div>
                     </div>
                     <div class="control-item">
-                        <label class="control-label">充电功率</label>
+                        <label class="control-label"><span data-i18n="chargePower">Charge Power</span></label>
                         <div class="stepper-group">
                             <button class="stepper-btn minus" onclick="stepperChange('chargePower', -10)" disabled>
                                 <i class="fas fa-minus"></i>
@@ -1448,7 +1472,7 @@
                 </div>
                 <div class="control-row-two">
                     <div class="control-item">
-                        <label class="control-label">放电停止SOC</label>
+                        <label class="control-label"><span data-i18n="dischargeStopSOC">Discharge Stop SOC</span></label>
                         <div class="stepper-group">
                             <button class="stepper-btn minus" onclick="stepperChange('dischargeStopSOC', -1)" disabled>
                                 <i class="fas fa-minus"></i>
@@ -1461,7 +1485,7 @@
                         </div>
                     </div>
                     <div class="control-item">
-                        <label class="control-label">放电功率</label>
+                        <label class="control-label"><span data-i18n="dischargePower">Discharge Power</span></label>
                         <div class="stepper-group">
                             <button class="stepper-btn minus" onclick="stepperChange('dischargePower', -10)" disabled>
                                 <i class="fas fa-minus"></i>
@@ -1478,27 +1502,27 @@
             <div class="control-group" style="margin-top: 24px;">
                 <div class="control-row">
                     <div class="control-item vertical">
-                        <label class="control-label">均衡控制</label>
+                        <label class="control-label"><span data-i18n="balanceControl">Balance Control</span></label>
                         <div class="select-group" id="balanceControl">
-                            <button class="select-btn active" data-value="active" onclick="selectOption('balanceControl', 'active')" disabled>主动均衡</button>
-                            <button class="select-btn" data-value="passive" onclick="selectOption('balanceControl', 'passive')" disabled>被动均衡</button>
+                            <button class="select-btn active" data-value="active" onclick="selectOption('balanceControl', 'active')" disabled><span data-i18n="activeBalance">Active Balance</span></button>
+                            <button class="select-btn" data-value="passive" onclick="selectOption('balanceControl', 'passive')" disabled><span data-i18n="passiveBalance">Passive Balance</span></button>
                         </div>
                     </div>
                     <div class="control-item vertical">
-                        <label class="control-label">风扇控制</label>
+                        <label class="control-label"><span data-i18n="fanControl">Fan Control</span></label>
                         <div class="select-group" id="fanControl">
-                            <button class="select-btn active" data-value="auto" onclick="selectOption('fanControl', 'auto')" disabled>自动</button>
-                            <button class="select-btn" data-value="on" onclick="selectOption('fanControl', 'on')" disabled>开启</button>
-                            <button class="select-btn" data-value="off" onclick="selectOption('fanControl', 'off')" disabled>关闭</button>
+                            <button class="select-btn active" data-value="auto" onclick="selectOption('fanControl', 'auto')" disabled><span data-i18n="auto">Auto</span></button>
+                            <button class="select-btn" data-value="on" onclick="selectOption('fanControl', 'on')" disabled><span data-i18n="on">On</span></button>
+                            <button class="select-btn" data-value="off" onclick="selectOption('fanControl', 'off')" disabled><span data-i18n="off">Off</span></button>
                         </div>
                     </div>
                 </div>
                 <div class="control-row">
                     <div class="control-item vertical">
-                        <label class="control-label">温度保护</label>
+                        <label class="control-label"><span data-i18n="temperatureProtection">Temperature Protection</span></label>
                         <div class="select-group" id="tempProtection">
-                            <button class="select-btn active" data-value="on" onclick="selectOption('tempProtection', 'on')" disabled>开启</button>
-                            <button class="select-btn" data-value="off" onclick="selectOption('tempProtection', 'off')" disabled>关闭</button>
+                            <button class="select-btn active" data-value="on" onclick="selectOption('tempProtection', 'on')" disabled><span data-i18n="on">On</span></button>
+                            <button class="select-btn" data-value="off" onclick="selectOption('tempProtection', 'off')" disabled><span data-i18n="off">Off</span></button>
                         </div>
                     </div>
                     <div class="control-item">
@@ -1512,53 +1536,53 @@
         <div class="control-panel">
             <div class="control-section-title">
                 <i class="fas fa-fire-extinguisher"></i>
-                消防控制
+                <span data-i18n="fireControl">Fire Control</span>
             </div>
             <div class="control-group">
                 <div class="control-row">
                     <div class="control-item vertical">
-                        <label class="control-label">灭火启动</label>
+                        <label class="control-label"><span data-i18n="fireExtinguisherStart">Fire Extinguisher Start</span></label>
                         <div class="select-group" id="fireExtinguisherMode">
-                            <button class="select-btn active" data-value="auto" onclick="selectOption('fireExtinguisherMode', 'auto')" disabled>自动启动</button>
-                            <button class="select-btn" data-value="manual" onclick="selectOption('fireExtinguisherMode', 'manual')" disabled>手动启动</button>
-                            <button class="select-btn" data-value="disabled" onclick="selectOption('fireExtinguisherMode', 'disabled')" disabled>禁用</button>
+                            <button class="select-btn active" data-value="auto" onclick="selectOption('fireExtinguisherMode', 'auto')" disabled><span data-i18n="autoStart">Auto Start</span></button>
+                            <button class="select-btn" data-value="manual" onclick="selectOption('fireExtinguisherMode', 'manual')" disabled><span data-i18n="manualStart">Manual Start</span></button>
+                            <button class="select-btn" data-value="disabled" onclick="selectOption('fireExtinguisherMode', 'disabled')" disabled><span data-i18n="disabled">Disabled</span></button>
                         </div>
                     </div>
                     <div class="control-item vertical">
-                        <label class="control-label">灭火剂类型</label>
+                        <label class="control-label"><span data-i18n="extinguisherType">Extinguisher Type</span></label>
                         <div class="select-group" id="extinguisherType">
-                            <button class="select-btn active" data-value="perfluorohexanone" onclick="selectOption('extinguisherType', 'perfluorohexanone')" disabled>全氟己酮</button>
-                            <button class="select-btn" data-value="hfc227ea" onclick="selectOption('extinguisherType', 'hfc227ea')" disabled>七氟丙烷</button>
-                            <button class="select-btn" data-value="ig541" onclick="selectOption('extinguisherType', 'ig541')" disabled>IG541混合气体</button>
-                            <button class="select-btn" data-value="co2" onclick="selectOption('extinguisherType', 'co2')" disabled>二氧化碳</button>
+                            <button class="select-btn active" data-value="perfluorohexanone" onclick="selectOption('extinguisherType', 'perfluorohexanone')" disabled><span data-i18n="perfluorohexanone">Perfluorohexanone</span></button>
+                            <button class="select-btn" data-value="hfc227ea" onclick="selectOption('extinguisherType', 'hfc227ea')" disabled><span data-i18n="heptafluoropropane">Heptafluoropropane</span></button>
+                            <button class="select-btn" data-value="ig541" onclick="selectOption('extinguisherType', 'ig541')" disabled><span data-i18n="ig541MixedGas">IG541 Mixed Gas</span></button>
+                            <button class="select-btn" data-value="co2" onclick="selectOption('extinguisherType', 'co2')" disabled><span data-i18n="carbonDioxide">Carbon Dioxide</span></button>
                         </div>
                     </div>
                 </div>
                 <div class="control-row">
                     <div class="control-item vertical">
-                        <label class="control-label">声光报警</label>
+                        <label class="control-label"><span data-i18n="audioVisualAlarm">Audio-Visual Alarm</span></label>
                         <div class="select-group" id="alarmSystem">
-                            <button class="select-btn active" data-value="enabled" onclick="selectOption('alarmSystem', 'enabled')" disabled>启用</button>
-                            <button class="select-btn" data-value="disabled" onclick="selectOption('alarmSystem', 'disabled')" disabled>禁用</button>
-                            <button class="select-btn" data-value="test" onclick="selectOption('alarmSystem', 'test')" disabled>测试模式</button>
+                            <button class="select-btn active" data-value="enabled" onclick="selectOption('alarmSystem', 'enabled')" disabled><span data-i18n="enabled">Enabled</span></button>
+                            <button class="select-btn" data-value="disabled" onclick="selectOption('alarmSystem', 'disabled')" disabled><span data-i18n="disabled">Disabled</span></button>
+                            <button class="select-btn" data-value="test" onclick="selectOption('alarmSystem', 'test')" disabled><span data-i18n="testMode">Test Mode</span></button>
                         </div>
                     </div>
                     <div class="control-item vertical">
-                        <label class="control-label">通风控制</label>
+                        <label class="control-label"><span data-i18n="ventilationControl">Ventilation Control</span></label>
                         <div class="select-group" id="ventilationControl">
-                            <button class="select-btn active" data-value="auto" onclick="selectOption('ventilationControl', 'auto')" disabled>自动控制</button>
-                            <button class="select-btn" data-value="on" onclick="selectOption('ventilationControl', 'on')" disabled>强制开启</button>
-                            <button class="select-btn" data-value="off" onclick="selectOption('ventilationControl', 'off')" disabled>强制关闭</button>
+                            <button class="select-btn active" data-value="auto" onclick="selectOption('ventilationControl', 'auto')" disabled><span data-i18n="autoControl">Auto Control</span></button>
+                            <button class="select-btn" data-value="on" onclick="selectOption('ventilationControl', 'on')" disabled><span data-i18n="forceOn">Force On</span></button>
+                            <button class="select-btn" data-value="off" onclick="selectOption('ventilationControl', 'off')" disabled><span data-i18n="forceOff">Force Off</span></button>
                         </div>
                     </div>
                 </div>
                 <div class="control-row">
                     <div class="control-item vertical">
-                        <label class="control-label">紧急断电</label>
+                        <label class="control-label"><span data-i18n="emergencyPowerOff">Emergency Power Off</span></label>
                         <div class="select-group" id="emergencyPowerOff">
-                            <button class="select-btn active" data-value="auto" onclick="selectOption('emergencyPowerOff', 'auto')" disabled>自动</button>
-                            <button class="select-btn" data-value="manual" onclick="selectOption('emergencyPowerOff', 'manual')" disabled>手动</button>
-                            <button class="select-btn" data-value="disabled" onclick="selectOption('emergencyPowerOff', 'disabled')" disabled>禁用</button>
+                            <button class="select-btn active" data-value="auto" onclick="selectOption('emergencyPowerOff', 'auto')" disabled><span data-i18n="auto">Auto</span></button>
+                            <button class="select-btn" data-value="manual" onclick="selectOption('emergencyPowerOff', 'manual')" disabled><span data-i18n="manual">Manual</span></button>
+                            <button class="select-btn" data-value="disabled" onclick="selectOption('emergencyPowerOff', 'disabled')" disabled><span data-i18n="disabled">Disabled</span></button>
                         </div>
                     </div>
                     <div class="control-item">
@@ -1629,7 +1653,7 @@
                 const cancelBtn = document.createElement('button');
                 cancelBtn.className = 'edit-btn cancel-btn';
                 cancelBtn.style.cssText = 'background: #6b7280; margin-left: 8px;';
-                cancelBtn.innerHTML = '<i class="fas fa-times"></i> 取消';
+                cancelBtn.innerHTML = '<i class="fas fa-times"></i> <span data-i18n="cancel">Cancel</span>';
                 cancelBtn.onclick = function() {
                     console.log('取消按钮被点击');
                     window.cancelEdit();
@@ -1638,7 +1662,7 @@
                 const saveBtn = document.createElement('button');
                 saveBtn.className = 'edit-btn save-btn';
                 saveBtn.style.cssText = 'margin-left: 8px;';
-                saveBtn.innerHTML = '<i class="fas fa-save"></i> 保存';
+                saveBtn.innerHTML = '<i class="fas fa-save"></i> <span data-i18n="save">Save</span>';
                 saveBtn.onclick = function() {
                     console.log('保存按钮被点击');
                     window.saveSettings();
@@ -2176,7 +2200,7 @@
             event.target.classList.add('active');
             
             // 保存语言设置
-            localStorage.setItem('touchscreen_lang', lang);
+            localStorage.setItem('touchscreen_language', lang);
             
             // 关闭下拉菜单
             document.getElementById('langDropdown').classList.remove('show');
@@ -2260,7 +2284,47 @@
         document.head.appendChild(style);
 
     </script>
-    <script src="common-header-scripts.js"></script>
+    <script src="common-header-scripts.js">
+        // ========== 国际化初始化 ==========
+
+        // 监听语言切换事件
+        window.addEventListener('languageChanged', function(e) {
+            console.log('页面接收到语言切换事件:', e.detail.lang);
+
+            // 更新HTML lang属性
+            document.documentElement.lang = e.detail.lang === 'zh' ? 'zh-CN' : 'en';
+
+            // 重新应用翻译到所有元素
+            if (typeof applyTouchscreenTranslations === 'function') {
+                applyTouchscreenTranslations();
+            }
+        });
+
+        // 页面加载时初始化语言
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentLang = getTouchscreenLang();
+            console.log('当前页面语言:', currentLang);
+
+            // 设置HTML lang属性
+            document.documentElement.lang = currentLang === 'zh' ? 'zh-CN' : 'en';
+
+            // HTML默认是英文,只有当前语言是中文时才需要翻译
+            if (currentLang === 'zh' && typeof applyTouchscreenTranslations === 'function') {
+                applyTouchscreenTranslations();
+            }
+
+            // 更新语言切换器的激活状态
+            document.querySelectorAll('.lang-option').forEach(option => {
+                const optionLang = option.getAttribute('onclick').includes("'zh'") ? 'zh' : 'en';
+                if (optionLang === currentLang) {
+                    option.classList.add('active');
+                } else {
+                    option.classList.remove('active');
+                }
+            });
+        });
+
+    </script>
 
     <!-- 退出确认弹窗 -->
     <div id="logoutModal" class="logout-modal">
@@ -2272,7 +2336,7 @@
             <div class="logout-message" id="logoutMessage">您确定要退出当前账户吗？退出后需要重新登录。</div>
             <div class="logout-buttons">
                 <button class="logout-btn-action cancel" id="logoutCancelBtn" onclick="closeLogoutModal()">
-                    <i class="fas fa-times"></i> 取消
+                    <i class="fas fa-times"></i> <span data-i18n="cancel">Cancel</span>
                 </button>
                 <button class="logout-btn-action confirm" id="logoutConfirmBtn" onclick="confirmLogout()">
                     <i class="fas fa-sign-out-alt"></i> 退出

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>数据监控 - 储能柜管理系统</title>
+    <title>Data Monitoring - Energy Storage System</title>
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
@@ -129,7 +129,7 @@
         .nav-menu {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 5px;
             flex: 1;
             justify-content: center;
             flex-wrap: nowrap;
@@ -137,7 +137,7 @@
         }
 
         .nav-item {
-            padding: 12px 28px;
+            padding: 12px 20px;
             color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
             font-size: 17px;
@@ -973,6 +973,18 @@
             margin-bottom: 8px;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
             line-height: 1.2;
+            word-break: break-word;
+            overflow-wrap: break-word;
+        }
+
+        /* 英文状态文本自适应 */
+        [lang="en"] .card-value {
+            font-size: clamp(18px, 2.5vw, 28px);
+        }
+
+        [lang="en"] .card-value span {
+            display: inline-block;
+            max-width: 100%;
         }
 
         .card-unit {
@@ -1540,6 +1552,9 @@
 
 
     </style>
+    <script src="touchscreen-i18n.js"></script>
+    <link rel="stylesheet" href="english-text-optimization.css">
+    <script src="page-transition.js"></script>
 </head>
 <body>
     <!-- 背景效果 -->
@@ -1562,19 +1577,19 @@
                 <div class="logo-icon">
                     <img src="logo.png" alt="Logo">
                 </div>
-                <div class="logo-text">储能柜管理系统</div>
+                <div class="logo-text" data-i18n="systemTitle">Energy Storage System</div>
             </div>
         </div>
         
         <!-- 导航菜单 -->
         <nav class="nav-menu">
-            <div class="nav-item" onclick="switchPage('home')">首页</div>
-            <a href="#data" class="nav-item active" onclick="switchPage('data')">数据</a>
-            <a href="#" class="nav-item" onclick="switchPage('history')">历史</a>
-            <a href="#control" class="nav-item" onclick="switchPage('control')">控制</a>
-            <a href="#alarm" class="nav-item" onclick="switchPage('alarm')">告警</a>
-            <a href="#log" class="nav-item" onclick="switchPage('log')">日志</a>
-            <a href="#settings" class="nav-item" onclick="switchPage('settings')">设置</a>
+            <div class="nav-item" onclick="smoothSwitchPage('home')" data-i18n="navHome">Home</div>
+            <a href="#data" class="nav-item active" onclick="smoothSwitchPage('data')" data-i18n="navData">Data</a>
+            <a href="#" class="nav-item" onclick="smoothSwitchPage('history')" data-i18n="navHistory">History</a>
+            <a href="#control" class="nav-item" onclick="smoothSwitchPage('control')" data-i18n="navControl">Control</a>
+            <a href="#alarm" class="nav-item" onclick="smoothSwitchPage('alarm')" data-i18n="navAlarm">Alarm</a>
+            <a href="#log" class="nav-item" onclick="smoothSwitchPage('log')" data-i18n="navLog">Log</a>
+            <a href="#settings" class="nav-item" onclick="smoothSwitchPage('settings')" data-i18n="navSettings">Settings</a>
         </nav>
         
         <div class="header-right">
@@ -1615,31 +1630,31 @@
             <!-- Component List - Updated 2025-01-05 -->
             <div class="component-list">
                 <div class="component-item active" onclick="switchDataTab('overall')">
-                    <span>整机</span>
+                    <span data-i18n="deviceOverall">Overall</span>
                 </div>
                 <div class="component-item" onclick="switchDataTab('ems')">
-                    <span>EMS</span>
-                    <span class="component-status status-normal">正常</span>
+                    <span data-i18n="deviceEMS">EMS</span>
+                    <span class="component-status status-normal" id="ems-status" data-i18n="deviceStatusNormal">Normal</span>
                 </div>
                 <div class="component-item" onclick="switchDataTab('pcs')">
-                    <span>PCS</span>
-                    <span class="component-status status-normal" id="pcs-status">正常</span>
+                    <span data-i18n="devicePCS">PCS</span>
+                    <span class="component-status status-normal" id="pcs-status" data-i18n="deviceStatusNormal">Normal</span>
                 </div>
                 <div class="component-item" onclick="switchDataTab('bms')">
-                    <span>BMS</span>
-                    <span class="component-status status-error" id="bms-status">异常</span>
+                    <span data-i18n="deviceBMS">BMS</span>
+                    <span class="component-status status-error" id="bms-status" data-i18n="deviceStatusError">Error</span>
                 </div>
                 <div class="component-item" onclick="switchDataTab('meter')">
-                    <span>电表</span>
-                    <span class="component-status status-normal" id="meter-status">正常</span>
+                    <span data-i18n="deviceMeter">Meter</span>
+                    <span class="component-status status-normal" id="meter-status" data-i18n="deviceStatusNormal">Normal</span>
                 </div>
                 <div class="component-item" onclick="switchDataTab('thermal')">
-                    <span>温度</span>
-                    <span class="component-status status-normal" id="thermal-status">正常</span>
+                    <span data-i18n="deviceTemp">Temp</span>
+                    <span class="component-status status-normal" id="thermal-status" data-i18n="deviceStatusNormal">Normal</span>
                 </div>
                 <div class="component-item" onclick="switchDataTab('fire')">
-                    <span>消防</span>
-                    <span class="component-status status-offline" id="fire-status">离线</span>
+                    <span data-i18n="deviceFire">Fire Protection</span>
+                    <span class="component-status status-offline" id="fire-status" data-i18n="deviceStatusOffline">Offline</span>
                 </div>
             </div>
             
@@ -1647,7 +1662,7 @@
             <div class="ota-upgrade-box">
                 <button class="ota-upgrade-btn" onclick="showOTAUpgrade()">
                     <i class="fas fa-cloud-upload-alt"></i>
-                    <span>OTA升级</span>
+                    <span data-i18n="otaUpgrade">OTA Upgrade</span>
                 </button>
             </div>
         </div>
@@ -1660,19 +1675,19 @@
         <div class="content-section active" id="overallSection">
             <!-- 子标签页 -->
             <div class="sub-tabs">
-                <button class="sub-tab active" onclick="switchSubTab('overall', 'realtime')">实时数据</button>
-                <button class="sub-tab" onclick="switchSubTab('overall', 'history')">历史数据</button>
+                <button class="sub-tab active" onclick="switchSubTab('overall', 'realtime')" data-i18n="realtimeData">Real-time Data</button>
+                <button class="sub-tab" onclick="switchSubTab('overall', 'history')" data-i18n="historicalData">Historical Data</button>
                 <button class="data-settings-btn" onclick="openSettings('overall')">
                     <span>⚙️</span>
-                    <span>自定义</span>
+                    <span data-i18n="custom">Custom</span>
                 </button>
             </div>
-            
+
             <!-- 实时数据内容 -->
             <div class="sub-content active" id="overall-realtime">
                 <!-- 策略调度参数 -->
                 <div class="section-header">
-                    <h3 class="section-title">策略调度参数</h3>
+                    <h3 class="section-title" data-i18n="strategyParams">Strategy Parameters</h3>
                 </div>
                 <div class="realtime-grid" id="overall-策略调度参数">
                     <!-- 动态生成 -->
@@ -1680,7 +1695,7 @@
 
                 <!-- 核心运行参数 -->
                 <div class="section-header">
-                    <h3 class="section-title">核心运行参数</h3>
+                    <h3 class="section-title" data-i18n="coreParams">Core Operation Parameters</h3>
                 </div>
                 <div class="realtime-grid" id="overall-核心运行参数">
                     <!-- 动态生成 -->
@@ -1688,7 +1703,7 @@
 
                 <!-- 运行统计 -->
                 <div class="section-header">
-                    <h3 class="section-title">运行统计</h3>
+                    <h3 class="section-title" data-i18n="operationStats">Operation Statistics</h3>
                 </div>
                 <div class="realtime-grid" id="overall-运行统计">
                     <!-- 动态生成 -->
@@ -1696,7 +1711,7 @@
 
                 <!-- 其他参数 -->
                 <div class="section-header">
-                    <h3 class="section-title">其他参数</h3>
+                    <h3 class="section-title" data-i18n="otherParams">Other Parameters</h3>
                 </div>
                 <div class="realtime-grid" id="overall-其他参数">
                     <!-- 动态生成 -->
@@ -1715,11 +1730,11 @@
         <!-- EMS控制器 -->
         <div class="content-section" id="emsSection">
             <div class="sub-tabs">
-                <button class="sub-tab active" onclick="switchSubTab('ems', 'realtime')">实时数据</button>
-                <button class="sub-tab" onclick="switchSubTab('ems', 'history')">历史数据</button>
+                <button class="sub-tab active" onclick="switchSubTab('ems', 'realtime')" data-i18n="realtimeData">Real-time Data</button>
+                <button class="sub-tab" onclick="switchSubTab('ems', 'history')" data-i18n="historicalData">Historical Data</button>
                 <button class="data-settings-btn" onclick="openSettings('ems')">
                     <span>⚙️</span>
-                    <span>自定义</span>
+                    <span data-i18n="custom">Custom</span>
                 </button>
             </div>
             
@@ -1733,8 +1748,8 @@
                 <div class="history-grid" id="ems-history-charts">
                     <!-- 动态生成历史数据图表 -->
                 </div>
-                <div style="text-align: center; padding: 100px 20px 60px 20px; color: rgba(255, 255, 255, 0.8); font-size: 28px; font-weight: 600;">
-                    更多数据开发中...
+                <div style="text-align: center; padding: 100px 20px 60px 20px; color: rgba(255, 255, 255, 0.8); font-size: 28px; font-weight: 600;" data-i18n="moreDataDeveloping">
+                    More data in development...
                 </div>
             </div>
         </div>
@@ -1742,11 +1757,11 @@
         <!-- PCS逆变器 -->
         <div class="content-section" id="pcsSection">
             <div class="sub-tabs">
-                <button class="sub-tab active" onclick="switchSubTab('pcs', 'realtime')">实时数据</button>
-                <button class="sub-tab" onclick="switchSubTab('pcs', 'history')">历史数据</button>
+                <button class="sub-tab active" onclick="switchSubTab('pcs', 'realtime')" data-i18n="realtimeData">Real-time Data</button>
+                <button class="sub-tab" onclick="switchSubTab('pcs', 'history')" data-i18n="historicalData">Historical Data</button>
                 <button class="data-settings-btn" onclick="openSettings('pcs')">
                     <span>⚙️</span>
-                    <span>自定义</span>
+                    <span data-i18n="custom">Custom</span>
                 </button>
             </div>
             
@@ -1766,11 +1781,11 @@
         <!-- 电表系统 -->
         <div class="content-section" id="meterSection">
             <div class="sub-tabs">
-                <button class="sub-tab active" onclick="switchSubTab('meter', 'realtime')">实时数据</button>
-                <button class="sub-tab" onclick="switchSubTab('meter', 'history')">历史数据</button>
+                <button class="sub-tab active" onclick="switchSubTab('meter', 'realtime')" data-i18n="realtimeData">Real-time Data</button>
+                <button class="sub-tab" onclick="switchSubTab('meter', 'history')" data-i18n="historicalData">Historical Data</button>
                 <button class="data-settings-btn" onclick="openSettings('meter')">
                     <span>⚙️</span>
-                    <span>自定义</span>
+                    <span data-i18n="custom">Custom</span>
                 </button>
             </div>
             
@@ -1790,11 +1805,11 @@
         <!-- BMS系统(包含BMS和电池模组) -->
         <div class="content-section" id="bmsSection">
             <div class="sub-tabs">
-                <button class="sub-tab active" onclick="switchSubTab('bms', 'realtime')">实时数据</button>
-                <button class="sub-tab" onclick="switchSubTab('bms', 'history')">历史数据</button>
+                <button class="sub-tab active" onclick="switchSubTab('bms', 'realtime')" data-i18n="realtimeData">Real-time Data</button>
+                <button class="sub-tab" onclick="switchSubTab('bms', 'history')" data-i18n="historicalData">Historical Data</button>
                 <button class="data-settings-btn" onclick="openSettings('bms')">
                     <span>⚙️</span>
-                    <span>自定义</span>
+                    <span data-i18n="custom">Custom</span>
                 </button>
             </div>
             
@@ -1814,11 +1829,11 @@
         <!-- 温度 -->
         <div class="content-section" id="thermalSection">
             <div class="sub-tabs">
-                <button class="sub-tab active" onclick="switchSubTab('thermal', 'realtime')">实时数据</button>
-                <button class="sub-tab" onclick="switchSubTab('thermal', 'history')">历史数据</button>
+                <button class="sub-tab active" onclick="switchSubTab('thermal', 'realtime')" data-i18n="realtimeData">Real-time Data</button>
+                <button class="sub-tab" onclick="switchSubTab('thermal', 'history')" data-i18n="historicalData">Historical Data</button>
                 <button class="data-settings-btn" onclick="openSettings('thermal')">
                     <span>⚙️</span>
-                    <span>自定义</span>
+                    <span data-i18n="custom">Custom</span>
                 </button>
             </div>
             
@@ -1838,11 +1853,11 @@
         <!-- 消防 -->
         <div class="content-section" id="fireSection">
             <div class="sub-tabs">
-                <button class="sub-tab active" onclick="switchSubTab('fire', 'realtime')">实时数据</button>
-                <button class="sub-tab" onclick="switchSubTab('fire', 'history')">历史数据</button>
+                <button class="sub-tab active" onclick="switchSubTab('fire', 'realtime')" data-i18n="realtimeData">Real-time Data</button>
+                <button class="sub-tab" onclick="switchSubTab('fire', 'history')" data-i18n="historicalData">Historical Data</button>
                 <button class="data-settings-btn" onclick="openSettings('fire')">
                     <span>⚙️</span>
-                    <span>自定义</span>
+                    <span data-i18n="custom">Custom</span>
                 </button>
             </div>
             
@@ -1869,14 +1884,14 @@
     <!-- 设置面板 -->
     <div class="settings-panel" id="settingsPanel">
         <div class="settings-header">
-            <h3 class="settings-title">数据显示设置</h3>
+            <h3 class="settings-title" data-i18n="dataDisplaySettings">Field Settings</h3>
             <button class="settings-close" onclick="closeSettings()">✕</button>
         </div>
         
         <!-- 设置类型选择 -->
         <div class="settings-type-selector">
-            <button class="type-btn active" id="realtime-type-btn" onclick="switchSettingsType('realtime')">实时数据</button>
-            <button class="type-btn" id="history-type-btn" onclick="switchSettingsType('history')">历史数据</button>
+            <button class="type-btn active" id="realtime-type-btn" onclick="switchSettingsType('realtime')" data-i18n="realtimeData">Real-time Data</button>
+            <button class="type-btn" id="history-type-btn" onclick="switchSettingsType('history')" data-i18n="historicalData">Historical Data</button>
         </div>
         
         <div class="settings-content" id="settingsContent">
@@ -1891,7 +1906,7 @@
                 realtime: {
                     '策略调度参数': {
                         strategy: { label: '当前策略', unit: '', default: true, value: '峰谷套利', status: '自动执行中', statusColor: '#00ff88' },
-                        dispatch: { label: '调度指令', unit: '', default: true, value: '充电', statusColor: '#00ff88', subValue: '最大功率：300kW' },
+                        dispatch: { label: '调度指令', unit: '', default: true, value: '充电', statusColor: '#00ff88', subValueLabel: '最大功率', subValueData: '300', subValueUnit: 'kW' },
                         targetSOC: { label: '目标SOC', unit: '%', default: true, value: '90' },
                         maxPower: { label: '最大功率', unit: 'kW', default: true }
                     },
@@ -1970,20 +1985,20 @@
             // PCS逆变器
             pcs: {
                 realtime: {
-                    'PCS电网侧参数': {
-                        gridVoltage: { label: 'PCS电网侧电压', unit: 'V', default: true, type: 'three-phase' },
-                        gridCurrent: { label: 'PCS电网侧电流', unit: 'A', default: true, type: 'three-phase' },
-                        gridPower: { label: 'PCS电网侧功率', unit: 'kW', default: true, type: 'three-phase-power' }
+                    'pcsGridSideParams': {
+                        gridVoltage: { label: 'pcsGridVoltage', unit: 'V', default: true, type: 'three-phase' },
+                        gridCurrent: { label: 'pcsGridCurrent', unit: 'A', default: true, type: 'three-phase' },
+                        gridPower: { label: 'pcsGridPower', unit: 'kW', default: true, type: 'three-phase-power' }
                     },
-                    'PCS温度': {
-                        transformerTemp: { label: 'PCS温度', unit: '°C', default: true }
+                    'pcsTemperature': {
+                        transformerTemp: { label: 'pcsTemperature', unit: '°C', default: true }
                     }
                 },
                 history: {
                     '图表': {
-                        powerConversion: { label: '功率转换历史', default: true },
-                        voltageCurrent: { label: '电压电流趋势', default: true },
-                        efficiency: { label: '转换效率分析', default: true }
+                        powerConversion: { label: 'pcsPowerConversionHistory', default: true },
+                        voltageCurrent: { label: 'voltageCurrentTrend', default: true },
+                        efficiency: { label: 'conversionEfficiencyAnalysis', default: true }
                     }
                 }
             },
@@ -2332,7 +2347,7 @@
             
             for (const category in config) {
                 html += `<div class="field-category">`;
-                html += `<div class="field-category-title">${category}</div>`;
+                html += `<div class="field-category-title">${translateLabel(category)}</div>`;
                 
                 for (const field in config[category]) {
                     const fieldConfig = config[category][field];
@@ -2345,7 +2360,7 @@
                                    id="${component}_${type}_${field}"
                                    ${isChecked ? 'checked' : ''}>
                             <label class="field-label" for="${component}_${type}_${field}">
-                                ${fieldConfig.label}
+                                ${translateLabel(fieldConfig.label)}
                             </label>
                         </div>
                     `;
@@ -2491,7 +2506,7 @@
 
             const config = dataFieldsConfig[component][currentSettingsType];
             if (!config) {
-                settingsContent.innerHTML = '<p style="color: rgba(255,255,255,0.5); text-align: center;">该组件暂无可配置项</p>';
+                settingsContent.innerHTML = '<p style="color: rgba(255,255,255,0.5); text-align: center;">' + translateLabel('该组件暂无可配置项') + '</p>';
                 return;
             }
             
@@ -2500,19 +2515,19 @@
                 for (const section in config) {
                     const sectionDiv = document.createElement('div');
                     sectionDiv.className = 'settings-section';
-                    
+
                     const sectionTitle = document.createElement('div');
                     sectionTitle.className = 'settings-section-title';
-                    sectionTitle.textContent = section;
+                    sectionTitle.textContent = translateLabel(section);
                     sectionDiv.appendChild(sectionTitle);
 
                     for (const field in config[section]) {
                         const fieldItem = document.createElement('div');
                         fieldItem.className = 'field-item';
-                        
+
                         const label = document.createElement('span');
                         label.className = 'field-label';
-                        label.textContent = config[section][field].label;
+                        label.textContent = translateLabel(config[section][field].label);
                         
                         const toggle = document.createElement('div');
                         toggle.className = 'field-toggle';
@@ -2556,20 +2571,20 @@
                 for (const category in config) {
                     const sectionDiv = document.createElement('div');
                     sectionDiv.className = 'settings-section';
-                    
+
                     const sectionTitle = document.createElement('div');
                     sectionTitle.className = 'settings-section-title';
-                    sectionTitle.textContent = category;
+                    sectionTitle.textContent = translateLabel(category);
                     sectionDiv.appendChild(sectionTitle);
 
                     const categoryFields = config[category];
                     for (const field in categoryFields) {
                         const fieldItem = document.createElement('div');
                         fieldItem.className = 'field-item';
-                        
+
                         const label = document.createElement('span');
                         label.className = 'field-label';
-                        label.textContent = categoryFields[field].label;
+                        label.textContent = translateLabel(categoryFields[field].label);
                         
                         const toggle = document.createElement('div');
                         toggle.className = 'field-toggle';
@@ -2679,7 +2694,7 @@
                         sectionHeader.style.alignItems = 'center';
                         sectionHeader.style.marginBottom = '5px';
                         
-                        let headerContent = `<h3 class="section-title" style="margin: 0;">${section}</h3>`;
+                        let headerContent = `<h3 class="section-title" style="margin: 0;">${translateLabel(section)}</h3>`;
                         
                         // 只在第一个分段添加设置按钮（排除特定组件）
                         const excludedComponents = ['ems', 'pcs', 'bms', 'meter', 'thermal', 'fire'];
@@ -2687,7 +2702,7 @@
                             headerContent += `
                                 <button class="settings-btn" onclick="openFieldSettings('${component}')" title="字段设置" style="padding: 4px 12px; font-size: 12px;">
                                     <i class="fas fa-cog"></i>
-                                    <span>设置</span>
+                                    <span>Settings</span>
                                 </button>
                             `;
                             firstSection = false;
@@ -2755,7 +2770,7 @@
                             <div class="chart-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                                 <div class="chart-title" style="font-size: 18px; font-weight: 600; color: rgba(255, 255, 255, 0.95); display: flex; align-items: center; gap: 8px;">
                                     <span style="width: 4px; height: 18px; background: linear-gradient(45deg, #0096ff, #00d4ff); border-radius: 2px;"></span>
-                                    功率与SOC综合分析
+                                    ${translateLabel('功率与SOC综合分析')}
                                 </div>
                                 <div style="display: flex; gap: 12px; align-items: center;">
                                     <div class="custom-date-input">
@@ -2778,14 +2793,14 @@
                             <div class="chart-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                                 <div class="chart-title" style="font-size: 18px; font-weight: 600; color: rgba(255, 255, 255, 0.95); display: flex; align-items: center; gap: 8px;">
                                     <span style="width: 4px; height: 18px; background: linear-gradient(45deg, #0096ff, #00d4ff); border-radius: 2px;"></span>
-                                    收益分析
+                                    ${translateLabel('收益分析')}
                                 </div>
                                 <div style="display: flex; gap: 12px; align-items: center;">
                                     <select id="revenueTimeType" class="form-input" style="width: 220px; height: 55px; padding: 12px 16px; font-size: 24px; font-weight: 600; background: rgba(15, 25, 42, 0.8); border: 1px solid rgba(0, 150, 255, 0.3); border-radius: 8px; color: rgba(255, 255, 255, 0.9);" onchange="updateRevenueAnalysisChart()">
-                                        <option value="day" selected>日</option>
-                                        <option value="month">月</option>
-                                        <option value="year">年</option>
-                                        <option value="total">合计</option>
+                                        <option value="day" selected data-i18n="day">Day</option>
+                                        <option value="month" data-i18n="month">Month</option>
+                                        <option value="year" data-i18n="year">Year</option>
+                                        <option value="total" data-i18n="total">Total</option>
                                     </select>
                                     <div class="custom-date-input" id="revenueDatePickerWrapper" style="display: inline-block;">
                                         <input type="text" id="revenueDatePicker" readonly style="width: 220px; height: 55px; padding: 12px 45px 12px 16px; font-size: 24px; font-weight: 600; background: rgba(15, 25, 42, 0.8); border: 1px solid rgba(0, 150, 255, 0.3); border-radius: 8px; color: rgba(255, 255, 255, 0.9); cursor: pointer;" onclick="showCustomCalendar('revenueDatePicker')">
@@ -2881,7 +2896,7 @@
                             <div class="chart-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                                 <div class="chart-title" style="font-size: 18px; font-weight: 600; color: rgba(255, 255, 255, 0.95); display: flex; align-items: center; gap: 8px;">
                                     <span style="width: 4px; height: 18px; background: linear-gradient(45deg, #0096ff, #00d4ff); border-radius: 2px;"></span>
-                                    PCS功率转换历史
+                                    <span data-i18n="pcsPowerConversionHistory">PCS Power Conversion History</span>
                                 </div>
                                 <div style="display: flex; gap: 12px; align-items: center;">
                                     <div class="custom-date-input">
@@ -2904,7 +2919,7 @@
                             <div class="chart-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                                 <div class="chart-title" style="font-size: 18px; font-weight: 600; color: rgba(255, 255, 255, 0.95); display: flex; align-items: center; gap: 8px;">
                                     <span style="width: 4px; height: 18px; background: linear-gradient(45deg, #0096ff, #00d4ff); border-radius: 2px;"></span>
-                                    电压电流趋势
+                                    <span data-i18n="voltageCurrentTrend">Voltage & Current Trend</span>
                                 </div>
                                 <div style="display: flex; gap: 12px; align-items: center;">
                                     <div class="custom-date-input">
@@ -2927,14 +2942,14 @@
                             <div class="chart-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                                 <div class="chart-title" style="font-size: 18px; font-weight: 600; color: rgba(255, 255, 255, 0.95); display: flex; align-items: center; gap: 8px;">
                                     <span style="width: 4px; height: 18px; background: linear-gradient(45deg, #0096ff, #00d4ff); border-radius: 2px;"></span>
-                                    转换效率分析
+                                    <span data-i18n="conversionEfficiencyAnalysis">Conversion Efficiency Analysis</span>
                                 </div>
                                 <div style="display: flex; gap: 12px; align-items: center;">
                                     <select id="pcsEfficiencyTimePicker" class="form-input" style="width: 120px; height: 55px; padding: 12px 16px; font-size: 24px; font-weight: 600; background: rgba(15, 25, 42, 0.8); border: 1px solid rgba(0, 150, 255, 0.3); border-radius: 8px; color: rgba(255, 255, 255, 0.9); cursor: pointer;" onchange="updatePcsEfficiencyTimePeriod()">
-                                        <option value="day" selected>日</option>
-                                        <option value="month">月</option>
-                                        <option value="year">年</option>
-                                        <option value="total">合计</option>
+                                        <option value="day" selected data-i18n="日">Day</option>
+                                        <option value="month" data-i18n="月">Month</option>
+                                        <option value="year" data-i18n="年">Year</option>
+                                        <option value="total" data-i18n="合计">Total</option>
                                     </select>
                                     <div class="custom-date-input" id="pcsEfficiencyDatePickerWrapper" style="display: inline-block;">
                                         <input type="text" id="pcsEfficiencyDatePicker" readonly style="width: 220px; height: 55px; padding: 12px 45px 12px 16px; font-size: 24px; font-weight: 600; background: rgba(15, 25, 42, 0.8); border: 1px solid rgba(0, 150, 255, 0.3); border-radius: 8px; color: rgba(255, 255, 255, 0.9); cursor: pointer;" onclick="showCustomCalendar('pcsEfficiencyDatePicker')">
@@ -3006,7 +3021,7 @@
                             <div class="chart-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                                 <div class="chart-title" style="font-size: 18px; font-weight: 600; color: rgba(255, 255, 255, 0.95); display: flex; align-items: center; gap: 8px;">
                                     <span style="width: 4px; height: 18px; background: linear-gradient(45deg, #0096ff, #00d4ff); border-radius: 2px;"></span>
-                                    功率趋势分析
+                                    ${translateLabel("功率趋势分析")}
                                 </div>
                                 <div style="display: flex; gap: 12px; align-items: center;">
                                     <div class="custom-date-input">
@@ -3032,7 +3047,7 @@
                             <div class="chart-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                                 <div class="chart-title" style="font-size: 18px; font-weight: 600; color: rgba(255, 255, 255, 0.95); display: flex; align-items: center; gap: 8px;">
                                     <span style="width: 4px; height: 18px; background: linear-gradient(45deg, #0096ff, #00d4ff); border-radius: 2px;"></span>
-                                    电量消耗统计
+                                    ${translateLabel("电量消耗统计")}
                                 </div>
                                 <div style="display: flex; gap: 12px; align-items: center;">
                                     <div class="custom-date-input">
@@ -3055,7 +3070,7 @@
                             <div class="chart-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                                 <div class="chart-title" style="font-size: 18px; font-weight: 600; color: rgba(255, 255, 255, 0.95); display: flex; align-items: center; gap: 8px;">
                                     <span style="width: 4px; height: 18px; background: linear-gradient(45deg, #0096ff, #00d4ff); border-radius: 2px;"></span>
-                                    电压质量监测
+                                    ${translateLabel("电压质量监测")}
                                 </div>
                                 <div style="display: flex; gap: 12px; align-items: center;">
                                     <div class="custom-date-input">
@@ -3078,7 +3093,7 @@
                             <div class="chart-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                                 <div class="chart-title" style="font-size: 18px; font-weight: 600; color: rgba(255, 255, 255, 0.95); display: flex; align-items: center; gap: 8px;">
                                     <span style="width: 4px; height: 18px; background: linear-gradient(45deg, #0096ff, #00d4ff); border-radius: 2px;"></span>
-                                    谐波分析
+                                    ${translateLabel("谐波分析")}
                                 </div>
                                 <div style="display: flex; gap: 12px; align-items: center;">
                                     <div class="custom-date-input">
@@ -3136,7 +3151,7 @@
                             <div class="chart-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                                 <div class="chart-title" style="font-size: 18px; font-weight: 600; color: rgba(255, 255, 255, 0.95); display: flex; align-items: center; gap: 8px;">
                                     <span style="width: 4px; height: 18px; background: linear-gradient(45deg, #0096ff, #00d4ff); border-radius: 2px;"></span>
-                                    电池SOC趋势
+                                    ${translateLabel("电池SOC趋势")}
                                 </div>
                                 <div style="display: flex; gap: 12px; align-items: center;">
                                     <div class="custom-date-input">
@@ -3159,7 +3174,7 @@
                             <div class="chart-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                                 <div class="chart-title" style="font-size: 18px; font-weight: 600; color: rgba(255, 255, 255, 0.95); display: flex; align-items: center; gap: 8px;">
                                     <span style="width: 4px; height: 18px; background: linear-gradient(45deg, #0096ff, #00d4ff); border-radius: 2px;"></span>
-                                    电池电压历史
+                                    ${translateLabel("电池电压历史")}
                                 </div>
                                 <div style="display: flex; gap: 12px; align-items: center;">
                                     <div class="custom-date-input">
@@ -3182,7 +3197,7 @@
                             <div class="chart-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                                 <div class="chart-title" style="font-size: 18px; font-weight: 600; color: rgba(255, 255, 255, 0.95); display: flex; align-items: center; gap: 8px;">
                                     <span style="width: 4px; height: 18px; background: linear-gradient(45deg, #0096ff, #00d4ff); border-radius: 2px;"></span>
-                                    温度分布分析
+                                    ${translateLabel("温度分布分析")}
                                 </div>
                                 <div style="display: flex; gap: 12px; align-items: center;">
                                     <div class="custom-date-input">
@@ -3283,7 +3298,7 @@
                             <div class="chart-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                                 <div class="chart-title" style="font-size: 18px; font-weight: 600; color: rgba(255, 255, 255, 0.95); display: flex; align-items: center; gap: 8px;">
                                     <span style="width: 4px; height: 18px; background: linear-gradient(45deg, #0096ff, #00d4ff); border-radius: 2px;"></span>
-                                    温度分布历史
+                                    ${translateLabel("温度分布历史")}
                                 </div>
                                 <div style="display: flex; gap: 12px; align-items: center;">
                                     <div class="custom-date-input">
@@ -3306,7 +3321,7 @@
                             <div class="chart-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                                 <div class="chart-title" style="font-size: 18px; font-weight: 600; color: rgba(255, 255, 255, 0.95); display: flex; align-items: center; gap: 8px;">
                                     <span style="width: 4px; height: 18px; background: linear-gradient(45deg, #0096ff, #00d4ff); border-radius: 2px;"></span>
-                                    冷却系统运行
+                                    ${translateLabel("冷却系统运行")}
                                 </div>
                                 <div style="display: flex; gap: 12px; align-items: center;">
                                     <div class="custom-date-input">
@@ -3329,7 +3344,7 @@
                             <div class="chart-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                                 <div class="chart-title" style="font-size: 18px; font-weight: 600; color: rgba(255, 255, 255, 0.95); display: flex; align-items: center; gap: 8px;">
                                     <span style="width: 4px; height: 18px; background: linear-gradient(45deg, #0096ff, #00d4ff); border-radius: 2px;"></span>
-                                    温度热力图
+                                    ${translateLabel("温度热力图")}
                                 </div>
                                 <div style="display: flex; gap: 12px; align-items: center;">
                                     <div class="custom-date-input">
@@ -3376,7 +3391,7 @@
                             <div class="chart-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                                 <div class="chart-title" style="font-size: 18px; font-weight: 600; color: rgba(255, 255, 255, 0.95); display: flex; align-items: center; gap: 8px;">
                                     <span style="width: 4px; height: 18px; background: linear-gradient(45deg, #0096ff, #00d4ff); border-radius: 2px;"></span>
-                                    系统状态历史
+                                    ${translateLabel("系统状态历史")}
                                 </div>
                                 <div style="display: flex; gap: 12px; align-items: center;">
                                     <div class="custom-date-input">
@@ -3399,7 +3414,7 @@
                             <div class="chart-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                                 <div class="chart-title" style="font-size: 18px; font-weight: 600; color: rgba(255, 255, 255, 0.95); display: flex; align-items: center; gap: 8px;">
                                     <span style="width: 4px; height: 18px; background: linear-gradient(45deg, #0096ff, #00d4ff); border-radius: 2px;"></span>
-                                    气体浓度监测
+                                    ${translateLabel("气体浓度监测")}
                                 </div>
                                 <div style="display: flex; gap: 12px; align-items: center;">
                                     <div class="custom-date-input">
@@ -3422,7 +3437,7 @@
                             <div class="chart-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                                 <div class="chart-title" style="font-size: 18px; font-weight: 600; color: rgba(255, 255, 255, 0.95); display: flex; align-items: center; gap: 8px;">
                                     <span style="width: 4px; height: 18px; background: linear-gradient(45deg, #0096ff, #00d4ff); border-radius: 2px;"></span>
-                                    告警记录分析
+                                    ${translateLabel("告警记录分析")}
                                 </div>
                                 <div style="display: flex; gap: 12px; align-items: center;">
                                     <div class="custom-date-input">
@@ -3484,7 +3499,7 @@
             div.className = 'chart-container';
             div.innerHTML = `
                 <div class="chart-header">
-                    <h3 class="chart-title">${config.label}</h3>
+                    <h3 class="chart-title">${translateLabel(config.label)}</h3>
                     <div class="time-range-selector">
                         <button class="time-btn active" onclick="changeHistoryRange('${field}', '24h')">24小时</button>
                         <button class="time-btn" onclick="changeHistoryRange('${field}', '7d')">7天</button>
@@ -3582,15 +3597,15 @@
                 packCard.innerHTML = `
                     <div class="pack-header">
                         <div class="pack-title">Pack${pack.id}</div>
-                        <div class="pack-status">正常</div>
+                        <div class="pack-status">${translateLabel('正常')}</div>
                     </div>
                     <div class="pack-grid">
                         <div class="pack-item">
-                            <div class="pack-label">电压</div>
+                            <div class="pack-label">${translateLabel('电压')}</div>
                             <div class="pack-value">${pack.voltage}V</div>
                         </div>
                         <div class="pack-item">
-                            <div class="pack-label">电流</div>
+                            <div class="pack-label">${translateLabel('电流')}</div>
                             <div class="pack-value">${pack.current}A</div>
                         </div>
                         <div class="pack-item">
@@ -3602,7 +3617,7 @@
                             <div class="pack-value">${pack.soh}%</div>
                         </div>
                         <div class="pack-item">
-                            <div class="pack-label">温度</div>
+                            <div class="pack-label">${translateLabel('温度')}</div>
                             <div class="pack-value">${pack.temp}°C</div>
                         </div>
                     </div>
@@ -4008,7 +4023,7 @@
             card.innerHTML = `
                 <div class="card-title" style="font-size: 18px; margin-bottom: 8px; color: rgba(255, 255, 255, 0.85); font-weight: 600;">
                     ${showIcon ? `<span class="card-icon">${getFieldIcon(field)}</span>` : ''}
-                    ${config.label}
+                    ${translateLabel(config.label)}
                 </div>
                 <div class="three-phase-list" style="
                     display: flex;
@@ -4027,13 +4042,13 @@
                             color: #ffffff;
                             font-weight: 500;
                             min-width: 45px;
-                        ">A相</span>
+                        ">${translateLabel('A相')}</span>
                         <span class="phase-value" style="
                             font-size: 18px;
                             color: #ffffff;
                             font-weight: bold;
                             text-align: right;
-                        ">${phaseA} ${config.unit}</span>
+                        ">${phaseA} ${translateUnit(config.unit)}</span>
                     </div>
                     <div class="phase-row" style="
                         display: flex;
@@ -4047,13 +4062,13 @@
                             color: #ffffff;
                             font-weight: 500;
                             min-width: 45px;
-                        ">B相</span>
+                        ">${translateLabel('B相')}</span>
                         <span class="phase-value" style="
                             font-size: 18px;
                             color: #ffffff;
                             font-weight: bold;
                             text-align: right;
-                        ">${phaseB} ${config.unit}</span>
+                        ">${phaseB} ${translateUnit(config.unit)}</span>
                     </div>
                     <div class="phase-row" style="
                         display: flex;
@@ -4066,13 +4081,13 @@
                             color: #ffffff;
                             font-weight: 500;
                             min-width: 45px;
-                        ">C相</span>
+                        ">${translateLabel('C相')}</span>
                         <span class="phase-value" style="
                             font-size: 18px;
                             color: #ffffff;
                             font-weight: bold;
                             text-align: right;
-                        ">${phaseC} ${config.unit}</span>
+                        ">${phaseC} ${translateUnit(config.unit)}</span>
                     </div>
                 </div>
             `;
@@ -4081,6 +4096,282 @@
         }
         
         // 创建数据卡片
+        
+        // 翻译字段标签
+        function translateLabel(label) {
+            const lang = getTouchscreenLang();
+            if (lang === 'zh') return label;
+
+            const labelTranslations = {
+                // 章节标题
+                '策略调度参数': 'Strategy Parameters',
+                '核心运行参数': 'Core Operation Parameters',
+                '运行统计': 'Operation Statistics',
+                '其他参数': 'Other Parameters',
+                'CPU状态': 'CPU Status',
+                '内存状态': 'Memory Status',
+                '磁盘状态': 'Disk Status',
+                '开发板温度': 'Board Temperature',
+                '4G网络状态': '4G Network Status',
+                'WiFi状态': 'WiFi Status',
+                '系统信息': 'System Information',
+                '性能监控': 'Performance Monitoring',
+                '网络状态': 'Network Status',
+                '系统日志': 'System Logs',
+
+                // 策略调度参数
+                '当前策略': 'Current Strategy',
+                '调度指令': 'Dispatch Command',
+                '目标SOC': 'Target SOC',
+                '最大功率': 'Max Power',
+
+                // 核心运行参数
+                '温度': 'Temperature',
+                '充放电功率': 'Charge/Discharge Power',
+                '电池电流': 'Battery Current',
+                '电池电压': 'Battery Voltage',
+
+                // 运行统计
+                '今日充电量': "Today's Charge",
+                '今日放电量': "Today's Discharge",
+                '日充电量': 'Daily Charge',
+                '日放电量': 'Daily Discharge',
+                '累计充电量': 'Total Charge',
+                '累计放电量': 'Total Discharge',
+                '循环次数': 'Cycle Count',
+                '寿命正常': 'Lifespan Normal',
+                '循环寿命统计': 'Cycle Lifespan Statistics',
+
+                // 设备状态值
+                '正常': 'Normal',
+                '异常': 'Error',
+                '离线': 'Offline',
+                '告警': 'Warning',
+
+                // 运行状态值
+                '峰谷套利': 'Peak-Valley Arbitrage',
+                '自动执行中': 'Auto Running',
+                '充电': 'Charging',
+                '放电': 'Discharging',
+                '充电中': 'Charging',
+                '放电中': 'Discharging',
+                '待机': 'Standby',
+                '停机': 'Stopped',
+
+                // 状态描述
+                'SOH良好': 'SOH Good',
+                '温度正常': 'Temp Normal',
+                '电流正常': 'Current Normal',
+                '电压稳定': 'Voltage Stable',
+                '电压正常': 'Voltage Normal',
+
+                // 历史数据图表
+                '功率与SOC综合分析': 'Power & SOC Analysis',
+                '收益分析': 'Revenue Analysis',
+                '充电量': 'Charge',
+                '放电量': 'Discharge',
+                '净收益': 'Net Revenue',
+                '日': 'Day',
+                '周': 'Week',
+                '月': 'Month',
+
+                // 字段设置对话框
+                '数据显示设置': 'Field Settings',
+                '图表分析': 'Chart Analysis',
+
+                // BMS相关翻译
+                '核心指标': 'Core Indicators',
+                '电池总电压': 'Total Battery Voltage',
+                '电池总电流': 'Total Battery Current',
+                '电池功率': 'Battery Power',
+                'Pack电池簇信息': 'Pack Battery Cluster Info',
+                '电流稳定': 'Current Stable',
+                '功率稳定': 'Power Stable',
+                '图表': 'Charts',
+                '电池性能趋势': 'Battery Performance Trend',
+                '容量衰减分析': 'Capacity Degradation Analysis',
+                '电池电压历史': 'Battery Voltage History',
+                '电池SOC趋势': 'Battery SOC Trend',
+                '温度分布分析': 'Temperature Distribution Analysis',
+                '最高电压': 'Max Voltage',
+                '平均电压': 'Avg Voltage',
+                '最低电压': 'Min Voltage',
+                '最高温度': 'Max Temperature',
+                '平均温度': 'Avg Temperature',
+                '最低温度': 'Min Temperature',
+                'SOC趋势': 'SOC Trend',
+
+                // 电表相关翻译
+                '功率趋势分析': 'Power Trend Analysis',
+                '电量消耗统计': 'Energy Consumption Statistics',
+                '电压质量监测': 'Voltage Quality Monitoring',
+                '谐波分析': 'Harmonic Analysis',
+                '有功功率': 'Active Power',
+                '无功功率': 'Reactive Power',
+                '视在功率': 'Apparent Power',
+                '有功电量': 'Active Energy',
+                '无功电量': 'Reactive Energy',
+                'A相电压': 'Phase A Voltage',
+                'B相电压': 'Phase B Voltage',
+                'C相电压': 'Phase C Voltage',
+                'A相电流': 'Phase A Current',
+                'B相电流': 'Phase B Current',
+                'C相电流': 'Phase C Current',
+                '电能计量': 'Energy Metering',
+                '电压电流': 'Voltage & Current',
+                '电能统计': 'Energy Statistics',
+                '总有功功率': 'Total Active Power',
+                '总无功功率': 'Total Reactive Power',
+                '总视在功率': 'Total Apparent Power',
+                '频率': 'Frequency',
+                '电表电压': 'Meter Voltage',
+                '电表电流': 'Meter Current',
+                '日有功电量': 'Daily Active Energy',
+                '日无功电量': 'Daily Reactive Energy',
+                '累计有功电量': 'Total Active Energy',
+                '累计无功电量': 'Total Reactive Energy',
+
+                // 温度相关翻译
+                '温度分布历史': 'Temperature Distribution History',
+                '冷却系统运行': 'Cooling System Operation',
+                '温度热力图': 'Temperature Heat Map',
+                '电池包最高温度': 'Battery Pack Max Temperature',
+                '电池包平均温度': 'Battery Pack Avg Temperature',
+                '电池包最低温度': 'Battery Pack Min Temperature',
+                '进风温度': 'Inlet Temperature',
+                '出风温度': 'Outlet Temperature',
+                '相对湿度': 'Relative Humidity',
+                '运行状态': 'Operating Status',
+                '储能柜温度': 'Cabinet Temperature',
+                '运行模式': 'Operating Mode',
+                '核心监控参数': 'Core Monitoring Parameters',
+                '电池包温差': 'Battery Pack Temperature Difference',
+                '冷却液温度': 'Coolant Temperature',
+                '主风机转速': 'Main Fan Speed',
+                '制冷功耗': 'Cooling Power Consumption',
+
+                // 状态文本翻译
+                '制冷': 'Cooling',
+                '制热': 'Heating',
+                '温度正常': 'Temp Normal',
+                '平均温度正常': 'Avg Temp Normal',
+                '温差正常': 'Temp Diff Normal',
+                '进风温度正常': 'Inlet Temp Normal',
+                '出风温度正常': 'Outlet Temp Normal',
+                '湿度正常': 'Humidity Normal',
+                '冷却液温度正常': 'Coolant Temp Normal',
+
+                // 消防相关翻译
+                '火灾探测': 'Fire Detection',
+                '消防联动': 'Fire Linkage',
+                '系统状态历史': 'System Status History',
+                '气体浓度监测': 'Gas Concentration Monitoring',
+                '告警记录分析': 'Alarm Record Analysis',
+                '正常': 'Normal',
+                '预警': 'Warning',
+                '告警': 'Alarm',
+                'CO浓度': 'CO Concentration',
+                '烟雾浓度': 'Smoke Concentration',
+                '烟雾告警': 'Smoke Alarm',
+                '温度告警': 'Temperature Alarm',
+                '气体告警': 'Gas Alarm',
+                '烟感探测器': 'Smoke Detector',
+                '火警状态': 'Fire Alarm Status',
+                '灭火器状态': 'Extinguisher Status',
+                '紧急停机': 'Emergency Stop',
+                '声光报警器': 'Evacuation Alarm',
+                '探测器正常': 'Detector Normal',
+                '火警状态正常': 'Fire Alarm Status Normal',
+                '灭火器就绪': 'Extinguisher Ready',
+                '未触发': 'Not Triggered',
+                '警报正常': 'Alarm Normal',
+                '1月': 'Jan',
+                '2月': 'Feb',
+                '3月': 'Mar',
+                '4月': 'Apr',
+                '5月': 'May',
+                '6月': 'Jun',
+
+                // 三相参数标签
+                'A相': 'Phase A',
+                'B相': 'Phase B',
+                'C相': 'Phase C',
+
+                // 单位
+                '次': 'Times',
+
+                // 其他常见标签
+                '使用率': 'Usage',
+                '占用率': 'Occupancy',
+                '空间使用率': 'Disk Usage',
+                '当前温度': 'Current Temp',
+                '信号强度': 'Signal Strength',
+                'SIM卡状态': 'SIM Status',
+                '网络接口': 'Network Interface',
+                '系统运行时长': 'System Uptime',
+                '当前系统时间': 'Current System Time',
+                '当前硬件时间': 'Current Hardware Time',
+                'CPU使用率历史': 'CPU Usage History',
+                '内存使用率历史': 'Memory Usage History',
+                '温度变化趋势': 'Temperature Trend',
+                '网络连接历史': 'Network Connection History',
+                '信号强度变化': 'Signal Strength Changes',
+                '系统运行日志': 'System Operation Log',
+                '重要事件记录': 'Important Events Record',
+                '该组件暂无可配置项': 'No configurable items for this component',
+                '状态': 'Status',
+                '电流': 'Current',
+                '电压': 'Voltage',
+                '功率': 'Power',
+                '能量': 'Energy',
+                '电量': 'Energy',
+                '收益': 'Revenue',
+                '单体电压': 'Cell Voltage',
+                '温度探测器': 'Temp Detector',
+                '烟雾探测器': 'Smoke Detector',
+                '火警状态': 'Fire Alarm Status',
+                '灭火状态': 'Extinguisher Status',
+                '紧急停机': 'Emergency Stop',
+                '疏散警报': 'Evacuation Alarm',
+
+                // EMS状态值翻译
+                'signalGood': 'Good Signal',
+                'simInserted': 'Inserted',
+                'statusOn': 'ON',
+                'statusOff': 'OFF'
+            };
+
+            return labelTranslations[label] || label;
+        }
+
+        // 翻译单位
+        function translateUnit(unit) {
+            const lang = getTouchscreenLang();
+            if (lang === 'zh') return unit;
+
+            const unitTranslations = {
+                '次': 'Times',
+                '天': 'Day',
+                '个': 'pcs'
+            };
+
+            return unitTranslations[unit] || unit;
+        }
+
+        // 格式化时间显示
+        function formatTimeDisplay(timeObj) {
+            if (typeof timeObj !== 'object' || !timeObj.days) {
+                return timeObj; // 如果不是时间对象,直接返回
+            }
+
+            const lang = getTouchscreenLang();
+            if (lang === 'zh') {
+                return `${timeObj.days}天 ${timeObj.hours}小时 ${timeObj.minutes}分`;
+            } else {
+                return `${timeObj.days}${t('days')} ${timeObj.hours}${t('hours')} ${timeObj.minutes}${t('minutes')}`;
+            }
+        }
+
         function createDataCard(field, config) {
             // 检查是否是三相参数
             if (config.type === 'three-phase' || config.type === 'three-phase-power') {
@@ -4098,42 +4389,48 @@
                 const statusColor = config.statusColor || '#666';
                 
                 // 特殊处理不同类型的值显示
-                if (field === 'dispatch' && config.subValue) {
+                if (field === 'dispatch' && config.subValueLabel) {
                     // 调度指令特殊处理
+                    const subValueText = `${translateLabel(config.subValueLabel)}: ${config.subValueData}${config.subValueUnit}`;
                     card.innerHTML = `
                         <div class="card-title">
                             ${showIcon ? `<span class="card-icon">${getFieldIcon(field)}</span>` : ''}
-                            ${config.label}
+                            ${translateLabel(config.label)}
                         </div>
                         <div class="card-value">
-                            <span style="font-size: 24px; color: ${statusColor};">${config.value}</span>
+                            <span style="font-size: 24px; color: ${statusColor};">${translateLabel(config.value)}</span>
                         </div>
-                        <div style="font-size: 16px; color: ${statusColor}; margin-top: 4px;">${config.subValue}</div>
+                        <div style="font-size: 16px; color: ${statusColor}; margin-top: 4px;">${subValueText}</div>
                     `;
                 } else if (config.unit) {
                     // 有单位的数值
+                    const translatedUnit = translateUnit(config.unit);
+                    // 对于运行模式等文本型字段，需要翻译值
+                    const displayValue = (field === 'runningMode' || typeof config.value === 'string' && isNaN(config.value))
+                        ? translateLabel(config.value)
+                        : config.value;
                     card.innerHTML = `
                         <div class="card-title">
                             ${showIcon ? `<span class="card-icon">${getFieldIcon(field)}</span>` : ''}
-                            ${config.label}
+                            ${translateLabel(config.label)}
                         </div>
                         <div class="card-value">
-                            <span id="${field}Value">${config.value}</span>
-                            <span class="card-unit">${config.unit}</span>
+                            <span id="${field}Value">${displayValue}</span>
+                            <span class="card-unit">${translatedUnit}</span>
                         </div>
-                        ${config.status ? `<div style="font-size: 16px; color: ${statusColor || '#666'}; margin-top: 4px;">${config.status}</div>` : ''}
+                        ${config.status ? `<div style="font-size: 16px; color: ${statusColor || '#666'}; margin-top: 4px;">${translateLabel(config.status)}</div>` : ''}
                     `;
                 } else {
                     // 纯文本值
                     card.innerHTML = `
                         <div class="card-title">
                             ${showIcon ? `<span class="card-icon">${getFieldIcon(field)}</span>` : ''}
-                            ${config.label}
+                            ${translateLabel(config.label)}
                         </div>
                         <div class="card-value">
-                            <span style="font-size: 24px; color: ${statusColor};">${config.value}</span>
+                            <span style="font-size: 24px; color: ${statusColor};">${translateLabel(config.value)}</span>
                         </div>
-                        ${config.status ? `<div style="font-size: 16px; color: ${statusColor || '#666'}; margin-top: 4px;">${config.status}</div>` : ''}
+                        ${config.status ? `<div style="font-size: 16px; color: ${statusColor || '#666'}; margin-top: 4px;">${translateLabel(config.status)}</div>` : ''}
                     `;
                 }
             } else {
@@ -4152,25 +4449,29 @@
                     card.innerHTML = `
                         <div class="card-title">
                             ${showIcon ? `<span class="card-icon">${getFieldIcon(field)}</span>` : ''}
-                            ${config.label}
+                            ${translateLabel(config.label)}
                         </div>
                         <div class="card-value" style="font-size: 24px; color: ${statusColor}; padding: 15px 0;">
-                            <span>${statusText}</span>
+                            <span>${translateLabel(statusText)}</span>
                         </div>
                     `;
                 } else {
                     // 普通字段显示数值和状态
+                    // 对于运行模式等文本型字段，需要翻译值
+                    const displayValue = (field === 'runningMode' || (typeof fieldValue === 'string' && isNaN(fieldValue) && !fieldValue.includes('.')))
+                        ? translateLabel(fieldValue)
+                        : fieldValue;
                     card.innerHTML = `
                         <div class="card-title">
                             ${showIcon ? `<span class="card-icon">${getFieldIcon(field)}</span>` : ''}
-                            ${config.label}
+                            ${translateLabel(config.label)}
                         </div>
                         <div class="card-value">
-                            <span id="${field}Value">${fieldValue}</span>
-                            ${config.unit ? `<span class="card-unit">${config.unit}</span>` : ''}
+                            <span id="${field}Value">${displayValue}</span>
+                            ${config.unit ? `<span class="card-unit">${translateUnit(config.unit)}</span>` : ''}
                         </div>
                         ${statusText ? `<div class="card-status ${statusClass}">
-                            <span>${statusText}</span>
+                            <span>${translateLabel(statusText)}</span>
                         </div>` : ''}
                     `;
                 }
@@ -4349,15 +4650,15 @@
                 
                 // EMS控制器 - 4G网络状态
                 signalStrength: '-65',
-                simStatus: '已插入',
-                networkStatus: '开',
-                
+                simStatus: 'simInserted',
+                networkStatus: 'statusOn',
+
                 // EMS控制器 - WiFi状态
                 wifiSignal: '-79',
-                wifiConnection: '关',
-                
+                wifiConnection: 'statusOff',
+
                 // EMS控制器 - 系统信息
-                runTime: '15天 8小时 32分',  // 保留数值但不显示时钟
+                runTime: { days: 15, hours: 8, minutes: 32 },  // 结构化时间数据
                 systemTime: '2025-07-11 09:42',
                 hardwareTime: '2025-07-11 09:42',
                 
@@ -4460,7 +4761,15 @@
                 emergencyStop: '',  // 状态型字段，不显示数值
                 evacuationAlarm: ''  // 状态型字段，不显示数值
             };
-            return valueMap[field] || '0';
+
+            const value = valueMap[field] || '0';
+
+            // 特殊处理runTime字段
+            if (field === 'runTime' && typeof value === 'object' && value.days) {
+                return formatTimeDisplay(value);
+            }
+
+            return value;
         }
 
         // 获取字段状态
@@ -4490,10 +4799,10 @@
                 memoryUsage: '',
                 diskUsage: '',
                 boardTemp: '温度正常',
-                signalStrength: '信号良好',
+                signalStrength: 'signalGood',
                 simStatus: '',
                 networkStatus: '',
-                wifiSignal: '信号良好',
+                wifiSignal: 'signalGood',
                 wifiConnection: '',
                 runTime: '',
                 systemTime: '',
@@ -4861,7 +5170,7 @@
         // 页面导航功能
         function switchPage(page) {
             if (page === 'home') {
-                window.location.href = 'index.html';
+                window.location.href = 'home.html';
             } else if (page === 'data') {
                 window.location.href = 'data.html';
             } else if (page === 'control') {
@@ -4893,35 +5202,37 @@
         
         // 更新组件状态
         function updateComponentStatuses() {
-            const components = ['pcs', 'bms', 'meter', 'thermal', 'fire'];
-            
+            const components = ['ems', 'pcs', 'bms', 'meter', 'thermal', 'fire'];
+
             // 随机选择一个组件显示离线
             const offlineIndex = Math.floor(Math.random() * components.length);
-            
+
             // 随机选择一个组件显示异常（不能是离线的那个）
             let errorIndex;
             do {
                 errorIndex = Math.floor(Math.random() * components.length);
             } while (errorIndex === offlineIndex);
-            
+
             components.forEach((component, index) => {
                 const statusElement = document.getElementById(`${component}-status`);
                 if (statusElement) {
                     let status;
                     if (index === offlineIndex) {
                         // 这个组件显示离线
-                        status = { text: '离线', class: 'status-offline' };
+                        status = { text: translateLabel('离线'), class: 'status-offline', i18nKey: 'deviceStatusOffline' };
                     } else if (index === errorIndex) {
                         // 这个组件显示异常
-                        status = { text: '异常', class: 'status-error' };
+                        status = { text: translateLabel('异常'), class: 'status-error', i18nKey: 'deviceStatusError' };
                     } else {
                         // 其他组件显示正常
-                        status = { text: '正常', class: 'status-normal' };
+                        status = { text: translateLabel('正常'), class: 'status-normal', i18nKey: 'deviceStatusNormal' };
                     }
-                    
+
                     // 更新状态文本和样式
                     statusElement.textContent = status.text;
                     statusElement.className = `component-status ${status.class}`;
+                    // 保持 data-i18n 属性以便语言切换时自动更新
+                    statusElement.setAttribute('data-i18n', status.i18nKey);
                 }
             });
         }
@@ -5027,16 +5338,18 @@
         };
         
         // 当前语言
-        let currentLang = localStorage.getItem('touchscreen_lang') || 'zh';
-        
+        // 已由touchscreen-i18n.js管理,此行已废弃
+        // let currentLang = localStorage.getItem('touchscreen_lang') || 'zh';
+
+        /* 已废弃 - 语言管理由touchscreen-i18n.js统一处理
         // 应用语言
         function applyLanguage(lang) {
             currentLang = lang;
             const t = translations[lang];
-            
+
             // 更新页面标题
             document.title = t.pageTitle + ' - 储能监控系统';
-            
+
             // 更新导航菜单
             document.querySelectorAll('.component-item span:first-child').forEach((el, index) => {
                 const keys = ['overview', 'ems', 'pcs', 'bms', 'meter', 'thermal', 'fire'];
@@ -5044,14 +5357,14 @@
                     el.textContent = t[keys[index]];
                 }
             });
-            
+
             // 更新储能柜状态
             const cabinetTitle = document.querySelector('.cabinet-status-title');
             if (cabinetTitle) cabinetTitle.textContent = t.cabinetStatus;
-            
+
             const cabinetText = document.querySelector('.cabinet-status-text');
             if (cabinetText) cabinetText.textContent = t.onlineRunning;
-            
+
             // 更新所有标签页按钮
             document.querySelectorAll('.sub-tab').forEach(tab => {
                 if (tab.textContent.includes('实时') || tab.textContent.includes('Real-time')) {
@@ -5060,17 +5373,18 @@
                     tab.textContent = t.historyData;
                 }
             });
-            
+
             // 更新自定义按钮
             document.querySelectorAll('.data-settings-btn span:last-child').forEach(btn => {
                 btn.textContent = t.customize;
             });
-            
+
             // 更新提示文字
             document.querySelectorAll('.tooltip').forEach((tooltip, index) => {
                 if (index === 0) tooltip.textContent = t.switchLanguage;
             });
         }
+        */
         
         // 切换语言下拉菜单
         // 切换语言下拉菜单
@@ -5083,22 +5397,22 @@
         // 更改语言
         function changeLanguage(lang, event) {
             event.stopPropagation();
-            
+
             // 更新选中状态
             document.querySelectorAll('.lang-option').forEach(option => {
                 option.classList.remove('active');
             });
             event.target.classList.add('active');
-            
-            // 保存语言设置
-            currentLang = lang;
-            localStorage.setItem('language', lang);
-            
+
+            // 保存语言设置和应用语言已由touchscreen-i18n.js和common-header-scripts.js管理
+            // 已废弃: currentLang = lang;
+            // 已废弃: localStorage.setItem('language', lang);
+
             // 关闭下拉菜单
             document.getElementById('langDropdown').classList.remove('show');
-            
-            // 应用新语言
-            applyLanguage(lang);
+
+            // 语言应用已由touchscreen-i18n.js的switchTouchscreenLanguage处理
+            // 通过common-header-scripts.js的changeLanguage调用
         }
 
         // 切换数据标签页
@@ -5265,7 +5579,8 @@
                     
                     // 特殊处理运行模式字段
                     if (fieldName === 'runningMode') {
-                        valueSpan.textContent = Math.random() > 0.3 ? '制冷' : '制热';
+                        const mode = Math.random() > 0.3 ? '制冷' : '制热';
+                        valueSpan.textContent = translateLabel(mode);
                         return;
                     }
                     
@@ -5358,7 +5673,7 @@
                     data: {
                         labels: labels,
                         datasets: [{
-                            label: '功率',
+                            label: translateLabel('功率'),
                             data: powerData,
                             borderColor: '#10b981',
                             backgroundColor: 'rgba(16, 185, 129, 0.1)',
@@ -5427,7 +5742,7 @@
                                 position: 'left',
                                 title: {
                                     display: true,
-                                    text: '功率 (kW)',
+                                    text: `${translateLabel('功率')} (kW)`,
                                     font: {
                                         size: 13,
                                         weight: '600'
@@ -5532,21 +5847,21 @@
                 data: {
                     labels: labels,
                     datasets: [{
-                        label: '充电量 (kWh)',
+                        label: translateLabel('充电量') + ' (kWh)',
                         data: chargingData,
                         backgroundColor: 'rgba(16, 185, 129, 0.8)',
                         borderColor: '#10b981',
                         borderWidth: 1,
                         yAxisID: 'y'
                     }, {
-                        label: '放电量 (kWh)',
+                        label: translateLabel('放电量') + ' (kWh)',
                         data: dischargingData,
                         backgroundColor: 'rgba(239, 68, 68, 0.8)',
                         borderColor: '#ef4444',
                         borderWidth: 1,
                         yAxisID: 'y'
                     }, {
-                        label: '净收益 (¥)',
+                        label: translateLabel('净收益') + ' (¥)',
                         data: revenueData,
                         type: 'line',
                         backgroundColor: 'rgba(245, 158, 11, 0.1)',
@@ -5582,7 +5897,7 @@
                             position: 'left',
                             title: {
                                 display: true,
-                                text: '电量 (kWh)'
+                                text: `${translateLabel('电量')} (kWh)`
                             }
                         },
                         y1: {
@@ -5591,7 +5906,7 @@
                             position: 'right',
                             title: {
                                 display: true,
-                                text: '收益 (¥)'
+                                text: `${translateLabel('收益')} (¥)`
                             },
                             grid: {
                                 drawOnChartArea: false
@@ -5785,14 +6100,14 @@
                     data: {
                         labels: labels,
                         datasets: [{
-                            label: '转换效率',
+                            label: translateLabel('conversionEfficiency'),
                             data: efficiencyData,
                             backgroundColor: 'rgba(16, 185, 129, 0.8)',
                             borderColor: '#10b981',
                             borderWidth: 1
                         }]
                     },
-                    options: getChartOptions('效率 (%)', 85, 100)
+                    options: getChartOptions(`${translateLabel('效率')} (%)`, 85, 100)
                 });
             }
         }
@@ -5926,7 +6241,7 @@
                     data: {
                         labels: Array.from({length: 24}, (_, i) => `${i}:00`),
                         datasets: [{
-                            label: 'AC功率输出',
+                            label: translateLabel('acPowerOutput'),
                             data: Array.from({length: 24}, () => Math.random() * 100 + 50),
                             borderColor: '#2563eb',
                             backgroundColor: 'rgba(37, 99, 235, 0.1)',
@@ -5934,7 +6249,7 @@
                             tension: 0.4,
                             fill: true
                         }, {
-                            label: 'DC功率输入',
+                            label: translateLabel('dcPowerInput'),
                             data: Array.from({length: 24}, () => Math.random() * 110 + 55),
                             borderColor: '#dc2626',
                             backgroundColor: 'rgba(220, 38, 38, 0.1)',
@@ -5943,7 +6258,7 @@
                             fill: false
                         }]
                     },
-                    options: getChartOptions('功率 (kW)')
+                    options: getChartOptions(`${translateLabel('功率')} (kW)`)
                 });
             }
             
@@ -5955,7 +6270,7 @@
                     data: {
                         labels: Array.from({length: 24}, (_, i) => `${i}:00`),
                         datasets: [{
-                            label: 'DC电压',
+                            label: translateLabel('DC电压'),
                             data: Array.from({length: 24}, () => Math.random() * 20 + 750),
                             borderColor: '#f59e0b',
                             backgroundColor: 'rgba(245, 158, 11, 0.1)',
@@ -5963,7 +6278,7 @@
                             tension: 0.4,
                             yAxisID: 'y'
                         }, {
-                            label: 'DC电流',
+                            label: translateLabel('DC电流'),
                             data: Array.from({length: 24}, () => Math.random() * 50 + 150),
                             borderColor: '#10b981',
                             backgroundColor: 'rgba(16, 185, 129, 0.1)',
@@ -5990,7 +6305,7 @@
                                 position: 'left',
                                 title: {
                                     display: true,
-                                    text: '电压 (V)',
+                                    text: `${translateLabel('电压')} (V)`,
                                     color: 'rgba(255, 255, 255, 0.7)'
                                 },
                                 grid: {
@@ -6006,7 +6321,7 @@
                                 position: 'right',
                                 title: {
                                     display: true,
-                                    text: '电流 (A)',
+                                    text: `${translateLabel('电流')} (A)`,
                                     color: 'rgba(255, 255, 255, 0.7)'
                                 },
                                 grid: {
@@ -6043,7 +6358,7 @@
                     data: {
                         labels: Array.from({length: 24}, (_, i) => `${i}时`),
                         datasets: [{
-                            label: '有功功率',
+                            label: translateLabel('有功功率'),
                             data: Array.from({length: 24}, () => Math.random() * 100 + 150),
                             borderColor: '#ef4444',
                             backgroundColor: 'rgba(239, 68, 68, 0.1)',
@@ -6051,7 +6366,7 @@
                             tension: 0.4,
                             fill: true
                         }, {
-                            label: '无功功率',
+                            label: translateLabel('无功功率'),
                             data: Array.from({length: 24}, () => Math.random() * 15 + 25),
                             borderColor: '#2563eb',
                             backgroundColor: 'rgba(37, 99, 235, 0.1)',
@@ -6059,7 +6374,7 @@
                             tension: 0.4,
                             fill: true
                         }, {
-                            label: '视在功率',
+                            label: translateLabel('视在功率'),
                             data: Array.from({length: 24}, () => Math.random() * 105 + 155),
                             borderColor: '#10b981',
                             backgroundColor: 'rgba(16, 185, 129, 0.1)',
@@ -6080,13 +6395,13 @@
                     data: {
                         labels: Array.from({length: 24}, (_, i) => `${i}时`),
                         datasets: [{
-                            label: '有功电量',
+                            label: translateLabel('有功电量'),
                             data: Array.from({length: 24}, () => Math.random() * 25 + 45),
                             backgroundColor: 'rgba(59, 130, 246, 0.7)',
                             borderColor: '#3b82f6',
                             borderWidth: 1
                         }, {
-                            label: '无功电量',
+                            label: translateLabel('无功电量'),
                             data: Array.from({length: 24}, () => Math.random() * 8 + 4),
                             backgroundColor: 'rgba(245, 158, 11, 0.7)',
                             borderColor: '#f59e0b',
@@ -6105,21 +6420,21 @@
                     data: {
                         labels: Array.from({length: 24}, (_, i) => `${i}时`),
                         datasets: [{
-                            label: 'A相电压',
+                            label: translateLabel('A相电压'),
                             data: Array.from({length: 24}, () => Math.random() * 10 + 380),
                             borderColor: '#ef4444',
                             backgroundColor: 'rgba(239, 68, 68, 0.1)',
                             borderWidth: 2,
                             tension: 0.4
                         }, {
-                            label: 'B相电压',
+                            label: translateLabel('B相电压'),
                             data: Array.from({length: 24}, () => Math.random() * 9 + 381),
                             borderColor: '#2563eb',
                             backgroundColor: 'rgba(37, 99, 235, 0.1)',
                             borderWidth: 2,
                             tension: 0.4
                         }, {
-                            label: 'C相电压',
+                            label: translateLabel('C相电压'),
                             data: Array.from({length: 24}, () => Math.random() * 11 + 379),
                             borderColor: '#10b981',
                             backgroundColor: 'rgba(16, 185, 129, 0.1)',
@@ -6294,23 +6609,23 @@
                 new Chart(voltageCtx.getContext('2d'), {
                     type: 'line',
                     data: {
-                        labels: Array.from({length: 24}, (_, i) => `${i}时`),
+                        labels: Array.from({length: 24}, (_, i) => `${i}:00`),
                         datasets: [{
-                            label: '最高电压',
+                            label: translateLabel('最高电压'),
                             data: Array.from({length: 24}, () => Math.random() * 5 + 820),
                             borderColor: '#ef4444',
                             backgroundColor: 'rgba(239, 68, 68, 0.1)',
                             borderWidth: 2,
                             tension: 0.4
                         }, {
-                            label: '平均电压',
+                            label: translateLabel('平均电压'),
                             data: Array.from({length: 24}, () => Math.random() * 3 + 815),
                             borderColor: '#2563eb',
                             backgroundColor: 'rgba(37, 99, 235, 0.1)',
                             borderWidth: 2,
                             tension: 0.4
                         }, {
-                            label: '最低电压',
+                            label: translateLabel('最低电压'),
                             data: Array.from({length: 24}, () => Math.random() * 3 + 810),
                             borderColor: '#10b981',
                             backgroundColor: 'rgba(16, 185, 129, 0.1)',
@@ -6318,19 +6633,19 @@
                             tension: 0.4
                         }]
                     },
-                    options: getChartOptions('电压 (V)', 800, 830)
+                    options: getChartOptions(`${translateLabel('电压')} (V)`, 800, 830)
                 });
             }
-            
+
             // 电池SOC趋势
             const balanceCtx = document.getElementById('bmsBalanceChart');
             if (balanceCtx) {
                 new Chart(balanceCtx.getContext('2d'), {
                     type: 'line',
                     data: {
-                        labels: Array.from({length: 24}, (_, i) => `${i}时`),
+                        labels: Array.from({length: 24}, (_, i) => `${i}:00`),
                         datasets: [{
-                            label: 'SOC趋势',
+                            label: translateLabel('SOC趋势'),
                             data: Array.from({length: 24}, () => Math.random() * 10 + 80),
                             backgroundColor: 'rgba(16, 185, 129, 0.1)',
                             borderColor: '#10b981',
@@ -6342,7 +6657,7 @@
                     options: getChartOptions('SOC (%)', 75, 95)
                 });
             }
-            
+
             // 温度分布分析
             const tempCtx = document.getElementById('bmsTempChart');
             if (tempCtx) {
@@ -6351,21 +6666,21 @@
                     data: {
                         labels: Array.from({length: 24}, (_, i) => `${i}:00`),
                         datasets: [{
-                            label: '最高温度',
+                            label: translateLabel('最高温度'),
                             data: Array.from({length: 24}, () => Math.random() * 5 + 30),
                             borderColor: '#ef4444',
                             backgroundColor: 'rgba(239, 68, 68, 0.1)',
                             borderWidth: 2,
                             tension: 0.4
                         }, {
-                            label: '平均温度',
+                            label: translateLabel('平均温度'),
                             data: Array.from({length: 24}, () => Math.random() * 3 + 28),
                             borderColor: '#f59e0b',
                             backgroundColor: 'rgba(245, 158, 11, 0.1)',
                             borderWidth: 2,
                             tension: 0.4
                         }, {
-                            label: '最低温度',
+                            label: translateLabel('最低温度'),
                             data: Array.from({length: 24}, () => Math.random() * 3 + 25),
                             borderColor: '#10b981',
                             backgroundColor: 'rgba(16, 185, 129, 0.1)',
@@ -6373,7 +6688,7 @@
                             tension: 0.4
                         }]
                     },
-                    options: getChartOptions('温度 (°C)', 20, 40)
+                    options: getChartOptions(`${translateLabel('温度')} (°C)`, 20, 40)
                 });
             }
         }
@@ -6614,7 +6929,7 @@
                     data: {
                         labels: Array.from({length: 24}, (_, i) => `${i}:00`),
                         datasets: [{
-                            label: '电池包最高温度',
+                            label: translateLabel('电池包最高温度'),
                             data: Array.from({length: 24}, (_, i) => {
                                 // 模拟电池温度随时间和充放电状态变化
                                 const baseTemp = 25;
@@ -6628,7 +6943,7 @@
                             tension: 0.4,
                             fill: false
                         }, {
-                            label: '电池包平均温度',
+                            label: translateLabel('电池包平均温度'),
                             data: Array.from({length: 24}, (_, i) => {
                                 const baseTemp = 23;
                                 const timeVariation = Math.sin(i * Math.PI / 12) * 2;
@@ -6641,7 +6956,7 @@
                             tension: 0.4,
                             fill: false
                         }, {
-                            label: '电池包最低温度',
+                            label: translateLabel('电池包最低温度'),
                             data: Array.from({length: 24}, (_, i) => {
                                 const baseTemp = 21;
                                 const timeVariation = Math.sin(i * Math.PI / 12) * 1.5;
@@ -6711,7 +7026,7 @@
                     data: {
                         labels: Array.from({length: 24}, (_, i) => `${i}:00`),
                         datasets: [{
-                            label: '进风温度',
+                            label: translateLabel('进风温度'),
                             data: Array.from({length: 24}, (_, i) => {
                                 const baseTemp = 22;
                                 const timeVariation = Math.sin((i - 6) * Math.PI / 12) * 4;
@@ -6722,7 +7037,7 @@
                             yAxisID: 'y',
                             tension: 0.4
                         }, {
-                            label: '出风温度',
+                            label: translateLabel('出风温度'),
                             data: Array.from({length: 24}, (_, i) => {
                                 const baseTemp = 28;
                                 const timeVariation = Math.sin((i - 6) * Math.PI / 12) * 3;
@@ -6733,7 +7048,7 @@
                             yAxisID: 'y',
                             tension: 0.4
                         }, {
-                            label: '相对湿度',
+                            label: translateLabel('相对湿度'),
                             data: Array.from({length: 24}, () => (45 + Math.random() * 20).toFixed(1)),
                             borderColor: '#10b981',
                             backgroundColor: 'rgba(16, 185, 129, 0.1)',
@@ -6809,7 +7124,7 @@
                     data: {
                         labels: Array.from({length: 24}, (_, i) => `${i}:00`),
                         datasets: [{
-                            label: '主风机转速',
+                            label: translateLabel('主风机转速'),
                             data: Array.from({length: 24}, (_, i) => {
                                 // 根据温度需求调节风机转速
                                 const baseSpeed = 1500;
@@ -6819,7 +7134,7 @@
                             backgroundColor: 'rgba(59, 130, 246, 0.7)',
                             yAxisID: 'y'
                         }, {
-                            label: '制冷功耗',
+                            label: translateLabel('制冷功耗'),
                             data: Array.from({length: 24}, (_, i) => {
                                 const basePower = 3;
                                 const tempDemand = (i >= 10 && i <= 16) ? 2 : 0;
@@ -6899,7 +7214,7 @@
                 new Chart(systemCtx.getContext('2d'), {
                     type: 'doughnut',
                     data: {
-                        labels: ['正常', '预警', '告警'],
+                        labels: [translateLabel('正常'), translateLabel('预警'), translateLabel('告警')],
                         datasets: [{
                             data: [95, 4, 1],
                             backgroundColor: ['#10b981', '#f59e0b', '#dc2626'],
@@ -6930,14 +7245,14 @@
                     data: {
                         labels: Array.from({length: 24}, (_, i) => `${i}:00`),
                         datasets: [{
-                            label: 'CO浓度',
+                            label: translateLabel('CO浓度'),
                             data: Array.from({length: 24}, () => Math.random() * 10 + 5),
                             borderColor: '#dc2626',
                             backgroundColor: 'rgba(220, 38, 38, 0.1)',
                             borderWidth: 2,
                             tension: 0.4
                         }, {
-                            label: '烟雾浓度',
+                            label: translateLabel('烟雾浓度'),
                             data: Array.from({length: 24}, () => Math.random() * 8 + 3),
                             borderColor: '#6b7280',
                             backgroundColor: 'rgba(107, 114, 128, 0.1)',
@@ -6990,21 +7305,21 @@
                 new Chart(alarmCtx.getContext('2d'), {
                     type: 'bar',
                     data: {
-                        labels: ['1月', '2月', '3月', '4月', '5月', '6月'],
+                        labels: [translateLabel('1月'), translateLabel('2月'), translateLabel('3月'), translateLabel('4月'), translateLabel('5月'), translateLabel('6月')],
                         datasets: [{
-                            label: '烟雾告警',
+                            label: translateLabel('烟雾告警'),
                             data: [2, 1, 0, 1, 0, 1],
                             backgroundColor: 'rgba(107, 114, 128, 0.8)',
                             borderColor: '#6b7280',
                             borderWidth: 1
                         }, {
-                            label: '温度告警',
+                            label: translateLabel('温度告警'),
                             data: [1, 0, 2, 0, 1, 0],
                             backgroundColor: 'rgba(245, 158, 11, 0.8)',
                             borderColor: '#f59e0b',
                             borderWidth: 1
                         }, {
-                            label: '气体告警',
+                            label: translateLabel('气体告警'),
                             data: [0, 1, 1, 0, 0, 1],
                             backgroundColor: 'rgba(220, 38, 38, 0.8)',
                             borderColor: '#dc2626',
@@ -7077,19 +7392,9 @@
                 //     window.location.href = 'login.html';
                 //     return;
                 // }
-
-                // 应用语言设置
-                applyLanguage(currentLang);
-                
-                // 设置语言选项的激活状态
-                document.querySelectorAll('.lang-option').forEach(option => {
-                    const isCurrentLang = option.getAttribute('onclick').includes(`'${currentLang}'`);
-                    if (isCurrentLang) {
-                        option.classList.add('active');
-                    } else {
-                        option.classList.remove('active');
-                    }
-                });
+                // 语言设置已由touchscreen-i18n.js和common-header-scripts.js管理
+                // 语言按钮激活状态也由common-header-scripts.js自动管理
+                // 无需在此处理
 
                 // 更新时间
                 updateTime();
@@ -7344,35 +7649,35 @@
     <div class="ota-modal" id="otaModal">
         <div class="ota-modal-content">
             <div class="ota-modal-header">
-                <h3>OTA 固件升级</h3>
+                <h3 data-i18n="otaTitle">OTA Firmware Upgrade</h3>
                 <button class="ota-close-btn" onclick="closeOTAModal()">×</button>
             </div>
             <div class="ota-modal-body">
                 <div class="ota-info">
                     <div class="ota-info-row">
-                        <span class="ota-label">当前版本：</span>
+                        <span class="ota-label" data-i18n="currentVersion">Current Version:</span>
                         <span class="ota-value">V2.0.1</span>
                     </div>
                     <div class="ota-info-row">
-                        <span class="ota-label">最新版本：</span>
+                        <span class="ota-label" data-i18n="latestVersion">Latest Version:</span>
                         <span class="ota-value">V2.1.0</span>
                     </div>
                 </div>
-                
+
                 <div class="ota-progress-section" id="otaProgressSection" style="display: none;">
                     <div class="ota-progress-text">
-                        <span>升级进度</span>
+                        <span data-i18n="upgradeProgress">Upgrade Progress</span>
                         <span id="otaProgressPercent">0%</span>
                     </div>
                     <div class="ota-progress-bar">
                         <div class="ota-progress-fill" id="otaProgressFill"></div>
                     </div>
-                    <div class="ota-status-text" id="otaStatusText">准备升级...</div>
+                    <div class="ota-status-text" id="otaStatusText" data-i18n="preparingUpgrade">Preparing to upgrade...</div>
                 </div>
-                
+
                 <div class="ota-actions" id="otaActions">
-                    <button class="ota-btn ota-btn-primary" onclick="startOTAUpgrade()">开始升级</button>
-                    <button class="ota-btn ota-btn-secondary" onclick="closeOTAModal()">取消</button>
+                    <button class="ota-btn ota-btn-primary" onclick="startOTAUpgrade()" data-i18n="startUpgrade">Start Upgrade</button>
+                    <button class="ota-btn ota-btn-secondary" onclick="closeOTAModal()" data-i18n="cancel">Cancel</button>
                 </div>
             </div>
         </div>
@@ -7553,6 +7858,61 @@
             opacity: 0.5;
             cursor: not-allowed;
         }
+    
+        /* 英文环境下的自适应样式 */
+        html[lang="en"] .component-item span:first-child {
+            font-size: clamp(12px, 1.1vw, 16px);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* 设备状态标签自适应 */
+        html[lang="en"] .component-status {
+            font-size: clamp(10px, 0.9vw, 14px);
+            padding: 2px 8px;
+            white-space: nowrap;
+        }
+
+        /* 确保整机设备名称有足够空间 */
+        html[lang="en"] .component-item.active span:first-child {
+            max-width: 100%;
+        }
+
+        /* 导航菜单英文字体大小调整 */
+        html[lang="en"] .nav-item {
+            font-size: clamp(12px, 1vw, 16px);
+            padding: 12px 20px;
+        }
+
+        /* Fire Protection特别处理 - 较长的英文 */
+        html[lang="en"] .component-item span[data-i18n="deviceFire"] {
+            font-size: clamp(10px, 0.95vw, 14px);
+        }
+
+        /* 组件列表整体调整 */
+        .component-list {
+            gap: 8px;
+        }
+
+        .component-item {
+            padding: 12px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .component-item span:first-child {
+            flex: 0 1 auto;
+            min-width: 0;
+        }
+
+        .component-status {
+            flex-shrink: 0;
+            margin-left: auto;
+        }
+
     </style>
 
     <script>
@@ -8043,6 +8403,50 @@
             console.log('closeLogoutModal:', typeof window.closeLogoutModal);
             console.log('confirmLogout:', typeof window.confirmLogout);
         });
+    
+        // ========== 国际化初始化 ==========
+
+        // 监听语言切换事件
+        window.addEventListener('languageChanged', function(e) {
+            console.log('数据页面接收到语言切换事件:', e.detail.lang);
+
+            // 更新HTML lang属性
+            document.documentElement.lang = e.detail.lang === 'zh' ? 'zh-CN' : 'en';
+
+            // 重新应用翻译到所有元素
+            applyTouchscreenTranslations();
+
+            // 如果字段设置对话框打开,重新渲染内容
+            const settingsPanel = document.getElementById('settingsPanel');
+            if (settingsPanel && settingsPanel.classList.contains('show')) {
+                renderSettingsContent(currentComponent);
+            }
+        });
+
+        // 页面加载时初始化语言
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentLang = getTouchscreenLang();
+            console.log('数据页面当前语言:', currentLang);
+
+            // 设置HTML lang属性
+            document.documentElement.lang = currentLang === 'zh' ? 'zh-CN' : 'en';
+
+            // HTML默认是英文,只有当前语言是中文时才需要翻译
+            if (currentLang === 'zh') {
+                applyTouchscreenTranslations();
+            }
+
+            // 更新语言切换器的激活状态
+            document.querySelectorAll('.lang-option').forEach(option => {
+                const optionLang = option.getAttribute('onclick').includes("'zh'") ? 'zh' : 'en';
+                if (optionLang === currentLang) {
+                    option.classList.add('active');
+                } else {
+                    option.classList.remove('active');
+                }
+            });
+        });
+
     </script>
 </body>
 </html>

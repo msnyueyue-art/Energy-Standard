@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="pageTitle">电量报表 - 储能柜管理系统</title>
+    <title id="pageTitle" data-translate="powerReportPageTitle">电量报表 - 储能柜管理系统</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/style.css">
@@ -1160,12 +1160,12 @@
                 <div class="filter-row">
                     <!-- 1. 站点/设备 -->
                     <div class="filter-group has-tree">
-                        <label class="filter-label">站点/设备</label>
-                        <input type="text" class="filter-input" id="siteSelection" placeholder="请选择站点或设备" value="全部站点" readonly onclick="toggleTreeView()">
+                        <label class="filter-label" data-translate="powerReportSiteDevice">站点/设备</label>
+                        <input type="text" class="filter-input" id="siteSelection" data-translate-placeholder="powerReportSelectPlaceholder" placeholder="请选择站点或设备" data-translate-value="powerReportAllSites" value="全部站点" readonly onclick="toggleTreeView()">
                         <div class="tree-view" id="treeView">
                             <div class="tree-node">
                                 <div class="tree-node-item selected" data-value="all" onclick="selectTreeNode(event, 'all', '全部站点')">
-                                    <span class="tree-node-label">全部站点</span>
+                                    <span class="tree-node-label" data-translate="powerReportAllSites">全部站点</span>
                                 </div>
                             </div>
 
@@ -1224,18 +1224,18 @@
 
                     <!-- 2. 时间维度 -->
                     <div class="filter-group">
-                        <label class="filter-label">时间维度</label>
+                        <label class="filter-label" data-translate="powerReportTimeDimension">时间维度</label>
                         <select class="filter-select" id="reportType" onchange="changeDimension(this.value)">
-                            <option value="daily">日报</option>
-                            <option value="monthly">月报</option>
-                            <option value="yearly">年报</option>
+                            <option value="daily" data-translate="powerReportDaily">日报</option>
+                            <option value="monthly" data-translate="powerReportMonthly">月报</option>
+                            <option value="yearly" data-translate="powerReportYearly">年报</option>
                         </select>
                     </div>
 
                     <!-- 3. 统计时间 -->
                     <div class="filter-group">
-                        <label class="filter-label" id="timeFilterLabel">选择日期</label>
-                        <input type="text" class="filter-input" id="statisticTime" placeholder="选择日期" readonly style="cursor: pointer;">
+                        <label class="filter-label" id="timeFilterLabel" data-translate="powerReportSelectDate">选择日期</label>
+                        <input type="text" class="filter-input" id="statisticTime" data-translate-placeholder="powerReportSelectDate" placeholder="选择日期" readonly style="cursor: pointer;">
                         <select class="filter-select" id="statisticTimeSelectYear" style="display: none;" onchange="onYearSelectChange()">
                             <!-- 动态生成年份选项 -->
                         </select>
@@ -1245,7 +1245,7 @@
                 <div class="export-buttons">
                     <button class="btn-export" onclick="queryData()">
                         <i class="fas fa-search"></i>
-                        查询数据
+                        <span data-translate="powerReportQueryData">查询数据</span>
                     </button>
                 </div>
             </div>
@@ -1259,16 +1259,16 @@
                 <div class="tab-navigation">
                     <button class="tab-btn active" id="chartTabBtn" onclick="switchTab('chart')">
                         <i class="fas fa-chart-area"></i>
-                        图表
+                        <span data-translate="powerReportChartTab">图表</span>
                     </button>
                     <button class="tab-btn" onclick="switchTab('table')">
                         <i class="fas fa-table"></i>
-                        表格
+                        <span data-translate="powerReportTableTab">表格</span>
                     </button>
                     <div class="tab-actions">
                         <button class="btn-export-top" id="exportButton" onclick="exportData()" style="display: none;">
                             <i class="fas fa-download"></i>
-                            导出数据
+                            <span data-translate="powerReportExportData">导出数据</span>
                         </button>
                     </div>
                 </div>
@@ -1280,11 +1280,11 @@
                             <table class="data-table" id="hourlyTable">
                                 <thead>
                                     <tr>
-                                        <th>设备</th>
-                                        <th>日期时段</th>
-                                        <th>充电量(kWh)</th>
-                                        <th>放电量(kWh)</th>
-                                        <th>SOC(%)</th>
+                                        <th data-translate="powerReportTableDevice">设备</th>
+                                        <th data-translate="powerReportTableDateTime">日期时段</th>
+                                        <th data-translate="powerReportTableCharge">充电量(kWh)</th>
+                                        <th data-translate="powerReportTableDischarge">放电量(kWh)</th>
+                                        <th data-translate="powerReportTableSOC">SOC(%)</th>
                                     </tr>
                                 </thead>
                                 <tbody id="hourlyTableBody">
@@ -1296,7 +1296,7 @@
                             <table class="data-table">
                                 <tfoot>
                                     <tr class="summary-row">
-                                        <td colspan="2" class="summary-label">合计</td>
+                                        <td colspan="2" class="summary-label" data-translate="powerReportTableTotal">合计</td>
                                         <td id="summaryTotalCharge" class="summary-value">0</td>
                                         <td id="summaryTotalDischarge" class="summary-value">0</td>
                                         <td class="summary-value" style="padding: 0; border: none;"></td>
@@ -1313,7 +1313,7 @@
                     <div class="source-analysis-card">
                         <div class="source-analysis-header">
                             <i class="fas fa-exchange-alt"></i>
-                            <h3>能量流动分析</h3>
+                            <h3 data-translate="powerEnergyFlowAnalysis">能量流动分析</h3>
                         </div>
 
                         <!-- 能量流动容器 -->
@@ -1322,14 +1322,14 @@
                             <div class="energy-section">
                             <div class="section-title">
                                 <i class="fas fa-arrow-down"></i>
-                                <span>充电（来源）</span>
+                                <span data-translate="powerCharging">充电（来源）</span>
                                 <span class="section-total" id="chargeTotalEnergy">0 kWh</span>
                             </div>
                             <div class="source-analysis-content">
                                 <div class="source-item">
                                     <i class="fas fa-solar-panel"></i>
                                     <div class="source-details">
-                                        <div class="source-name">光伏充电</div>
+                                        <div class="source-name" data-translate="powerSolarCharging">光伏充电</div>
                                         <div class="source-stats">
                                             <span class="source-percentage" id="solarPercentage">0%</span>
                                             <span class="source-energy" id="solarEnergy">0 kWh</span>
@@ -1339,7 +1339,7 @@
                                 <div class="source-item">
                                     <i class="fas fa-bolt"></i>
                                     <div class="source-details">
-                                        <div class="source-name">电网充电</div>
+                                        <div class="source-name" data-translate="powerGridCharging">电网充电</div>
                                         <div class="source-stats">
                                             <span class="source-percentage" id="gridPercentage">0%</span>
                                             <span class="source-energy" id="gridEnergy">0 kWh</span>
@@ -1353,14 +1353,14 @@
                         <div class="energy-section">
                             <div class="section-title">
                                 <i class="fas fa-arrow-up"></i>
-                                <span>放电（用于）</span>
+                                <span data-translate="powerDischarging">放电（用于）</span>
                                 <span class="section-total" id="dischargeTotalEnergy">0 kWh</span>
                             </div>
                             <div class="source-analysis-content">
                                 <div class="source-item">
                                     <i class="fas fa-plug"></i>
                                     <div class="source-details">
-                                        <div class="source-name">负载放电</div>
+                                        <div class="source-name" data-translate="powerLoadDischarging">负载放电</div>
                                         <div class="source-stats">
                                             <span class="source-percentage" id="loadPercentage">100%</span>
                                             <span class="source-energy" id="loadEnergy">0 kWh</span>
@@ -1375,11 +1375,11 @@
                     <!-- 分析指标选择 -->
                     <div class="chart-options">
                         <div class="metric-selector">
-                            <label class="metric-label">分析指标：</label>
+                            <label class="metric-label" data-translate="powerMetricLabel">分析指标：</label>
                             <div class="radio-group">
                                 <label class="radio-option">
                                     <input type="radio" name="metric" value="power" checked onchange="changeMetric('power')">
-                                    <span>功率</span>
+                                    <span data-translate="powerPower">功率</span>
                                 </label>
                                 <label class="radio-option" id="socOption">
                                     <input type="radio" name="metric" value="soc" onchange="changeMetric('soc')">
@@ -1390,7 +1390,7 @@
                         <div class="energy-split-selector" id="energySplitSelector">
                             <label class="checkbox-option" style="cursor: pointer;" onclick="toggleEnergySplitUI()">
                                 <i class="fas fa-eye-slash" id="energySplitIcon" style="font-size: 16px;"></i>
-                                <span>能量拆分</span>
+                                <span data-translate="powerEnergySplit">能量拆分</span>
                                 <input type="checkbox" id="energySplitCheckbox" style="display: none;">
                             </label>
                         </div>
@@ -1512,8 +1512,8 @@
             // 根据维度创建不同的时间筛选器
             switch(dimension) {
                 case 'daily':
-                    label.textContent = '选择日期';
-                    input.placeholder = '选择日期';
+                    label.textContent = getTranslation('powerReportSelectDate');
+                    input.placeholder = getTranslation('powerReportSelectDate');
                     // 显示 input,隐藏 year select
                     input.style.display = 'block';
                     yearSelect.style.display = 'none';
@@ -1528,8 +1528,8 @@
                     break;
 
                 case 'monthly':
-                    label.textContent = '选择月份';
-                    input.placeholder = '选择月份';
+                    label.textContent = getTranslation('powerReportSelectMonth');
+                    input.placeholder = getTranslation('powerReportSelectMonth');
                     // 显示 input,隐藏 year select
                     input.style.display = 'block';
                     yearSelect.style.display = 'none';
@@ -1552,7 +1552,7 @@
                     break;
 
                 case 'yearly':
-                    label.textContent = '选择年份';
+                    label.textContent = getTranslation('powerReportSelectYear');
                     // 隐藏 input,显示 year select
                     input.style.display = 'none';
                     yearSelect.style.display = 'block';
@@ -1562,7 +1562,7 @@
                     let yearOptions = '';
                     for (let i = currentYear - 10; i <= currentYear + 5; i++) {
                         const selected = i === currentYear ? 'selected' : '';
-                        yearOptions += `<option value="${i}" ${selected}>${i}年</option>`;
+                        yearOptions += `<option value="${i}" ${selected}>${i}${getTranslation('powerReportYearSuffix')}</option>`;
                     }
                     yearSelect.innerHTML = yearOptions;
                     break;
@@ -2209,7 +2209,7 @@
                             }
                         },
                         legend: {
-                            data: ['SOC (%)']
+                            data: [getTranslation('powerSOC')]
                         },
                         grid: {
                             left: '3%',
@@ -2224,11 +2224,11 @@
                         },
                         yAxis: {
                             type: 'value',
-                            name: 'SOC (%)'
+                            name: getTranslation('powerSOC')
                         },
                         series: [
                             {
-                                name: 'SOC (%)',
+                                name: getTranslation('powerSOC'),
                                 type: 'line',
                                 data: socData,
                                 smooth: true,
@@ -2257,7 +2257,7 @@
                             }
                         },
                         legend: {
-                            data: ['光伏', '市电', '负载']
+                            data: [getTranslation('powerSolar'), getTranslation('powerGrid'), getTranslation('powerLoad')]
                         },
                         grid: {
                             left: '3%',
@@ -2276,7 +2276,7 @@
                         },
                         series: [
                             {
-                                name: '光伏',
+                                name: getTranslation('powerSolar'),
                                 type: 'line',
                                 data: splitData.solar,
                                 smooth: false,
@@ -2293,7 +2293,7 @@
                                 showSymbol: false
                             },
                             {
-                                name: '市电',
+                                name: getTranslation('powerGrid'),
                                 type: 'line',
                                 data: splitData.grid,
                                 smooth: false,
@@ -2310,7 +2310,7 @@
                                 showSymbol: false
                             },
                             {
-                                name: '负载',
+                                name: getTranslation('powerLoad'),
                                 type: 'line',
                                 data: splitData.load,
                                 smooth: false,
@@ -2339,7 +2339,7 @@
                             }
                         },
                         legend: {
-                            data: ['电池功率']
+                            data: [getTranslation('powerBatteryPower')]
                         },
                         grid: {
                             left: '3%',
@@ -2358,7 +2358,7 @@
                         },
                         series: [
                             {
-                                name: '电池功率',
+                                name: getTranslation('powerBatteryPower'),
                                 type: 'line',
                                 data: powerData,
                                 smooth: false,
@@ -2394,7 +2394,7 @@
                             trigger: 'axis',
                             axisPointer: { type: 'shadow' }
                         },
-                        legend: { data: ['SOC (%)'] },
+                        legend: { data: [getTranslation('powerSOC')] },
                         grid: {
                             left: '3%',
                             right: '4%',
@@ -2407,12 +2407,12 @@
                         },
                         yAxis: {
                             type: 'value',
-                            name: 'SOC (%)',
+                            name: getTranslation('powerSOC'),
                             min: 0,
                             max: 100
                         },
                         series: [{
-                            name: 'SOC (%)',
+                            name: getTranslation('powerSOC'),
                             type: 'bar',
                             barWidth: 20,
                             data: socData,
@@ -2433,7 +2433,7 @@
                             }
                         },
                         legend: {
-                            data: ['光伏', '市电', '负载']
+                            data: [getTranslation('powerSolar'), getTranslation('powerGrid'), getTranslation('powerLoad')]
                         },
                         grid: {
                             left: '3%',
@@ -2451,7 +2451,7 @@
                         },
                         series: [
                             {
-                                name: '光伏',
+                                name: getTranslation('powerSolar'),
                                 type: 'bar',
                                 stack: 'charge',
                                 barWidth: 20,
@@ -2462,7 +2462,7 @@
                                 barGap: '-100%'
                             },
                             {
-                                name: '市电',
+                                name: getTranslation('powerGrid'),
                                 type: 'bar',
                                 stack: 'charge',
                                 barWidth: 20,
@@ -2472,7 +2472,7 @@
                                 }
                             },
                             {
-                                name: '负载',
+                                name: getTranslation('powerLoad'),
                                 type: 'bar',
                                 barWidth: 20,
                                 data: monthlyData.dischargeData,
@@ -2493,7 +2493,7 @@
                             }
                         },
                         legend: {
-                            data: ['充电量', '放电量']
+                            data: [getTranslation('powerChargeAmount'), getTranslation('powerDischargeAmount')]
                         },
                         grid: {
                             left: '3%',
@@ -2511,7 +2511,7 @@
                         },
                         series: [
                             {
-                                name: '充电量',
+                                name: getTranslation('powerChargeAmount'),
                                 type: 'bar',
                                 barWidth: 20,
                                 data: monthlyData.chargeData.map(v => -v),
@@ -2521,7 +2521,7 @@
                                 barGap: '-100%'
                             },
                             {
-                                name: '放电量',
+                                name: getTranslation('powerDischargeAmount'),
                                 type: 'bar',
                                 barWidth: 20,
                                 data: monthlyData.dischargeData,
@@ -2548,7 +2548,7 @@
                             trigger: 'axis',
                             axisPointer: { type: 'shadow' }
                         },
-                        legend: { data: ['SOC (%)'] },
+                        legend: { data: [getTranslation('powerSOC')] },
                         grid: {
                             left: '3%',
                             right: '4%',
@@ -2561,12 +2561,12 @@
                         },
                         yAxis: {
                             type: 'value',
-                            name: 'SOC (%)',
+                            name: getTranslation('powerSOC'),
                             min: 0,
                             max: 100
                         },
                         series: [{
-                            name: 'SOC (%)',
+                            name: getTranslation('powerSOC'),
                             type: 'bar',
                             barWidth: 30,
                             data: socData,
@@ -2587,7 +2587,7 @@
                             }
                         },
                         legend: {
-                            data: ['光伏', '市电', '负载']
+                            data: [getTranslation('powerSolar'), getTranslation('powerGrid'), getTranslation('powerLoad')]
                         },
                         grid: {
                             left: '3%',
@@ -2605,7 +2605,7 @@
                         },
                         series: [
                             {
-                                name: '光伏',
+                                name: getTranslation('powerSolar'),
                                 type: 'bar',
                                 stack: 'charge',
                                 barWidth: 30,
@@ -2616,7 +2616,7 @@
                                 barGap: '-100%'
                             },
                             {
-                                name: '市电',
+                                name: getTranslation('powerGrid'),
                                 type: 'bar',
                                 stack: 'charge',
                                 barWidth: 30,
@@ -2626,7 +2626,7 @@
                                 }
                             },
                             {
-                                name: '负载',
+                                name: getTranslation('powerLoad'),
                                 type: 'bar',
                                 barWidth: 30,
                                 data: yearlyData.dischargeData,
@@ -2647,7 +2647,7 @@
                             }
                         },
                         legend: {
-                            data: ['充电量', '放电量']
+                            data: [getTranslation('powerChargeAmount'), getTranslation('powerDischargeAmount')]
                         },
                         grid: {
                             left: '3%',
@@ -2665,7 +2665,7 @@
                         },
                         series: [
                             {
-                                name: '充电量',
+                                name: getTranslation('powerChargeAmount'),
                                 type: 'bar',
                                 barWidth: 30,
                                 data: yearlyData.chargeData.map(v => -v),
@@ -2675,7 +2675,7 @@
                                 barGap: '-100%'
                             },
                             {
-                                name: '放电量',
+                                name: getTranslation('powerDischargeAmount'),
                                 type: 'bar',
                                 barWidth: 30,
                                 data: yearlyData.dischargeData,

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -125,7 +125,7 @@
         .nav-menu {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 5px;
             flex: 1;
             justify-content: center;
             flex-wrap: nowrap;
@@ -133,7 +133,7 @@
         }
 
         .nav-item {
-            padding: 12px 28px;
+            padding: 12px 20px;
             color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
             font-size: 17px;
@@ -1413,6 +1413,9 @@
             }
         }
     </style>
+    <script src="touchscreen-i18n.js"></script>
+    <link rel="stylesheet" href="english-text-optimization.css">
+    <script src="page-transition.js"></script>
 </head>
 <body>
     <!-- 背景效果 -->
@@ -1425,19 +1428,19 @@
                 <div class="logo-icon">
                     <img src="logo.png" alt="Logo">
                 </div>
-                <div class="logo-text">储能柜管理系统</div>
+                <div class="logo-text" data-i18n="systemTitle">Energy Storage System</div>
             </div>
         </div>
         
         <!-- 导航菜单 -->
         <nav class="nav-menu">
-            <div class="nav-item active" onclick="switchPage('home')">首页</div>
-            <a href="#data" class="nav-item" onclick="switchPage('data')">数据</a>
-            <a href="#" class="nav-item" onclick="switchPage('history')">历史</a>
-            <a href="#control" class="nav-item" onclick="switchPage('control')">控制</a>
-            <a href="#alarm" class="nav-item" onclick="switchPage('alarm')">告警</a>
-            <a href="#log" class="nav-item" onclick="switchPage('log')">日志</a>
-            <a href="#settings" class="nav-item" onclick="switchPage('settings')">设置</a>
+            <div class="nav-item active" onclick="smoothSwitchPage('home')" data-i18n="navHome">Home</div>
+            <a href="#data" class="nav-item" onclick="smoothSwitchPage('data')" data-i18n="navData">Data</a>
+            <a href="#" class="nav-item" onclick="smoothSwitchPage('history')" data-i18n="navHistory">History</a>
+            <a href="#control" class="nav-item" onclick="smoothSwitchPage('control')" data-i18n="navControl">Control</a>
+            <a href="#alarm" class="nav-item" onclick="smoothSwitchPage('alarm')" data-i18n="navAlarm">Alarm</a>
+            <a href="#log" class="nav-item" onclick="smoothSwitchPage('log')" data-i18n="navLog">Log</a>
+            <a href="#settings" class="nav-item" onclick="smoothSwitchPage('settings')" data-i18n="navSettings">Settings</a>
         </nav>
         
         <div class="header-right">
@@ -1465,7 +1468,7 @@
             </div>
             
             <!-- 退出按钮 -->
-            <button class="logout-btn" onclick="logout()" title="退出登录">
+            <button class="logout-btn" onclick="logout()" data-i18n-title="logoutButtonTitle">
                 <i class="fas fa-sign-out-alt"></i>
             </button>
         </div>
@@ -1485,8 +1488,8 @@
                                 <i class="fas fa-calendar-alt"></i>
                             </div>
                             <div class="stat-content">
-                                <div class="stat-value highlight">365 天</div>
-                                <div class="stat-label">运行天数</div>
+                                <div class="stat-value highlight">365 <span data-i18n="unitDay">Day</span></div>
+                                <div class="stat-label" data-i18n="homeRunningDays">Running Days</div>
                             </div>
                         </div>
                         <div class="stat-item">
@@ -1495,7 +1498,7 @@
                             </div>
                             <div class="stat-content">
                                 <div class="stat-value">156.8 kW</div>
-                                <div class="stat-label">系统功率</div>
+                                <div class="stat-label" data-i18n="homeSystemPower">System Power</div>
                             </div>
                         </div>
                         <div class="stat-item">
@@ -1504,7 +1507,7 @@
                             </div>
                             <div class="stat-content">
                                 <div class="stat-value">125.6 kWh</div>
-                                <div class="stat-label">今日充电量</div>
+                                <div class="stat-label" data-i18n="homeTodayCharge">Today Charge</div>
                             </div>
                         </div>
                         <div class="stat-item">
@@ -1513,7 +1516,7 @@
                             </div>
                             <div class="stat-content">
                                 <div class="stat-value">118.2 kWh</div>
-                                <div class="stat-label">今日放电量</div>
+                                <div class="stat-label" data-i18n="homeTodayDischarge">Today Discharge</div>
                             </div>
                         </div>
                         <div class="stat-item">
@@ -1522,7 +1525,7 @@
                             </div>
                             <div class="stat-content">
                                 <div class="stat-value highlight">45.8 MWh</div>
-                                <div class="stat-label">累计充电量</div>
+                                <div class="stat-label" data-i18n="homeTotalCharge">Total Charge</div>
                             </div>
                         </div>
                         <div class="stat-item">
@@ -1531,7 +1534,7 @@
                             </div>
                             <div class="stat-content">
                                 <div class="stat-value">43.2 MWh</div>
-                                <div class="stat-label">累计放电量</div>
+                                <div class="stat-label" data-i18n="homeTotalDischarge">Total Discharge</div>
                             </div>
                         </div>
                     </div>
@@ -1579,7 +1582,7 @@
                 <div class="stats-card">
                     <div class="components-full">
                         <div class="component-item" onclick="navigateToComponent('pcs')">
-                            <div class="component-status status-normal" id="pcs-status">正常</div>
+                            <div class="component-status status-normal" id="pcs-status" data-i18n="statusNormal">Normal</div>
                             <div class="component-icon">
                                 <i class="fas fa-exchange-alt"></i>
                             </div>
@@ -1587,7 +1590,7 @@
                         </div>
                         
                         <div class="component-item" onclick="navigateToComponent('bms')">
-                            <div class="component-status status-error" id="bms-status">异常</div>
+                            <div class="component-status status-error" id="bms-status" data-i18n="statusError">Error</div>
                             <div class="component-icon">
                                 <i class="fas fa-battery-full"></i>
                             </div>
@@ -1595,27 +1598,27 @@
                         </div>
                         
                         <div class="component-item" onclick="navigateToComponent('meter')">
-                            <div class="component-status status-normal" id="meter-status">正常</div>
+                            <div class="component-status status-normal" id="meter-status" data-i18n="statusNormal">Normal</div>
                             <div class="component-icon">
                                 <i class="fas fa-tachometer-alt"></i>
                             </div>
-                            <div class="component-name">电表</div>
+                            <div class="component-name" data-i18n="meter">Meter</div>
                         </div>
                         
                         <div class="component-item" onclick="navigateToComponent('thermal')">
-                            <div class="component-status status-normal" id="thermal-status">正常</div>
+                            <div class="component-status status-normal" id="thermal-status" data-i18n="statusNormal">Normal</div>
                             <div class="component-icon">
                                 <i class="fas fa-thermometer-half"></i>
                             </div>
-                            <div class="component-name">温度</div>
+                            <div class="component-name" data-i18n="temperature">Temperature</div>
                         </div>
                         
                         <div class="component-item" onclick="navigateToComponent('fire')">
-                            <div class="component-status status-offline" id="fire-status">离线</div>
+                            <div class="component-status status-offline" id="fire-status" data-i18n="statusOffline">Offline</div>
                             <div class="component-icon">
                                 <i class="fas fa-fire-extinguisher"></i>
                             </div>
-                            <div class="component-name">消防</div>
+                            <div class="component-name" data-i18n="fire_protection">Fire Protection</div>
                         </div>
                     </div>
                 </div>
@@ -1652,18 +1655,19 @@
                     let status;
                     if (index === offlineIndex) {
                         // 这个组件显示离线
-                        status = { text: '离线', class: 'status-offline' };
+                        status = { text: t('statusOffline'), class: 'status-offline', i18nKey: 'statusOffline' };
                     } else if (index === errorIndex) {
                         // 这个组件显示异常
-                        status = { text: '异常', class: 'status-error' };
+                        status = { text: t('statusError'), class: 'status-error', i18nKey: 'statusError' };
                     } else {
                         // 其他组件显示正常
-                        status = { text: '正常', class: 'status-normal' };
+                        status = { text: t('statusNormal'), class: 'status-normal', i18nKey: 'statusNormal' };
                     }
                     
                     // 更新状态文本和样式
                     statusElement.textContent = status.text;
                     statusElement.className = `component-status ${status.class}`;
+                    statusElement.setAttribute('data-i18n', status.i18nKey);
                 }
             });
         }
@@ -1700,7 +1704,7 @@
             event.target.classList.add('active');
             
             // 保存语言设置
-            localStorage.setItem('touchscreen_lang', lang);
+            localStorage.setItem('touchscreen_language', lang);
             
             // 关闭下拉菜单
             document.getElementById('langDropdown').classList.remove('show');
@@ -1719,14 +1723,20 @@
         });
 
 
-        // 切换页面
+        // 切换页面 - 使用平滑过渡
         function switchPage(page) {
+            // 如果smoothSwitchPage存在，使用它
+            if (typeof smoothSwitchPage === 'function') {
+                return smoothSwitchPage(page);
+            }
+
+            // 后备方案：直接跳转
             // 更新活动菜单项
             document.querySelectorAll('.nav-item').forEach(item => {
                 item.classList.remove('active');
             });
             event.target.classList.add('active');
-            
+
             // 页面跳转
             if (page === 'home') {
                 // 首页：不进行任何跳转，只更新活动状态
@@ -1736,7 +1746,7 @@
             } else if (page === 'control') {
                 window.location.href = 'control.html';
             } else if (page === 'alarm') {
-                window.location.href = 'alarm.html';
+                window.location.href = 'alarms.html';
             } else if (page === 'history') {
                 window.location.href = 'history.html';
             } else if (page === 'log') {
@@ -1910,21 +1920,61 @@
 
 
     </script>
-    <script src="common-header-scripts.js"></script>
+    <script src="common-header-scripts.js">
+        // ========== 国际化初始化 ==========
+
+        // 监听语言切换事件
+        window.addEventListener('languageChanged', function(e) {
+            console.log('页面接收到语言切换事件:', e.detail.lang);
+
+            // 更新HTML lang属性
+            document.documentElement.lang = e.detail.lang === 'zh' ? 'zh-CN' : 'en';
+
+            // 重新应用翻译到所有元素
+            if (typeof applyTouchscreenTranslations === 'function') {
+                applyTouchscreenTranslations();
+            }
+        });
+
+        // 页面加载时初始化语言
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentLang = getTouchscreenLang();
+            console.log('当前页面语言:', currentLang);
+
+            // 设置HTML lang属性
+            document.documentElement.lang = currentLang === 'zh' ? 'zh-CN' : 'en';
+
+            // HTML默认是英文,只有当前语言是中文时才需要翻译
+            if (currentLang === 'zh' && typeof applyTouchscreenTranslations === 'function') {
+                applyTouchscreenTranslations();
+            }
+
+            // 更新语言切换器的激活状态
+            document.querySelectorAll('.lang-option').forEach(option => {
+                const optionLang = option.getAttribute('onclick').includes("'zh'") ? 'zh' : 'en';
+                if (optionLang === currentLang) {
+                    option.classList.add('active');
+                } else {
+                    option.classList.remove('active');
+                }
+            });
+        });
+
+    </script>
     <!-- 退出确认弹窗 -->
     <div id="logoutModal" class="logout-modal">
         <div class="logout-content">
             <div class="logout-icon">
                 <i class="fas fa-sign-out-alt"></i>
             </div>
-            <div class="logout-title" id="logoutTitle">退出登录</div>
-            <div class="logout-message" id="logoutMessage">您确定要退出当前账户吗？退出后需要重新登录。</div>
+            <div class="logout-title" id="logoutTitle" data-i18n="logoutTitle">Logout</div>
+            <div class="logout-message" id="logoutMessage" data-i18n="logoutMessage">Are you sure you want to logout? You will need to login again.</div>
             <div class="logout-buttons">
                 <button class="logout-btn-action cancel" id="logoutCancelBtn" onclick="closeLogoutModal()">
-                    <i class="fas fa-times"></i> 取消
+                    <i class="fas fa-times"></i> <span data-i18n="cancel">Cancel</span>
                 </button>
                 <button class="logout-btn-action confirm" id="logoutConfirmBtn" onclick="confirmLogout()">
-                    <i class="fas fa-sign-out-alt"></i> 退出
+                    <i class="fas fa-sign-out-alt"></i> <span data-i18n="logout">Logout</span>
                 </button>
             </div>
         </div>

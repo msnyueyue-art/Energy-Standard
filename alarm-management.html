@@ -676,15 +676,15 @@
         <!-- Tab导航 - 移到最顶层 -->
         <div class="message-tabs" style="margin-bottom: 20px;">
             <button class="tab-item fault-tab active" onclick="switchTab('fault')" data-tab="fault">
-                <span>故障消息</span>
+                <span data-translate="alarmMgmtFaultTab">故障消息</span>
                 <span class="tab-badge" id="tabBadgeFault">0</span>
             </button>
             <button class="tab-item warning-tab" onclick="switchTab('warning')" data-tab="warning">
-                <span>告警消息</span>
+                <span data-translate="alarmMgmtWarningTab">告警消息</span>
                 <span class="tab-badge" id="tabBadgeWarning">0</span>
             </button>
             <button class="tab-item notice-tab" onclick="switchTab('notice')" data-tab="notice">
-                <span>通知消息</span>
+                <span data-translate="alarmMgmtNoticeTab">通知消息</span>
             </button>
         </div>
 
@@ -696,9 +696,9 @@
                     <!-- 第一行 -->
                     <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
                         <div class="form-group">
-                            <label class="form-label">站点</label>
+                            <label class="form-label" data-translate="alarmMgmtSite">站点</label>
                             <select class="form-select" id="faultSiteFilter" style="width: 100%; height: 40px;">
-                                <option value="">全部站点</option>
+                                <option value="" data-translate="alarmMgmtAllSites">全部站点</option>
                                 <option value="site1" data-translate="siteNameTech">科技园区站</option>
                                 <option value="site2" data-translate="siteNameIndustrial">工业园区站</option>
                                 <option value="site3" data-translate="siteNameCommerce">商业中心站</option>
@@ -708,38 +708,38 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">设备</label>
-                            <input type="text" class="form-input" id="faultDeviceFilter" style="width: 100%; height: 40px;" placeholder="请输入设备名称">
+                            <label class="form-label" data-translate="alarmMgmtDevice">设备</label>
+                            <input type="text" class="form-input" id="faultDeviceFilter" style="width: 100%; height: 40px;" data-translate-placeholder="alarmMgmtDeviceNamePlaceholder" placeholder="请输入设备名称">
                         </div>
                         <div class="form-group">
-                            <label class="form-label">故障源</label>
+                            <label class="form-label" data-translate="alarmMgmtFaultSource">故障源</label>
                             <select class="form-select" id="faultSourceFilter" style="width: 100%; height: 40px;">
-                                <option value="">全部来源</option>
-                                <option value="cabinet">储能柜</option>
-                                <option value="gateway">网关</option>
+                                <option value="" data-translate="alarmMgmtAllSources">全部来源</option>
+                                <option value="cabinet" data-translate="alarmMgmtCabinet">储能柜</option>
+                                <option value="gateway" data-translate="alarmMgmtGateway">网关</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">状态</label>
+                            <label class="form-label" data-translate="alarmMgmtStatus">状态</label>
                             <select class="form-select" id="faultStatusFilter" style="width: 100%; height: 40px;">
-                                <option value="">全部状态</option>
-                                <option value="resolved">正常</option>
-                                <option value="unresolved">故障</option>
+                                <option value="" data-translate="alarmMgmtAllStatus">全部状态</option>
+                                <option value="resolved" data-translate="alarmMgmtNormal">正常</option>
+                                <option value="unresolved" data-translate="alarmMgmtFault">故障</option>
                             </select>
                         </div>
                     </div>
                     <!-- 第二行 -->
                     <div style="display: flex; align-items: center; gap: 16px;">
-                        <label class="form-label">时间范围</label>
-                        <input type="text" class="form-input flatpickr-input" id="faultStartTimeFilter" style="width: 180px; height: 40px;" placeholder="开始日期" readonly>
+                        <label class="form-label" data-translate="alarmMgmtTimeRange">时间范围</label>
+                        <input type="text" class="form-input flatpickr-input" id="faultStartTimeFilter" style="width: 180px; height: 40px;" data-translate-placeholder="alarmMgmtStartDate" placeholder="开始日期" readonly>
                         <span style="color: var(--text-secondary);">~</span>
-                        <input type="text" class="form-input flatpickr-input" id="faultEndTimeFilter" style="width: 180px; height: 40px;" placeholder="结束日期" readonly>
+                        <input type="text" class="form-input flatpickr-input" id="faultEndTimeFilter" style="width: 180px; height: 40px;" data-translate-placeholder="alarmMgmtEndDate" placeholder="结束日期" readonly>
                         <div style="margin-left: auto; display: flex; gap: 12px;">
                             <button class="btn" onclick="queryAlarms('fault')" style="height: 40px; padding: 0 16px; background: #EFEFEF; border: none; color: #333;">
-                                <i class="fas fa-search"></i> <span>查询</span>
+                                <i class="fas fa-search"></i> <span data-translate="alarmMgmtQuery">查询</span>
                             </button>
                             <button class="btn" onclick="resetQuery('fault')" style="height: 40px; padding: 0 16px; background: #EFEFEF; border: none; color: #333;">
-                                <i class="fas fa-redo"></i> <span>重置</span>
+                                <i class="fas fa-redo"></i> <span data-translate="alarmMgmtReset">重置</span>
                             </button>
                         </div>
                     </div>
@@ -753,7 +753,7 @@
                         <!-- 故障消息不显示批量操作按钮 -->
                         <button class="btn" onclick="exportAlarms()" style="height: 40px; padding: 0 16px; width: auto; display: inline-block;">
                             <i class="fas fa-download"></i>
-                            <span>导出</span>
+                            <span data-translate="alarmMgmtExport">导出</span>
                         </button>
                     </div>
                 </div>
@@ -765,14 +765,14 @@
                                 <th style="width: 40px;">
                                     <input type="checkbox" id="faultSelectAll" onchange="toggleAllAlarms('fault', this.checked)">
                                 </th>
-                                <th>消息类型</th>
-                                <th>消息描述</th>
-                                <th>设备</th>
-                                <th>站点</th>
-                                <th>故障源</th>
-                                <th>状态</th>
-                                <th>消息时间</th>
-                                <th>操作</th>
+                                <th data-translate="alarmMgmtMessageType">消息类型</th>
+                                <th data-translate="alarmMgmtMessageDesc">消息描述</th>
+                                <th data-translate="alarmMgmtDevice">设备</th>
+                                <th data-translate="alarmMgmtSite">站点</th>
+                                <th data-translate="alarmMgmtFaultSource">故障源</th>
+                                <th data-translate="alarmMgmtStatus">状态</th>
+                                <th data-translate="alarmMgmtMessageTime">消息时间</th>
+                                <th data-translate="alarmMgmtActions">操作</th>
                             </tr>
                         </thead>
                         <tbody id="faultTableBody">
@@ -783,14 +783,14 @@
 
                 <div class="alarm-pagination">
                     <div class="pagination-info">
-                        <span>显示</span> <span id="faultShowingFrom">1</span> - <span id="faultShowingTo">10</span> <span>条，共</span> <span id="faultTotalAlarms">0</span> <span>条</span>
+                        <span data-translate="commonPaginationShow">显示</span> <span id="faultShowingFrom">1</span> - <span id="faultShowingTo">10</span> <span data-translate="commonPaginationTo">条，共</span> <span id="faultTotalAlarms">0</span> <span data-translate="commonPaginationTotal">条</span>
                     </div>
                     <div class="pagination-controls">
                         <button class="pagination-btn" onclick="previousPage('fault')" id="faultPrevBtn">
                             <i class="fas fa-chevron-left"></i>
                         </button>
                         <span class="pagination-page">
-                            <span>第</span> <span id="faultCurrentPage">1</span> / <span id="faultTotalPages">1</span> <span>页</span>
+                            <span data-translate="paginationPage1">第</span> <span id="faultCurrentPage">1</span> / <span id="faultTotalPages">1</span> <span data-translate="paginationPage3">页</span>
                         </span>
                         <button class="pagination-btn" onclick="nextPage('fault')" id="faultNextBtn">
                             <i class="fas fa-chevron-right"></i>
@@ -808,9 +808,9 @@
                     <!-- 第一行 -->
                     <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
                         <div class="form-group">
-                            <label class="form-label">站点</label>
+                            <label class="form-label" data-translate="alarmMgmtSite">站点</label>
                             <select class="form-select" id="warningSiteFilter" style="width: 100%; height: 40px;">
-                                <option value="">全部站点</option>
+                                <option value="" data-translate="alarmMgmtAllSites">全部站点</option>
                                 <option value="site1" data-translate="siteNameTech">科技园区站</option>
                                 <option value="site2" data-translate="siteNameIndustrial">工业园区站</option>
                                 <option value="site3" data-translate="siteNameCommerce">商业中心站</option>
@@ -820,38 +820,38 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">设备</label>
-                            <input type="text" class="form-input" id="warningDeviceFilter" style="width: 100%; height: 40px;" placeholder="请输入设备名称">
+                            <label class="form-label" data-translate="alarmMgmtDevice">设备</label>
+                            <input type="text" class="form-input" id="warningDeviceFilter" style="width: 100%; height: 40px;" data-translate-placeholder="alarmMgmtDeviceNamePlaceholder" placeholder="请输入设备名称">
                         </div>
                         <div class="form-group">
-                            <label class="form-label">故障源</label>
+                            <label class="form-label" data-translate="alarmMgmtFaultSource">故障源</label>
                             <select class="form-select" id="warningSourceFilter" style="width: 100%; height: 40px;">
-                                <option value="">全部来源</option>
-                                <option value="cabinet">储能柜</option>
-                                <option value="gateway">网关</option>
+                                <option value="" data-translate="alarmMgmtAllSources">全部来源</option>
+                                <option value="cabinet" data-translate="alarmMgmtCabinet">储能柜</option>
+                                <option value="gateway" data-translate="alarmMgmtGateway">网关</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">状态</label>
+                            <label class="form-label" data-translate="alarmMgmtStatus">状态</label>
                             <select class="form-select" id="warningStatusFilter" style="width: 100%; height: 40px;">
-                                <option value="">全部状态</option>
-                                <option value="resolved">正常</option>
-                                <option value="unresolved">告警</option>
+                                <option value="" data-translate="alarmMgmtAllStatus">全部状态</option>
+                                <option value="resolved" data-translate="alarmMgmtNormal">正常</option>
+                                <option value="unresolved" data-translate="alarmMgmtWarning">告警</option>
                             </select>
                         </div>
                     </div>
                     <!-- 第二行 -->
                     <div style="display: flex; align-items: center; gap: 16px;">
-                        <label class="form-label">时间范围</label>
-                        <input type="text" class="form-input flatpickr-input" id="warningStartTimeFilter" style="width: 180px; height: 40px;" placeholder="开始日期" readonly>
+                        <label class="form-label" data-translate="alarmMgmtTimeRange">时间范围</label>
+                        <input type="text" class="form-input flatpickr-input" id="warningStartTimeFilter" style="width: 180px; height: 40px;" data-translate-placeholder="alarmMgmtStartDate" placeholder="开始日期" readonly>
                         <span style="color: var(--text-secondary);">~</span>
-                        <input type="text" class="form-input flatpickr-input" id="warningEndTimeFilter" style="width: 180px; height: 40px;" placeholder="结束日期" readonly>
+                        <input type="text" class="form-input flatpickr-input" id="warningEndTimeFilter" style="width: 180px; height: 40px;" data-translate-placeholder="alarmMgmtEndDate" placeholder="结束日期" readonly>
                         <div style="margin-left: auto; display: flex; gap: 12px;">
                             <button class="btn" onclick="queryAlarms('warning')" style="height: 40px; padding: 0 16px; background: #EFEFEF; border: none; color: #333;">
-                                <i class="fas fa-search"></i> <span>查询</span>
+                                <i class="fas fa-search"></i> <span data-translate="alarmMgmtQuery">查询</span>
                             </button>
                             <button class="btn" onclick="resetQuery('warning')" style="height: 40px; padding: 0 16px; background: #EFEFEF; border: none; color: #333;">
-                                <i class="fas fa-redo"></i> <span>重置</span>
+                                <i class="fas fa-redo"></i> <span data-translate="alarmMgmtReset">重置</span>
                             </button>
                         </div>
                     </div>
@@ -864,11 +864,11 @@
                     <div>
                         <button class="btn btn-primary" onclick="handleBatchAction('warning')" style="height: 40px; padding: 0 16px; width: auto; display: inline-block;">
                             <i class="fas fa-check"></i>
-                            <span>批量解决</span>
+                            <span data-translate="btnBatchResolve">批量解决</span>
                         </button>
                         <button class="btn" onclick="exportAlarms()" style="height: 40px; padding: 0 16px; width: auto; display: inline-block; margin-left: 12px;">
                             <i class="fas fa-download"></i>
-                            <span>导出</span>
+                            <span data-translate="alarmMgmtExport">导出</span>
                         </button>
                     </div>
                 </div>
@@ -880,14 +880,14 @@
                                 <th style="width: 40px;">
                                     <input type="checkbox" id="warningSelectAll" onchange="toggleAllAlarms('warning', this.checked)">
                                 </th>
-                                <th>消息类型</th>
-                                <th>消息描述</th>
-                                <th>设备</th>
-                                <th>站点</th>
-                                <th>故障源</th>
-                                <th>状态</th>
-                                <th>消息时间</th>
-                                <th>操作</th>
+                                <th data-translate="alarmMgmtMessageType">消息类型</th>
+                                <th data-translate="alarmMgmtMessageDesc">消息描述</th>
+                                <th data-translate="alarmMgmtDevice">设备</th>
+                                <th data-translate="alarmMgmtSite">站点</th>
+                                <th data-translate="alarmMgmtFaultSource">故障源</th>
+                                <th data-translate="alarmMgmtStatus">状态</th>
+                                <th data-translate="alarmMgmtMessageTime">消息时间</th>
+                                <th data-translate="alarmMgmtActions">操作</th>
                             </tr>
                         </thead>
                         <tbody id="warningTableBody">
@@ -898,14 +898,14 @@
 
                 <div class="alarm-pagination">
                     <div class="pagination-info">
-                        <span>显示</span> <span id="warningShowingFrom">1</span> - <span id="warningShowingTo">10</span> <span>条，共</span> <span id="warningTotalAlarms">0</span> <span>条</span>
+                        <span data-translate="commonPaginationShow">显示</span> <span id="warningShowingFrom">1</span> - <span id="warningShowingTo">10</span> <span data-translate="commonPaginationTo">条，共</span> <span id="warningTotalAlarms">0</span> <span data-translate="commonPaginationTotal">条</span>
                     </div>
                     <div class="pagination-controls">
                         <button class="pagination-btn" onclick="previousPage('warning')" id="warningPrevBtn">
                             <i class="fas fa-chevron-left"></i>
                         </button>
                         <span class="pagination-page">
-                            <span>第</span> <span id="warningCurrentPage">1</span> / <span id="warningTotalPages">1</span> <span>页</span>
+                            <span data-translate="paginationPage1">第</span> <span id="warningCurrentPage">1</span> / <span id="warningTotalPages">1</span> <span data-translate="paginationPage3">页</span>
                         </span>
                         <button class="pagination-btn" onclick="nextPage('warning')" id="warningNextBtn">
                             <i class="fas fa-chevron-right"></i>
@@ -923,9 +923,9 @@
                     <!-- 第一行 -->
                     <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
                         <div class="form-group">
-                            <label class="form-label">站点</label>
+                            <label class="form-label" data-translate="alarmMgmtSite">站点</label>
                             <select class="form-select" id="noticeSiteFilter" style="width: 100%; height: 40px;">
-                                <option value="">全部站点</option>
+                                <option value="" data-translate="alarmMgmtAllSites">全部站点</option>
                                 <option value="site1" data-translate="siteNameTech">科技园区站</option>
                                 <option value="site2" data-translate="siteNameIndustrial">工业园区站</option>
                                 <option value="site3" data-translate="siteNameCommerce">商业中心站</option>
@@ -935,38 +935,38 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">设备</label>
-                            <input type="text" class="form-input" id="noticeDeviceFilter" style="width: 100%; height: 40px;" placeholder="请输入设备名称">
+                            <label class="form-label" data-translate="alarmMgmtDevice">设备</label>
+                            <input type="text" class="form-input" id="noticeDeviceFilter" style="width: 100%; height: 40px;" data-translate-placeholder="alarmMgmtDeviceNamePlaceholder" placeholder="请输入设备名称">
                         </div>
                         <div class="form-group">
-                            <label class="form-label">故障源</label>
+                            <label class="form-label" data-translate="alarmMgmtFaultSource">故障源</label>
                             <select class="form-select" id="noticeSourceFilter" style="width: 100%; height: 40px;">
-                                <option value="">全部来源</option>
-                                <option value="cabinet">储能柜</option>
-                                <option value="gateway">网关</option>
+                                <option value="" data-translate="alarmMgmtAllSources">全部来源</option>
+                                <option value="cabinet" data-translate="alarmMgmtCabinet">储能柜</option>
+                                <option value="gateway" data-translate="alarmMgmtGateway">网关</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">状态</label>
+                            <label class="form-label" data-translate="alarmMgmtStatus">状态</label>
                             <select class="form-select" id="noticeStatusFilter" style="width: 100%; height: 40px;">
-                                <option value="">全部状态</option>
-                                <option value="resolved">已读</option>
-                                <option value="unresolved">未读</option>
+                                <option value="" data-translate="alarmMgmtAllStatus">全部状态</option>
+                                <option value="resolved" data-translate="alarmMgmtRead">已读</option>
+                                <option value="unresolved" data-translate="alarmMgmtUnread">未读</option>
                             </select>
                         </div>
                     </div>
                     <!-- 第二行 -->
                     <div style="display: flex; align-items: center; gap: 16px;">
-                        <label class="form-label">时间范围</label>
-                        <input type="text" class="form-input flatpickr-input" id="noticeStartTimeFilter" style="width: 180px; height: 40px;" placeholder="开始日期" readonly>
+                        <label class="form-label" data-translate="alarmMgmtTimeRange">时间范围</label>
+                        <input type="text" class="form-input flatpickr-input" id="noticeStartTimeFilter" style="width: 180px; height: 40px;" data-translate-placeholder="alarmMgmtStartDate" placeholder="开始日期" readonly>
                         <span style="color: var(--text-secondary);">~</span>
-                        <input type="text" class="form-input flatpickr-input" id="noticeEndTimeFilter" style="width: 180px; height: 40px;" placeholder="结束日期" readonly>
+                        <input type="text" class="form-input flatpickr-input" id="noticeEndTimeFilter" style="width: 180px; height: 40px;" data-translate-placeholder="alarmMgmtEndDate" placeholder="结束日期" readonly>
                         <div style="margin-left: auto; display: flex; gap: 12px;">
                             <button class="btn" onclick="queryAlarms('notice')" style="height: 40px; padding: 0 16px; background: #EFEFEF; border: none; color: #333;">
-                                <i class="fas fa-search"></i> <span>查询</span>
+                                <i class="fas fa-search"></i> <span data-translate="alarmMgmtQuery">查询</span>
                             </button>
                             <button class="btn" onclick="resetQuery('notice')" style="height: 40px; padding: 0 16px; background: #EFEFEF; border: none; color: #333;">
-                                <i class="fas fa-redo"></i> <span>重置</span>
+                                <i class="fas fa-redo"></i> <span data-translate="alarmMgmtReset">重置</span>
                             </button>
                         </div>
                     </div>
@@ -979,11 +979,11 @@
                     <div>
                         <button class="btn btn-primary" onclick="handleBatchAction('notice')" style="height: 40px; padding: 0 16px; width: auto; display: inline-block;">
                             <i class="fas fa-check-double"></i>
-                            <span>批量标记已读</span>
+                            <span data-translate="alarmMgmtBatchMarkRead">批量标记已读</span>
                         </button>
                         <button class="btn" onclick="exportAlarms()" style="height: 40px; padding: 0 16px; width: auto; display: inline-block; margin-left: 12px;">
                             <i class="fas fa-download"></i>
-                            <span>导出</span>
+                            <span data-translate="alarmMgmtExport">导出</span>
                         </button>
                     </div>
                 </div>
@@ -995,14 +995,14 @@
                                 <th style="width: 40px;">
                                     <input type="checkbox" id="noticeSelectAll" onchange="toggleAllAlarms('notice', this.checked)">
                                 </th>
-                                <th>消息类型</th>
-                                <th>消息描述</th>
-                                <th>设备</th>
-                                <th>站点</th>
-                                <th>故障源</th>
-                                <th>状态</th>
-                                <th>消息时间</th>
-                                <th>操作</th>
+                                <th data-translate="alarmMgmtMessageType">消息类型</th>
+                                <th data-translate="alarmMgmtMessageDesc">消息描述</th>
+                                <th data-translate="alarmMgmtDevice">设备</th>
+                                <th data-translate="alarmMgmtSite">站点</th>
+                                <th data-translate="alarmMgmtFaultSource">故障源</th>
+                                <th data-translate="alarmMgmtStatus">状态</th>
+                                <th data-translate="alarmMgmtMessageTime">消息时间</th>
+                                <th data-translate="alarmMgmtActions">操作</th>
                             </tr>
                         </thead>
                         <tbody id="noticeTableBody">
@@ -1013,14 +1013,14 @@
 
                 <div class="alarm-pagination">
                     <div class="pagination-info">
-                        <span>显示</span> <span id="noticeShowingFrom">1</span> - <span id="noticeShowingTo">10</span> <span>条，共</span> <span id="noticeTotalAlarms">0</span> <span>条</span>
+                        <span data-translate="commonPaginationShow">显示</span> <span id="noticeShowingFrom">1</span> - <span id="noticeShowingTo">10</span> <span data-translate="commonPaginationTo">条，共</span> <span id="noticeTotalAlarms">0</span> <span data-translate="commonPaginationTotal">条</span>
                     </div>
                     <div class="pagination-controls">
                         <button class="pagination-btn" onclick="previousPage('notice')" id="noticePrevBtn">
                             <i class="fas fa-chevron-left"></i>
                         </button>
                         <span class="pagination-page">
-                            <span>第</span> <span id="noticeCurrentPage">1</span> / <span id="noticeTotalPages">1</span> <span>页</span>
+                            <span data-translate="paginationPage1">第</span> <span id="noticeCurrentPage">1</span> / <span id="noticeTotalPages">1</span> <span data-translate="paginationPage3">页</span>
                         </span>
                         <button class="pagination-btn" onclick="nextPage('notice')" id="noticeNextBtn">
                             <i class="fas fa-chevron-right"></i>
@@ -1099,7 +1099,7 @@
 
                 <!-- 处理记录 -->
                 <div class="alarm-handle-history">
-                    <h4 style="margin: 0 0 16px 0; font-size: 16px; font-weight: 600;" id="detailHandleHistoryTitle">处理记录</h4>
+                    <h4 style="margin: 0 0 16px 0; font-size: 16px; font-weight: 600;" id="detailHandleHistoryTitle"><span data-translate="alarmDetailHandleHistory">处理记录</span></h4>
                     <div id="handleHistory">
                         <div class="handle-history-item">
                             <div class="handle-history-time">2024-03-21 14:35:22</div>
@@ -1144,12 +1144,12 @@
                 <div style="width: 60px; height: 60px; background: #dcfce7; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 16px;">
                     <i class="fas fa-wrench" style="font-size: 24px; color: #16a34a;"></i>
                 </div>
-                <h3 style="margin: 0 0 8px 0; font-size: 18px; color: var(--text-primary);">确认故障修复</h3>
-                <p style="margin: 0; font-size: 14px; color: var(--text-secondary);">请确认故障已经修复完成</p>
+                <h3 style="margin: 0 0 8px 0; font-size: 18px; color: var(--text-primary);"><span data-translate="alarmDetailConfirmFix">确认故障修复</span></h3>
+                <p style="margin: 0; font-size: 14px; color: var(--text-secondary);"><span data-translate="alarmDetailConfirmFixMsg">请确认故障已经修复完成</span></p>
             </div>
             <div style="display: flex; gap: 12px;">
-                <button class="btn" onclick="closeFaultFixModal()" style="flex: 1; height: 40px;">取消</button>
-                <button class="btn" onclick="confirmFaultFix()" style="flex: 1; height: 40px; background: #16a34a; color: white;">确认修复</button>
+                <button class="btn" onclick="closeFaultFixModal()" style="flex: 1; height: 40px;"><span data-translate="btnCancel">取消</span></button>
+                <button class="btn" onclick="confirmFaultFix()" style="flex: 1; height: 40px; background: #16a34a; color: white;"><span data-translate="alarmDetailConfirmFix">确认修复</span></button>
             </div>
         </div>
     </div>
@@ -1161,12 +1161,12 @@
                 <div style="width: 60px; height: 60px; background: #fef3c7; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 16px;">
                     <i class="fas fa-times-circle" style="font-size: 24px; color: #f59e0b;"></i>
                 </div>
-                <h3 style="margin: 0 0 8px 0; font-size: 18px; color: var(--text-primary);">确认关闭告警</h3>
-                <p style="margin: 0; font-size: 14px; color: var(--text-secondary);">请确认告警情况已经处理完成</p>
+                <h3 style="margin: 0 0 8px 0; font-size: 18px; color: var(--text-primary);"><span data-translate="alarmDetailConfirmClose">确认关闭告警</span></h3>
+                <p style="margin: 0; font-size: 14px; color: var(--text-secondary);"><span data-translate="alarmDetailConfirmCloseMsg">请确认告警情况已经处理完成</span></p>
             </div>
             <div style="display: flex; gap: 12px;">
-                <button class="btn" onclick="closeWarningCloseModal()" style="flex: 1; height: 40px;">取消</button>
-                <button class="btn" onclick="confirmWarningClose()" style="flex: 1; height: 40px; background: #f59e0b; color: white;">确认关闭</button>
+                <button class="btn" onclick="closeWarningCloseModal()" style="flex: 1; height: 40px;"><span data-translate="cancel">取消</span></button>
+                <button class="btn" onclick="confirmWarningClose()" style="flex: 1; height: 40px; background: #f59e0b; color: white;"><span data-translate="alarmDetailConfirmClose">确认关闭</span></button>
             </div>
         </div>
     </div>
@@ -1273,27 +1273,33 @@
                             // 创建处理记录
                             const handleHistory = [{
                                 time: formatDateTime(date),
-                                action: '生成',
-                                operator: '系统',
-                                description: '系统自动生成' + (alarmType.level === 'fault' ? '故障' : alarmType.level === 'warning' ? '告警' : '通知')
+                                action: getTranslation('handleHistoryActionGenerate'),
+                                operator: getTranslation('handleHistorySystem'),
+                                description: alarmType.level === 'fault' ? getTranslation('handleHistorySystemAutoFault') :
+                                            alarmType.level === 'warning' ? getTranslation('handleHistorySystemAutoWarning') :
+                                            getTranslation('handleHistorySystemAutoNotice')
                             }];
 
                             // 如果状态是已解决,添加处理记录
                             if (status === 'resolved') {
                                 const resolveDate = new Date(date.getTime() + Math.floor(Math.random() * 3 * 60 * 60 * 1000)); // 1-3小时后解决
                                 let actionText = '';
+                                let descriptionText = '';
                                 if (alarmType.level === 'fault') {
-                                    actionText = '故障修复';
+                                    actionText = getTranslation('handleHistoryActionFixFault');
+                                    descriptionText = getTranslation('handleHistoryFaultFixed');
                                 } else if (alarmType.level === 'warning') {
-                                    actionText = '关闭告警';
+                                    actionText = getTranslation('handleHistoryActionCloseAlarm');
+                                    descriptionText = getTranslation('handleHistoryAlarmClosed');
                                 } else {
-                                    actionText = '标记已读';
+                                    actionText = getTranslation('handleHistoryActionMarkRead');
+                                    descriptionText = getTranslation('handleHistoryMarkedRead');
                                 }
                                 handleHistory.push({
                                     time: formatDateTime(resolveDate),
                                     action: actionText,
-                                    operator: '管理员',
-                                    description: actionText + '完成'
+                                    operator: getTranslation('handleHistoryAdmin'),
+                                    description: descriptionText
                                 });
                             }
 
@@ -1448,20 +1454,20 @@
 
             tbody.innerHTML = pageData.map(alarm => {
                 const levelClass = alarm.level;
-                const levelText = alarm.level === 'fault' ? '故障' :
-                                 alarm.level === 'warning' ? '告警' : '通知';
+                const levelText = alarm.level === 'fault' ? getTranslation('alarmMgmtFault') :
+                                 alarm.level === 'warning' ? getTranslation('alarmMgmtWarning') : getTranslation('alarmMgmtNoticeTab');
 
                 // 根据不同的消息类型显示不同的状态文本
                 let statusText = '';
                 if (alarm.level === 'fault') {
                     // 故障消息: 正常/故障
-                    statusText = alarm.status === 'resolved' ? '正常' : '故障';
+                    statusText = alarm.status === 'resolved' ? getTranslation('alarmMgmtNormal') : getTranslation('alarmMgmtFault');
                 } else if (alarm.level === 'warning') {
                     // 告警消息: 正常/告警
-                    statusText = alarm.status === 'resolved' ? '正常' : '告警';
+                    statusText = alarm.status === 'resolved' ? getTranslation('alarmMgmtNormal') : getTranslation('alarmMgmtWarning');
                 } else {
                     // 通知消息: 已读/未读
-                    statusText = alarm.status === 'resolved' ? '已读' : '未读';
+                    statusText = alarm.status === 'resolved' ? getTranslation('alarmMgmtRead') : getTranslation('alarmMgmtUnread');
                 }
 
                 // 使用翻译函数获取告警类型和描述
@@ -1475,20 +1481,20 @@
                 let actionButtonIcon = '';
                 if (alarm.status !== 'resolved') {
                     if (alarm.level === 'fault') {
-                        actionButtonText = '故障修复';
+                        actionButtonText = getTranslation('alarmMgmtFixFault');
                         actionButtonIcon = 'fa-wrench';
                     } else if (alarm.level === 'warning') {
-                        actionButtonText = '确认关闭';
+                        actionButtonText = getTranslation('alarmMgmtCloseAlarm');
                         actionButtonIcon = 'fa-times-circle';
                     } else { // notice
-                        actionButtonText = '已读';
+                        actionButtonText = getTranslation('alarmMgmtMarkRead');
                         actionButtonIcon = 'fa-check';
                     }
                 }
 
                 // 故障源文本和样式 - 使用图标+边框样式区别于状态标签
                 const sourceIcon = alarm.source === 'cabinet' ? 'fa-battery-full' : 'fa-wifi';
-                const sourceText = alarm.source === 'cabinet' ? '储能柜' : '网关';
+                const sourceText = alarm.source === 'cabinet' ? getTranslation('alarmMgmtCabinet') : getTranslation('alarmMgmtGateway');
                 const sourceStyle = alarm.source === 'cabinet'
                     ? 'border: 1.5px solid #3b82f6; color: #3b82f6; padding: 3px 10px; border-radius: 4px; font-size: 12px; font-weight: 500; background: transparent; display: inline-flex; align-items: center; gap: 4px;'
                     : 'border: 1.5px solid #f59e0b; color: #f59e0b; padding: 3px 10px; border-radius: 4px; font-size: 12px; font-weight: 500; background: transparent; display: inline-flex; align-items: center; gap: 4px;';
@@ -1694,22 +1700,28 @@
                 // 根据消息类型设置标题和标签文字
                 let typeText = '';
                 if (alarm.level === 'fault') {
-                    typeText = '故障';
+                    typeText = getTranslation('alarmMgmtFault');
                 } else if (alarm.level === 'warning') {
-                    typeText = '告警';
+                    typeText = getTranslation('alarmMgmtWarning');
                 } else {
-                    typeText = '通知';
+                    typeText = getTranslation('alarmDetailNotice');
                 }
 
                 // 更新弹窗标题
-                document.getElementById('modalAlarmDetailTitle').textContent = typeText + '详情';
+                document.getElementById('modalAlarmDetailTitle').textContent = typeText + getTranslation('alarmDetailTitleSuffix');
 
                 // 更新标签文字
-                document.getElementById('detailLabelAlarmId').textContent = typeText + 'ID：';
-                document.getElementById('detailLabelAlarmTime').textContent = typeText + '时间：';
-                document.getElementById('detailLabelAlarmType').textContent = typeText + '类型：';
-                document.getElementById('detailLabelAlarmLevel').textContent = typeText + '级别：';
-                document.getElementById('detailLabelAlarmDesc').textContent = typeText + '描述：';
+                document.getElementById('detailLabelAlarmId').textContent = typeText + 'ID' + getTranslation('alarmDetailColon');
+                document.getElementById('detailLabelAlarmTime').textContent = typeText + getTranslation('alarmDetailTime') + getTranslation('alarmDetailColon');
+                document.getElementById('detailLabelSiteName').textContent = getTranslation('alarmDetailSiteName') + getTranslation('alarmDetailColon');
+                document.getElementById('detailLabelDeviceName').textContent = getTranslation('alarmDetailDeviceName') + getTranslation('alarmDetailColon');
+                document.getElementById('detailLabelSource').textContent = getTranslation('alarmDetailSource') + getTranslation('alarmDetailColon');
+                document.getElementById('detailLabelAlarmType').textContent = typeText + getTranslation('alarmDetailType') + getTranslation('alarmDetailColon');
+                document.getElementById('detailLabelAlarmLevel').textContent = typeText + getTranslation('alarmDetailLevel') + getTranslation('alarmDetailColon');
+                document.getElementById('detailLabelCurrentStatus').textContent = getTranslation('alarmDetailCurrentStatus') + getTranslation('alarmDetailColon');
+                document.getElementById('detailLabelAlarmDesc').textContent = typeText + getTranslation('alarmDetailDesc') + getTranslation('alarmDetailColon');
+                document.getElementById('detailLabelCurrentValue').textContent = getTranslation('alarmDetailCurrentValue') + getTranslation('alarmDetailColon');
+                document.getElementById('detailLabelThreshold').textContent = getTranslation('alarmDetailThreshold') + getTranslation('alarmDetailColon');
 
                 document.getElementById('detailAlarmId').textContent = alarm.id;
                 document.getElementById('detailAlarmTime').textContent = alarm.time;
@@ -1718,7 +1730,7 @@
 
                 // 设置故障源 - 使用图标+边框样式
                 const sourceIcon = alarm.source === 'cabinet' ? 'fa-battery-full' : 'fa-wifi';
-                const sourceText = alarm.source === 'cabinet' ? '储能柜' : '网关';
+                const sourceText = alarm.source === 'cabinet' ? getTranslation('alarmMgmtCabinet') : getTranslation('alarmMgmtGateway');
                 const sourceBadge = document.getElementById('detailSourceBadge');
 
                 if (alarm.source === 'cabinet') {
@@ -1754,7 +1766,7 @@
 
                 const statusBadge = document.getElementById('detailAlarmStatus');
                 statusBadge.className = `alarm-status-badge ${alarm.status === 'resolved' ? 'resolved' : 'unresolved'}`;
-                const statusText = alarm.status === 'resolved' ? getTranslation('alarmStatusResolved') : getTranslation('alarmStatusUnresolved');
+                const statusText = alarm.status === 'resolved' ? getTranslation('alarmDetailResolved') : getTranslation('alarmDetailUnresolved');
                 statusBadge.textContent = statusText;
 
                 // 控制操作按钮的显示 - 根据消息类型和状态
@@ -1774,13 +1786,13 @@
                     if (alarm.level === 'fault') {
                         // 故障消息: 故障修复
                         actionIcon.className = 'fas fa-wrench';
-                        actionText.textContent = '故障修复';
+                        actionText.textContent = getTranslation('alarmMgmtFixFault');
                         actionBtn.style.display = 'inline-flex';
                         actionBtn.style.background = '#16a34a';
                     } else if (alarm.level === 'warning') {
                         // 告警消息: 关闭告警
                         actionIcon.className = 'fas fa-times-circle';
-                        actionText.textContent = '关闭告警';
+                        actionText.textContent = getTranslation('alarmMgmtCloseAlarm');
                         actionBtn.style.display = 'inline-flex';
                         actionBtn.style.background = '#f59e0b';
                     } else {
@@ -1805,7 +1817,7 @@
                     handleHistoryContainer.innerHTML = `
                         <div class="handle-history-item">
                             <div class="handle-history-time">${alarm.time}</div>
-                            <div class="handle-history-content">系统自动生成${typeText}</div>
+                            <div class="handle-history-content">${getTranslation('alarmDetailAutoGenerated')}${typeText}</div>
                         </div>
                     `;
                 }
@@ -1841,21 +1853,21 @@
                     if (!alarm.handleHistory) {
                         alarm.handleHistory = [{
                             time: alarm.time,
-                            action: '生成',
-                            operator: '系统',
-                            description: '系统自动生成告警'
+                            action: getTranslation('handleHistoryActionGenerate'),
+                            operator: getTranslation('handleHistorySystem'),
+                            description: getTranslation('handleHistorySystemAutoWarning')
                         }];
                     }
                     alarm.handleHistory.push({
                         time: formatDateTime(new Date()),
-                        action: '关闭告警',
-                        operator: '管理员',
-                        description: '关闭告警完成'
+                        action: getTranslation('handleHistoryActionCloseAlarm'),
+                        operator: getTranslation('handleHistoryAdmin'),
+                        description: getTranslation('handleHistoryAlarmClosed')
                     });
                 }
                 closeAlarmDetail();
                 applyFilters('warning');
-                showNotification('告警已确认关闭', 'success');
+                showNotification(getTranslation('alarmDetailOperationSuccess'), 'success');
             }
         }
 
@@ -1886,7 +1898,7 @@
             const tbody = document.getElementById(`${tabType}TableBody`);
             const checkboxes = tbody.querySelectorAll('.alarm-checkbox:checked');
             if (checkboxes.length === 0) {
-                showNotification('请选择要解决的消息', 'warning');
+                showNotification(getTranslation('alarmDetailPleaseSelect'), 'warning');
                 return;
             }
 
@@ -1899,7 +1911,7 @@
 
             // 重新应用筛选以更新当前 tab
             applyFilters(tabType);
-            showNotification(`已批量解决 ${checkboxes.length} 条消息`, 'success');
+            showNotification(getTranslation('alarmDetailBatchResolved').replace('{count}', checkboxes.length), 'success');
         }
 
         // 全选/取消全选 - 支持独立的 tab
@@ -1976,20 +1988,20 @@
                     if (!alarm.handleHistory) {
                         alarm.handleHistory = [{
                             time: alarm.time,
-                            action: '生成',
-                            operator: '系统',
-                            description: '系统自动生成告警'
+                            action: getTranslation('handleHistoryActionGenerate'),
+                            operator: getTranslation('handleHistorySystem'),
+                            description: getTranslation('handleHistorySystemAutoWarning')
                         }];
                     }
                     alarm.handleHistory.push({
                         time: formatDateTime(new Date()),
-                        action: '关闭告警',
-                        operator: '管理员',
-                        description: '关闭告警完成'
+                        action: getTranslation('handleHistoryActionCloseAlarm'),
+                        operator: getTranslation('handleHistoryAdmin'),
+                        description: getTranslation('handleHistoryAlarmClosed')
                     });
                 }
                 applyFilters('warning');
-                showNotification('告警已确认关闭', 'success');
+                showNotification(getTranslation('alarmDetailAlarmClosed'), 'success');
             } else if (messageLevel === 'notice') {
                 // 通知类型 - 直接标记为已读
                 markAsRead(messageId);
@@ -2013,22 +2025,22 @@
                     if (!alarm.handleHistory) {
                         alarm.handleHistory = [{
                             time: alarm.time,
-                            action: '生成',
-                            operator: '系统',
-                            description: '系统自动生成故障'
+                            action: getTranslation('handleHistoryActionGenerate'),
+                            operator: getTranslation('handleHistorySystem'),
+                            description: getTranslation('handleHistorySystemAutoFault')
                         }];
                     }
                     alarm.handleHistory.push({
                         time: formatDateTime(new Date()),
-                        action: '故障修复',
-                        operator: '管理员',
-                        description: '故障修复完成'
+                        action: getTranslation('handleHistoryActionFixFault'),
+                        operator: getTranslation('handleHistoryAdmin'),
+                        description: getTranslation('handleHistoryFaultFixed')
                     });
                 }
 
                 closeFaultFixModal();
                 applyFilters();
-                showNotification('故障已标记为修复完成', 'success');
+                showNotification(getTranslation('alarmDetailFaultFixed'), 'success');
             }
         }
 
@@ -2048,7 +2060,7 @@
 
                 closeWarningCloseModal();
                 applyFilters();
-                showNotification('告警已确认关闭', 'success');
+                showNotification(getTranslation('alarmDetailAlarmClosed'), 'success');
             }
         }
 
@@ -2062,20 +2074,20 @@
                 if (!alarm.handleHistory) {
                     alarm.handleHistory = [{
                         time: alarm.time,
-                        action: '生成',
-                        operator: '系统',
-                        description: '系统自动生成通知'
+                        action: getTranslation('handleHistoryActionGenerate'),
+                        operator: getTranslation('handleHistorySystem'),
+                        description: getTranslation('handleHistorySystemAutoNotice')
                     }];
                 }
                 alarm.handleHistory.push({
                     time: formatDateTime(new Date()),
-                    action: '标记已读',
-                    operator: '管理员',
-                    description: '标记已读完成'
+                    action: getTranslation('handleHistoryActionMarkRead'),
+                    operator: getTranslation('handleHistoryAdmin'),
+                    description: getTranslation('handleHistoryMarkedRead')
                 });
 
                 applyFilters();
-                showNotification('通知已标记为已读', 'success');
+                showNotification(getTranslation('alarmDetailNoticeRead'), 'success');
             }
         }
 
@@ -2084,7 +2096,7 @@
             const tbody = document.getElementById(`${tabType}TableBody`);
             const checkboxes = tbody.querySelectorAll('.alarm-checkbox:checked');
             if (checkboxes.length === 0) {
-                showNotification('请选择要标记的通知', 'warning');
+                showNotification(getTranslation('alarmDetailPleaseSelectNotice'), 'warning');
                 return;
             }
 
@@ -2099,7 +2111,7 @@
             });
 
             applyFilters(tabType);
-            showNotification(`已标记 ${count} 条通知为已读`, 'success');
+            showNotification(getTranslation('alarmDetailMarkedRead').replace('{count}', count), 'success');
         }
 
         // 导出告警
@@ -2306,7 +2318,7 @@
                         // 如果有action=handle参数,显示处理提示
                         if (targetAction === 'handle') {
                             setTimeout(() => {
-                                showNotification('请处理此告警', 'info');
+                                showNotification(getTranslation('alarmDetailPleaseHandle'), 'info');
                                 // 自动聚焦到解决按钮
                                 const resolveBtn = document.querySelector('.btn-primary[onclick*="resolveAlarm"]');
                                 if (resolveBtn && resolveBtn.style.display !== 'none') {
@@ -2324,7 +2336,7 @@
                             }, 500);
                         }
                     } else {
-                        showNotification(`未找到告警: ${targetAlarmId}`, 'error');
+                        showNotification(getTranslation('alarmDetailNotFound') + ': ' + targetAlarmId, 'error');
                     }
                 }, 300);
             }

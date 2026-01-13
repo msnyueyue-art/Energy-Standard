@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="pageTitle">收益分析 - 储能柜管理系统</title>
+    <title id="pageTitle" data-translate="dataAnalysisPageTitle">收益分析 - 储能柜管理系统</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/style.css">
@@ -884,12 +884,12 @@
                 <div class="filter-row">
                     <!-- 1. 站点/设备 -->
                     <div class="filter-group has-tree">
-                        <label class="filter-label">站点/设备</label>
-                        <input type="text" class="filter-input" id="siteSelection" placeholder="请选择站点或设备" value="全部站点" readonly onclick="toggleTreeView()">
+                        <label class="filter-label" data-translate="dataAnalysisFilterSiteDevice">站点/设备</label>
+                        <input type="text" class="filter-input" id="siteSelection" data-translate-placeholder="dataAnalysisFilterSiteDevicePlaceholder" placeholder="请选择站点或设备" data-translate-value="dataAnalysisFilterAllSites" value="全部站点" readonly onclick="toggleTreeView()">
                         <div class="tree-view" id="treeView">
                             <div class="tree-node">
                                 <div class="tree-node-item selected" data-value="all" onclick="selectTreeNode(event, 'all', '全部站点')">
-                                    <span class="tree-node-label">全部站点</span>
+                                    <span class="tree-node-label" data-translate="dataAnalysisFilterAllSites">全部站点</span>
                                 </div>
                             </div>
                             <div class="tree-node">
@@ -945,17 +945,17 @@
 
                     <!-- 2. 时间维度 -->
                     <div class="filter-group">
-                        <label class="filter-label">时间维度</label>
+                        <label class="filter-label" data-translate="dataAnalysisFilterTimeDimension">时间维度</label>
                         <select class="filter-select" id="reportType" onchange="changeDimension(this.value)">
-                            <option value="monthly">月报</option>
-                            <option value="yearly">年报</option>
+                            <option value="monthly" data-translate="dataAnalysisFilterMonthly">月报</option>
+                            <option value="yearly" data-translate="dataAnalysisFilterYearly">年报</option>
                         </select>
                     </div>
 
                     <!-- 3. 统计时间 -->
                     <div class="filter-group">
-                        <label class="filter-label" id="timeFilterLabel">选择日期</label>
-                        <input type="text" class="filter-input" id="statisticTime" placeholder="选择日期" readonly style="cursor: pointer;">
+                        <label class="filter-label" id="timeFilterLabel" data-translate="dataAnalysisFilterSelectMonth">选择月份</label>
+                        <input type="text" class="filter-input" id="statisticTime" data-translate-placeholder="dataAnalysisFilterMonthPlaceholder" placeholder="选择月份" readonly style="cursor: pointer;">
                         <select class="filter-select" id="statisticTimeSelectYear" style="display: none;" onchange="onYearSelectChange()">
                             <!-- 动态生成年份选项 -->
                         </select>
@@ -965,7 +965,7 @@
                 <div class="export-buttons">
                     <button class="btn-export" onclick="queryData()">
                         <i class="fas fa-search"></i>
-                        查询数据
+                        <span data-translate="dataAnalysisBtnQuery">查询数据</span>
                     </button>
                 </div>
             </div>
@@ -979,20 +979,20 @@
                 <div class="tab-navigation">
                     <button class="tab-btn active" onclick="switchTab('chart')">
                         <i class="fas fa-chart-area"></i>
-                        图表
+                        <span data-translate="dataAnalysisTabChart">图表</span>
                     </button>
                     <button class="tab-btn" onclick="switchTab('table')">
                         <i class="fas fa-table"></i>
-                        表格
+                        <span data-translate="dataAnalysisTabTable">表格</span>
                     </button>
                     <div class="tab-actions">
                         <button class="btn-export-top" onclick="window.location.href='electricity-price-new.html'" style="margin-right: 8px;">
                             <i class="fas fa-cog"></i>
-                            电价设置
+                            <span data-translate="dataAnalysisBtnElectricityPrice">电价设置</span>
                         </button>
                         <button class="btn-export-top" id="exportButton" onclick="exportData()">
                             <i class="fas fa-download"></i>
-                            导出数据
+                            <span data-translate="dataAnalysisBtnExport">导出数据</span>
                         </button>
                     </div>
                 </div>
@@ -1004,13 +1004,13 @@
                             <table class="data-table" id="revenueTable">
                                 <thead>
                                     <tr>
-                                        <th>时间</th>
-                                        <th>站点/设备名称</th>
-                                        <th>充电成本(元)</th>
-                                        <th>卖电利润(元)</th>
-                                        <th>净利润(元)</th>
-                                        <th>自用节省(元)</th>
-                                        <th>总收益(元)</th>
+                                        <th data-translate="dataAnalysisTableHeaderTime">时间</th>
+                                        <th data-translate="dataAnalysisTableHeaderSiteName">站点/设备名称</th>
+                                        <th data-translate="dataAnalysisTableHeaderChargeCost">充电成本(元)</th>
+                                        <th data-translate="dataAnalysisTableHeaderSellProfit">卖电利润(元)</th>
+                                        <th data-translate="dataAnalysisTableHeaderNetProfit">净利润(元)</th>
+                                        <th data-translate="dataAnalysisTableHeaderSelfSaving">自用节省(元)</th>
+                                        <th data-translate="dataAnalysisTableHeaderTotalRevenue">总收益(元)</th>
                                     </tr>
                                 </thead>
                                 <tbody id="revenueTableBody">
@@ -1022,7 +1022,7 @@
                             <table class="data-table">
                                 <tfoot>
                                     <tr class="summary-row">
-                                        <td class="summary-label" colspan="2">合计</td>
+                                        <td class="summary-label" colspan="2" data-translate="dataAnalysisTableSummary">合计</td>
                                         <td id="summaryChargeCost" class="summary-value">¥0.00</td>
                                         <td id="summarySellRevenue" class="summary-value">¥0.00</td>
                                         <td id="summaryNetProfit" class="summary-value">¥0.00</td>
@@ -1042,14 +1042,14 @@
                         <!-- 总收益卡片 -->
                         <div class="revenue-card">
                             <!-- 卡片标题 -->
-                            <h3 class="revenue-card-title-main">收益统计</h3>
+                            <h3 class="revenue-card-title-main" data-translate="dataAnalysisRevenueStats">收益统计</h3>
 
                             <!-- 总利润行 -->
                             <div class="profit-row profit-row-main">
-                                <span class="profit-label">总利润</span>
+                                <span class="profit-label" data-translate="dataAnalysisTotalProfit">总利润</span>
                                 <span class="profit-value" id="totalProfitValue">¥0.00</span>
                                 <div class="profit-compare" id="totalProfitCompare">
-                                    <span class="compare-label">环比</span>
+                                    <span class="compare-label" data-translate="dataAnalysisCompareLabel">环比</span>
                                     <i class="fas fa-arrow-up"></i>
                                     <span>0%</span>
                                 </div>
@@ -1057,10 +1057,10 @@
 
                             <!-- 卖电利润行 -->
                             <div class="profit-row">
-                                <span class="profit-label">卖电利润</span>
+                                <span class="profit-label" data-translate="dataAnalysisSellProfit">卖电利润</span>
                                 <span class="profit-value" id="sellProfitDetail">¥0.00</span>
                                 <div class="profit-compare" id="sellProfitCompare">
-                                    <span class="compare-label">环比</span>
+                                    <span class="compare-label" data-translate="dataAnalysisCompareLabel">环比</span>
                                     <i class="fas fa-arrow-up"></i>
                                     <span>0%</span>
                                 </div>
@@ -1068,10 +1068,10 @@
 
                             <!-- 自用节省行 -->
                             <div class="profit-row">
-                                <span class="profit-label">自用节省</span>
+                                <span class="profit-label" data-translate="dataAnalysisSelfSaving">自用节省</span>
                                 <span class="profit-value" id="selfSavingDetail">¥0.00</span>
                                 <div class="profit-compare" id="selfSavingCompare">
-                                    <span class="compare-label">环比</span>
+                                    <span class="compare-label" data-translate="dataAnalysisCompareLabel">环比</span>
                                     <i class="fas fa-arrow-up"></i>
                                     <span>0%</span>
                                 </div>
@@ -1083,7 +1083,7 @@
                             <div class="chart-header">
                                 <h3 class="chart-title">
                                     <i class="fas fa-chart-pie"></i>
-                                    收益结构分析
+                                    <span data-translate="dataAnalysisChartRevenueStructure">收益结构分析</span>
                                 </h3>
                             </div>
                             <div class="chart-body" id="revenueStructureChart"></div>
@@ -1098,7 +1098,7 @@
                             <div class="chart-header">
                                 <h3 class="chart-title">
                                     <i class="fas fa-chart-line"></i>
-                                    收益趋势分析
+                                    <span data-translate="dataAnalysisChartRevenueTrend">收益趋势分析</span>
                                 </h3>
                             </div>
                             <div class="chart-body" id="revenueTrendChart"></div>
@@ -1118,6 +1118,14 @@
         let revenueStructureChart = null; // 结构图实例
         let selectedSite = 'all'; // 选中的站点/设备
         let selectedLabel = '全部站点'; // 选中的设备名称
+
+        // 获取当前选择站点的翻译文本
+        function getSelectedLabelTranslated() {
+            if (selectedSite === 'all') {
+                return translations[currentLang].dataAnalysisFilterAllSites || '全部站点';
+            }
+            return selectedLabel; // 具体站点名称暂时不翻译,保持原样
+        }
 
         // 页面初始化
         document.addEventListener('DOMContentLoaded', function() {
@@ -1220,8 +1228,8 @@
 
             switch(dimension) {
                 case 'daily':
-                    label.textContent = '选择日期';
-                    input.placeholder = '选择日期';
+                    label.textContent = translations[currentLang].dataAnalysisFilterSelectDate || '选择日期';
+                    input.placeholder = translations[currentLang].dataAnalysisFilterDatePlaceholder || '选择日期';
                     input.style.display = 'block';
                     yearSelect.style.display = 'none';
 
@@ -1235,8 +1243,8 @@
                     break;
 
                 case 'monthly':
-                    label.textContent = '选择月份';
-                    input.placeholder = '选择月份';
+                    label.textContent = translations[currentLang].dataAnalysisFilterSelectMonth || '选择月份';
+                    input.placeholder = translations[currentLang].dataAnalysisFilterMonthPlaceholder || '选择月份';
                     input.style.display = 'block';
                     yearSelect.style.display = 'none';
 
@@ -1257,7 +1265,7 @@
                     break;
 
                 case 'yearly':
-                    label.textContent = '选择年份';
+                    label.textContent = translations[currentLang].dataAnalysisFilterSelectYear || '选择年份';
                     input.style.display = 'none';
                     yearSelect.style.display = 'block';
 
@@ -1297,14 +1305,14 @@
 
         // 查询数据
         function queryData() {
-            showNotification('正在查询数据...', 'info');
+            showNotification(translations[currentLang].dataAnalysisNotifQuerying || '正在查询数据...', 'info');
 
             setTimeout(() => {
                 loadTableData();
                 updateTotalRevenueCard();
                 updateRevenueTrendChart();
                 updateRevenueStructureChart();
-                showNotification('数据查询成功', 'success');
+                showNotification(translations[currentLang].dataAnalysisNotifQuerySuccess || '数据查询成功', 'success');
             }, 800);
         }
 
@@ -1390,7 +1398,7 @@
                     htmlContent += `
                         <tr>
                             <td>${hour}</td>
-                            <td>${selectedLabel}</td>
+                            <td>${getSelectedLabelTranslated()}</td>
                             <td>¥${chargeCost}</td>
                             <td>¥${sellRevenue}</td>
                             <td class="${netProfitClass}">¥${netProfit}</td>
@@ -1449,7 +1457,7 @@
                     htmlContent += `
                         <tr>
                             <td>${day}</td>
-                            <td>${selectedLabel}</td>
+                            <td>${getSelectedLabelTranslated()}</td>
                             <td>¥${chargeCost}</td>
                             <td>¥${sellRevenue}</td>
                             <td class="${netProfitClass}">¥${netProfit}</td>
@@ -1506,7 +1514,7 @@
                     htmlContent += `
                         <tr>
                             <td>${monthLabel}</td>
-                            <td>${selectedLabel}</td>
+                            <td>${getSelectedLabelTranslated()}</td>
                             <td>¥${chargeCost}</td>
                             <td>¥${sellRevenue}</td>
                             <td class="${netProfitClass}">¥${netProfit}</td>
@@ -1644,12 +1652,15 @@
                             result += item.marker + ' ' + item.seriesName + ': ¥' + item.value + '<br/>';
                             total += parseFloat(item.value);
                         });
-                        result += '<strong>总收益: ¥' + total.toFixed(2) + '</strong>';
+                        result += '<strong>' + (translations[currentLang].dataAnalysisChartLegendTotalRevenue || '总收益') + ': ¥' + total.toFixed(2) + '</strong>';
                         return result;
                     }
                 },
                 legend: {
-                    data: ['卖电利润', '自用节省'],
+                    data: [
+                        translations[currentLang].dataAnalysisChartLegendSellProfit || '卖电利润',
+                        translations[currentLang].dataAnalysisChartLegendSelfSaving || '自用节省'
+                    ],
                     top: 0
                 },
                 grid: {
@@ -1672,7 +1683,7 @@
                 },
                 series: [
                     {
-                        name: '卖电利润',
+                        name: translations[currentLang].dataAnalysisChartLegendSellProfit || '卖电利润',
                         type: 'bar',
                         stack: 'revenue',
                         data: sellRevenueData,
@@ -1682,7 +1693,7 @@
                         barMaxWidth: 60
                     },
                     {
-                        name: '自用节省',
+                        name: translations[currentLang].dataAnalysisChartLegendSelfSaving || '自用节省',
                         type: 'bar',
                         stack: 'revenue',
                         data: selfSavingData,
@@ -1714,7 +1725,7 @@
                 },
                 series: [
                     {
-                        name: '收益构成',
+                        name: translations[currentLang].dataAnalysisChartRevenueStructure || '收益构成',
                         type: 'pie',
                         radius: ['40%', '70%'],
                         avoidLabelOverlap: false,
@@ -1737,12 +1748,12 @@
                         data: [
                             {
                                 value: sellRevenue.toFixed(2),
-                                name: '卖电利润',
+                                name: translations[currentLang].dataAnalysisChartLegendSellProfit || '卖电利润',
                                 itemStyle: { color: '#10b981' }
                             },
                             {
                                 value: selfSaving.toFixed(2),
-                                name: '自用节省',
+                                name: translations[currentLang].dataAnalysisChartLegendSelfSaving || '自用节省',
                                 itemStyle: { color: '#3b82f6' }
                             }
                         ]
@@ -1787,9 +1798,9 @@
 
         // 导出数据
         function exportData() {
-            showNotification('正在导出数据...', 'info');
+            showNotification(translations[currentLang].dataAnalysisNotifExporting || '正在导出数据...', 'info');
             setTimeout(() => {
-                showNotification('数据导出成功', 'success');
+                showNotification(translations[currentLang].dataAnalysisNotifExportSuccess || '数据导出成功', 'success');
             }, 1000);
         }
 

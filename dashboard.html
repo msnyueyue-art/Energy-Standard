@@ -6,6 +6,7 @@
     <title>仪表盘 - 储能柜管理系统</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="responsive-1024.css">
     <script src="navbar.js"></script>
     <!-- Leaflet 地图库 (免费，无需API密钥) -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -1286,8 +1287,8 @@
                     </select>
                     <!-- 自定义icon提示 -->
                     <a href="personalization.html" style="font-size: 12px; color: #64748b; text-decoration: none; display: flex; align-items: center; gap: 4px; transition: color 0.2s;" onmouseover="this.style.color='#3b82f6'" onmouseout="this.style.color='#64748b'">
-                        <span>可根据自己品牌自定义设备icon，</span>
-                        <span style="color: #3b82f6; font-weight: 500;">立即前往</span>
+                        <span data-translate="dashboardCustomizeDeviceIcon">可根据自己品牌自定义设备icon，</span>
+                        <span style="color: #3b82f6; font-weight: 500;" data-translate="dashboardGoNow">立即前往</span>
                         <i class="fas fa-arrow-right" style="font-size: 10px; color: #3b82f6;"></i>
                     </a>
                 </div>
@@ -1528,7 +1529,7 @@
         <!-- 故障分析 -->
         <div class="card" style="margin-top: 24px;">
             <div class="card-header" style="border-bottom: 1px solid var(--border-color); padding: 16px 24px; display: flex; justify-content: space-between; align-items: center;">
-                <h3 style="font-size: 1.125rem; font-weight: 600; color: var(--text-primary); margin: 0;">故障分析</h3>
+                <h3 style="font-size: 1.125rem; font-weight: 600; color: var(--text-primary); margin: 0;" data-translate="dashboardFaultAnalysis">故障分析</h3>
                 <select id="faultTimeDimension" style="
                     min-width: 120px;
                     padding: 8px 12px;
@@ -1541,11 +1542,11 @@
                     outline: none;
                     transition: all 0.2s;
                 " onchange="updateFaultTable()">
-                    <option value="yesterday">昨日</option>
-                    <option value="today" selected>今日</option>
-                    <option value="lastMonth">上月</option>
-                    <option value="thisMonth">本月</option>
-                    <option value="total">合计</option>
+                    <option value="yesterday" data-translate="dashboardYesterday">昨日</option>
+                    <option value="today" selected data-translate="todayBtn">今日</option>
+                    <option value="lastMonth" data-translate="dashboardLastMonth">上月</option>
+                    <option value="thisMonth" data-translate="monthBtn">本月</option>
+                    <option value="total" data-translate="totalBtn">合计</option>
                 </select>
             </div>
             <div style="padding: 24px;">
@@ -1553,21 +1554,21 @@
                     <table class="station-table" id="stationTable">
                         <thead>
                             <tr>
-                                <th>站点名称</th>
+                                <th data-translate="dashboardSiteNameLabel">站点名称</th>
                                 <th class="sortable" data-column="faultCount" data-type="number">
-                                    故障数量
+                                    <span data-translate="dashboardFaultCountLabel">故障数量</span>
                                     <span class="sort-icon"></span>
                                 </th>
                                 <th class="sortable" data-column="repairRate" data-type="number">
-                                    修复率
+                                    <span data-translate="dashboardRepairRateLabel">修复率</span>
                                     <span class="sort-icon"></span>
                                 </th>
                                 <th class="sortable" data-column="unfixed" data-type="number">
-                                    未修复
+                                    <span data-translate="dashboardUnfixedLabel">未修复</span>
                                     <span class="sort-icon"></span>
                                 </th>
                                 <th class="sortable" data-column="repairTime" data-type="number">
-                                    修复时长
+                                    <span data-translate="dashboardRepairTimeLabel">修复时长</span>
                                     <span class="sort-icon"></span>
                                 </th>
                             </tr>
@@ -1577,37 +1578,37 @@
                                 <td>
                                     <div class="station-name-cell clickable-station" data-site="site1" onclick="navigateToDevicesWithFilter('site1')">
                                         <i class="fas fa-building" style="color: #3b82f6;"></i>
-                                        科技园区站
+                                        <span data-translate="siteNameTech">科技园区站</span>
                                     </div>
                                 </td>
-                                <td class="station-table-number" data-value="28">28<span class="station-table-unit">次</span></td>
+                                <td class="station-table-number" data-value="28">28<span class="station-table-unit" data-translate="unitTimes">次</span></td>
                                 <td class="station-table-number" data-value="65">65<span class="station-table-unit">%</span></td>
-                                <td class="station-table-number" data-value="10">10<span class="station-table-unit">次</span></td>
-                                <td class="station-table-number" data-value="6.2">6.2<span class="station-table-unit">小时</span></td>
+                                <td class="station-table-number" data-value="10">10<span class="station-table-unit" data-translate="unitTimes">次</span></td>
+                                <td class="station-table-number" data-value="6.2">6.2<span class="station-table-unit" data-translate="unitHours">小时</span></td>
                             </tr>
                             <tr>
                                 <td>
                                     <div class="station-name-cell clickable-station" data-site="site2" onclick="navigateToDevicesWithFilter('site2')">
                                         <i class="fas fa-building" style="color: #3b82f6;"></i>
-                                        工业园区站
+                                        <span data-translate="siteNameIndustrial">工业园区站</span>
                                     </div>
                                 </td>
-                                <td class="station-table-number" data-value="12">12<span class="station-table-unit">次</span></td>
+                                <td class="station-table-number" data-value="12">12<span class="station-table-unit" data-translate="unitTimes">次</span></td>
                                 <td class="station-table-number" data-value="83">83<span class="station-table-unit">%</span></td>
-                                <td class="station-table-number" data-value="2">2<span class="station-table-unit">次</span></td>
-                                <td class="station-table-number" data-value="4.5">4.5<span class="station-table-unit">小时</span></td>
+                                <td class="station-table-number" data-value="2">2<span class="station-table-unit" data-translate="unitTimes">次</span></td>
+                                <td class="station-table-number" data-value="4.5">4.5<span class="station-table-unit" data-translate="unitHours">小时</span></td>
                             </tr>
                             <tr>
                                 <td>
                                     <div class="station-name-cell clickable-station" data-site="site3" onclick="navigateToDevicesWithFilter('site3')">
                                         <i class="fas fa-building" style="color: #3b82f6;"></i>
-                                        商业中心站
+                                        <span data-translate="siteNameCommerce">商业中心站</span>
                                     </div>
                                 </td>
-                                <td class="station-table-number" data-value="45">45<span class="station-table-unit">次</span></td>
+                                <td class="station-table-number" data-value="45">45<span class="station-table-unit" data-translate="unitTimes">次</span></td>
                                 <td class="station-table-number" data-value="56">56<span class="station-table-unit">%</span></td>
-                                <td class="station-table-number" data-value="20">20<span class="station-table-unit">次</span></td>
-                                <td class="station-table-number" data-value="8.7">8.7<span class="station-table-unit">小时</span></td>
+                                <td class="station-table-number" data-value="20">20<span class="station-table-unit" data-translate="unitTimes">次</span></td>
+                                <td class="station-table-number" data-value="8.7">8.7<span class="station-table-unit" data-translate="unitHours">小时</span></td>
                             </tr>
                         </tbody>
                     </table>

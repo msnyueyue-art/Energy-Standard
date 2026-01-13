@@ -91,7 +91,7 @@ function createSidebar(currentPage = 'dashboard') {
                     </a>
                     <a href="devices1.html" class="menu-item submenu-item ${currentPage === 'devices1' ? 'active' : ''}">
                         <span style="font-size: 16px; margin-right: 10px;">🔄</span>
-                        <span>EMS升级</span>
+                        <span id="menuEMSUpgrade" data-translate="menuEMSUpgrade">EMS升级</span>
                     </a>
                 </div>
             </div>

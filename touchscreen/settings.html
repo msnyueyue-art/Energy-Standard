@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>系统设置 - 储能柜管理系统</title>
+    <title>System Settings - Energy Storage System</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="common-header-styles.css">
     <style>
@@ -125,7 +125,7 @@
         .nav-menu {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 5px;
             flex: 1;
             justify-content: center;
             flex-wrap: nowrap;
@@ -133,7 +133,7 @@
         }
 
         .nav-item {
-            padding: 12px 28px;
+            padding: 12px 20px;
             color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
             font-size: 17px;
@@ -1477,6 +1477,9 @@
 
 
     </style>
+    <script src="touchscreen-i18n.js"></script>
+    <link rel="stylesheet" href="english-text-optimization.css">
+    <script src="page-transition.js"></script>
 </head>
 <body>
     <!-- 科技风背景效果 -->
@@ -1489,19 +1492,19 @@
                 <div class="logo-icon">
                     <img src="logo.png" alt="Logo">
                 </div>
-                <div class="logo-text">储能柜管理系统</div>
+                <div class="logo-text">Energy Storage System</div>
             </div>
         </div>
         
         <!-- 导航菜单 -->
         <nav class="nav-menu">
-            <div class="nav-item" onclick="switchPage('home')">首页</div>
-            <a href="#data" class="nav-item" onclick="switchPage('data')">数据</a>
-            <a href="#" class="nav-item" onclick="switchPage('history')">历史</a>
-            <a href="#control" class="nav-item" onclick="switchPage('control')">控制</a>
-            <a href="#alarm" class="nav-item" onclick="switchPage('alarm')">告警</a>
-            <a href="#log" class="nav-item" onclick="switchPage('log')">日志</a>
-            <a href="#settings" class="nav-item active" onclick="switchPage('settings')">设置</a>
+            <div class="nav-item" onclick="smoothSwitchPage('home')">Home</div>
+            <a href="#data" class="nav-item" onclick="smoothSwitchPage('data')">Data</a>
+            <a href="#" class="nav-item" onclick="smoothSwitchPage('history')">History</a>
+            <a href="#control" class="nav-item" onclick="smoothSwitchPage('control')">Control</a>
+            <a href="#alarm" class="nav-item" onclick="smoothSwitchPage('alarm')">Alarm</a>
+            <a href="#log" class="nav-item" onclick="smoothSwitchPage('log')">Log</a>
+            <a href="#settings" class="nav-item active" onclick="smoothSwitchPage('settings')">Settings</a>
         </nav>
         
         <div class="header-right">
@@ -1539,22 +1542,22 @@
     <div class="main-content">
         <!-- 设置菜单 -->
         <div class="settings-menu">
-            <div class="menu-title">设置菜单</div>
+            <div class="menu-title" data-i18n="settingsMenuTitle">Settings Menu</div>
             <div class="menu-item active" data-section="account" onclick="switchSection('account')">
                 <i class="fas fa-user-cog"></i>
-                <span>账号设置</span>
+                <span data-i18n="accountSettings">Account Settings</span>
             </div>
             <div class="menu-item" data-section="security" onclick="switchSection('security')">
                 <i class="fas fa-shield-alt"></i>
-                <span>安全设置</span>
+                <span data-i18n="securitySettings">Security Settings</span>
             </div>
             <div class="menu-item" data-section="system" onclick="switchSection('system')">
                 <i class="fas fa-cogs"></i>
-                <span>系统配置</span>
+                <span data-i18n="systemConfig">System Configuration</span>
             </div>
             <div class="menu-item" data-section="electricity" onclick="switchSection('electricity')">
                 <i class="fas fa-bolt"></i>
-                <span>电价设置</span>
+                <span data-i18n="electricityPrice">Electricity Price</span>
             </div>
         </div>
 
@@ -1564,37 +1567,37 @@
             <div class="content-section active" data-section="account">
                 <div class="section-title">
                     <i class="fas fa-user-cog"></i>
-                    账号设置
+                    <span data-i18n="accountSettings">Account Settings</span>
                 </div>
 
                 <div class="setting-group">
                     <div class="group-title">
                         <i class="fas fa-user-cog"></i>
-                        账户信息
+                        <span data-i18n="accountInfo">Account Information</span>
                     </div>
-                    
+
                     <!-- 账号 -->
                     <div class="setting-item">
                         <div class="setting-label">
-                            <div class="setting-name">账号</div>
-                            <div class="setting-desc">系统登录账号</div>
+                            <div class="setting-name" data-i18n="username">Username</div>
+                            <div class="setting-desc" data-i18n="systemLoginAccount">System login account</div>
                         </div>
                         <div class="setting-control">
                             <span style="color: rgba(255,255,255,0.9); font-weight: 500;">admin</span>
                         </div>
                     </div>
-                    
+
                     <!-- 密码设置 -->
                     <div class="setting-item">
                         <div class="setting-label">
-                            <div class="setting-name">密码</div>
+                            <div class="setting-name" data-i18n="password">Password</div>
                         </div>
                         <div class="setting-control">
                             <div style="display: flex; align-items: center; gap: 12px;">
                                 <span style="color: rgba(255,255,255,0.5);">••••••••</span>
                                 <button class="btn" id="editPasswordBtn" onclick="enablePasswordEdit()">
                                     <i class="fas fa-edit"></i>
-                                    修改密码
+                                    <span data-i18n="changePassword">Change Password</span>
                                 </button>
                             </div>
                         </div>
@@ -1609,39 +1612,39 @@
                                 <div class="form-column">
                                     <div class="form-row">
                                         <label class="form-label">
-                                            <span class="label-text">当前密码</span>
+                                            <span class="label-text" data-i18n="currentPassword">Current Password</span>
                                         </label>
-                                        <input type="password" class="form-input" id="currentPassword" placeholder="请输入当前密码">
+                                        <input type="password" class="form-input" id="currentPassword" data-i18n-placeholder="currentPasswordPlaceholder" placeholder="Enter current password">
                                     </div>
                                 </div>
-                                
+
                                 <!-- 右列：新密码和确认密码 -->
                                 <div class="form-column">
                                     <div class="form-row">
                                         <label class="form-label">
-                                            <span class="label-text">新密码</span>
+                                            <span class="label-text" data-i18n="newPassword">New Password</span>
                                         </label>
-                                        <input type="password" class="form-input" id="newPassword" placeholder="请输入新密码">
+                                        <input type="password" class="form-input" id="newPassword" data-i18n-placeholder="newPasswordPlaceholder" placeholder="Enter new password">
                                     </div>
-                                    
+
                                     <div class="form-row">
                                         <label class="form-label">
-                                            <span class="label-text">确认密码</span>
+                                            <span class="label-text" data-i18n="confirmPassword">Confirm Password</span>
                                         </label>
-                                        <input type="password" class="form-input" id="confirmPassword" placeholder="请确认新密码">
+                                        <input type="password" class="form-input" id="confirmPassword" data-i18n-placeholder="confirmPasswordPlaceholder" placeholder="Confirm new password">
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <!-- 操作按钮 -->
                             <div class="form-actions">
                                 <button class="btn" onclick="cancelPasswordEdit()">
                                     <i class="fas fa-times"></i>
-                                    取消
+                                    <span data-i18n="cancelBtn">Cancel</span>
                                 </button>
                                 <button class="btn primary" onclick="savePasswordChange()">
                                     <i class="fas fa-save"></i>
-                                    保存
+                                    <span data-i18n="saveBtn">Save</span>
                                 </button>
                             </div>
                         </div>
@@ -1653,18 +1656,18 @@
             <div class="content-section" data-section="security">
                 <div class="section-title">
                     <i class="fas fa-shield-alt"></i>
-                    安全设置
+                    <span data-i18n="securitySettings">Security Settings</span>
                 </div>
 
                 <div class="setting-group">
                     <div class="group-title">
                         <i class="fas fa-lock"></i>
-                        登录安全
+                        <span data-i18n="loginSecurity">Login Security</span>
                     </div>
                     <div class="setting-item">
                         <div class="setting-label">
-                            <div class="setting-name">自动锁定</div>
-                            <div class="setting-desc">系统无操作自动锁定</div>
+                            <div class="setting-name" data-i18n="autoLock">Auto Lock</div>
+                            <div class="setting-desc" data-i18n="autoLockDesc">Auto lock system when idle</div>
                         </div>
                         <div class="setting-control">
                             <label class="switch">
@@ -1675,17 +1678,17 @@
                     </div>
                     <div class="setting-item">
                         <div class="setting-label">
-                            <div class="setting-name">锁定时间</div>
-                            <div class="setting-desc">无操作多长时间后自动锁定</div>
+                            <div class="setting-name" data-i18n="lockTimeout">Lock Timeout</div>
+                            <div class="setting-desc" data-i18n="lockTimeoutDesc">Auto lock after idle time</div>
                         </div>
                         <div class="setting-control">
                             <select class="form-select" id="lockTimeout">
-                                <option value="5">5分钟</option>
-                                <option value="10">10分钟</option>
-                                <option value="15" selected>15分钟</option>
-                                <option value="30">30分钟</option>
-                                <option value="60">1小时</option>
-                                <option value="never">永不</option>
+                                <option value="5">5 Minutes</option>
+                                <option value="10">10 Minutes</option>
+                                <option value="15" selected>15 Minutes</option>
+                                <option value="30">30 Minutes</option>
+                                <option value="60">1 Hour</option>
+                                <option value="never">Never</option>
                             </select>
                         </div>
                     </div>
@@ -1697,25 +1700,25 @@
             <div class="content-section" data-section="system">
                 <div class="section-title">
                     <i class="fas fa-cogs"></i>
-                    系统配置
+                    <span data-i18n="systemConfig">System Configuration</span>
                 </div>
 
                 <div class="setting-group">
                     <div class="group-title">
                         <i class="fas fa-cog"></i>
-                        系统设置
+                        <span data-i18n="systemSettings">System Settings</span>
                     </div>
                     <div class="setting-item">
                         <div class="setting-label">
-                            <div class="setting-name">数据刷新间隔</div>
-                            <div class="setting-desc">实时数据刷新频率</div>
+                            <div class="setting-name" data-i18n="dataRefreshInterval">Data Refresh Interval</div>
+                            <div class="setting-desc" data-i18n="dataRefreshIntervalDesc">Real-time data refresh frequency</div>
                         </div>
                         <div class="setting-control">
                             <select class="form-select" id="refreshInterval">
-                                <option value="1">1秒</option>
-                                <option value="3" selected>3秒</option>
-                                <option value="5">5秒</option>
-                                <option value="10">10秒</option>
+                                <option value="1">1 Second</option>
+                                <option value="3" selected>3 Seconds</option>
+                                <option value="5">5 Seconds</option>
+                                <option value="10">10 Seconds</option>
                             </select>
                         </div>
                     </div>
@@ -1724,12 +1727,12 @@
                 <div class="setting-group">
                     <div class="group-title">
                         <i class="fas fa-bell"></i>
-                        通知设置
+                        <span data-i18n="notificationSettings">Notification Settings</span>
                     </div>
                     <div class="setting-item">
                         <div class="setting-label">
-                            <div class="setting-name">告警通知</div>
-                            <div class="setting-desc">接收设备告警通知</div>
+                            <div class="setting-name" data-i18n="alarmNotification">Alarm Notification</div>
+                            <div class="setting-desc" data-i18n="alarmNotificationDesc">Receive device alarm notifications</div>
                         </div>
                         <div class="setting-control">
                             <label class="switch">
@@ -1740,8 +1743,8 @@
                     </div>
                     <div class="setting-item">
                         <div class="setting-label">
-                            <div class="setting-name">声音提醒</div>
-                            <div class="setting-desc">播放提示音</div>
+                            <div class="setting-name" data-i18n="soundAlert">Sound Alert</div>
+                            <div class="setting-desc" data-i18n="soundAlertDesc">Play notification sound</div>
                         </div>
                         <div class="setting-control">
                             <label class="switch">
@@ -1758,22 +1761,22 @@
             <div class="content-section" data-section="electricity">
                 <div class="section-title">
                     <i class="fas fa-bolt"></i>
-                    电价设置
+                    <span data-i18n="electricityPrice">Electricity Price</span>
                 </div>
 
                 <!-- 当前电价方案 -->
                 <div class="setting-group">
                     <div class="group-title">
                         <i class="fas fa-chart-line"></i>
-                        当前电价方案
+                        <span data-i18n="currentPricePlan">Current Price Plan</span>
                     </div>
 
                     <div class="electricity-current-plan">
                         <div class="plan-header">
-                            <div class="plan-name" id="currentPlanName">未设置电价方案</div>
+                            <div class="plan-name" id="currentPlanName" data-i18n="noPricePlan">No price plan set</div>
                             <button class="btn" onclick="togglePriceEditor()">
                                 <i class="fas fa-edit"></i>
-                                编辑
+                                <span data-i18n="editBtn">Edit</span>
                             </button>
                         </div>
 
@@ -1785,16 +1788,16 @@
                         <!-- 电价摘要 -->
                         <div class="price-summary" id="priceSummary">
                             <div class="price-tag peak-tag">
-                                <span class="tag-label">峰时</span>
-                                <span class="tag-value">--元/kWh</span>
+                                <span class="tag-label" data-i18n="peakTime">Peak</span>
+                                <span class="tag-value">--/kWh</span>
                             </div>
                             <div class="price-tag flat-tag">
-                                <span class="tag-label">平时</span>
-                                <span class="tag-value">--元/kWh</span>
+                                <span class="tag-label" data-i18n="normalTime">Normal</span>
+                                <span class="tag-value">--/kWh</span>
                             </div>
                             <div class="price-tag valley-tag">
-                                <span class="tag-label">谷时</span>
-                                <span class="tag-value">--元/kWh</span>
+                                <span class="tag-label" data-i18n="valleyTime">Valley</span>
+                                <span class="tag-value">--/kWh</span>
                             </div>
                         </div>
                     </div>
@@ -1804,17 +1807,17 @@
                 <div class="setting-group">
                     <div class="group-title">
                         <i class="fas fa-bolt-lightning"></i>
-                        快速配置
+                        <span data-i18n="quickConfig">Quick Configuration</span>
                     </div>
 
                     <div class="quick-config-buttons">
                         <button class="config-btn" onclick="showTemplateSelector()">
                             <i class="fas fa-clipboard-list"></i>
-                            <span>套用模板</span>
+                            <span data-i18n="applyTemplate">Apply Template</span>
                         </button>
                         <button class="config-btn" onclick="showCustomEditor()">
                             <i class="fas fa-sliders-h"></i>
-                            <span>自定义配置</span>
+                            <span data-i18n="customConfig">Custom Configuration</span>
                         </button>
                     </div>
                 </div>
@@ -1824,18 +1827,18 @@
                     <div class="setting-group">
                         <div class="group-title">
                             <i class="fas fa-clock"></i>
-                            时段配置
+                            <span data-i18n="timeSlotConfig">Time Slot Configuration</span>
                             <button class="btn" style="margin-left: auto;" onclick="closePriceEditor()">
                                 <i class="fas fa-times"></i>
-                                关闭
+                                <span data-i18n="closeBtn">Close</span>
                             </button>
                         </div>
 
                         <!-- 24小时时间轴编辑器 -->
                         <div class="timeline-editor">
                             <div class="timeline-header">
-                                <div class="timeline-title">24小时时段划分</div>
-                                <div class="timeline-hint">点击时段切换类型,拖动边界调整时间</div>
+                                <div class="timeline-title" data-i18n="timeSlot24h">24-Hour Time Slots</div>
+                                <div class="timeline-hint" data-i18n="timeSlotHint">Click to switch type, drag boundary to adjust time</div>
                             </div>
 
                             <div class="timeline-canvas" id="timelineCanvas">
@@ -1860,10 +1863,10 @@
                         <!-- 时段列表 -->
                         <div class="period-list" id="periodList">
                             <div class="period-list-header">
-                                <span>当前时段配置</span>
+                                <span data-i18n="currentPeriodConfig">Current Period Configuration</span>
                                 <button class="btn-small" onclick="addPeriod()">
                                     <i class="fas fa-plus"></i>
-                                    添加时段
+                                    <span data-i18n="addPeriod">Add Period</span>
                                 </button>
                             </div>
 
@@ -1876,11 +1879,11 @@
                         <div class="editor-actions">
                             <button class="btn" onclick="resetToDefault()">
                                 <i class="fas fa-undo"></i>
-                                恢复默认
+                                <span data-i18n="resetToDefault">Reset to Default</span>
                             </button>
                             <button class="btn primary" onclick="savePriceConfig()">
                                 <i class="fas fa-save"></i>
-                                保存方案
+                                <span data-i18n="savePlan">Save Plan</span>
                             </button>
                         </div>
                     </div>
@@ -1891,10 +1894,10 @@
                     <div class="setting-group">
                         <div class="group-title">
                             <i class="fas fa-clipboard-list"></i>
-                            选择电价模板
+                            <span data-i18n="selectPriceTemplate">Select Price Template</span>
                             <button class="btn" style="margin-left: auto;" onclick="closeTemplateSelector()">
                                 <i class="fas fa-times"></i>
-                                关闭
+                                <span data-i18n="closeBtn">Close</span>
                             </button>
                         </div>
 
@@ -1977,7 +1980,7 @@
             event.target.classList.add('active');
             
             // 保存语言设置
-            localStorage.setItem('touchscreen_lang', lang);
+            localStorage.setItem('touchscreen_language', lang);
             
             // 关闭下拉菜单
             document.getElementById('langDropdown').classList.remove('show');
@@ -2185,70 +2188,82 @@
 
         // ========== 电价设置功能 ==========
 
+        // 获取时段类型的本地化标签
+        function getPeriodLabel(type) {
+            const labels = {
+                peak: t('peakTime'),
+                flat: t('normalTime'),
+                valley: t('valleyTime')
+            };
+            return labels[type] || type;
+        }
+
         // 电价方案数据结构
         let currentPriceScheme = {
-            name: '默认峰谷电价',
+            name: t('defaultPeakValley'),
             periods: [
-                { type: 'valley', start: 0, end: 6, price: 0.32, label: '谷时' },
-                { type: 'peak', start: 6, end: 8, price: 0.85, label: '峰时' },
-                { type: 'flat', start: 8, end: 12, price: 0.56, label: '平时' },
-                { type: 'peak', start: 12, end: 14, price: 0.85, label: '峰时' },
-                { type: 'flat', start: 14, end: 18, price: 0.56, label: '平时' },
-                { type: 'peak', start: 18, end: 21, price: 0.85, label: '峰时' },
-                { type: 'valley', start: 21, end: 24, price: 0.32, label: '谷时' }
+                { type: 'valley', start: 0, end: 6, price: 0.32, label: 'valley' },
+                { type: 'peak', start: 6, end: 8, price: 0.85, label: 'peak' },
+                { type: 'flat', start: 8, end: 12, price: 0.56, label: 'flat' },
+                { type: 'peak', start: 12, end: 14, price: 0.85, label: 'peak' },
+                { type: 'flat', start: 14, end: 18, price: 0.56, label: 'flat' },
+                { type: 'peak', start: 18, end: 21, price: 0.85, label: 'peak' },
+                { type: 'valley', start: 21, end: 24, price: 0.32, label: 'valley' }
             ]
         };
 
-        // 预设电价模板
-        const priceTemplates = [
-            {
-                name: '江苏省工业峰谷电价',
-                description: '峰0.85元  平0.56元  谷0.32元/kWh',
-                periods: [
-                    { type: 'valley', start: 0, end: 8, price: 0.32, label: '谷时' },
-                    { type: 'peak', start: 8, end: 12, price: 0.85, label: '峰时' },
-                    { type: 'flat', start: 12, end: 18, price: 0.56, label: '平时' },
-                    { type: 'peak', start: 18, end: 22, price: 0.85, label: '峰时' },
-                    { type: 'valley', start: 22, end: 24, price: 0.32, label: '谷时' }
-                ]
-            },
-            {
-                name: '上海市工商业电价',
-                description: '峰0.92元  平0.58元  谷0.28元/kWh',
-                periods: [
-                    { type: 'valley', start: 0, end: 6, price: 0.28, label: '谷时' },
-                    { type: 'flat', start: 6, end: 10, price: 0.58, label: '平时' },
-                    { type: 'peak', start: 10, end: 12, price: 0.92, label: '峰时' },
-                    { type: 'flat', start: 12, end: 19, price: 0.58, label: '平时' },
-                    { type: 'peak', start: 19, end: 21, price: 0.92, label: '峰时' },
-                    { type: 'valley', start: 21, end: 24, price: 0.28, label: '谷时' }
-                ]
-            },
-            {
-                name: '浙江省工业峰谷电价',
-                description: '峰0.89元  平0.55元  谷0.30元/kWh',
-                periods: [
-                    { type: 'valley', start: 0, end: 7, price: 0.30, label: '谷时' },
-                    { type: 'peak', start: 7, end: 11, price: 0.89, label: '峰时' },
-                    { type: 'flat', start: 11, end: 18, price: 0.55, label: '平时' },
-                    { type: 'peak', start: 18, end: 23, price: 0.89, label: '峰时' },
-                    { type: 'valley', start: 23, end: 24, price: 0.30, label: '谷时' }
-                ]
-            },
-            {
-                name: '广东省工业峰谷电价',
-                description: '峰0.88元  平0.60元  谷0.35元/kWh',
-                periods: [
-                    { type: 'valley', start: 0, end: 8, price: 0.35, label: '谷时' },
-                    { type: 'peak', start: 8, end: 12, price: 0.88, label: '峰时' },
-                    { type: 'flat', start: 12, end: 14, price: 0.60, label: '平时' },
-                    { type: 'peak', start: 14, end: 17, price: 0.88, label: '峰时' },
-                    { type: 'flat', start: 17, end: 19, price: 0.60, label: '平时' },
-                    { type: 'peak', start: 19, end: 22, price: 0.88, label: '峰时' },
-                    { type: 'valley', start: 22, end: 24, price: 0.35, label: '谷时' }
-                ]
-            }
-        ];
+        // 获取电价模板数据(国际化)
+        function getPriceTemplates() {
+            return [
+                {
+                    name: t('jiangsuIndustrial'),
+                    description: `${t('peakTime')}0.85  ${t('normalTime')}0.56  ${t('valleyTime')}0.32${t('priceUnit')}`,
+                    periods: [
+                        { type: 'valley', start: 0, end: 8, price: 0.32, label: 'valley' },
+                        { type: 'peak', start: 8, end: 12, price: 0.85, label: 'peak' },
+                        { type: 'flat', start: 12, end: 18, price: 0.56, label: 'flat' },
+                        { type: 'peak', start: 18, end: 22, price: 0.85, label: 'peak' },
+                        { type: 'valley', start: 22, end: 24, price: 0.32, label: 'valley' }
+                    ]
+                },
+                {
+                    name: t('shanghaiCommercial'),
+                    description: `${t('peakTime')}0.92  ${t('normalTime')}0.58  ${t('valleyTime')}0.28${t('priceUnit')}`,
+                    periods: [
+                        { type: 'valley', start: 0, end: 6, price: 0.28, label: 'valley' },
+                        { type: 'flat', start: 6, end: 10, price: 0.58, label: 'flat' },
+                        { type: 'peak', start: 10, end: 12, price: 0.92, label: 'peak' },
+                        { type: 'flat', start: 12, end: 19, price: 0.58, label: 'flat' },
+                        { type: 'peak', start: 19, end: 21, price: 0.92, label: 'peak' },
+                        { type: 'valley', start: 21, end: 24, price: 0.28, label: 'valley' }
+                    ]
+                },
+                {
+                    name: t('zhejiangIndustrial'),
+                    description: `${t('peakTime')}0.89  ${t('normalTime')}0.55  ${t('valleyTime')}0.30${t('priceUnit')}`,
+                    periods: [
+                        { type: 'valley', start: 0, end: 7, price: 0.30, label: 'valley' },
+                        { type: 'peak', start: 7, end: 11, price: 0.89, label: 'peak' },
+                        { type: 'flat', start: 11, end: 18, price: 0.55, label: 'flat' },
+                        { type: 'peak', start: 18, end: 23, price: 0.89, label: 'peak' },
+                        { type: 'valley', start: 23, end: 24, price: 0.30, label: 'valley' }
+                    ]
+                },
+                {
+                    name: t('guangdongIndustrial'),
+                    description: `${t('peakTime')}0.88  ${t('normalTime')}0.60  ${t('valleyTime')}0.35${t('priceUnit')}`,
+                    periods: [
+                        { type: 'valley', start: 0, end: 8, price: 0.35, label: 'valley' },
+                        { type: 'peak', start: 8, end: 12, price: 0.88, label: 'peak' },
+                        { type: 'flat', start: 12, end: 14, price: 0.60, label: 'flat' },
+                        { type: 'peak', start: 14, end: 17, price: 0.88, label: 'peak' },
+                        { type: 'flat', start: 17, end: 19, price: 0.60, label: 'flat' },
+                        { type: 'peak', start: 19, end: 22, price: 0.88, label: 'peak' },
+                        { type: 'valley', start: 22, end: 24, price: 0.35, label: 'valley' }
+                    ]
+                }
+            ];
+        }
 
         // 页面加载时初始化电价设置
         document.addEventListener('DOMContentLoaded', function() {
@@ -2314,11 +2329,11 @@
             const valleyPrice = valleyPeriods.length > 0 ? valleyPeriods[0].price : '--';
 
             document.querySelector('.peak-tag .tag-value').textContent =
-                typeof peakPrice === 'number' ? `${peakPrice}元/kWh` : '--元/kWh';
+                typeof peakPrice === 'number' ? `${peakPrice}${t('priceUnit')}` : `--${t('priceUnit')}`;
             document.querySelector('.flat-tag .tag-value').textContent =
-                typeof flatPrice === 'number' ? `${flatPrice}元/kWh` : '--元/kWh';
+                typeof flatPrice === 'number' ? `${flatPrice}${t('priceUnit')}` : `--${t('priceUnit')}`;
             document.querySelector('.valley-tag .tag-value').textContent =
-                typeof valleyPrice === 'number' ? `${valleyPrice}元/kWh` : '--元/kWh';
+                typeof valleyPrice === 'number' ? `${valleyPrice}${t('priceUnit')}` : `--${t('priceUnit')}`;
         }
 
         // 切换价格编辑器
@@ -2363,7 +2378,7 @@
 
             container.innerHTML = '';
 
-            priceTemplates.forEach((template, index) => {
+            getPriceTemplates().forEach((template, index) => {
                 const card = document.createElement('div');
                 card.className = 'template-card';
                 card.onclick = () => applyTemplate(index);
@@ -2408,7 +2423,7 @@
 
         // 应用模板
         function applyTemplate(templateIndex) {
-            const template = priceTemplates[templateIndex];
+            const template = getPriceTemplates()[templateIndex];
 
             currentPriceScheme = {
                 name: template.name,
@@ -2438,7 +2453,7 @@
                 const block = document.createElement('div');
                 block.className = `timeline-block ${period.type}`;
                 block.style.width = `${width}%`;
-                block.textContent = period.label;
+                block.textContent = getPeriodLabel(period.type);
                 block.onclick = () => cyclePeriodType(index);
 
                 container.appendChild(block);
@@ -2448,13 +2463,12 @@
         // 循环切换时段类型
         function cyclePeriodType(periodIndex) {
             const types = ['peak', 'flat', 'valley'];
-            const labels = { peak: '峰时', flat: '平时', valley: '谷时' };
             const currentType = currentPriceScheme.periods[periodIndex].type;
             const currentIndex = types.indexOf(currentType);
             const nextType = types[(currentIndex + 1) % types.length];
 
             currentPriceScheme.periods[periodIndex].type = nextType;
-            currentPriceScheme.periods[periodIndex].label = labels[nextType];
+            currentPriceScheme.periods[periodIndex].label = nextType;
 
             // 更新价格为该类型的默认价格
             if (nextType === 'peak') currentPriceScheme.periods[periodIndex].price = 0.85;
@@ -2486,7 +2500,7 @@
 
                 const type = document.createElement('div');
                 type.className = 'period-type';
-                type.textContent = period.label;
+                type.textContent = getPeriodLabel(period.type);
                 header.appendChild(type);
 
                 const actions = document.createElement('div');
@@ -2521,7 +2535,7 @@
                 input.step = '0.0001';
                 input.min = '0';
                 input.max = '10';
-                input.placeholder = '元/kWh';
+                input.placeholder = t('priceUnit');
                 input.oninput = (e) => updatePeriodPrice(index, parseFloat(e.target.value));
                 inputWrapper.appendChild(input);
 
@@ -2559,15 +2573,15 @@
         // 恢复默认
         function resetToDefault() {
             currentPriceScheme = {
-                name: '默认峰谷电价',
+                name: t('defaultPeakValley'),
                 periods: [
-                    { type: 'valley', start: 0, end: 6, price: 0.32, label: '谷时' },
-                    { type: 'peak', start: 6, end: 8, price: 0.85, label: '峰时' },
-                    { type: 'flat', start: 8, end: 12, price: 0.56, label: '平时' },
-                    { type: 'peak', start: 12, end: 14, price: 0.85, label: '峰时' },
-                    { type: 'flat', start: 14, end: 18, price: 0.56, label: '平时' },
-                    { type: 'peak', start: 18, end: 21, price: 0.85, label: '峰时' },
-                    { type: 'valley', start: 21, end: 24, price: 0.32, label: '谷时' }
+                    { type: 'valley', start: 0, end: 6, price: 0.32, label: 'valley' },
+                    { type: 'peak', start: 6, end: 8, price: 0.85, label: 'peak' },
+                    { type: 'flat', start: 8, end: 12, price: 0.56, label: 'flat' },
+                    { type: 'peak', start: 12, end: 14, price: 0.85, label: 'peak' },
+                    { type: 'flat', start: 14, end: 18, price: 0.56, label: 'flat' },
+                    { type: 'peak', start: 18, end: 21, price: 0.85, label: 'peak' },
+                    { type: 'valley', start: 21, end: 24, price: 0.32, label: 'valley' }
                 ]
             };
 
@@ -2606,7 +2620,7 @@
             // 检查每个时段的价格
             for (const period of currentPriceScheme.periods) {
                 if (period.price < 0 || period.price > 10) {
-                    showNotification('电价必须在0-10元/kWh之间', 'error');
+                    showNotification(t('priceRangeError'), 'error');
                     return false;
                 }
             }
@@ -2632,7 +2646,53 @@
         }
 
     </script>
-    <script src="common-header-scripts.js"></script>
+    <script src="common-header-scripts.js">
+        // ========== 国际化初始化 ==========
+
+        // 监听语言切换事件
+        window.addEventListener('languageChanged', function(e) {
+            console.log('页面接收到语言切换事件:', e.detail.lang);
+
+            // 更新HTML lang属性
+            document.documentElement.lang = e.detail.lang === 'zh' ? 'zh-CN' : 'en';
+
+            // 重新应用翻译到所有元素
+            if (typeof applyTouchscreenTranslations === 'function') {
+                applyTouchscreenTranslations();
+            }
+
+            // 更新电价设置的动态内容
+            currentPriceScheme.name = t('defaultPeakValley');
+            updatePriceDisplay();
+            renderTimeline();
+            renderPeriodList();
+        });
+
+        // 页面加载时初始化语言
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentLang = getTouchscreenLang();
+            console.log('当前页面语言:', currentLang);
+
+            // 设置HTML lang属性
+            document.documentElement.lang = currentLang === 'zh' ? 'zh-CN' : 'en';
+
+            // HTML默认是英文,只有当前语言是中文时才需要翻译
+            if (currentLang === 'zh' && typeof applyTouchscreenTranslations === 'function') {
+                applyTouchscreenTranslations();
+            }
+
+            // 更新语言切换器的激活状态
+            document.querySelectorAll('.lang-option').forEach(option => {
+                const optionLang = option.getAttribute('onclick').includes("'zh'") ? 'zh' : 'en';
+                if (optionLang === currentLang) {
+                    option.classList.add('active');
+                } else {
+                    option.classList.remove('active');
+                }
+            });
+        });
+
+    </script>
 
     <!-- 退出确认弹窗 -->
     <div id="logoutModal" class="logout-modal">

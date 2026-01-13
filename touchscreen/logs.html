@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>日志管理 - 储能柜管理系统</title>
+    <title>Log Management - Energy Storage Cabinet System</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="common-header-styles.css">
     <style>
@@ -125,7 +125,7 @@
         .nav-menu {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 5px;
             flex: 1;
             justify-content: center;
             flex-wrap: nowrap;
@@ -133,7 +133,7 @@
         }
 
         .nav-item {
-            padding: 12px 28px;
+            padding: 12px 20px;
             color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
             font-size: 17px;
@@ -895,6 +895,7 @@
 
 
     </style>
+    <script src="touchscreen-i18n.js"></script>
 </head>
 <body>
     <!-- 背景效果 -->
@@ -907,19 +908,19 @@
                 <div class="logo-icon">
                     <img src="logo.png" alt="Logo">
                 </div>
-                <div class="logo-text">储能柜管理系统</div>
+                <div class="logo-text" data-i18n="systemName">Energy Storage System</div>
             </div>
         </div>
         
         <!-- 导航菜单 -->
         <nav class="nav-menu">
-            <div class="nav-item" onclick="switchPage('home')">首页</div>
-            <a href="#data" class="nav-item" onclick="switchPage('data')">数据</a>
-            <a href="#" class="nav-item" onclick="switchPage('history')">历史</a>
-            <a href="#control" class="nav-item" onclick="switchPage('control')">控制</a>
-            <a href="#alarm" class="nav-item" onclick="switchPage('alarm')">告警</a>
-            <a href="#log" class="nav-item active" onclick="switchPage('log')">日志</a>
-            <a href="#settings" class="nav-item" onclick="switchPage('settings')">设置</a>
+            <div class="nav-item" onclick="switchPage('home')" data-i18n="navHome">Home</div>
+            <a href="#data" class="nav-item" onclick="switchPage('data')" data-i18n="navData">Data</a>
+            <a href="#history" class="nav-item" onclick="switchPage('history')" data-i18n="navHistory">History</a>
+            <a href="#control" class="nav-item" onclick="switchPage('control')" data-i18n="navControl">Control</a>
+            <a href="#alarm" class="nav-item" onclick="switchPage('alarm')" data-i18n="navAlarm">Alarm</a>
+            <a href="#log" class="nav-item active" onclick="switchPage('log')" data-i18n="navLog">Log</a>
+            <a href="#settings" class="nav-item" onclick="switchPage('settings')" data-i18n="navSettings">Settings</a>
         </nav>
         
         <div class="header-right">
@@ -958,8 +959,8 @@
         <!-- 子标签页 -->
         <div class="sub-tabs">
             <div class="tabs-left">
-                <div class="sub-tab active" onclick="switchLogType('login', event)">登录日志</div>
-                <div class="sub-tab" onclick="switchLogType('operation', event)">操作日志</div>
+                <div class="sub-tab active" onclick="switchLogType('login', event)" data-i18n="loginLog">Login Log</div>
+                <div class="sub-tab" onclick="switchLogType('operation', event)" data-i18n="operationLogTab">Operation Log</div>
             </div>
         </div>
 
@@ -981,16 +982,15 @@
         <!-- 分页控件 -->
         <div class="log-pagination">
             <div class="pagination-info" id="paginationInfo">
-                第 1-10 条，共 0 条记录
+                Showing 1-10 of 0 records
             </div>
             <div class="pagination-controls">
                 <button class="pagination-btn" id="prevPageBtn" onclick="previousPage()" disabled>
                     <i class="fas fa-chevron-left"></i>
-                    上一页
+                    <span data-i18n="previousPage">Previous</span>
                 </button>
-                <span id="pageInfo" style="padding: 8px 12px; color: rgba(255,255,255,0.7);">第 1 页，共 1 页</span>
-                <button class="pagination-btn" id="nextPageBtn" onclick="nextPage()" disabled>
-                    下一页
+                <span id="pageInfo" style="padding: 8px 12px; color: rgba(255,255,255,0.7);">Page 1 of 1</span>
+                <button class="pagination-btn" id="nextPageBtn" onclick="nextPage()" disabled><span data-i18n="nextPage">Next</span>
                     <i class="fas fa-chevron-right"></i>
                 </button>
             </div>
@@ -1001,7 +1001,7 @@
     <div id="logDetailModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <div class="modal-title">日志详情</div>
+                <div class="modal-title" data-i18n="logDetailTitle">Log Detail</div>
                 <span class="close" onclick="closeLogDetail()">&times;</span>
             </div>
             <div id="logDetailContent">
@@ -1011,6 +1011,17 @@
     </div>
 
     <script>
+        // 获取当前语言的翻译对象
+
+        function getTouchscreenTranslations() {
+
+            const lang = getTouchscreenLang();
+
+            return touchscreenTranslations[lang];
+
+        }
+
+
         // 全局变量
         let currentLogType = 'login';
         let allLogs = [];
@@ -1018,65 +1029,134 @@
         let currentPage = 1;
         const pageSize = 4;
 
-        // 日志数据模板
-        const logTemplates = {
-            login: {
-                success: [
-                    { action: '用户登录成功', description: '用户通过正常途径登录系统' },
-                    { action: '会话建立', description: '用户会话已成功建立' },
-                    { action: '权限验证通过', description: '用户权限验证通过，获得系统访问权限' }
-                ],
-                warning: [
-                    { action: '密码即将过期', description: '用户密码将在7天内过期，建议及时修改' },
-                    { action: '异地登录检测', description: '检测到来自异常地理位置的登录' },
-                    { action: '多次登录尝试', description: '检测到短时间内多次登录尝试' }
-                ],
-                error: [
-                    { action: '登录失败', description: '用户名或密码错误' },
-                    { action: '账户锁定', description: '由于多次登录失败，账户已被锁定' },
-                    { action: '会话超时', description: '用户会话超时，已自动登出' }
-                ],
-                info: [
-                    { action: '用户登出', description: '用户主动登出系统' },
-                    { action: '会话刷新', description: '用户会话已刷新' },
-                    { action: '密码修改', description: '用户修改了登录密码' }
-                ]
-            },
-            operation: {
-                success: [
-                    { action: '启动储能柜01充电模式', description: '成功启动储能柜01进入充电模式，目标SOC设为95%', type: '控制操作' },
-                    { action: '修改充电功率限制为250kW', description: '成功将系统充电功率上限调整为250kW', type: '参数修改' },
-                    { action: '解决高温告警ALM001', description: '处理储能柜02温度异常告警，已恢复正常运行', type: '告警处理' },
-                    { action: '导出7月运行数据报表', description: '成功导出2024年7月储能系统运行数据Excel报表', type: '数据导出' },
-                    { action: '更新EMS控制策略配置', description: '成功更新能量管理系统控制策略参数', type: '系统配置' },
-                    { action: '停止储能柜03放电', description: '紧急停止储能柜03放电操作', type: '控制操作' },
-                    { action: '设置放电停止SOC为10%', description: '调整系统放电截止SOC阈值至10%', type: '参数修改' },
-                    { action: '启用消防联动系统', description: '成功启用储能站消防联动控制系统', type: '系统配置' }
-                ],
-                warning: [
-                    { action: '充电功率接近上限值', description: '当前充电功率已达到安全阈值95%，建议监控', type: '参数修改' },
-                    { action: '强制切换至手动模式', description: '用户强制切换系统至手动控制模式', type: '控制操作' },
-                    { action: '覆盖默认安全参数', description: '用户覆盖了系统默认的安全保护参数', type: '系统配置' },
-                    { action: '忽略SOC保护限制', description: '用户选择忽略SOC保护限制执行操作', type: '控制操作' }
-                ],
-                error: [
-                    { action: '储能柜04启动失败', description: '储能柜04启动命令执行失败，通讯超时', type: '控制操作' },
-                    { action: '充电参数设置越界', description: '充电电流设置值350A超出设备最大限制300A', type: '参数修改' },
-                    { action: 'BMS通讯连接中断', description: '与储能柜05 BMS系统通讯连接异常中断', type: '控制操作' },
-                    { action: '配置文件保存失败', description: '系统配置文件写入磁盘失败，磁盘空间不足', type: '系统配置' }
-                ],
-                info: [
-                    { action: '查询储能柜实时数据', description: '用户查询了储能柜01-08的实时运行数据', type: '数据导出' },
-                    { action: '访问设备控制页面', description: '用户访问了储能系统设备控制管理页面', type: '系统配置' },
-                    { action: '检查系统运行状态', description: '执行定时系统健康状态检查任务', type: '系统配置' },
-                    { action: '查看历史告警记录', description: '用户查询了近30天的系统告警历史记录', type: '数据导出' }
-                ]
+        // 日志数据模板 - 国际化版本
+        const getLogTemplates = () => {
+            const lang = getTouchscreenLang();
+            if (lang === 'zh') {
+                return {
+                    login: {
+                        success: [
+                            { action: '用户登录成功', description: '用户通过正常途径登录系统' },
+                            { action: '会话建立', description: '用户会话已成功建立' },
+                            { action: '权限验证通过', description: '用户权限验证通过，获得系统访问权限' }
+                        ],
+                        warning: [
+                            { action: '密码即将过期', description: '用户密码将在7天内过期，建议及时修改' },
+                            { action: '异地登录检测', description: '检测到来自异常地理位置的登录' },
+                            { action: '多次登录尝试', description: '检测到短时间内多次登录尝试' }
+                        ],
+                        error: [
+                            { action: '登录失败', description: '用户名或密码错误' },
+                            { action: '账户锁定', description: '由于多次登录失败，账户已被锁定' },
+                            { action: '会话超时', description: '用户会话超时，已自动登出' }
+                        ],
+                        info: [
+                            { action: '用户登出', description: '用户主动登出系统' },
+                            { action: '会话刷新', description: '用户会话已刷新' },
+                            { action: '密码修改', description: '用户修改了登录密码' }
+                        ]
+                    },
+                    operation: {
+                        success: [
+                            { action: '启动储能柜01充电模式', description: '成功启动储能柜01进入充电模式，目标SOC设为95%', type: '控制操作' },
+                            { action: '修改充电功率限制为250kW', description: '成功将系统充电功率上限调整为250kW', type: '参数修改' },
+                            { action: '解决高温告警ALM001', description: '处理储能柜02温度异常告警，已恢复正常运行', type: '告警处理' },
+                            { action: '导出7月运行数据报表', description: '成功导出2024年7月储能系统运行数据Excel报表', type: '数据导出' },
+                            { action: '更新EMS控制策略配置', description: '成功更新能量管理系统控制策略参数', type: '系统配置' },
+                            { action: '停止储能柜03放电', description: '紧急停止储能柜03放电操作', type: '控制操作' },
+                            { action: '设置放电停止SOC为10%', description: '调整系统放电截止SOC阈值至10%', type: '参数修改' },
+                            { action: '启用消防联动系统', description: '成功启用储能站消防联动控制系统', type: '系统配置' }
+                        ],
+                        warning: [
+                            { action: '充电功率接近上限值', description: '当前充电功率已达到安全阈值95%，建议监控', type: '参数修改' },
+                            { action: '强制切换至手动模式', description: '用户强制切换系统至手动控制模式', type: '控制操作' },
+                            { action: '覆盖默认安全参数', description: '用户覆盖了系统默认的安全保护参数', type: '系统配置' },
+                            { action: '忽略SOC保护限制', description: '用户选择忽略SOC保护限制执行操作', type: '控制操作' }
+                        ],
+                        error: [
+                            { action: '储能柜04启动失败', description: '储能柜04启动命令执行失败，通讯超时', type: '控制操作' },
+                            { action: '充电参数设置越界', description: '充电电流设置值350A超出设备最大限制300A', type: '参数修改' },
+                            { action: 'BMS通讯连接中断', description: '与储能柜05 BMS系统通讯连接异常中断', type: '控制操作' },
+                            { action: '配置文件保存失败', description: '系统配置文件写入磁盘失败，磁盘空间不足', type: '系统配置' }
+                        ],
+                        info: [
+                            { action: '查询储能柜实时数据', description: '用户查询了储能柜01-08的实时运行数据', type: '数据导出' },
+                            { action: '访问设备控制页面', description: '用户访问了储能系统设备控制管理页面', type: '系统配置' },
+                            { action: '检查系统运行状态', description: '执行定时系统健康状态检查任务', type: '系统配置' },
+                            { action: '查看历史告警记录', description: '用户查询了近30天的系统告警历史记录', type: '数据导出' }
+                        ]
+                    }
+                };
+            } else {
+                return {
+                    login: {
+                        success: [
+                            { action: 'User login successful', description: 'User logged in through normal channels' },
+                            { action: 'Session established', description: 'User session successfully established' },
+                            { action: 'Permission verified', description: 'User permission verified, system access granted' }
+                        ],
+                        warning: [
+                            { action: 'Password expiring soon', description: 'User password will expire in 7 days, please update' },
+                            { action: 'Remote login detected', description: 'Login detected from unusual geographic location' },
+                            { action: 'Multiple login attempts', description: 'Multiple login attempts detected in short time' }
+                        ],
+                        error: [
+                            { action: 'Login failed', description: 'Incorrect username or password' },
+                            { action: 'Account locked', description: 'Account locked due to multiple failed login attempts' },
+                            { action: 'Session timeout', description: 'User session timed out, automatically logged out' }
+                        ],
+                        info: [
+                            { action: 'User logout', description: 'User actively logged out of system' },
+                            { action: 'Session refreshed', description: 'User session has been refreshed' },
+                            { action: 'Password changed', description: 'User changed login password' }
+                        ]
+                    },
+                    operation: {
+                        success: [
+                            { action: 'Start Cabinet 01 charging mode', description: 'Successfully started Cabinet 01 charging mode, target SOC set to 95%', type: 'Control Operation' },
+                            { action: 'Set charge power limit to 250kW', description: 'Successfully adjusted system charge power limit to 250kW', type: 'Parameter Modification' },
+                            { action: 'Resolve high temp alarm ALM001', description: 'Handled Cabinet 02 temperature alarm, normal operation restored', type: 'Alarm Handling' },
+                            { action: 'Export July operation report', description: 'Successfully exported July 2024 system operation data Excel report', type: 'Data Export' },
+                            { action: 'Update EMS control strategy', description: 'Successfully updated energy management system control strategy parameters', type: 'System Configuration' },
+                            { action: 'Stop Cabinet 03 discharge', description: 'Emergency stop of Cabinet 03 discharge operation', type: 'Control Operation' },
+                            { action: 'Set discharge stop SOC to 10%', description: 'Adjusted system discharge cutoff SOC threshold to 10%', type: 'Parameter Modification' },
+                            { action: 'Enable fire protection system', description: 'Successfully enabled energy storage fire protection linkage control system', type: 'System Configuration' }
+                        ],
+                        warning: [
+                            { action: 'Charge power near limit', description: 'Current charge power reached 95% of safety threshold, monitoring recommended', type: 'Parameter Modification' },
+                            { action: 'Force switch to manual mode', description: 'User forced system switch to manual control mode', type: 'Control Operation' },
+                            { action: 'Override default safety params', description: 'User overrode system default safety protection parameters', type: 'System Configuration' },
+                            { action: 'Ignore SOC protection limit', description: 'User chose to ignore SOC protection limit for operation', type: 'Control Operation' }
+                        ],
+                        error: [
+                            { action: 'Cabinet 04 startup failed', description: 'Cabinet 04 startup command execution failed, communication timeout', type: 'Control Operation' },
+                            { action: 'Charge parameter out of range', description: 'Charge current setting 350A exceeds device maximum limit 300A', type: 'Parameter Modification' },
+                            { action: 'BMS communication interrupted', description: 'Communication with Cabinet 05 BMS system abnormally interrupted', type: 'Control Operation' },
+                            { action: 'Config file save failed', description: 'System config file write to disk failed, insufficient disk space', type: 'System Configuration' }
+                        ],
+                        info: [
+                            { action: 'Query cabinet real-time data', description: 'User queried real-time operation data of Cabinets 01-08', type: 'Data Export' },
+                            { action: 'Access device control page', description: 'User accessed energy storage system device control page', type: 'System Configuration' },
+                            { action: 'Check system status', description: 'Executed scheduled system health status check task', type: 'System Configuration' },
+                            { action: 'View alarm history', description: 'User queried system alarm history records for past 30 days', type: 'Data Export' }
+                        ]
+                    }
+                };
             }
         };
 
         const users = ['admin', 'operator', 'viewer', 'manager', 'engineer'];
         const ipAddresses = ['192.168.1.100', '192.168.1.101', '192.168.1.102', '10.0.0.1', '172.16.0.1'];
-        const devices = ['储能柜01', '储能柜02', '储能柜03', '储能柜04', '储能柜05', '储能柜06', '储能柜07', '储能柜08'];
+
+        // 获取设备名称(国际化)
+        const getDevices = () => {
+            const lang = getTouchscreenLang();
+            if (lang === 'zh') {
+                return ['储能柜01', '储能柜02', '储能柜03', '储能柜04', '储能柜05', '储能柜06', '储能柜07', '储能柜08'];
+            } else {
+                return ['Cabinet 01', 'Cabinet 02', 'Cabinet 03', 'Cabinet 04', 'Cabinet 05', 'Cabinet 06', 'Cabinet 07', 'Cabinet 08'];
+            }
+        };
 
         // 页面初始化
         window.onload = function() {
@@ -1101,7 +1181,7 @@
         // 页面导航功能
         function switchPage(page) {
             if (page === 'home') {
-                window.location.href = 'index.html';
+                window.location.href = 'home.html';
             } else if (page === 'data') {
                 window.location.href = 'data.html';
             } else if (page === 'control') {
@@ -1187,27 +1267,31 @@
             allLogs = [];
             let logId = 1;
 
+            // 获取当前语言的日志模板
+            const logTemplates = getLogTemplates();
+
             // 生成最近7天的日志
             for (let day = 0; day < 7; day++) {
                 const logDate = new Date();
                 logDate.setDate(logDate.getDate() - day);
-                
+
                 // 每天生成10-30条日志
                 const dailyLogCount = Math.floor(Math.random() * 21) + 10;
-                
+
                 for (let i = 0; i < dailyLogCount; i++) {
                     const logTime = new Date(logDate);
                     logTime.setHours(Math.floor(Math.random() * 24));
                     logTime.setMinutes(Math.floor(Math.random() * 60));
                     logTime.setSeconds(Math.floor(Math.random() * 60));
-                    
+
                     const levels = ['info', 'success', 'warning', 'error'];
                     const levelWeights = [0.4, 0.3, 0.2, 0.1]; // 信息>成功>警告>错误
                     const level = weightedRandom(levels, levelWeights);
-                    
+
                     const templates = logTemplates[currentLogType][level];
                     const template = templates[Math.floor(Math.random() * templates.length)];
-                    
+                    const devices = getDevices();
+
                     const log = {
                         id: logId++,
                         time: logTime.toLocaleString('zh-CN'),
@@ -1222,7 +1306,7 @@
                         ...(currentLogType === 'operation' && template.type ? { operationType: template.type } : {}),
                         ...(currentLogType === 'operation' ? { device: devices[Math.floor(Math.random() * devices.length)] } : {}),
                         ...(currentLogType === 'login' ? { sessionId: generateSessionId() } : {}),
-                        result: level === 'error' ? '失败' : '成功',
+                        result: level === 'error' ? getTouchscreenTranslations().failResult : getTouchscreenTranslations().successResult,
                         duration: currentLogType === 'login' ? (Math.random() * 2 + 0.5).toFixed(2) + 's' : null
                     };
                     
@@ -1252,11 +1336,13 @@
 
         // 获取级别文本
         function getLevelText(level) {
+            const lang = getTouchscreenLang();
+            const t = touchscreenTranslations[lang];
             const levelMap = {
-                info: '信息',
-                success: '成功',
-                warning: '警告',
-                error: '错误'
+                info: t.infoLevel,
+                success: t.successLevel,
+                warning: t.warningLevel,
+                error: t.errorLevel
             };
             return levelMap[level] || level;
         }
@@ -1301,7 +1387,7 @@
                             <td>
                                 <button class="action-btn" onclick="viewLogDetail(${log.id})">
                                     <i class="fas fa-eye"></i>
-                                    详情
+                                    <span data-i18n="detailBtn">${getTouchscreenTranslations().detailBtn}</span>
                                 </button>
                             </td>
                         </tr>
@@ -1317,7 +1403,7 @@
                             <td>
                                 <button class="action-btn" onclick="viewLogDetail(${log.id})">
                                     <i class="fas fa-eye"></i>
-                                    详情
+                                    <span data-i18n="detailBtn">${getTouchscreenTranslations().detailBtn}</span>
                                 </button>
                             </td>
                         </tr>
@@ -1332,27 +1418,29 @@
         // 更新表头
         function updateTableHeader() {
             const thead = document.getElementById('tableHeader');
-            
+            const lang = getTouchscreenLang();
+            const t = touchscreenTranslations[lang];
+
             if (currentLogType === 'login') {
                 thead.innerHTML = `
                     <tr>
-                        <th width="120">用户名</th>
-                        <th width="200">操作</th>
-                        <th width="140">IP地址</th>
-                        <th width="100">结果</th>
-                        <th width="180">时间</th>
-                        <th width="100">操作</th>
+                        <th width="120" data-i18n="username">${t.username}</th>
+                        <th width="200" data-i18n="operation">${t.operation}</th>
+                        <th width="140" data-i18n="ipAddress">${t.ipAddress}</th>
+                        <th width="100" data-i18n="result">${t.result}</th>
+                        <th width="180" data-i18n="time">${t.time}</th>
+                        <th width="100" data-i18n="action">${t.action}</th>
                     </tr>
                 `;
             } else {
                 thead.innerHTML = `
                     <tr>
-                        <th width="120">用户名</th>
-                        <th width="200">操作</th>
-                        <th width="140">IP地址</th>
-                        <th width="100">结果</th>
-                        <th width="180">时间</th>
-                        <th width="100">操作</th>
+                        <th width="120" data-i18n="username">${t.username}</th>
+                        <th width="200" data-i18n="operation">${t.operation}</th>
+                        <th width="140" data-i18n="ipAddress">${t.ipAddress}</th>
+                        <th width="100" data-i18n="result">${t.result}</th>
+                        <th width="180" data-i18n="time">${t.time}</th>
+                        <th width="100" data-i18n="action">${t.action}</th>
                     </tr>
                 `;
             }
@@ -1363,12 +1451,21 @@
             const totalPages = Math.ceil(filteredLogs.length / pageSize);
             const startIndex = (currentPage - 1) * pageSize + 1;
             const endIndex = Math.min(currentPage * pageSize, filteredLogs.length);
+            const lang = getTouchscreenLang();
 
-            document.getElementById('paginationInfo').textContent = 
-                `第 ${startIndex}-${endIndex} 条，共 ${filteredLogs.length} 条记录`;
-            
-            document.getElementById('pageInfo').textContent = 
-                `第 ${currentPage} 页，共 ${totalPages} 页`;
+            if (lang === 'zh') {
+                document.getElementById('paginationInfo').textContent =
+                    `第 ${startIndex}-${endIndex} 条,共 ${filteredLogs.length} 条记录`;
+
+                document.getElementById('pageInfo').textContent =
+                    `第 ${currentPage} 页,共 ${totalPages} 页`;
+            } else {
+                document.getElementById('paginationInfo').textContent =
+                    `Showing ${startIndex}-${endIndex} of ${filteredLogs.length} records`;
+
+                document.getElementById('pageInfo').textContent =
+                    `Page ${currentPage} of ${totalPages}`;
+            }
 
             document.getElementById('prevPageBtn').disabled = currentPage <= 1;
             document.getElementById('nextPageBtn').disabled = currentPage >= totalPages;
@@ -1395,60 +1492,62 @@
         function viewLogDetail(logId) {
             const log = allLogs.find(l => l.id === logId);
             if (!log) return;
-            
+
             const detailContent = document.getElementById('logDetailContent');
-            
+            const lang = getTouchscreenLang();
+            const t = touchscreenTranslations[lang];
+
             let html = `
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
                     <div class="detail-row">
-                        <div class="detail-label">时间:</div>
+                        <div class="detail-label">${t.timeLabel}</div>
                         <div class="detail-value">${log.time}</div>
                     </div>
                     <div class="detail-row">
-                        <div class="detail-label">用户:</div>
+                        <div class="detail-label">${t.userLabel}</div>
                         <div class="detail-value">${log.user}</div>
                     </div>
                 </div>
                 <div class="detail-row">
-                    <div class="detail-label">操作:</div>
+                    <div class="detail-label">${t.operationLabel}</div>
                     <div class="detail-value">${log.action}</div>
                 </div>
                 <div class="detail-row">
-                    <div class="detail-label">详细描述:</div>
+                    <div class="detail-label">${t.detailDescription}</div>
                     <div class="detail-value">${log.description}</div>
                 </div>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
                     <div class="detail-row">
-                        <div class="detail-label">IP地址:</div>
+                        <div class="detail-label">${t.ipLabel}</div>
                         <div class="detail-value">${log.ip}</div>
                     </div>
                     <div class="detail-row">
-                        <div class="detail-label">执行结果:</div>
+                        <div class="detail-label">${t.resultLabel}</div>
                         <div class="detail-value">
-                            <span style="color: ${log.result === '成功' ? '#10b981' : '#ef4444'}; font-weight: 500;">
+                            <span style="color: ${log.result === t.successResult ? '#10b981' : '#ef4444'}; font-weight: 500;">
                                 ${log.result}
                             </span>
                         </div>
                     </div>
                 </div>
                 <div class="detail-row">
-                    <div class="detail-label">日志级别:</div>
+                    <div class="detail-label">${t.logLevelLabel}</div>
                     <div class="detail-value">
                         <span class="log-level-badge ${log.level}">${log.levelText}</span>
                     </div>
                 </div>
             `;
-            
+
             if (currentLogType === 'login') {
                 html += `
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
                         <div class="detail-row">
-                            <div class="detail-label">会话标识:</div>
+                            <div class="detail-label">${t.sessionIdLabel}</div>
                             <div class="detail-value" style="font-family: monospace; font-size: 16px;">${log.sessionId}</div>
                         </div>
                         <div class="detail-row">
-                            <div class="detail-label">登录耗时:</div>
-                            <div class="detail-value">${log.duration || '未记录'}</div>
+                            <div class="detail-label">${t.durationLabel}</div>
+                            <div class="detail-value">${log.duration || (lang === 'zh' ? '未记录' : 'Not recorded')}</div>
                         </div>
                     </div>
                 `;
@@ -1456,26 +1555,26 @@
                 html += `
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
                         <div class="detail-row">
-                            <div class="detail-label">操作分类:</div>
-                            <div class="detail-value">${log.operationType || '未分类'}</div>
+                            <div class="detail-label">${t.operationTypeLabel}</div>
+                            <div class="detail-value">${log.operationType || (lang === 'zh' ? '未分类' : 'Uncategorized')}</div>
                         </div>
                         <div class="detail-row">
-                            <div class="detail-label">目标设备:</div>
-                            <div class="detail-value">${log.device || '系统全局'}</div>
+                            <div class="detail-label">${t.targetDeviceLabel}</div>
+                            <div class="detail-value">${log.device || (lang === 'zh' ? '系统全局' : 'System Global')}</div>
                         </div>
                     </div>
                 `;
             }
-            
+
             html += `
                 <div class="detail-row" style="border-bottom: none;">
-                    <div class="detail-label">浏览器:</div>
+                    <div class="detail-label">${t.browserLabel}</div>
                     <div class="detail-value" style="font-size: 16px; color: rgba(255,255,255,0.8); word-break: break-all;">
                         ${log.userAgent}
                     </div>
                 </div>
             `;
-            
+
             detailContent.innerHTML = html;
             document.getElementById('logDetailModal').classList.add('show');
         }
@@ -1580,21 +1679,64 @@
         }
 
     </script>
-    <script src="common-header-scripts.js"></script>
+    <script src="common-header-scripts.js">
+        // ========== 国际化初始化 ==========
+
+        // 监听语言切换事件
+        window.addEventListener('languageChanged', function(e) {
+            console.log('页面接收到语言切换事件:', e.detail.lang);
+
+            // 更新HTML lang属性
+            document.documentElement.lang = e.detail.lang === 'zh' ? 'zh-CN' : 'en';
+
+            // 重新应用翻译到所有元素
+            if (typeof applyTouchscreenTranslations === 'function') {
+                applyTouchscreenTranslations();
+            }
+
+            // 重新渲染表格和分页(更新动态内容)
+            renderLogTable();
+        });
+
+        // 页面加载时初始化语言
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentLang = getTouchscreenLang();
+            console.log('当前页面语言:', currentLang);
+
+            // 设置HTML lang属性
+            document.documentElement.lang = currentLang === 'zh' ? 'zh-CN' : 'en';
+
+            // HTML默认是英文,只有当前语言是中文时才需要翻译
+            if (currentLang === 'zh' && typeof applyTouchscreenTranslations === 'function') {
+                applyTouchscreenTranslations();
+            }
+
+            // 更新语言切换器的激活状态
+            document.querySelectorAll('.lang-option').forEach(option => {
+                const optionLang = option.getAttribute('onclick').includes("'zh'") ? 'zh' : 'en';
+                if (optionLang === currentLang) {
+                    option.classList.add('active');
+                } else {
+                    option.classList.remove('active');
+                }
+            });
+        });
+
+    </script>
     <!-- 退出确认弹窗 -->
     <div id="logoutModal" class="logout-modal">
         <div class="logout-content">
             <div class="logout-icon">
                 <i class="fas fa-sign-out-alt"></i>
             </div>
-            <div class="logout-title" id="logoutTitle">退出登录</div>
-            <div class="logout-message" id="logoutMessage">您确定要退出当前账户吗？退出后需要重新登录。</div>
+            <div class="logout-title" id="logoutTitle">Logout</div>
+            <div class="logout-message" id="logoutMessage">Are you sure you want to logout? You will need to login again.</div>
             <div class="logout-buttons">
                 <button class="logout-btn-action cancel" id="logoutCancelBtn" onclick="closeLogoutModal()">
-                    <i class="fas fa-times"></i> 取消
+                    <i class="fas fa-times"></i> Cancel
                 </button>
                 <button class="logout-btn-action confirm" id="logoutConfirmBtn" onclick="confirmLogout()">
-                    <i class="fas fa-sign-out-alt"></i> 退出
+                    <i class="fas fa-sign-out-alt"></i> Logout
                 </button>
             </div>
         </div>

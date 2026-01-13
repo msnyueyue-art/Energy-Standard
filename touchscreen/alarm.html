@@ -125,7 +125,7 @@
         .nav-menu {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 5px;
             flex: 1;
             justify-content: center;
             flex-wrap: nowrap;
@@ -133,7 +133,7 @@
         }
 
         .nav-item {
-            padding: 12px 28px;
+            padding: 12px 20px;
             color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
             font-size: 17px;
@@ -1263,19 +1263,19 @@
                 <div class="logo-icon">
                     <img src="logo.png" alt="Logo">
                 </div>
-                <div class="logo-text">储能柜管理系统</div>
+                <div class="logo-text"><span data-i18n="systemTitle">Energy Storage System</span></div>
             </div>
         </div>
         
         <!-- 导航菜单 -->
         <nav class="nav-menu">
-            <div class="nav-item" onclick="switchPage('home')">首页</div>
-            <a href="#data" class="nav-item" onclick="switchPage('data')">数据</a>
-            <a href="#" class="nav-item" onclick="switchPage('history')">历史</a>
-            <a href="#control" class="nav-item" onclick="switchPage('control')">控制</a>
-            <a href="#alarm" class="nav-item active" onclick="switchPage('alarm')">告警</a>
-            <a href="#log" class="nav-item" onclick="switchPage('log')">日志</a>
-            <a href="#settings" class="nav-item" onclick="switchPage('settings')">设置</a>
+            <div class="nav-item" onclick="switchPage('home')"><span data-i18n="navHome">Home</span></div>
+            <a href="#data" class="nav-item" onclick="switchPage('data')"><span data-i18n="navData">Data</span></a>
+            <a href="#" class="nav-item" onclick="switchPage('history')"><span data-i18n="navHistory">History</span></a>
+            <a href="#control" class="nav-item" onclick="switchPage('control')"><span data-i18n="navControl">Control</span></a>
+            <a href="#alarm" class="nav-item active" onclick="switchPage('alarm')"><span data-i18n="navAlarm">Alarm</span></a>
+            <a href="#log" class="nav-item" onclick="switchPage('log')"><span data-i18n="navLog">Log</span></a>
+            <a href="#settings" class="nav-item" onclick="switchPage('settings')"><span data-i18n="navSettings">Settings</span></a>
         </nav>
         
         <div class="header-right">
@@ -1314,11 +1314,11 @@
         <!-- 告警列表 -->
         <div class="alarm-list-section">
             <div class="list-header">
-                <div class="section-title">告警列表</div>
+                <div class="section-title"><span data-i18n="alarmList">Alarm List</span></div>
                 <div class="list-actions">
                     <button class="btn success" onclick="batchResolve()" id="batchResolveBtn" disabled>
                         <i class="fas fa-check"></i>
-                        批量解决
+                        <span data-i18n="batchResolve">Batch Resolve</span>
                     </button>
                 </div>
             </div>
@@ -1330,11 +1330,11 @@
                             <th width="80">
                                 <input type="checkbox" class="checkbox" id="selectAll" onchange="toggleAllAlarms()">
                             </th>
-                            <th width="350">告警类型</th>
-                            <th width="500">告警描述</th>
-                            <th width="150">级别</th>
-                            <th width="250">告警时间</th>
-                            <th width="280">操作</th>
+                            <th width="350"><span data-i18n="alarmType">Alarm Type</span></th>
+                            <th width="500"><span data-i18n="alarmDescription">Alarm Description</span></th>
+                            <th width="150"><span data-i18n="level">Level</span></th>
+                            <th width="250"><span data-i18n="alarmTime">Alarm Time</span></th>
+                            <th width="280"><span data-i18n="actions">Actions</span></th>
                         </tr>
                     </thead>
                     <tbody id="alarmTableBody">
@@ -1347,16 +1347,16 @@
         <!-- 分页控件 -->
         <div class="alarm-pagination">
             <div class="pagination-info" id="paginationInfo">
-                第 1-10 条，共 0 条记录
+                <span data-i18n="showing">Showing</span> 1<span data-i18n="to">-</span>10 <span data-i18n="of">of</span> 0 <span data-i18n="records">records</span>
             </div>
             <div class="pagination-controls">
                 <button class="pagination-btn" id="prevPageBtn" onclick="previousPage()" disabled>
                     <i class="fas fa-chevron-left"></i>
-                    上一页
+                    <span data-i18n="previousPage">Previous</span>
                 </button>
                 <span id="pageInfo" style="padding: 8px 12px; color: rgba(255,255,255,0.7);">第 1 页，共 1 页</span>
                 <button class="pagination-btn" id="nextPageBtn" onclick="nextPage()" disabled>
-                    下一页
+                    <span data-i18n="nextPage">Next</span>
                     <i class="fas fa-chevron-right"></i>
                 </button>
             </div>
@@ -1369,16 +1369,16 @@
             <div class="confirm-icon">
                 <i class="fas fa-exclamation-triangle"></i>
             </div>
-            <div class="confirm-title" id="confirmTitle">操作确认</div>
-            <div class="confirm-message" id="confirmMessage">您确定要执行此操作吗？</div>
+            <div class="confirm-title" id="confirmTitle"><span data-i18n="operationConfirm">Operation Confirm</span></div>
+            <div class="confirm-message" id="confirmMessage"><span data-i18n="confirmExecute">Are you sure to execute this operation?</span></div>
             <div class="confirm-buttons">
                 <button class="confirm-btn secondary" onclick="closeConfirmModal()">
                     <i class="fas fa-times"></i>
-                    取消
+                    <span data-i18n="cancelBtn">Cancel</span>
                 </button>
                 <button class="confirm-btn primary" id="confirmButton" onclick="confirmAction()">
                     <i class="fas fa-check"></i>
-                    确认
+                    <span data-i18n="confirmBtn">Confirm</span>
                 </button>
             </div>
         </div>
@@ -1388,7 +1388,7 @@
     <div id="alarmDetailModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <div class="modal-title">告警详情</div>
+                <div class="modal-title"><span data-i18n="alarmDetail">Alarm Detail</span></div>
                 <span class="close" onclick="closeAlarmDetail()">&times;</span>
             </div>
             <div id="alarmDetailContent">
@@ -1446,8 +1446,303 @@
             ]
         };
 
+        
+        // 告警类型翻译映射表
+        const alarmTypeTranslations = {
+            // Critical级别
+            '电池过温告警': {
+                en: 'Battery Over-Temperature Alarm',
+                zh: '电池过温告警'
+            },
+            '电池温度超过安全阈值': {
+                en: 'Battery temperature exceeds safety threshold',
+                zh: '电池温度超过安全阈值'
+            },
+            '系统过流告警': {
+                en: 'System Overcurrent Alarm',
+                zh: '系统过流告警'
+            },
+            '系统电流超过额定值': {
+                en: 'System current exceeds rated value',
+                zh: '系统电流超过额定值'
+            },
+            '绝缘故障告警': {
+                en: 'Insulation Fault Alarm',
+                zh: '绝缘故障告警'
+            },
+            '系统绝缘阻抗过低': {
+                en: 'System insulation impedance too low',
+                zh: '系统绝缘阻抗过低'
+            },
+            '烟雾探测告警': {
+                en: 'Smoke Detection Alarm',
+                zh: '烟雾探测告警'
+            },
+            '检测到烟雾信号': {
+                en: 'Smoke signal detected',
+                zh: '检测到烟雾信号'
+            },
+            '直流母线过压': {
+                en: 'DC Bus Over-Voltage',
+                zh: '直流母线过压'
+            },
+            '直流母线电压过高': {
+                en: 'DC bus voltage too high',
+                zh: '直流母线电压过高'
+            },
+            '交流侧缺相': {
+                en: 'AC Side Phase Loss',
+                zh: '交流侧缺相'
+            },
+            '交流侧出现缺相故障': {
+                en: 'AC side phase loss fault occurred',
+                zh: '交流侧出现缺相故障'
+            },
+            '功率模块故障': {
+                en: 'Power Module Fault',
+                zh: '功率模块故障'
+            },
+            'IGBT功率模块异常': {
+                en: 'IGBT power module abnormal',
+                zh: 'IGBT功率模块异常'
+            },
+            '冷却系统故障': {
+                en: 'Cooling System Fault',
+                zh: '冷却系统故障'
+            },
+            '冷却系统工作异常': {
+                en: 'Cooling system malfunction',
+                zh: '冷却系统工作异常'
+            },
+            '应急停机触发': {
+                en: 'Emergency Stop Triggered',
+                zh: '应急停机触发'
+            },
+            '应急停机按钮被触发': {
+                en: 'Emergency stop button triggered',
+                zh: '应急停机按钮被触发'
+            },
+            '消防系统启动': {
+                en: 'Fire Suppression System Activated',
+                zh: '消防系统启动'
+            },
+            '消防系统自动启动': {
+                en: 'Fire suppression system auto-activated',
+                zh: '消防系统自动启动'
+            },
+
+            // Major级别
+            'SOC异常告警': {
+                en: 'SOC Abnormal Alarm',
+                zh: 'SOC异常告警'
+            },
+            '电池SOC超出正常范围': {
+                en: 'Battery SOC out of normal range',
+                zh: '电池SOC超出正常范围'
+            },
+            '单体电压差异': {
+                en: 'Cell Voltage Difference',
+                zh: '单体电压差异'
+            },
+            '单体电池电压差异过大': {
+                en: 'Individual cell voltage difference too large',
+                zh: '单体电池电压差异过大'
+            },
+            '通讯中断告警': {
+                en: 'Communication Interruption Alarm',
+                zh: '通讯中断告警'
+            },
+            'BMS通讯连接中断': {
+                en: 'BMS communication connection interrupted',
+                zh: 'BMS通讯连接中断'
+            },
+            '风扇故障告警': {
+                en: 'Fan Fault Alarm',
+                zh: '风扇故障告警'
+            },
+            '散热风扇工作异常': {
+                en: 'Cooling fan malfunction',
+                zh: '散热风扇工作异常'
+            },
+            '充电功率异常': {
+                en: 'Charging Power Abnormal',
+                zh: '充电功率异常'
+            },
+            '充电功率超出设定范围': {
+                en: 'Charging power exceeds set range',
+                zh: '充电功率超出设定范围'
+            },
+            '放电功率异常': {
+                en: 'Discharge Power Abnormal',
+                zh: '放电功率异常'
+            },
+            '放电功率超出设定范围': {
+                en: 'Discharge power exceeds set range',
+                zh: '放电功率超出设定范围'
+            },
+            '环境温度异常': {
+                en: 'Ambient Temperature Abnormal',
+                zh: '环境温度异常'
+            },
+            '环境温度超出工作范围': {
+                en: 'Ambient temperature out of operating range',
+                zh: '环境温度超出工作范围'
+            },
+            '湿度超标告警': {
+                en: 'Humidity Exceeded Alarm',
+                zh: '湿度超标告警'
+            },
+            '环境湿度超出正常范围': {
+                en: 'Ambient humidity out of normal range',
+                zh: '环境湿度超出正常范围'
+            },
+            '电能质量异常': {
+                en: 'Power Quality Abnormal',
+                zh: '电能质量异常'
+            },
+            '电网电能质量不达标': {
+                en: 'Grid power quality does not meet standards',
+                zh: '电网电能质量不达标'
+            },
+            '均衡系统异常': {
+                en: 'Balancing System Abnormal',
+                zh: '均衡系统异常'
+            },
+            '电池均衡系统工作异常': {
+                en: 'Battery balancing system malfunction',
+                zh: '电池均衡系统工作异常'
+            },
+
+            // Minor级别
+            '设备维护提醒': {
+                en: 'Device Maintenance Reminder',
+                zh: '设备维护提醒'
+            },
+            '设备需要定期维护': {
+                en: 'Device requires regular maintenance',
+                zh: '设备需要定期维护'
+            },
+            '参数配置变更': {
+                en: 'Parameter Configuration Changed',
+                zh: '参数配置变更'
+            },
+            '系统参数被手动修改': {
+                en: 'System parameters manually modified',
+                zh: '系统参数被手动修改'
+            },
+            '用户登录异常': {
+                en: 'User Login Abnormal',
+                zh: '用户登录异常'
+            },
+            '检测到异常登录行为': {
+                en: 'Abnormal login behavior detected',
+                zh: '检测到异常登录行为'
+            },
+            '数据采集延迟': {
+                en: 'Data Collection Delay',
+                zh: '数据采集延迟'
+            },
+            '数据采集存在延迟': {
+                en: 'Data collection has delay',
+                zh: '数据采集存在延迟'
+            },
+            '存储空间不足': {
+                en: 'Insufficient Storage Space',
+                zh: '存储空间不足'
+            },
+            '系统存储空间使用率过高': {
+                en: 'System storage space usage too high',
+                zh: '系统存储空间使用率过高'
+            },
+            '网络连接不稳定': {
+                en: 'Network Connection Unstable',
+                zh: '网络连接不稳定'
+            },
+            '网络连接质量较差': {
+                en: 'Network connection quality poor',
+                zh: '网络连接质量较差'
+            },
+            '时钟同步异常': {
+                en: 'Clock Sync Abnormal',
+                zh: '时钟同步异常'
+            },
+            '系统时钟同步失败': {
+                en: 'System clock sync failed',
+                zh: '系统时钟同步失败'
+            },
+            '负载均衡调整': {
+                en: 'Load Balancing Adjustment',
+                zh: '负载均衡调整'
+            },
+            '系统自动调整负载均衡': {
+                en: 'System auto-adjusting load balancing',
+                zh: '系统自动调整负载均衡'
+            },
+            '电价策略变更': {
+                en: 'Electricity Price Strategy Changed',
+                zh: '电价策略变更'
+            },
+            '峰谷电价策略已更新': {
+                en: 'Peak-valley price strategy updated',
+                zh: '峰谷电价策略已更新'
+            },
+            '运行模式切换': {
+                en: 'Operation Mode Switched',
+                zh: '运行模式切换'
+            },
+            '系统运行模式已切换': {
+                en: 'System operation mode switched',
+                zh: '系统运行模式已切换'
+            }
+        };
+
+        // 翻译告警文本的辅助函数
+        function translateAlarmText(text) {
+            const currentLang = getTouchscreenLang();
+            if (alarmTypeTranslations[text]) {
+                return alarmTypeTranslations[text][currentLang];
+            }
+            return text;
+        }
+
         const sites = ['站点A', '站点B', '站点C', '站点D', '站点E', '站点F'];
         const devices = ['储能柜01', '储能柜02', '储能柜03', '储能柜04', '储能柜05', '储能柜06', '储能柜07', '储能柜08'];
+
+        
+        // ========== 翻译辅助函数 ==========
+        function getTouchscreenTranslation(key, params = {}) {
+            const currentLang = getTouchscreenLang();
+            const translations = touchscreenTranslations[currentLang];
+            let text = translations[key] || key;
+
+            // 替换参数
+            Object.keys(params).forEach(param => {
+                text = text.replace(`{${param}}`, params[param]);
+            });
+
+            return text;
+        }
+
+        // 更新分页信息的翻译函数
+        function updatePaginationTranslations() {
+            const totalPages = Math.ceil(filteredAlarms.length / pageSize);
+            const startIndex = (currentPage - 1) * pageSize + 1;
+            const endIndex = Math.min(currentPage * pageSize, filteredAlarms.length);
+
+            const showing = getTouchscreenTranslation('showing');
+            const to = getTouchscreenTranslation('to');
+            const of = getTouchscreenTranslation('of');
+            const records = getTouchscreenTranslation('records');
+            const page = getTouchscreenTranslation('page');
+            const pages = getTouchscreenTranslation('pages');
+            const totalPagesText = getTouchscreenTranslation('totalPages');
+
+            document.getElementById('paginationInfo').innerHTML =
+                `${showing} ${startIndex}${to}${endIndex} ${of} ${filteredAlarms.length} ${records}`;
+
+            document.getElementById('pageInfo').innerHTML =
+                `${page} ${currentPage} ${pages} ${totalPages} ${totalPagesText}`;
+        }
 
         // 页面初始化
         window.onload = function() {
@@ -1521,7 +1816,7 @@
             event.target.classList.add('active');
             
             // 保存语言设置
-            localStorage.setItem('touchscreen_lang', lang);
+            localStorage.setItem('touchscreen_language', lang);
             
             // 关闭下拉菜单
             document.getElementById('langDropdown').classList.remove('show');
@@ -1560,14 +1855,14 @@
                         
                         const alarm = {
                             id: alarmId++,
-                            type: alarmTypeData.type,
-                            description: alarmTypeData.description,
+                            type: alarmTypeData.type, // 保存原始中文
+                            description: alarmTypeData.description, // 保存原始中文
                             level: level,
-                            levelText: level === 'critical' ? '严重' : level === 'major' ? '重要' : '一般',
+                            levelText: level === 'critical' ? '<span data-i18n="levelSerious">Critical</span>' : level === 'major' ? '<span data-i18n="levelImportant">Major</span>' : '<span data-i18n="levelGeneral">General</span>',
                             device: device,
                             site: site,
                             status: Math.random() > 0.3 ? 'resolved' : 'unresolved',
-                            statusText: Math.random() > 0.3 ? '已解决' : '未解决',
+                            statusText: Math.random() > 0.3 ? '<span data-i18n="resolved">Resolved</span>' : '<span data-i18n="unresolved">Unresolved</span>',
                             time: alarmTime.toLocaleString('zh-CN'),
                             currentValue: generateCurrentValue(alarmTypeData.type),
                             threshold: alarmTypeData.threshold,
@@ -1620,8 +1915,8 @@
                         <td>
                             <input type="checkbox" class="checkbox alarm-checkbox" value="${alarm.id}" onchange="updateBatchButton()">
                         </td>
-                        <td>${alarm.type}</td>
-                        <td>${alarm.description}</td>
+                        <td>${translateAlarmText(alarm.type)}</td>
+                        <td>${translateAlarmText(alarm.description)}</td>
                         <td>
                             <span class="alarm-level-badge ${alarm.level}">${alarm.levelText}</span>
                         </td>
@@ -1629,12 +1924,12 @@
                         <td style="white-space: nowrap;">
                             <button class="action-btn" onclick="viewAlarmDetail(${alarm.id})" style="display: inline-block;">
                                 <i class="fas fa-eye"></i>
-                                详情
+                                <span data-i18n="detail">Detail</span>
                             </button>
                             ${alarm.status === 'unresolved' ? `
                                 <button class="action-btn success" onclick="resolveAlarm(${alarm.id})" style="display: inline-block;">
                                     <i class="fas fa-check"></i>
-                                    解决
+                                    <span data-i18n="resolve">Resolve</span>
                                 </button>
                             ` : ''}
                         </td>
@@ -1650,14 +1945,8 @@
         // 更新分页信息
         function updatePagination() {
             const totalPages = Math.ceil(filteredAlarms.length / pageSize);
-            const startIndex = (currentPage - 1) * pageSize + 1;
-            const endIndex = Math.min(currentPage * pageSize, filteredAlarms.length);
 
-            document.getElementById('paginationInfo').textContent = 
-                `第 ${startIndex}-${endIndex} 条，共 ${filteredAlarms.length} 条记录`;
-            
-            document.getElementById('pageInfo').textContent = 
-                `第 ${currentPage} 页，共 ${totalPages} 页`;
+            updatePaginationTranslations();
 
             document.getElementById('prevPageBtn').disabled = currentPage <= 1;
             document.getElementById('nextPageBtn').disabled = currentPage >= totalPages;
@@ -1740,9 +2029,12 @@
             
             if (alarmIds.length === 0) return;
             
+            const title = getTouchscreenTranslation('batchResolveTitle');
+            const message = getTouchscreenTranslation('batchResolveConfirm', { count: alarmIds.length });
+
             showConfirmModal(
-                '批量解决告警',
-                `您确定要解决选中的 ${alarmIds.length} 个告警吗？此操作不可撤销。`,
+                title,
+                message,
                 function() {
                     alarmIds.forEach(id => {
                         const alarm = allAlarms.find(a => a.id === id);
@@ -1775,17 +2067,17 @@
                             <div>
                                 <div class="detail-label" style="font-size: 16px; color: #00d4ff; margin-bottom: 10px;">
                                     <i class="fas fa-exclamation-triangle" style="margin-right: 8px;"></i>
-                                    告警类型
+                                    <span data-i18n="alarmType">Alarm Type</span>
                                 </div>
                                 <div class="detail-value" style="font-size: 22px; font-weight: 600;">
-                                    ${alarm.type}
+                                    ${translateAlarmText(alarm.type)}
                                     <span class="alarm-level-badge ${alarm.level}" style="margin-left: 12px; padding: 8px 16px; font-size: 15px;">${alarm.levelText}</span>
                                 </div>
                             </div>
                             ${alarm.status === 'resolved' ? `
                                 <span class="alarm-status-badge resolved" style="padding: 10px 20px; font-size: 16px; font-weight: 600;">
                                     <i class="fas fa-check-circle" style="margin-right: 6px;"></i>
-                                    已解决
+                                    <span data-i18n="resolved">Resolved</span>
                                 </span>
                             ` : ''}
                         </div>
@@ -1795,16 +2087,16 @@
                     <div class="detail-row full-width">
                         <div class="detail-label">
                             <i class="fas fa-info-circle" style="margin-right: 8px; color: #00d4ff;"></i>
-                            告警描述
+                            <span data-i18n="alarmDescription">Alarm Description</span>
                         </div>
-                        <div class="detail-value" style="font-size: 20px; line-height: 1.5; color: #fff;">${alarm.description}</div>
+                        <div class="detail-value" style="font-size: 20px; line-height: 1.5; color: #fff;">${translateAlarmText(alarm.description)}</div>
                     </div>
                     
                     <!-- 数值信息 -->
                     <div class="detail-row" style="background: rgba(239, 68, 68, 0.05); border-color: rgba(239, 68, 68, 0.2);">
                         <div class="detail-label">
                             <i class="fas fa-chart-line" style="margin-right: 8px; color: #ef4444;"></i>
-                            当前值
+                            <span data-i18n="currentValue">Current Value</span>
                         </div>
                         <div class="detail-value" style="font-size: 20px; color: #ef4444; font-weight: 600;">${alarm.currentValue}</div>
                     </div>
@@ -1812,7 +2104,7 @@
                     <div class="detail-row" style="background: rgba(245, 158, 11, 0.05); border-color: rgba(245, 158, 11, 0.2);">
                         <div class="detail-label">
                             <i class="fas fa-exclamation" style="margin-right: 8px; color: #f59e0b;"></i>
-                            阈值
+                            <span data-i18n="threshold">Threshold</span>
                         </div>
                         <div class="detail-value" style="font-size: 20px; color: #f59e0b; font-weight: 600;">${alarm.threshold}</div>
                     </div>
@@ -1821,7 +2113,7 @@
                     <div class="detail-row">
                         <div class="detail-label">
                             <i class="fas fa-clock" style="margin-right: 8px; color: #00d4ff;"></i>
-                            告警时间
+                            <span data-i18n="alarmTime">Alarm Time</span>
                         </div>
                         <div class="detail-value" style="font-size: 18px;">${alarm.time}</div>
                     </div>
@@ -1829,7 +2121,7 @@
                         <div class="detail-row">
                             <div class="detail-label">
                                 <i class="fas fa-check-circle" style="margin-right: 8px; color: #10b981;"></i>
-                                消警时间
+                                <span data-i18n="resolveTimeLabel">Resolve Time</span>
                             </div>
                             <div class="detail-value" style="font-size: 18px; color: #10b981;">${alarm.resolveTime}</div>
                         </div>
@@ -1837,7 +2129,7 @@
                         <div class="detail-row" style="opacity: 0.5;">
                             <div class="detail-label">
                                 <i class="fas fa-times-circle" style="margin-right: 8px; color: #666;"></i>
-                                消警时间
+                                <span data-i18n="resolveTimeLabel">Resolve Time</span>
                             </div>
                             <div class="detail-value" style="font-size: 18px; color: #666;">未解决</div>
                         </div>
@@ -1872,9 +2164,13 @@
         function resolveAlarm(alarmId) {
             const alarm = allAlarms.find(a => a.id === alarmId);
             if (alarm && alarm.status === 'unresolved') {
+                const title = getTouchscreenTranslation('resolveAlarmTitle');
+                const alarmTypeText = translateAlarmText(alarm.type);
+                const message = getTouchscreenTranslation('resolveAlarmMessage', { type: alarmTypeText });
+
                 showConfirmModal(
-                    '解决告警',
-                    `您确定要解决告警"${alarm.type}"吗？此操作不可撤销。`,
+                    title,
+                    message,
                     function() {
                         alarm.status = 'resolved';
                         alarm.statusText = '已解决';
@@ -1974,17 +2270,69 @@
             <div class="logout-icon">
                 <i class="fas fa-sign-out-alt"></i>
             </div>
-            <div class="logout-title" id="logoutTitle">退出登录</div>
-            <div class="logout-message" id="logoutMessage">您确定要退出当前账户吗？退出后需要重新登录。</div>
+            <div class="logout-title" id="logoutTitle"><span data-i18n="logoutTitle">Logout</span></div>
+            <div class="logout-message" id="logoutMessage"><span data-i18n="logoutMessage">Are you sure you want to logout?</span></div>
             <div class="logout-buttons">
                 <button class="logout-btn-action cancel" id="logoutCancelBtn" onclick="closeLogoutModal()">
-                    <i class="fas fa-times"></i> 取消
+                    <i class="fas fa-times"></i> <span data-i18n="cancel">Cancel</span>
                 </button>
                 <button class="logout-btn-action confirm" id="logoutConfirmBtn" onclick="confirmLogout()">
-                    <i class="fas fa-sign-out-alt"></i> 退出
+                    <i class="fas fa-sign-out-alt"></i> <span data-i18n="logoutConfirm">Logout</span>
                 </button>
             </div>
         </div>
     </div>
+    <!-- 页面过渡效果 -->
+    <link rel="stylesheet" href="page-transition.css">
+    <script src="page-transition.js"></script>
+    <script src="touchscreen-i18n.js"></script>
+    <script src="common-header-scripts.js">
+        // ========== 国际化初始化 ==========
+
+        // 监听语言切换事件
+        window.addEventListener('languageChanged', function(e) {
+            console.log('页面接收到语言切换事件:', e.detail.lang);
+
+            // 更新HTML lang属性
+            document.documentElement.lang = e.detail.lang === 'zh' ? 'zh-CN' : 'en';
+
+            // 重新应用翻译到所有元素
+            if (typeof applyTouchscreenTranslations === 'function') {
+                applyTouchscreenTranslations();
+            }
+        });
+
+        // 页面加载时初始化语言
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentLang = getTouchscreenLang();
+            console.log('当前页面语言:', currentLang);
+
+            // 设置HTML lang属性
+            document.documentElement.lang = currentLang === 'zh' ? 'zh-CN' : 'en';
+
+            // HTML默认是英文,只有当前语言是中文时才需要翻译
+            if (currentLang === 'zh' && typeof applyTouchscreenTranslations === 'function') {
+                applyTouchscreenTranslations();
+            }
+
+            // 更新语言切换器的激活状态
+            document.querySelectorAll('.lang-option').forEach(option => {
+                const optionLang = option.getAttribute('onclick').includes("'zh'") ? 'zh' : 'en';
+                if (optionLang === currentLang) {
+                    option.classList.add('active');
+                } else {
+                    option.classList.remove('active');
+                }
+            });
+        });
+
+    
+        // 监听语言切换事件，更新分页
+        window.addEventListener('languageChanged', function(e) {
+            updatePagination();
+            renderAlarmTable(); // 重新渲染表格以更新级别徽章
+        });
+
+    </script>
 </body>
 </html>

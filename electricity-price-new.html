@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>电价设置 - AlwaysControl Technology</title>
+    <title data-translate="elecPricePageTitle">电价设置</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
     <style>
@@ -37,7 +37,8 @@
 
         .container {
             padding: 24px;
-            max-width: 1600px;
+            /* max-width: 1600px; */
+            width: 100%;
             margin: 0 auto;
         }
 
@@ -287,6 +288,7 @@
         .action-buttons {
             display: flex;
             gap: 8px;
+            justify-content: center;
         }
 
         /* 站点卡片 */
@@ -1069,15 +1071,15 @@
             <div class="tabs">
                 <button class="tab-btn active" onclick="switchTab('consumption-templates')">
                     <i class="fas fa-download"></i>
-                    购电模版
+                    <span data-translate="elecPriceTabConsumption">购电模板</span>
                 </button>
                 <button class="tab-btn" onclick="switchTab('feedin-templates')">
                     <i class="fas fa-upload"></i>
-                    上网模版
+                    <span data-translate="elecPriceTabFeedin">上网模板</span>
                 </button>
                 <button class="tab-btn" onclick="switchTab('sites')">
                     <i class="fas fa-building"></i>
-                    电站配置
+                    <span data-translate="elecPriceTabSiteConfig">电站配置</span>
                 </button>
             </div>
 
@@ -1088,7 +1090,7 @@
                         <div class="dropdown" id="createDropdownConsumption">
                             <button class="dropdown-btn" onclick="toggleCreateDropdown('consumption')">
                                 <i class="fas fa-plus"></i>
-                                新建规则
+                                <span data-translate="elecPriceBtnNewRule">新建规则</span>
                                 <i class="fas fa-chevron-down"></i>
                             </button>
                             <div class="dropdown-menu">
@@ -1096,13 +1098,13 @@
                                     <div class="dropdown-item-icon">
                                         <i class="fas fa-cube"></i>
                                     </div>
-                                    <div class="dropdown-item-text">从模版创建</div>
+                                    <div class="dropdown-item-text" data-translate="elecPriceCreateModeTemplate">从模版创建</div>
                                 </div>
                                 <div class="dropdown-item" onclick="selectCreateMode('custom', 'consumption')">
                                     <div class="dropdown-item-icon">
                                         <i class="fas fa-pencil-alt"></i>
                                     </div>
-                                    <div class="dropdown-item-text">自定义规则</div>
+                                    <div class="dropdown-item-text" data-translate="elecPriceCreateModeCustom">自定义创建</div>
                                 </div>
                             </div>
                         </div>
@@ -1111,12 +1113,12 @@
                     <table class="data-table">
                         <thead>
                             <tr>
-                                <th>模版名称</th>
-                                <th>类型</th>
-                                <th>描述</th>
-                                <th>已应用站点</th>
-                                <th>创建时间</th>
-                                <th>操作</th>
+                                <th data-translate="elecPriceTableHeaderName">模版名称</th>
+                                <th data-translate="elecPriceTableHeaderType">电价类型</th>
+                                <th data-translate="elecPriceTableHeaderDesc">描述</th>
+                                <th data-translate="elecPriceTableHeaderAppliedSites">已应用站点</th>
+                                <th data-translate="elecPriceTableHeaderCreateTime">创建时间</th>
+                                <th data-translate="elecPriceTableHeaderActions">操作</th>
                             </tr>
                         </thead>
                         <tbody id="consumptionTemplatesTableBody">
@@ -1133,7 +1135,7 @@
                         <div class="dropdown" id="createDropdownFeedin">
                             <button class="dropdown-btn" onclick="toggleCreateDropdown('feed-in')">
                                 <i class="fas fa-plus"></i>
-                                新建规则
+                                <span data-translate="elecPriceBtnNewRule">新建规则</span>
                                 <i class="fas fa-chevron-down"></i>
                             </button>
                             <div class="dropdown-menu">
@@ -1141,13 +1143,13 @@
                                     <div class="dropdown-item-icon">
                                         <i class="fas fa-cube"></i>
                                     </div>
-                                    <div class="dropdown-item-text">从模版创建</div>
+                                    <div class="dropdown-item-text" data-translate="elecPriceCreateModeTemplate">从模版创建</div>
                                 </div>
                                 <div class="dropdown-item" onclick="selectCreateMode('custom', 'feed-in')">
                                     <div class="dropdown-item-icon">
                                         <i class="fas fa-pencil-alt"></i>
                                     </div>
-                                    <div class="dropdown-item-text">自定义规则</div>
+                                    <div class="dropdown-item-text" data-translate="elecPriceCreateModeCustom">自定义创建</div>
                                 </div>
                             </div>
                         </div>
@@ -1156,12 +1158,12 @@
                     <table class="data-table">
                         <thead>
                             <tr>
-                                <th>模版名称</th>
-                                <th>类型</th>
-                                <th>描述</th>
-                                <th>已应用站点</th>
-                                <th>创建时间</th>
-                                <th>操作</th>
+                                <th data-translate="elecPriceTableHeaderName">模版名称</th>
+                                <th data-translate="elecPriceTableHeaderType">电价类型</th>
+                                <th data-translate="elecPriceTableHeaderDesc">描述</th>
+                                <th data-translate="elecPriceTableHeaderAppliedSites">已应用站点</th>
+                                <th data-translate="elecPriceTableHeaderCreateTime">创建时间</th>
+                                <th data-translate="elecPriceTableHeaderActions">操作</th>
                             </tr>
                         </thead>
                         <tbody id="feedinTemplatesTableBody">
@@ -1175,7 +1177,7 @@
             <div class="tab-content" id="sites-tab">
                 <div class="card">
                     <div class="card-header">
-                        <h2 class="card-title">电站电价配置</h2>
+                        <h2 class="card-title" data-translate="elecPriceSiteConfigTitle">电站电价配置</h2>
                     </div>
                     <div class="site-list" id="siteList">
                         <!-- 电站列表由JS渲染 -->
@@ -1189,7 +1191,7 @@
     <div class="modal" id="createModeModal">
         <div class="modal-content" style="max-width: 700px;">
             <div class="modal-header">
-                <h3 class="modal-title">新建电价模版</h3>
+                <h3 class="modal-title" data-translate="elecPriceModalTitleNewTemplate">新建电价模版</h3>
                 <button class="modal-close" onclick="closeCreateModeModal()">
                     <i class="fas fa-times"></i>
                 </button>
@@ -1200,15 +1202,15 @@
                         <div class="mode-icon">
                             <i class="fas fa-layer-group"></i>
                         </div>
-                        <h4 class="mode-title">从模版创建</h4>
-                        <p class="mode-desc">选择预设的电价模版，快速创建常用配置</p>
+                        <h4 class="mode-title" data-translate="elecPriceCreateModeTemplate">从模版创建</h4>
+                        <p class="mode-desc" data-translate="elecPriceCreateModeTemplateDesc">选择预设的电价模版，快速创建常用配置</p>
                     </div>
                     <div class="mode-card" onclick="openCustomTemplateModal()">
                         <div class="mode-icon">
                             <i class="fas fa-sliders-h"></i>
                         </div>
-                        <h4 class="mode-title">自定义创建</h4>
-                        <p class="mode-desc">完全自定义配置，灵活设置时段和策略</p>
+                        <h4 class="mode-title" data-translate="elecPriceCreateModeCustom">自定义创建</h4>
+                        <p class="mode-desc" data-translate="elecPriceCreateModeCustomDesc">完全自定义配置，灵活设置时段和策略</p>
                     </div>
                 </div>
             </div>
@@ -1220,8 +1222,8 @@
         <div class="modal-content">
             <div class="modal-header">
                 <div>
-                    <h3 class="modal-title" id="presetModalTitle">选择预设模版</h3>
-                    <p style="margin: 8px 0 0 0; font-size: 13px; color: #64748b;">选择一个预设电价模版作为起点</p>
+                    <h3 class="modal-title" id="presetModalTitle" data-translate="elecPriceModalTitleSelectPreset">选择预设模版</h3>
+                    <p style="margin: 8px 0 0 0; font-size: 13px; color: #64748b;" data-translate="elecPriceModalDescSelectPreset">选择一个预设电价模版作为起点</p>
                 </div>
                 <button class="modal-close" onclick="closePresetTemplateModal()">
                     <i class="fas fa-times"></i>
@@ -1231,10 +1233,10 @@
                 <div id="presetTemplatesContainer" style="display: grid; gap: 12px;"></div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" onclick="closePresetTemplateModal()">取消</button>
+                <button class="btn btn-secondary" onclick="closePresetTemplateModal()" data-translate="elecPriceBtnCancel">取消</button>
                 <button class="btn btn-primary" id="applyPresetBtn" onclick="applyPresetTemplate()" style="display: none;">
                     <i class="fas fa-check"></i>
-                    使用此模版
+                    <span data-translate="elecPriceBtnUseTemplate">使用此模版</span>
                 </button>
             </div>
         </div>
@@ -1244,7 +1246,7 @@
     <div class="modal" id="customTemplateModal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="customModalTitle">自定义创建模版</h3>
+                <h3 class="modal-title" id="customModalTitle" data-translate="elecPriceModalTitleCustomCreate">自定义创建模版</h3>
                 <button class="modal-close" onclick="closeCustomTemplateModal()">
                     <i class="fas fa-times"></i>
                 </button>
@@ -1252,20 +1254,20 @@
             <div class="modal-body">
                 <form id="templateForm">
                     <div class="form-section">
-                        <h4 class="form-section-title">基本信息</h4>
+                        <h4 class="form-section-title" data-translate="elecPriceFormSectionBasicInfo">基本信息</h4>
 
                         <!-- 模版用途（隐藏字段，由Tab自动确定） -->
                         <input type="hidden" id="templatePurpose" required>
 
                         <div class="form-row">
                             <div class="form-group">
-                                <label class="form-label required">模版名称</label>
-                                <input type="text" class="form-input" id="templateName" placeholder="如：夏季居民阶梯电价" required>
+                                <label class="form-label required" data-translate="elecPriceFormLabelTemplateName">模版名称</label>
+                                <input type="text" class="form-input" id="templateName" data-translate-placeholder="elecPriceFormPlaceholderTemplateName" placeholder="如：夏季居民阶梯电价" required>
                             </div>
                             <div class="form-group">
-                                <label class="form-label required">策略类型</label>
+                                <label class="form-label required" data-translate="elecPriceFormLabelTemplateType">策略类型</label>
                                 <select class="form-select" id="templateType" required onchange="onTypeChange()" disabled>
-                                    <option value="">请先选择模版用途</option>
+                                    <option value="" data-translate="elecPriceFormPlaceholderSelectPurpose">请先选择模版用途</option>
                                 </select>
                             </div>
                         </div>
@@ -1277,22 +1279,22 @@
                             <div style="background: #f8fafc; padding: 16px; border-radius: 8px;">
                                 <!-- 策略类型选择 -->
                                 <div style="margin-bottom: 16px;">
-                                    <label style="font-size: 14px; color: #374151; font-weight: 500; margin-bottom: 12px; display: block;">策略类型</label>
+                                    <label style="font-size: 14px; color: #374151; font-weight: 500; margin-bottom: 12px; display: block;" data-translate="elecPriceFormLabelStrategyType">策略类型</label>
                                     <div style="display: flex; gap: 16px; align-items: center;">
                                         <label style="display: flex; align-items: center; cursor: pointer;">
                                             <input type="radio" name="periodStrategyMode" value="fixed" checked onchange="switchPeriodStrategyMode('fixed')" style="margin-right: 6px; width: 16px; height: 16px; cursor: pointer;">
-                                            <span style="font-size: 14px; color: #374151;">固定</span>
-                                            <i class="fas fa-info-circle" style="color: #9ca3af; margin-left: 4px; font-size: 12px;" title="全年使用同一套时段配置"></i>
+                                            <span style="font-size: 14px; color: #374151;" data-translate="elecPriceModeFixed">固定</span>
+                                            <i class="fas fa-info-circle" style="color: #9ca3af; margin-left: 4px; font-size: 12px;" data-translate-title="elecPriceModeFixedDesc" title="全年使用同一套时段配置"></i>
                                         </label>
                                         <label style="display: flex; align-items: center; cursor: pointer;">
                                             <input type="radio" name="periodStrategyMode" value="monthly" onchange="switchPeriodStrategyMode('monthly')" style="margin-right: 6px; width: 16px; height: 16px; cursor: pointer;">
-                                            <span style="font-size: 14px; color: #374151;">逐月</span>
-                                            <i class="fas fa-info-circle" style="color: #9ca3af; margin-left: 4px; font-size: 12px;" title="每个月使用不同的时段配置"></i>
+                                            <span style="font-size: 14px; color: #374151;" data-translate="elecPriceModeMonthly">逐月</span>
+                                            <i class="fas fa-info-circle" style="color: #9ca3af; margin-left: 4px; font-size: 12px;" data-translate-title="elecPriceModeMonthlyDesc" title="每个月使用不同的时段配置"></i>
                                         </label>
                                         <label style="display: flex; align-items: center; cursor: pointer;">
                                             <input type="radio" name="periodStrategyMode" value="seasonal" onchange="switchPeriodStrategyMode('seasonal')" style="margin-right: 6px; width: 16px; height: 16px; cursor: pointer;">
-                                            <span style="font-size: 14px; color: #374151;">分季节</span>
-                                            <i class="fas fa-info-circle" style="color: #9ca3af; margin-left: 4px; font-size: 12px;" title="按季节使用不同的时段配置"></i>
+                                            <span style="font-size: 14px; color: #374151;" data-translate="elecPriceModeSeasonal">分季节</span>
+                                            <i class="fas fa-info-circle" style="color: #9ca3af; margin-left: 4px; font-size: 12px;" data-translate-title="elecPriceModeSeasonalDesc" title="按季节使用不同的时段配置"></i>
                                         </label>
                                     </div>
                                 </div>
@@ -1301,25 +1303,25 @@
                                 <div id="periodSeasonConfigArea" style="display: none; margin-bottom: 16px;">
                                     <div id="periodSeasonConfigList"></div>
                                     <button type="button" class="btn btn-sm btn-primary" onclick="addPeriodSeasonInline()">
-                                        <i class="fas fa-plus"></i> 添加季节
+                                        <i class="fas fa-plus"></i> <span data-translate="elecPriceBtnAddSeason">添加季节</span>
                                     </button>
                                 </div>
 
                                 <!-- 月份标签页（仅在逐月模式下显示） -->
                                 <div id="periodMonthlyTabs" style="display: none; margin-bottom: 16px;">
                                     <div style="display: flex; gap: 4px; flex-wrap: wrap; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px;">
-                                        <button type="button" class="period-month-tab active" data-month="1" onclick="switchPeriodMonth(1)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #3b82f6; border-bottom: 2px solid #3b82f6; margin-bottom: -10px;">一月</button>
-                                        <button type="button" class="period-month-tab" data-month="2" onclick="switchPeriodMonth(2)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;">二月</button>
-                                        <button type="button" class="period-month-tab" data-month="3" onclick="switchPeriodMonth(3)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;">三月</button>
-                                        <button type="button" class="period-month-tab" data-month="4" onclick="switchPeriodMonth(4)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;">四月</button>
-                                        <button type="button" class="period-month-tab" data-month="5" onclick="switchPeriodMonth(5)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;">五月</button>
-                                        <button type="button" class="period-month-tab" data-month="6" onclick="switchPeriodMonth(6)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;">六月</button>
-                                        <button type="button" class="period-month-tab" data-month="7" onclick="switchPeriodMonth(7)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;">七月</button>
-                                        <button type="button" class="period-month-tab" data-month="8" onclick="switchPeriodMonth(8)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;">八月</button>
-                                        <button type="button" class="period-month-tab" data-month="9" onclick="switchPeriodMonth(9)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;">九月</button>
-                                        <button type="button" class="period-month-tab" data-month="10" onclick="switchPeriodMonth(10)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;">十月</button>
-                                        <button type="button" class="period-month-tab" data-month="11" onclick="switchPeriodMonth(11)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;">十一月</button>
-                                        <button type="button" class="period-month-tab" data-month="12" onclick="switchPeriodMonth(12)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;">十二月</button>
+                                        <button type="button" class="period-month-tab active" data-month="1" onclick="switchPeriodMonth(1)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #3b82f6; border-bottom: 2px solid #3b82f6; margin-bottom: -10px;" data-translate="elecPriceMonthJan">一月</button>
+                                        <button type="button" class="period-month-tab" data-month="2" onclick="switchPeriodMonth(2)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;" data-translate="elecPriceMonthFeb">二月</button>
+                                        <button type="button" class="period-month-tab" data-month="3" onclick="switchPeriodMonth(3)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;" data-translate="elecPriceMonthMar">三月</button>
+                                        <button type="button" class="period-month-tab" data-month="4" onclick="switchPeriodMonth(4)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;" data-translate="elecPriceMonthApr">四月</button>
+                                        <button type="button" class="period-month-tab" data-month="5" onclick="switchPeriodMonth(5)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;" data-translate="elecPriceMonthMay">五月</button>
+                                        <button type="button" class="period-month-tab" data-month="6" onclick="switchPeriodMonth(6)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;" data-translate="elecPriceMonthJun">六月</button>
+                                        <button type="button" class="period-month-tab" data-month="7" onclick="switchPeriodMonth(7)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;" data-translate="elecPriceMonthJul">七月</button>
+                                        <button type="button" class="period-month-tab" data-month="8" onclick="switchPeriodMonth(8)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;" data-translate="elecPriceMonthAug">八月</button>
+                                        <button type="button" class="period-month-tab" data-month="9" onclick="switchPeriodMonth(9)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;" data-translate="elecPriceMonthSep">九月</button>
+                                        <button type="button" class="period-month-tab" data-month="10" onclick="switchPeriodMonth(10)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;" data-translate="elecPriceMonthOct">十月</button>
+                                        <button type="button" class="period-month-tab" data-month="11" onclick="switchPeriodMonth(11)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;" data-translate="elecPriceMonthNov">十一月</button>
+                                        <button type="button" class="period-month-tab" data-month="12" onclick="switchPeriodMonth(12)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;" data-translate="elecPriceMonthDec">十二月</button>
                                     </div>
                                 </div>
 
@@ -1333,9 +1335,9 @@
 
                             <div style="margin-top: 16px;">
                                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
-                                    <p style="font-size: 13px; color: #64748b; margin: 0;">选择时段类型，然后为该类型添加一个或多个时间段</p>
+                                    <p style="font-size: 13px; color: #64748b; margin: 0;" data-translate="elecPricePeriodInstruction">选择时段类型，然后为该类型添加一个或多个时间段</p>
                                     <button type="button" class="btn btn-sm" style="background: #f8fafc; color: #475569; border: 1px solid #e2e8f0;" onclick="openPeriodTypeManager()">
-                                        <i class="fas fa-cog"></i> 管理时段类型
+                                        <i class="fas fa-cog"></i> <span data-translate="elecPriceBtnManagePeriodTypes">管理时段类型</span>
                                     </button>
                                 </div>
 
@@ -1350,7 +1352,7 @@
                                 <!-- 24小时时段覆盖情况 -->
                                 <div id="timelineVisualization" style="margin-top: 20px; padding: 16px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px;">
                                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-                                        <h4 style="font-size: 13px; font-weight: 600; color: #374151; margin: 0;">24小时时段覆盖情况</h4>
+                                        <h4 style="font-size: 13px; font-weight: 600; color: #374151; margin: 0;" data-translate="elecPeriodCoverageTitle">24小时时段覆盖情况</h4>
                                         <div id="coverageStats" style="font-size: 12px; color: #64748b;">
                                             <!-- 覆盖率统计 -->
                                         </div>
@@ -1387,22 +1389,22 @@
                             <div style="background: #f8fafc; padding: 16px; border-radius: 8px;">
                                 <!-- 时段配置模式选择 -->
                                 <div style="margin-bottom: 16px;">
-                                    <label style="font-size: 14px; color: #374151; font-weight: 500; margin-bottom: 12px; display: block;">时段配置</label>
+                                    <label style="font-size: 14px; color: #374151; font-weight: 500; margin-bottom: 12px; display: block;" data-translate="elecPriceFormSectionTierConfig">时段配置</label>
                                     <div style="display: flex; gap: 16px; align-items: center;">
                                         <label style="display: flex; align-items: center; cursor: pointer;">
                                             <input type="radio" name="tierPeriodMode" value="fixed" checked onchange="switchPeriodMode('fixed')" style="margin-right: 6px; width: 16px; height: 16px; cursor: pointer;">
-                                            <span style="font-size: 14px; color: #374151;">固定</span>
-                                            <i class="fas fa-info-circle" style="color: #9ca3af; margin-left: 4px; font-size: 12px;" title="全年使用同一套阶梯标准"></i>
+                                            <span style="font-size: 14px; color: #374151;" data-translate="elecPriceModeFixed">固定</span>
+                                            <i class="fas fa-info-circle" style="color: #9ca3af; margin-left: 4px; font-size: 12px;" data-translate-title="elecPriceModeFixedDesc" title="全年使用同一套阶梯标准"></i>
                                         </label>
                                         <label style="display: flex; align-items: center; cursor: pointer;">
                                             <input type="radio" name="tierPeriodMode" value="monthly" onchange="switchPeriodMode('monthly')" style="margin-right: 6px; width: 16px; height: 16px; cursor: pointer;">
-                                            <span style="font-size: 14px; color: #374151;">逐月</span>
-                                            <i class="fas fa-info-circle" style="color: #9ca3af; margin-left: 4px; font-size: 12px;" title="每个月使用不同的阶梯标准"></i>
+                                            <span style="font-size: 14px; color: #374151;" data-translate="elecPriceModeMonthly">逐月</span>
+                                            <i class="fas fa-info-circle" style="color: #9ca3af; margin-left: 4px; font-size: 12px;" data-translate-title="elecPriceModeMonthlyDesc" title="每个月使用不同的阶梯标准"></i>
                                         </label>
                                         <label style="display: flex; align-items: center; cursor: pointer;">
                                             <input type="radio" name="tierPeriodMode" value="seasonal" onchange="switchPeriodMode('seasonal')" style="margin-right: 6px; width: 16px; height: 16px; cursor: pointer;">
-                                            <span style="font-size: 14px; color: #374151;">分季节</span>
-                                            <i class="fas fa-info-circle" style="color: #9ca3af; margin-left: 4px; font-size: 12px;" title="按季节使用不同的阶梯标准"></i>
+                                            <span style="font-size: 14px; color: #374151;" data-translate="elecPriceModeSeasonal">分季节</span>
+                                            <i class="fas fa-info-circle" style="color: #9ca3af; margin-left: 4px; font-size: 12px;" data-translate-title="elecPriceModeSeasonalDesc" title="按季节使用不同的阶梯标准"></i>
                                         </label>
                                     </div>
                                 </div>
@@ -1411,25 +1413,25 @@
                                 <div id="seasonConfigArea" style="display: none; margin-bottom: 16px;">
                                     <div id="seasonConfigList"></div>
                                     <button type="button" class="btn btn-sm btn-primary" onclick="addSeasonInline()">
-                                        <i class="fas fa-plus"></i> 添加季节
+                                        <i class="fas fa-plus"></i> <span data-translate="elecPriceBtnAddSeason">添加季节</span>
                                     </button>
                                 </div>
 
                                 <!-- 月份标签页（仅在逐月模式下显示） -->
                                 <div id="monthlyTabs" style="display: none; margin-bottom: 16px;">
                                     <div style="display: flex; gap: 4px; flex-wrap: wrap; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px;">
-                                        <button type="button" class="month-tab active" data-month="1" onclick="switchMonth(1)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #3b82f6; border-bottom: 2px solid #3b82f6; margin-bottom: -10px;">一月</button>
-                                        <button type="button" class="month-tab" data-month="2" onclick="switchMonth(2)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;">二月</button>
-                                        <button type="button" class="month-tab" data-month="3" onclick="switchMonth(3)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;">三月</button>
-                                        <button type="button" class="month-tab" data-month="4" onclick="switchMonth(4)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;">四月</button>
-                                        <button type="button" class="month-tab" data-month="5" onclick="switchMonth(5)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;">五月</button>
-                                        <button type="button" class="month-tab" data-month="6" onclick="switchMonth(6)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;">六月</button>
-                                        <button type="button" class="month-tab" data-month="7" onclick="switchMonth(7)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;">七月</button>
-                                        <button type="button" class="month-tab" data-month="8" onclick="switchMonth(8)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;">八月</button>
-                                        <button type="button" class="month-tab" data-month="9" onclick="switchMonth(9)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;">九月</button>
-                                        <button type="button" class="month-tab" data-month="10" onclick="switchMonth(10)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;">十月</button>
-                                        <button type="button" class="month-tab" data-month="11" onclick="switchMonth(11)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;">十一月</button>
-                                        <button type="button" class="month-tab" data-month="12" onclick="switchMonth(12)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;">十二月</button>
+                                        <button type="button" class="month-tab active" data-month="1" onclick="switchMonth(1)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #3b82f6; border-bottom: 2px solid #3b82f6; margin-bottom: -10px;" data-translate="elecPriceMonthJan">一月</button>
+                                        <button type="button" class="month-tab" data-month="2" onclick="switchMonth(2)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;" data-translate="elecPriceMonthFeb">二月</button>
+                                        <button type="button" class="month-tab" data-month="3" onclick="switchMonth(3)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;" data-translate="elecPriceMonthMar">三月</button>
+                                        <button type="button" class="month-tab" data-month="4" onclick="switchMonth(4)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;" data-translate="elecPriceMonthApr">四月</button>
+                                        <button type="button" class="month-tab" data-month="5" onclick="switchMonth(5)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;" data-translate="elecPriceMonthMay">五月</button>
+                                        <button type="button" class="month-tab" data-month="6" onclick="switchMonth(6)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;" data-translate="elecPriceMonthJun">六月</button>
+                                        <button type="button" class="month-tab" data-month="7" onclick="switchMonth(7)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;" data-translate="elecPriceMonthJul">七月</button>
+                                        <button type="button" class="month-tab" data-month="8" onclick="switchMonth(8)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;" data-translate="elecPriceMonthAug">八月</button>
+                                        <button type="button" class="month-tab" data-month="9" onclick="switchMonth(9)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;" data-translate="elecPriceMonthSep">九月</button>
+                                        <button type="button" class="month-tab" data-month="10" onclick="switchMonth(10)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;" data-translate="elecPriceMonthOct">十月</button>
+                                        <button type="button" class="month-tab" data-month="11" onclick="switchMonth(11)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;" data-translate="elecPriceMonthNov">十一月</button>
+                                        <button type="button" class="month-tab" data-month="12" onclick="switchMonth(12)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;" data-translate="elecPriceMonthDec">十二月</button>
                                     </div>
                                 </div>
 
@@ -1446,7 +1448,7 @@
                                 <!-- 阶梯预览卡片 -->
                                 <div id="tierVisualization" style="margin-bottom: 16px; padding: 16px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px;">
                                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-                                        <h4 style="font-size: 13px; font-weight: 600; color: #374151; margin: 0;">阶梯配置预览</h4>
+                                        <h4 style="font-size: 13px; font-weight: 600; color: #374151; margin: 0;" data-translate="elecPriceTierPreview">阶梯配置预览</h4>
                                         <div id="tierStats" style="font-size: 12px; color: #64748b;">
                                             <!-- 统计信息 -->
                                         </div>
@@ -1467,7 +1469,7 @@
 
                                 <div style="display: flex; gap: 8px;">
                                     <button type="button" class="btn btn-sm btn-primary" onclick="addTier()">
-                                        <i class="fas fa-plus"></i> 新建阶梯
+                                        <i class="fas fa-plus"></i> <span data-translate="elecPriceBtnAddTier">新建阶梯</span>
                                     </button>
                                 </div>
                             </div>
@@ -1480,22 +1482,22 @@
                             <div style="background: #f8fafc; padding: 16px; border-radius: 8px;">
                                 <!-- 策略类型选择 -->
                                 <div style="margin-bottom: 16px;">
-                                    <label style="font-size: 14px; color: #374151; font-weight: 500; margin-bottom: 12px; display: block;">策略类型</label>
+                                    <label style="font-size: 14px; color: #374151; font-weight: 500; margin-bottom: 12px; display: block;" data-translate="elecPriceFormLabelStrategyType">策略类型</label>
                                     <div style="display: flex; gap: 16px; align-items: center;">
                                         <label style="display: flex; align-items: center; cursor: pointer;">
                                             <input type="radio" name="fixedPriceStrategyMode" value="fixed" checked onchange="switchFixedPriceStrategyMode('fixed')" style="margin-right: 6px; width: 16px; height: 16px; cursor: pointer;">
-                                            <span style="font-size: 14px; color: #374151;">固定</span>
-                                            <i class="fas fa-info-circle" style="color: #9ca3af; margin-left: 4px; font-size: 12px;" title="全年使用同一电价"></i>
+                                            <span style="font-size: 14px; color: #374151;" data-translate="elecPriceModeFixed">固定</span>
+                                            <i class="fas fa-info-circle" style="color: #9ca3af; margin-left: 4px; font-size: 12px;" data-translate-title="elecPriceModeFixedDesc" title="全年使用同一电价"></i>
                                         </label>
                                         <label style="display: flex; align-items: center; cursor: pointer;">
                                             <input type="radio" name="fixedPriceStrategyMode" value="monthly" onchange="switchFixedPriceStrategyMode('monthly')" style="margin-right: 6px; width: 16px; height: 16px; cursor: pointer;">
-                                            <span style="font-size: 14px; color: #374151;">逐月</span>
-                                            <i class="fas fa-info-circle" style="color: #9ca3af; margin-left: 4px; font-size: 12px;" title="每个月使用不同的电价"></i>
+                                            <span style="font-size: 14px; color: #374151;" data-translate="elecPriceModeMonthly">逐月</span>
+                                            <i class="fas fa-info-circle" style="color: #9ca3af; margin-left: 4px; font-size: 12px;" data-translate-title="elecPriceModeMonthlyDesc" title="每个月使用不同的电价"></i>
                                         </label>
                                         <label style="display: flex; align-items: center; cursor: pointer;">
                                             <input type="radio" name="fixedPriceStrategyMode" value="seasonal" onchange="switchFixedPriceStrategyMode('seasonal')" style="margin-right: 6px; width: 16px; height: 16px; cursor: pointer;">
-                                            <span style="font-size: 14px; color: #374151;">分季节</span>
-                                            <i class="fas fa-info-circle" style="color: #9ca3af; margin-left: 4px; font-size: 12px;" title="按季节使用不同的电价"></i>
+                                            <span style="font-size: 14px; color: #374151;" data-translate="elecPriceModeSeasonal">分季节</span>
+                                            <i class="fas fa-info-circle" style="color: #9ca3af; margin-left: 4px; font-size: 12px;" data-translate-title="elecPriceModeSeasonalDesc" title="按季节使用不同的电价"></i>
                                         </label>
                                     </div>
                                 </div>
@@ -1504,25 +1506,25 @@
                                 <div id="fixedPriceSeasonConfigArea" style="display: none; margin-bottom: 16px;">
                                     <div id="fixedPriceSeasonConfigList"></div>
                                     <button type="button" class="btn btn-sm btn-primary" onclick="addFixedPriceSeasonInline()">
-                                        <i class="fas fa-plus"></i> 添加季节
+                                        <i class="fas fa-plus"></i> <span data-translate="elecPriceBtnAddSeason">添加季节</span>
                                     </button>
                                 </div>
 
                                 <!-- 月份标签页（仅在逐月模式下显示） -->
                                 <div id="fixedPriceMonthlyTabs" style="display: none; margin-bottom: 16px;">
                                     <div style="display: flex; gap: 4px; flex-wrap: wrap; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px;">
-                                        <button type="button" class="fixed-price-month-tab active" data-month="1" onclick="switchFixedPriceMonth(1)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #3b82f6; border-bottom: 2px solid #3b82f6; margin-bottom: -10px;">一月</button>
-                                        <button type="button" class="fixed-price-month-tab" data-month="2" onclick="switchFixedPriceMonth(2)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;">二月</button>
-                                        <button type="button" class="fixed-price-month-tab" data-month="3" onclick="switchFixedPriceMonth(3)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;">三月</button>
-                                        <button type="button" class="fixed-price-month-tab" data-month="4" onclick="switchFixedPriceMonth(4)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;">四月</button>
-                                        <button type="button" class="fixed-price-month-tab" data-month="5" onclick="switchFixedPriceMonth(5)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;">五月</button>
-                                        <button type="button" class="fixed-price-month-tab" data-month="6" onclick="switchFixedPriceMonth(6)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;">六月</button>
-                                        <button type="button" class="fixed-price-month-tab" data-month="7" onclick="switchFixedPriceMonth(7)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;">七月</button>
-                                        <button type="button" class="fixed-price-month-tab" data-month="8" onclick="switchFixedPriceMonth(8)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;">八月</button>
-                                        <button type="button" class="fixed-price-month-tab" data-month="9" onclick="switchFixedPriceMonth(9)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;">九月</button>
-                                        <button type="button" class="fixed-price-month-tab" data-month="10" onclick="switchFixedPriceMonth(10)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;">十月</button>
-                                        <button type="button" class="fixed-price-month-tab" data-month="11" onclick="switchFixedPriceMonth(11)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;">十一月</button>
-                                        <button type="button" class="fixed-price-month-tab" data-month="12" onclick="switchFixedPriceMonth(12)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;">十二月</button>
+                                        <button type="button" class="fixed-price-month-tab active" data-month="1" onclick="switchFixedPriceMonth(1)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #3b82f6; border-bottom: 2px solid #3b82f6; margin-bottom: -10px;" data-translate="elecPriceMonthJan">一月</button>
+                                        <button type="button" class="fixed-price-month-tab" data-month="2" onclick="switchFixedPriceMonth(2)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;" data-translate="elecPriceMonthFeb">二月</button>
+                                        <button type="button" class="fixed-price-month-tab" data-month="3" onclick="switchFixedPriceMonth(3)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;" data-translate="elecPriceMonthMar">三月</button>
+                                        <button type="button" class="fixed-price-month-tab" data-month="4" onclick="switchFixedPriceMonth(4)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;" data-translate="elecPriceMonthApr">四月</button>
+                                        <button type="button" class="fixed-price-month-tab" data-month="5" onclick="switchFixedPriceMonth(5)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;" data-translate="elecPriceMonthMay">五月</button>
+                                        <button type="button" class="fixed-price-month-tab" data-month="6" onclick="switchFixedPriceMonth(6)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;" data-translate="elecPriceMonthJun">六月</button>
+                                        <button type="button" class="fixed-price-month-tab" data-month="7" onclick="switchFixedPriceMonth(7)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;" data-translate="elecPriceMonthJul">七月</button>
+                                        <button type="button" class="fixed-price-month-tab" data-month="8" onclick="switchFixedPriceMonth(8)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;" data-translate="elecPriceMonthAug">八月</button>
+                                        <button type="button" class="fixed-price-month-tab" data-month="9" onclick="switchFixedPriceMonth(9)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;" data-translate="elecPriceMonthSep">九月</button>
+                                        <button type="button" class="fixed-price-month-tab" data-month="10" onclick="switchFixedPriceMonth(10)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;" data-translate="elecPriceMonthOct">十月</button>
+                                        <button type="button" class="fixed-price-month-tab" data-month="11" onclick="switchFixedPriceMonth(11)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;" data-translate="elecPriceMonthNov">十一月</button>
+                                        <button type="button" class="fixed-price-month-tab" data-month="12" onclick="switchFixedPriceMonth(12)" style="padding: 6px 12px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; color: #6b7280;" data-translate="elecPriceMonthDec">十二月</button>
                                     </div>
                                 </div>
 
@@ -1538,18 +1540,18 @@
 
                     <!-- 模版说明区域 - 放在最底部 -->
                     <div class="form-section">
-                        <h4 class="form-section-title">模版说明</h4>
+                        <h4 class="form-section-title" data-translate="elecPriceFormSectionTemplateDesc">模版说明</h4>
                         <div class="form-group">
-                            <textarea class="form-textarea" id="templateDesc" placeholder="描述此模版的适用场景（可选）" style="min-height: 100px;"></textarea>
+                            <textarea class="form-textarea" id="templateDesc" data-translate-placeholder="elecPriceFormPlaceholderTemplateDesc" placeholder="描述此模版的适用场景（可选）" style="min-height: 100px;"></textarea>
                         </div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" onclick="closeCustomTemplateModal()">取消</button>
+                <button class="btn btn-secondary" onclick="closeCustomTemplateModal()" data-translate="elecPriceBtnCancel">取消</button>
                 <button class="btn btn-primary" onclick="saveTemplate()">
                     <i class="fas fa-save"></i>
-                    保存模版
+                    <span data-translate="elecPriceBtnSaveTemplate">保存模版</span>
                 </button>
             </div>
         </div>
@@ -1559,7 +1561,7 @@
     <div class="modal" id="siteConfigModal">
         <div class="modal-content" style="max-width: 1000px;">
             <div class="modal-header">
-                <h3 class="modal-title" id="siteConfigTitle">配置电站电价</h3>
+                <h3 class="modal-title" id="siteConfigTitle" data-translate="elecPriceModalTitleSiteConfig">配置电站电价</h3>
                 <button class="modal-close" onclick="closeSiteConfigModal()">
                     <i class="fas fa-times"></i>
                 </button>
@@ -1567,7 +1569,7 @@
             <div class="modal-body">
                 <!-- 生效时间 -->
                 <div class="form-group" style="margin-bottom: 24px;">
-                    <label class="form-label required">生效时间</label>
+                    <label class="form-label required" data-translate="elecPriceFormLabelEffectiveTime">生效时间</label>
                     <input type="datetime-local" class="form-input" id="effectiveTime" required>
                 </div>
 
@@ -1575,26 +1577,26 @@
                 <div class="config-tabs">
                     <button class="config-tab active" onclick="switchConfigTab('consumption')">
                         <i class="fas fa-download" style="color: #eb2f96;"></i>
-                        购电配置
+                        <span data-translate="elecPriceConfigTabConsumption">购电配置</span>
                     </button>
                     <button class="config-tab" onclick="switchConfigTab('feedin')">
                         <i class="fas fa-upload" style="color: #1890ff;"></i>
-                        上网配置
+                        <span data-translate="elecPriceConfigTabFeedin">上网配置</span>
                     </button>
                 </div>
 
                 <!-- 购电配置内容 -->
                 <div id="consumptionTabContent" class="config-tab-content active">
                     <div class="form-group">
-                        <label class="form-label required">选择购电模版</label>
+                        <label class="form-label required" data-translate="elecPriceFormLabelConsumptionTemplate">选择购电模版</label>
                         <select class="form-select" id="consumptionTemplate" onchange="onConsumptionTemplateSelect()">
-                            <option value="">请选择购电模版</option>
+                            <option value="" data-translate="elecPriceFormPlaceholderSelectConsumption">请选择购电模版</option>
                         </select>
                     </div>
 
                     <div id="consumptionPriceSection" style="display: none;">
                         <div class="form-group">
-                            <label class="form-label required">购电价格配置</label>
+                            <label class="form-label required" data-translate="elecPriceFormLabelConsumptionPrice">购电价格配置</label>
                             <div id="consumptionPriceContainer"></div>
                         </div>
                     </div>
@@ -1603,25 +1605,25 @@
                 <!-- 上网配置内容 -->
                 <div id="feedinTabContent" class="config-tab-content">
                     <div class="form-group">
-                        <label class="form-label required">选择上网模版</label>
+                        <label class="form-label required" data-translate="elecPriceFormLabelFeedinTemplate">选择上网模版</label>
                         <select class="form-select" id="feedinTemplate" onchange="onFeedinTemplateSelect()">
-                            <option value="">请选择上网模版</option>
+                            <option value="" data-translate="elecPriceFormPlaceholderSelectFeedin">请选择上网模版</option>
                         </select>
                     </div>
 
                     <div id="feedinPriceSection" style="display: none;">
                         <div class="form-group">
-                            <label class="form-label required">上网价格配置</label>
+                            <label class="form-label required" data-translate="elecPriceFormLabelFeedinPrice">上网价格配置</label>
                             <div id="feedinPriceContainer"></div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" onclick="closeSiteConfigModal()">取消</button>
+                <button class="btn btn-secondary" onclick="closeSiteConfigModal()" data-translate="elecPriceBtnCancel">取消</button>
                 <button class="btn btn-success" onclick="saveSiteConfig()">
                     <i class="fas fa-check"></i>
-                    确认配置
+                    <span data-translate="elecPriceBtnConfirmConfig">确认配置</span>
                 </button>
             </div>
         </div>
@@ -1631,7 +1633,7 @@
     <div class="modal" id="periodTypeManagerModal">
         <div class="modal-content" style="max-width: 900px;">
             <div class="modal-header">
-                <h3 class="modal-title">时段类型管理</h3>
+                <h3 class="modal-title" data-translate="elecPriceModalTitlePeriodTypeManage">时段类型管理</h3>
                 <button class="modal-close" onclick="closePeriodTypeManager()">
                     <i class="fas fa-times"></i>
                 </button>
@@ -1641,10 +1643,10 @@
                 <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; margin-bottom: 20px;">
                     <!-- 表头 -->
                     <div style="display: grid; grid-template-columns: 80px 150px 1fr 80px; background: #f8fafc; padding: 12px 16px; border-bottom: 1px solid #e2e8f0;">
-                        <div style="font-size: 14px; font-weight: 600; color: #374151;">序号</div>
-                        <div style="font-size: 14px; font-weight: 600; color: #374151;">颜色</div>
-                        <div style="font-size: 14px; font-weight: 600; color: #374151;">名称</div>
-                        <div style="font-size: 14px; font-weight: 600; color: #374151;">操作</div>
+                        <div style="font-size: 14px; font-weight: 600; color: #374151;" data-translate="elecPricePeriodTypeOrder">序号</div>
+                        <div style="font-size: 14px; font-weight: 600; color: #374151;" data-translate="elecPricePeriodTypeColor">颜色</div>
+                        <div style="font-size: 14px; font-weight: 600; color: #374151;" data-translate="elecPricePeriodTypeName">名称</div>
+                        <div style="font-size: 14px; font-weight: 600; color: #374151;" data-translate="elecPricePeriodTypeAction">操作</div>
                     </div>
 
                     <!-- 表格内容 -->
@@ -1656,13 +1658,13 @@
                 <!-- 添加按钮 -->
                 <div style="text-align: center; margin-bottom: 20px;">
                     <button type="button" class="btn" style="background: #3b82f6; color: white; border: none; padding: 10px 24px; font-size: 14px;" onclick="addNewPeriodTypeRow()">
-                        <i class="fas fa-plus"></i> 增加时段类型
+                        <i class="fas fa-plus"></i> <span data-translate="elecPriceBtnAddPeriodType">增加时段类型</span>
                     </button>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" onclick="closePeriodTypeManager()">
-                    确认
+                    <span data-translate="elecPriceBtnConfirm">确认</span>
                 </button>
             </div>
         </div>
@@ -1677,6 +1679,261 @@
     <script>
         // ==================== 数据模型 ====================
 
+        // 获取类型名称的翻译
+        function getTypeNameTranslation(type) {
+            // 如果getTranslation函数不存在，返回中文默认值
+            if (typeof getTranslation !== 'function') {
+                const defaultNames = {
+                    'peak-valley': '峰谷平尖',
+                    'tou': '分时电价',
+                    'tiered': '阶梯电价',
+                    'fixed': '固定电价'
+                };
+                return defaultNames[type] || '未知类型';
+            }
+
+            const typeKeyMap = {
+                'peak-valley': 'elecPriceTypePeakValley',
+                'tou': 'elecPriceTypeTOU',
+                'tiered': 'elecPriceTypeTiered',
+                'fixed': 'elecPriceTypeFixed'
+            };
+            return getTranslation(typeKeyMap[type] || 'elecPriceTypeFixed');
+        }
+
+        // 模板名称和描述的翻译映射
+        const templateI18n = {
+            // 阶梯电价模板
+            '阶梯电价-固定': {
+                en: 'Tiered Pricing - Fixed',
+                zh: '阶梯电价-固定'
+            },
+            '阶梯电价-逐月': {
+                en: 'Tiered Pricing - Monthly',
+                zh: '阶梯电价-逐月'
+            },
+            '阶梯电价-分季节': {
+                en: 'Tiered Pricing - Seasonal',
+                zh: '阶梯电价-分季节'
+            },
+            // 分时电价模板
+            '分时电价-固定': {
+                en: 'Time-of-Use - Fixed',
+                zh: '分时电价-固定'
+            },
+            '分时电价-逐月': {
+                en: 'Time-of-Use - Monthly',
+                zh: '分时电价-逐月'
+            },
+            '分时电价-分季节': {
+                en: 'Time-of-Use - Seasonal',
+                zh: '分时电价-分季节'
+            },
+            // 固定电价模板
+            '固定电价-固定': {
+                en: 'Fixed Price - Fixed',
+                zh: '固定电价-固定'
+            },
+            '固定电价-逐月': {
+                en: 'Fixed Price - Monthly',
+                zh: '固定电价-逐月'
+            },
+            '固定电价-分季节': {
+                en: 'Fixed Price - Seasonal',
+                zh: '固定电价-分季节'
+            },
+            // 描述文本
+            '全年使用同一套阶梯标准': {
+                en: 'Use the same tier standard all year round',
+                zh: '全年使用同一套阶梯标准'
+            },
+            '每个月使用不同的阶梯标准': {
+                en: 'Different tier standards for each month',
+                zh: '每个月使用不同的阶梯标准'
+            },
+            '按季节使用不同的阶梯标准': {
+                en: 'Different tier standards by season',
+                zh: '按季节使用不同的阶梯标准'
+            },
+            '全年使用同一套峰谷时段': {
+                en: 'Use the same peak-valley periods all year round',
+                zh: '全年使用同一套峰谷时段'
+            },
+            '每个月使用不同的峰谷时段': {
+                en: 'Different peak-valley periods for each month',
+                zh: '每个月使用不同的峰谷时段'
+            },
+            '按季节使用不同的峰谷时段': {
+                en: 'Different peak-valley periods by season',
+                zh: '按季节使用不同的峰谷时段'
+            },
+            '全年单一电价': {
+                en: 'Single price all year round',
+                zh: '全年单一电价'
+            },
+            '每月不同的固定电价': {
+                en: 'Different fixed price for each month',
+                zh: '每月不同的固定电价'
+            },
+            '按季节不同的固定电价': {
+                en: 'Different fixed price by season',
+                zh: '按季节不同的固定电价'
+            },
+            // 上网模板
+            '阶梯上网-固定': {
+                en: 'Tiered Feed-in - Fixed',
+                zh: '阶梯上网-固定'
+            },
+            '阶梯上网-逐月': {
+                en: 'Tiered Feed-in - Monthly',
+                zh: '阶梯上网-逐月'
+            },
+            '阶梯上网-分季节': {
+                en: 'Tiered Feed-in - Seasonal',
+                zh: '阶梯上网-分季节'
+            },
+            '分时上网-固定': {
+                en: 'Time-of-Use Feed-in - Fixed',
+                zh: '分时上网-固定'
+            },
+            '分时上网-逐月': {
+                en: 'Time-of-Use Feed-in - Monthly',
+                zh: '分时上网-逐月'
+            },
+            '分时上网-分季节': {
+                en: 'Time-of-Use Feed-in - Seasonal',
+                zh: '分时上网-分季节'
+            },
+            '固定上网-固定': {
+                en: 'Fixed Feed-in - Fixed',
+                zh: '固定上网-固定'
+            },
+            '固定上网-逐月': {
+                en: 'Fixed Feed-in - Monthly',
+                zh: '固定上网-逐月'
+            },
+            '固定上网-分季节': {
+                en: 'Fixed Feed-in - Seasonal',
+                zh: '固定上网-分季节'
+            },
+            // 预设模板
+            '江苏峰谷平尖电价': {
+                en: 'Jiangsu Peak-Valley-Flat-Sharp Pricing',
+                zh: '江苏峰谷平尖电价'
+            },
+            '适用于江苏地区工商业用电，包含尖峰平谷四个时段': {
+                en: 'For commercial and industrial use in Jiangsu, includes four periods: sharp peak, peak, flat, and valley',
+                zh: '适用于江苏地区工商业用电，包含尖峰平谷四个时段'
+            },
+            '广东分时电价': {
+                en: 'Guangdong Time-of-Use Pricing',
+                zh: '广东分时电价'
+            },
+            '适用于广东地区商业用电，分峰谷两个时段': {
+                en: 'For commercial use in Guangdong, divided into peak and valley periods',
+                zh: '适用于广东地区商业用电，分峰谷两个时段'
+            },
+            '浙江峰谷电价': {
+                en: 'Zhejiang Peak-Valley Pricing',
+                zh: '浙江峰谷电价'
+            },
+            '适用于浙江地区工商业用电': {
+                en: 'For commercial and industrial use in Zhejiang',
+                zh: '适用于浙江地区工商业用电'
+            },
+            '北京峰谷电价': {
+                en: 'Beijing Peak-Valley Pricing',
+                zh: '北京峰谷电价'
+            },
+            '适用于北京地区工商业用电': {
+                en: 'For commercial and industrial use in Beijing',
+                zh: '适用于北京地区工商业用电'
+            },
+            '固定电价模版': {
+                en: 'Fixed Price Template',
+                zh: '固定电价模版'
+            },
+            '适用于居民用电或不分时段的场景': {
+                en: 'For residential use or scenarios without time periods',
+                zh: '适用于居民用电或不分时段的场景'
+            },
+            '无时段划分': {
+                en: 'No time periods',
+                zh: '无时段划分'
+            },
+            // 时段标签
+            '尖峰': {
+                en: 'Sharp Peak',
+                zh: '尖峰'
+            },
+            '尖时段': {
+                en: 'Sharp Peak Period',
+                zh: '尖时段'
+            },
+            '峰时段': {
+                en: 'Peak Period',
+                zh: '峰时段'
+            },
+            '高峰': {
+                en: 'Peak',
+                zh: '高峰'
+            },
+            '平时段': {
+                en: 'Flat Period',
+                zh: '平时段'
+            },
+            '平段': {
+                en: 'Flat',
+                zh: '平段'
+            },
+            '谷时段': {
+                en: 'Valley Period',
+                zh: '谷时段'
+            },
+            '低谷': {
+                en: 'Valley',
+                zh: '低谷'
+            },
+            // 类型名称
+            '阶梯电价': {
+                en: 'Tiered Pricing',
+                zh: '阶梯电价'
+            },
+            '分时电价': {
+                en: 'Time-of-Use',
+                zh: '分时电价'
+            },
+            '固定电价': {
+                en: 'Fixed Price',
+                zh: '固定电价'
+            },
+            // 季节名称
+            '夏季': {
+                en: 'Summer',
+                zh: '夏季'
+            },
+            '冬季': {
+                en: 'Winter',
+                zh: '冬季'
+            },
+            '春秋季': {
+                en: 'Spring and Autumn',
+                zh: '春秋季'
+            }
+        };
+
+        // 获取翻译文本
+        function getTemplateI18nText(text) {
+            if (!text) return text;
+
+            // 如果没有翻译映射或当前语言是中文，返回原文
+            if (!templateI18n[text] || !currentLang || currentLang === 'zh') {
+                return text;
+            }
+
+            // 返回对应语言的翻译，如果没有则返回原文
+            return templateI18n[text][currentLang] || text;
+        }
 
         // 电价模版（只定义结构，不含价格）
         let templates = [
@@ -2295,10 +2552,38 @@
 
         // 电站数据
         let sites = [
-            { id: 'site1', name: '科技园区站', location: '江苏南京', capacity: '2.5MWh', deviceCount: 8 },
-            { id: 'site2', name: '工业园区站', location: '广东深圳', capacity: '3.75MWh', deviceCount: 12 },
-            { id: 'site3', name: '商业中心站', location: '浙江杭州', capacity: '3.1MWh', deviceCount: 10 },
-            { id: 'site4', name: '物流园区站', location: '上海浦东', capacity: '4.7MWh', deviceCount: 15 }
+            {
+                id: 'site1',
+                name: '科技园区站',
+                nameEn: 'Technology Park Station',
+                location: '江苏南京',
+                capacity: '2.5MWh',
+                deviceCount: 8
+            },
+            {
+                id: 'site2',
+                name: '工业园区站',
+                nameEn: 'Industrial Park Station',
+                location: '广东深圳',
+                capacity: '3.75MWh',
+                deviceCount: 12
+            },
+            {
+                id: 'site3',
+                name: '商业中心站',
+                nameEn: 'Business Center Station',
+                location: '浙江杭州',
+                capacity: '3.1MWh',
+                deviceCount: 10
+            },
+            {
+                id: 'site4',
+                name: '物流园区站',
+                nameEn: 'Logistics Park Station',
+                location: '上海浦东',
+                capacity: '4.7MWh',
+                deviceCount: 15
+            }
         ];
 
         // 电站配置（包含模版引用和具体价格）
@@ -2391,20 +2676,70 @@
 
         // 打开预设模版选择模态框
         function openPresetTemplateModal(purpose) {
-            closeCreateModeModal();
+            console.log('openPresetTemplateModal called with purpose:', purpose);
 
-            // 根据模版用途设置动态标题
-            const purposeText = purpose === 'feed-in' ? '上网' : '购电';
-            document.getElementById('presetModalTitle').textContent = `选择预设模版（${purposeText}）`;
+            try {
+                // 先直接打开弹框，确保基本功能正常
+                const modal = document.getElementById('presetTemplateModal');
+                if (!modal) {
+                    console.error('presetTemplateModal element not found');
+                    return;
+                }
 
-            selectedPresetTemplate = null;
-            renderPresetTemplates();
-            document.getElementById('applyPresetBtn').style.display = 'none';
+                // 关闭创建模式弹框
+                try {
+                    closeCreateModeModal();
+                } catch (e) {
+                    console.warn('closeCreateModeModal failed:', e);
+                }
 
-            // 自动选择模版用途
-            selectPurpose(purpose);
+                // 设置标题
+                try {
+                    const purposeText = purpose === 'feed-in' ?
+                        (typeof getTranslation === 'function' ? getTranslation('elecPricePurposeFeedin') : '上网') :
+                        (typeof getTranslation === 'function' ? getTranslation('elecPricePurposeConsumption') : '购电');
+                    const titleText = typeof getTranslation === 'function' ? getTranslation('elecPriceModalTitleSelectPreset') : '选择预设模版';
 
-            document.getElementById('presetTemplateModal').classList.add('active');
+                    const titleElement = document.getElementById('presetModalTitle');
+                    if (titleElement) {
+                        titleElement.textContent = `${titleText}（${purposeText}）`;
+                    }
+                } catch (e) {
+                    console.warn('Title setting failed:', e);
+                }
+
+                // 渲染模版列表
+                try {
+                    selectedPresetTemplate = null;
+                    renderPresetTemplates();
+
+                    const applyBtn = document.getElementById('applyPresetBtn');
+                    if (applyBtn) {
+                        applyBtn.style.display = 'none';
+                    }
+                } catch (e) {
+                    console.warn('renderPresetTemplates failed:', e);
+                }
+
+                // 选择用途
+                try {
+                    selectPurpose(purpose);
+                } catch (e) {
+                    console.warn('selectPurpose failed:', e);
+                }
+
+                // 最后打开弹框
+                modal.classList.add('active');
+                console.log('Preset modal opened successfully');
+
+            } catch (error) {
+                console.error('Error in openPresetTemplateModal:', error);
+                // 即使出错也尝试打开弹框
+                const modal = document.getElementById('presetTemplateModal');
+                if (modal) {
+                    modal.classList.add('active');
+                }
+            }
         }
 
         // 关闭预设模版选择模态框
@@ -2415,60 +2750,128 @@
 
         // 打开自定义创建模态框
         function openCustomTemplateModal(purpose) {
-            closeCreateModeModal();
+            console.log('openCustomTemplateModal called with purpose:', purpose);
 
-            // 根据模版用途设置动态标题
-            const purposeText = purpose === 'feed-in' ? '上网' : '购电';
-            document.getElementById('customModalTitle').textContent = `自定义创建模版（${purposeText}）`;
-
-            document.getElementById('templateForm').reset();
-            document.getElementById('periodsSection').style.display = 'none';
-            document.getElementById('periodsContainer').innerHTML = '';
-            editingTemplateId = null;
-
-            // 根据传入的purpose自动选择模版用途
-            selectPurpose(purpose);
-
-            // 重置季节数据和模式
-            currentPeriodMode = 'fixed';
-            fixedTiers = [];
-            monthlyTiers = { 1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [], 9: [], 10: [], 11: [], 12: [] };
-            seasonConfigs = [
-                {
-                    id: 'season-1',
-                    name: '夏季',
-                    months: [5, 6, 7, 8, 9, 10],
-                    tiers: []
-                },
-                {
-                    id: 'season-2',
-                    name: '非夏季',
-                    months: [11, 12, 1, 2, 3, 4],
-                    tiers: []
+            try {
+                // 先直接打开弹框，确保基本功能正常
+                const modal = document.getElementById('customTemplateModal');
+                if (!modal) {
+                    console.error('customTemplateModal element not found');
+                    return;
                 }
-            ];
-            currentSeasonId = null;
-            seasonCounter = 2;
 
-            // 重置模式按钮状态
-            document.querySelectorAll('.tier-mode-btn').forEach(btn => {
-                if (btn.getAttribute('data-mode') === 'simple') {
-                    btn.classList.add('active');
-                    btn.style.background = '#3b82f6';
-                    btn.style.color = 'white';
-                    btn.style.borderColor = '#3b82f6';
-                } else {
-                    btn.classList.remove('active');
-                    btn.style.background = 'white';
-                    btn.style.color = '#374151';
-                    btn.style.borderColor = '#e2e8f0';
+                // 关闭创建模式弹框
+                try {
+                    closeCreateModeModal();
+                } catch (e) {
+                    console.warn('closeCreateModeModal failed:', e);
                 }
-            });
 
-            // 隐藏季节标签页
-            document.getElementById('seasonTabs').style.display = 'none';
+                // 设置标题
+                try {
+                    const purposeText = purpose === 'feed-in' ?
+                        (typeof getTranslation === 'function' ? getTranslation('elecPricePurposeFeedin') : '上网') :
+                        (typeof getTranslation === 'function' ? getTranslation('elecPricePurposeConsumption') : '购电');
+                    const titleText = typeof getTranslation === 'function' ? getTranslation('elecPriceModalTitleCustomCreate') : '自定义创建模版';
 
-            document.getElementById('customTemplateModal').classList.add('active');
+                    const titleElement = document.getElementById('customModalTitle');
+                    if (titleElement) {
+                        titleElement.textContent = `${titleText}（${purposeText}）`;
+                    }
+                } catch (e) {
+                    console.warn('Title setting failed:', e);
+                }
+
+                // 重置表单
+                try {
+                    const templateForm = document.getElementById('templateForm');
+                    if (templateForm) {
+                        templateForm.reset();
+                    }
+
+                    const periodsSection = document.getElementById('periodsSection');
+                    if (periodsSection) {
+                        periodsSection.style.display = 'none';
+                    }
+
+                    const periodsContainer = document.getElementById('periodsContainer');
+                    if (periodsContainer) {
+                        periodsContainer.innerHTML = '';
+                    }
+
+                    editingTemplateId = null;
+                } catch (e) {
+                    console.warn('Form reset failed:', e);
+                }
+
+                // 选择用途
+                try {
+                    selectPurpose(purpose);
+                } catch (e) {
+                    console.warn('selectPurpose failed:', e);
+                }
+
+                // 重置数据
+                try {
+                    currentPeriodMode = 'fixed';
+                    fixedTiers = [];
+                    monthlyTiers = { 1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [], 9: [], 10: [], 11: [], 12: [] };
+                    seasonConfigs = [
+                        {
+                            id: 'season-1',
+                            name: '夏季',
+                            months: [5, 6, 7, 8, 9, 10],
+                            tiers: []
+                        },
+                        {
+                            id: 'season-2',
+                            name: '非夏季',
+                            months: [11, 12, 1, 2, 3, 4],
+                            tiers: []
+                        }
+                    ];
+                    currentSeasonId = null;
+                    seasonCounter = 2;
+                } catch (e) {
+                    console.warn('Data reset failed:', e);
+                }
+
+                // 重置UI状态
+                try {
+                    document.querySelectorAll('.tier-mode-btn').forEach(btn => {
+                        if (btn.getAttribute('data-mode') === 'simple') {
+                            btn.classList.add('active');
+                            btn.style.background = '#3b82f6';
+                            btn.style.color = 'white';
+                            btn.style.borderColor = '#3b82f6';
+                        } else {
+                            btn.classList.remove('active');
+                            btn.style.background = 'white';
+                            btn.style.color = '#374151';
+                            btn.style.borderColor = '#e2e8f0';
+                        }
+                    });
+
+                    const seasonTabs = document.getElementById('seasonTabs');
+                    if (seasonTabs) {
+                        seasonTabs.style.display = 'none';
+                    }
+                } catch (e) {
+                    console.warn('UI reset failed:', e);
+                }
+
+                // 最后打开弹框
+                modal.classList.add('active');
+                console.log('Custom modal opened successfully');
+
+            } catch (error) {
+                console.error('Error in openCustomTemplateModal:', error);
+                // 即使出错也尝试打开弹框
+                const modal = document.getElementById('customTemplateModal');
+                if (modal) {
+                    modal.classList.add('active');
+                }
+            }
         }
 
         // 关闭自定义创建模态框
@@ -2496,13 +2899,17 @@
 
         // 选择创建模式并打开相应的模态框
         function selectCreateMode(mode, purpose) {
+            console.log('selectCreateMode called:', mode, purpose);
+
             // 关闭下拉菜单
             closeDropdown();
 
             // 根据选择的模式打开相应的模态框
             if (mode === 'preset') {
+                console.log('Opening preset modal for:', purpose);
                 openPresetTemplateModal(purpose);
             } else if (mode === 'custom') {
+                console.log('Opening custom modal for:', purpose);
                 openCustomTemplateModal(purpose);
             }
         }
@@ -2524,9 +2931,16 @@
 
         // 渲染预设模版列表
         function renderPresetTemplates() {
+            console.log('renderPresetTemplates called');
             const container = document.getElementById('presetTemplatesContainer');
 
-            container.innerHTML = presetTemplates.map(preset => {
+            if (!container) {
+                console.error('presetTemplatesContainer not found');
+                return;
+            }
+
+            try {
+                container.innerHTML = presetTemplates.map(preset => {
                 const periodTags = preset.periods.length > 0
                     ? `<div class="preset-periods">
                         ${preset.periods.map(p => {
@@ -2536,23 +2950,30 @@
                             else if (p.type === 'flat') badgeClass = 'badge-primary';
                             else if (p.type === 'valley') badgeClass = 'badge-success';
 
-                            return `<span class="badge ${badgeClass} preset-period-tag">${p.name}</span>`;
+                            return `<span class="badge ${badgeClass} preset-period-tag">${getTemplateI18nText(p.name)}</span>`;
                         }).join('')}
                        </div>`
-                    : '<div class="preset-periods"><span class="badge badge-gray preset-period-tag">无时段划分</span></div>';
+                    : `<div class="preset-periods"><span class="badge badge-gray preset-period-tag">${getTemplateI18nText('无时段划分')}</span></div>`;
+
+                const translatedName = getTemplateI18nText(preset.name);
+                const translatedDesc = getTemplateI18nText(preset.description);
 
                 return `
                     <div class="preset-template-card ${selectedPresetTemplate === preset.id ? 'selected' : ''}"
                          onclick="selectPresetTemplate('${preset.id}')">
                         <div class="preset-header">
-                            <div class="preset-name">${preset.name}</div>
-                            <span class="badge badge-primary">${preset.typeName}</span>
+                            <div class="preset-name">${translatedName}</div>
+                            <span class="badge badge-primary">${getTypeNameTranslation(preset.type)}</span>
                         </div>
-                        <div class="preset-desc">${preset.description}</div>
+                        <div class="preset-desc">${translatedDesc}</div>
                         ${periodTags}
                     </div>
                 `;
-            }).join('');
+                }).join('');
+            } catch (error) {
+                console.error('Error in renderPresetTemplates:', error);
+                container.innerHTML = '<div style="padding: 20px; text-align: center; color: #64748b;">加载模版失败，请刷新页面重试</div>';
+            }
         }
 
         // 选择预设模版
@@ -2650,28 +3071,30 @@
             tbody.innerHTML = consumptionTemplates.map(template => {
                 const appliedSites = siteConfigs.filter(c => c.templateId === template.id);
                 const description = template.description || '暂无描述';
+                const translatedName = getTemplateI18nText(template.name);
+                const translatedDesc = getTemplateI18nText(description);
 
                 return `
                     <tr>
-                        <td><strong>${template.name}</strong></td>
-                        <td><span class="badge badge-primary">${template.typeName}</span></td>
+                        <td><strong>${translatedName}</strong></td>
+                        <td><span class="badge badge-primary">${getTypeNameTranslation(template.type)}</span></td>
                         <td>
-                            <div class="text-truncate" title="${description}">
-                                ${description}
+                            <div class="text-truncate" title="${translatedDesc}">
+                                ${translatedDesc}
                             </div>
                         </td>
-                        <td>${appliedSites.length}个站点</td>
+                        <td>${appliedSites.length} ${getTranslation ? getTranslation('elecPriceSiteUnit') : '个站点'}</td>
                         <td>${template.createTime}</td>
                         <td>
                             <div class="action-buttons">
                                 <button class="btn btn-text" onclick="viewTemplate(${template.id})">
-                                    <i class="fas fa-eye"></i> 查看
+                                    <i class="fas fa-eye"></i> ${getTranslation ? getTranslation('elecPriceBtnView') : '查看'}
                                 </button>
                                 <button class="btn btn-text" onclick="editTemplate(${template.id})">
-                                    <i class="fas fa-edit"></i> 编辑
+                                    <i class="fas fa-edit"></i> ${getTranslation ? getTranslation('elecPriceBtnEdit') : '编辑'}
                                 </button>
                                 <button class="btn btn-text btn-danger" onclick="deleteTemplate(${template.id})">
-                                    <i class="fas fa-trash"></i> 删除
+                                    <i class="fas fa-trash"></i> ${getTranslation ? getTranslation('elecPriceBtnDelete') : '删除'}
                                 </button>
                             </div>
                         </td>
@@ -2707,28 +3130,30 @@
             tbody.innerHTML = feedinTemplates.map(template => {
                 const appliedSites = siteConfigs.filter(c => c.templateId === template.id);
                 const description = template.description || '暂无描述';
+                const translatedName = getTemplateI18nText(template.name);
+                const translatedDesc = getTemplateI18nText(description);
 
                 return `
                     <tr>
-                        <td><strong>${template.name}</strong></td>
-                        <td><span class="badge badge-primary">${template.typeName}</span></td>
+                        <td><strong>${translatedName}</strong></td>
+                        <td><span class="badge badge-primary">${getTypeNameTranslation(template.type)}</span></td>
                         <td>
-                            <div class="text-truncate" title="${description}">
-                                ${description}
+                            <div class="text-truncate" title="${translatedDesc}">
+                                ${translatedDesc}
                             </div>
                         </td>
-                        <td>${appliedSites.length}个站点</td>
+                        <td>${appliedSites.length} ${getTranslation ? getTranslation('elecPriceSiteUnit') : '个站点'}</td>
                         <td>${template.createTime}</td>
                         <td>
                             <div class="action-buttons">
                                 <button class="btn btn-text" onclick="viewTemplate(${template.id})">
-                                    <i class="fas fa-eye"></i> 查看
+                                    <i class="fas fa-eye"></i> ${getTranslation ? getTranslation('elecPriceBtnView') : '查看'}
                                 </button>
                                 <button class="btn btn-text" onclick="editTemplate(${template.id})">
-                                    <i class="fas fa-edit"></i> 编辑
+                                    <i class="fas fa-edit"></i> ${getTranslation ? getTranslation('elecPriceBtnEdit') : '编辑'}
                                 </button>
                                 <button class="btn btn-text" style="color: #ef4444;" onclick="deleteTemplate(${template.id})">
-                                    <i class="fas fa-trash"></i> 删除
+                                    <i class="fas fa-trash"></i> ${getTranslation ? getTranslation('elecPriceBtnDelete') : '删除'}
                                 </button>
                             </div>
                         </td>
@@ -2751,18 +3176,23 @@
             if (purpose === 'consumption') {
                 // 用电电价：支持所有类型
                 typeSelect.innerHTML = `
-                    <option value="">请选择策略类型</option>
-                    <option value="tou">分时电价（峰谷平尖）</option>
-                    <option value="tiered">阶梯电价（按用电量）</option>
-                    <option value="fixed">固定电价</option>
+                    <option value="" data-translate="elecPriceFormPlaceholderSelectType">请选择策略类型</option>
+                    <option value="tou" data-translate="elecPriceTypeTOUFull">分时电价（峰谷平尖）</option>
+                    <option value="tiered" data-translate="elecPriceTypeTieredFull">阶梯电价（按用电量）</option>
+                    <option value="fixed" data-translate="elecPriceTypeFixed">固定电价</option>
                 `;
             } else if (purpose === 'feed-in') {
                 // 上网电价：主要是固定价格，也可能有分时
                 typeSelect.innerHTML = `
-                    <option value="">请选择策略类型</option>
-                    <option value="fixed">固定电价</option>
-                    <option value="tou">分时电价（光伏时段）</option>
+                    <option value="" data-translate="elecPriceFormPlaceholderSelectType">请选择策略类型</option>
+                    <option value="fixed" data-translate="elecPriceTypeFixed">固定电价</option>
+                    <option value="tou" data-translate="elecPriceTypeTOUSolar">分时电价（光伏时段）</option>
                 `;
+            }
+
+            // 应用翻译到新生成的选项
+            if (typeof setLanguage === 'function' && typeof currentLang !== 'undefined') {
+                setLanguage(currentLang);
             }
 
             // 清空之前的配置
@@ -3053,6 +3483,12 @@
             const container = document.getElementById('periodSeasonConfigList');
             container.innerHTML = '';
 
+            // 获取翻译文本
+            const seasonNamePlaceholder = typeof getTranslation === 'function' ?
+                getTranslation('elecPriceSeasonNamePlaceholder') : '季节名称';
+            const deleteText = typeof getTranslation === 'function' ?
+                getTranslation('elecPriceSeasonDelete') : '删除';
+
             periodSeasonConfigs.forEach((season, index) => {
                 const seasonDiv = document.createElement('div');
                 seasonDiv.style.cssText = 'margin-bottom: 12px; border-bottom: 1px solid #e2e8f0; padding-bottom: 12px;';
@@ -3066,26 +3502,35 @@
 
                 const allMonths = [...new Set([...availableMonths, ...season.months])].sort((a, b) => a - b);
 
+                // 生成月份标签HTML
+                const monthLabelsHTML = allMonths.map(m => {
+                    const monthKey = `elecPriceMonth${m}`;
+                    const monthText = typeof getTranslation === 'function' ?
+                        getTranslation(monthKey) : `${m}月`;
+
+                    return `
+                        <label style="display: inline-flex; align-items: center; padding: 4px 8px; background: ${season.months.includes(m) ? '#eff6ff' : '#f8fafc'}; border: 1px solid ${season.months.includes(m) ? '#3b82f6' : '#e2e8f0'}; border-radius: 4px; cursor: pointer; font-size: 12px;">
+                            <input type="checkbox" ${season.months.includes(m) ? 'checked' : ''}
+                                ${!availableMonths.includes(m) && !season.months.includes(m) ? 'disabled' : ''}
+                                onchange="togglePeriodSeasonMonth('${season.id}', ${m}, this.checked)"
+                                style="margin-right: 4px; cursor: pointer;">
+                            <span style="color: ${season.months.includes(m) ? '#3b82f6' : '#6b7280'};">${monthText}</span>
+                        </label>
+                    `;
+                }).join('');
+
                 seasonDiv.innerHTML = `
                     <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px;">
                         <input type="text" value="${season.name}"
                             onchange="updatePeriodSeasonName('${season.id}', this.value)"
-                            placeholder="季节名称"
+                            placeholder="${seasonNamePlaceholder}"
                             style="flex: 1; padding: 6px 10px; border: 1px solid #e2e8f0; border-radius: 4px; font-size: 13px;">
                         <button type="button" class="btn btn-sm btn-danger" onclick="removePeriodSeason('${season.id}')" style="min-width: 60px;">
-                            <i class="fas fa-trash"></i> 删除
+                            <i class="fas fa-trash"></i> ${deleteText}
                         </button>
                     </div>
                     <div style="display: flex; gap: 4px; flex-wrap: wrap;">
-                        ${allMonths.map(m => `
-                            <label style="display: inline-flex; align-items: center; padding: 4px 8px; background: ${season.months.includes(m) ? '#eff6ff' : '#f8fafc'}; border: 1px solid ${season.months.includes(m) ? '#3b82f6' : '#e2e8f0'}; border-radius: 4px; cursor: pointer; font-size: 12px;">
-                                <input type="checkbox" ${season.months.includes(m) ? 'checked' : ''}
-                                    ${!availableMonths.includes(m) && !season.months.includes(m) ? 'disabled' : ''}
-                                    onchange="togglePeriodSeasonMonth('${season.id}', ${m}, this.checked)"
-                                    style="margin-right: 4px; cursor: pointer;">
-                                <span style="color: ${season.months.includes(m) ? '#3b82f6' : '#6b7280'};">${m}月</span>
-                            </label>
-                        `).join('')}
+                        ${monthLabelsHTML}
                     </div>
                 `;
 
@@ -3147,9 +3592,14 @@
         // 添加时段季节
         function addPeriodSeasonInline() {
             periodSeasonCounter++;
+
+            const seasonNameTemplate = typeof getTranslation === 'function' ?
+                getTranslation('elecPriceSeasonDefault') : '季节{n}';
+            const seasonName = seasonNameTemplate.replace('{n}', periodSeasonCounter);
+
             const newSeason = {
                 id: `period-season-${periodSeasonCounter}`,
-                name: `季节${periodSeasonCounter}`,
+                name: seasonName,
                 months: [],
                 periods: []
             };
@@ -3307,6 +3757,12 @@
             const container = document.getElementById('fixedPriceSeasonConfigList');
             container.innerHTML = '';
 
+            // 获取翻译文本
+            const seasonNamePlaceholder = typeof getTranslation === 'function' ?
+                getTranslation('elecPriceSeasonNamePlaceholder') : '季节名称';
+            const deleteText = typeof getTranslation === 'function' ?
+                getTranslation('elecPriceSeasonDelete') : '删除';
+
             fixedPriceSeasonConfigs.forEach((season, index) => {
                 const seasonDiv = document.createElement('div');
                 seasonDiv.style.cssText = 'margin-bottom: 12px; border-bottom: 1px solid #e2e8f0; padding-bottom: 12px;';
@@ -3320,26 +3776,35 @@
 
                 const allMonths = [...new Set([...availableMonths, ...season.months])].sort((a, b) => a - b);
 
+                // 生成月份标签HTML
+                const monthLabelsHTML = allMonths.map(m => {
+                    const monthKey = `elecPriceMonth${m}`;
+                    const monthText = typeof getTranslation === 'function' ?
+                        getTranslation(monthKey) : `${m}月`;
+
+                    return `
+                        <label style="display: inline-flex; align-items: center; padding: 4px 8px; background: ${season.months.includes(m) ? '#eff6ff' : '#f8fafc'}; border: 1px solid ${season.months.includes(m) ? '#3b82f6' : '#e2e8f0'}; border-radius: 4px; cursor: pointer; font-size: 12px;">
+                            <input type="checkbox" ${season.months.includes(m) ? 'checked' : ''}
+                                ${!availableMonths.includes(m) && !season.months.includes(m) ? 'disabled' : ''}
+                                onchange="toggleFixedPriceSeasonMonth('${season.id}', ${m}, this.checked)"
+                                style="margin-right: 4px; cursor: pointer;">
+                            <span style="color: ${season.months.includes(m) ? '#3b82f6' : '#6b7280'};">${monthText}</span>
+                        </label>
+                    `;
+                }).join('');
+
                 seasonDiv.innerHTML = `
                     <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px;">
                         <input type="text" value="${season.name}"
                             onchange="updateFixedPriceSeasonName('${season.id}', this.value)"
-                            placeholder="季节名称"
+                            placeholder="${seasonNamePlaceholder}"
                             style="flex: 1; padding: 6px 10px; border: 1px solid #e2e8f0; border-radius: 4px; font-size: 13px;">
                         <button type="button" class="btn btn-sm btn-danger" onclick="removeFixedPriceSeason('${season.id}')" style="min-width: 60px;">
-                            <i class="fas fa-trash"></i> 删除
+                            <i class="fas fa-trash"></i> ${deleteText}
                         </button>
                     </div>
                     <div style="display: flex; gap: 4px; flex-wrap: wrap;">
-                        ${allMonths.map(m => `
-                            <label style="display: inline-flex; align-items: center; padding: 4px 8px; background: ${season.months.includes(m) ? '#eff6ff' : '#f8fafc'}; border: 1px solid ${season.months.includes(m) ? '#3b82f6' : '#e2e8f0'}; border-radius: 4px; cursor: pointer; font-size: 12px;">
-                                <input type="checkbox" ${season.months.includes(m) ? 'checked' : ''}
-                                    ${!availableMonths.includes(m) && !season.months.includes(m) ? 'disabled' : ''}
-                                    onchange="toggleFixedPriceSeasonMonth('${season.id}', ${m}, this.checked)"
-                                    style="margin-right: 4px; cursor: pointer;">
-                                <span style="color: ${season.months.includes(m) ? '#3b82f6' : '#6b7280'};">${m}月</span>
-                            </label>
-                        `).join('')}
+                        ${monthLabelsHTML}
                     </div>
                 `;
 
@@ -3401,9 +3866,14 @@
         // 添加固定电价季节
         function addFixedPriceSeasonInline() {
             fixedPriceSeasonCounter++;
+
+            const seasonNameTemplate = typeof getTranslation === 'function' ?
+                getTranslation('elecPriceSeasonDefault') : '季节{n}';
+            const seasonName = seasonNameTemplate.replace('{n}', fixedPriceSeasonCounter);
+
             const newSeason = {
                 id: `fixed-price-season-${fixedPriceSeasonCounter}`,
-                name: `季节${fixedPriceSeasonCounter}`,
+                name: seasonName,
                 months: []
             };
 
@@ -3487,15 +3957,20 @@
             groupDiv.id = groupId;
             groupDiv.setAttribute('data-period-type', typeId);
 
+            const multiPeriodText = typeof getTranslation === 'function' ?
+                getTranslation('elecPricePeriodMultiple') : '可添加多个时间段';
+            const addPeriodText = typeof getTranslation === 'function' ?
+                getTranslation('elecPriceBtnAddPeriod') : '添加时间段';
+
             groupDiv.innerHTML = `
                 <div class="period-type-header">
                     <div class="period-type-title">
                         <span class="period-tag" style="background: ${config.bgColor}; color: ${config.color}; border-color: ${config.color};">${config.name}</span>
-                        <span style="font-size: 13px; color: #64748b;">可添加多个时间段</span>
+                        <span style="font-size: 13px; color: #64748b;">${multiPeriodText}</span>
                     </div>
                     <div class="period-type-actions">
                         <button type="button" class="btn btn-sm btn-secondary" onclick="addTimeSlot('${groupId}', '${typeId}')">
-                            <i class="fas fa-plus"></i> 添加时间段
+                            <i class="fas fa-plus"></i> ${addPeriodText}
                         </button>
                         <button type="button" class="btn btn-sm" style="background: transparent; color: #ef4444;" onclick="removePeriodType('${groupId}')">
                             <i class="fas fa-trash"></i>
@@ -3528,14 +4003,19 @@
             slotDiv.className = 'time-slot-item';
             slotDiv.id = slotId;
 
+            const startTimeText = typeof getTranslation === 'function' ?
+                getTranslation('elecPricePeriodStartTime') : '开始时间';
+            const endTimeText = typeof getTranslation === 'function' ?
+                getTranslation('elecPricePeriodEndTime') : '结束时间';
+
             slotDiv.innerHTML = `
                 <div class="time-slot-fields">
                     <div class="form-group" style="margin: 0;">
-                        <label class="form-label">开始时间</label>
+                        <label class="form-label">${startTimeText}</label>
                         <input type="time" class="form-input time-input-start" value="00:00" required onchange="updateTimelineVisualization()">
                     </div>
                     <div class="form-group" style="margin: 0;">
-                        <label class="form-label">结束时间</label>
+                        <label class="form-label">${endTimeText}</label>
                         <input type="time" class="form-input time-input-end" value="23:59" required onchange="updateTimelineVisualization()">
                     </div>
                 </div>
@@ -3570,7 +4050,10 @@
 
         // 删除整个时段类型组
         function removePeriodType(groupId) {
-            if (confirm('确定要删除该时段类型及其所有时间段吗？')) {
+            const confirmText = typeof getTranslation === 'function' ?
+                getTranslation('elecPriceConfirmDeletePeriodType') : '确定要删除该时段类型及其所有时间段吗？';
+
+            if (confirm(confirmText)) {
                 document.getElementById(groupId).remove();
 
                 // 更新时间轴可视化
@@ -3598,8 +4081,16 @@
             const tbody = document.getElementById('periodTypeManagerTableBody');
             tbody.innerHTML = '';
 
+            // 获取翻译文本
+            const emptyText = typeof getTranslation === 'function' ?
+                getTranslation('elecPricePeriodTypesEmpty') : '暂无时段类型，请点击下方按钮添加';
+            const namePlaceholder = typeof getTranslation === 'function' ?
+                getTranslation('elecPricePeriodTypePlaceholder') : '请输入名称';
+            const deleteTitle = typeof getTranslation === 'function' ?
+                getTranslation('elecPriceSeasonDelete') : '删除';
+
             if (periodTypeConfigs.length === 0) {
-                tbody.innerHTML = '<div style="text-align: center; color: #9ca3af; padding: 40px; grid-column: 1 / -1;">暂无时段类型，请点击下方按钮添加</div>';
+                tbody.innerHTML = `<div style="text-align: center; color: #9ca3af; padding: 40px; grid-column: 1 / -1;">${emptyText}</div>`;
                 return;
             }
 
@@ -3626,10 +4117,10 @@
                         <input type="color" id="color-picker-${config.id}" value="${config.color}" onchange="updatePeriodTypeColor('${config.id}', this.value)" style="position: absolute; opacity: 0; pointer-events: none;">
                     </div>
                     <div>
-                        <input type="text" value="${config.name}" onchange="updatePeriodTypeName('${config.id}', this.value)" placeholder="请输入名称" style="width: 100%; padding: 8px 12px; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 14px;">
+                        <input type="text" value="${config.name}" onchange="updatePeriodTypeName('${config.id}', this.value)" placeholder="${namePlaceholder}" style="width: 100%; padding: 8px 12px; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 14px;">
                     </div>
                     <div style="text-align: center;">
-                        <button type="button" class="btn btn-sm" style="background: transparent; color: #ef4444; border: none; padding: 6px 12px;" onclick="deletePeriodTypeFromTable('${config.id}')" title="删除">
+                        <button type="button" class="btn btn-sm" style="background: transparent; color: #ef4444; border: none; padding: 6px 12px;" onclick="deletePeriodTypeFromTable('${config.id}')" title="${deleteTitle}">
                             <i class="fas fa-trash"></i>
                         </button>
                     </div>
@@ -3732,7 +4223,9 @@
             // 检查该时段类型是否已被使用
             const container = document.getElementById('periodsContainer');
             if (container && container.querySelector(`[data-period-type="${configId}"]`)) {
-                showToast('该时段类型正在使用中，无法删除', 'error');
+                const inUseText = typeof getTranslation === 'function' ?
+                    getTranslation('elecPriceConfirmDeletePeriodTypeInUse') : '该时段类型正在使用中，无法删除';
+                showToast(inUseText, 'error');
                 return;
             }
 
@@ -3746,10 +4239,15 @@
                 return;
             }
 
-            if (confirm(`确定要删除"${config.name}"吗？`)) {
+            const confirmText = typeof getTranslation === 'function' ?
+                getTranslation('elecPriceConfirmDeletePeriodType') : '确定要删除该时段类型及其所有时间段吗？';
+            const successText = typeof getTranslation === 'function' ?
+                getTranslation('elecPriceToastDeleteSuccess') : '删除成功';
+
+            if (confirm(confirmText.replace('该时段类型及其所有时间段', `"${config.name}"`))) {
                 periodTypeConfigs = periodTypeConfigs.filter(c => c.id !== configId);
                 renderPeriodTypeManagerTable();
-                showToast('删除成功', 'success');
+                showToast(successText, 'success');
             }
         }
 
@@ -3759,9 +4257,15 @@
             container.innerHTML = '';
 
             if (periodTypeConfigs.length === 0) {
-                container.innerHTML = '<p style="color: #9ca3af; font-size: 13px;">暂无可用的时段类型，请先在管理中添加</p>';
+                const emptyMsg = typeof getTranslation === 'function' ?
+                    getTranslation('elecPricePeriodTypesEmpty') :
+                    '暂无可用的时段类型，请先在管理中添加';
+                container.innerHTML = `<p style="color: #9ca3af; font-size: 13px;">${emptyMsg}</p>`;
                 return;
             }
+
+            const addText = typeof getTranslation === 'function' ?
+                getTranslation('elecPriceBtnAdd') : '添加';
 
             periodTypeConfigs.forEach(config => {
                 const button = document.createElement('button');
@@ -3769,7 +4273,7 @@
                 button.className = 'btn btn-sm';
                 button.style.cssText = `background: ${config.bgColor}; color: ${config.color}; border: 1px solid ${config.color}30;`;
                 button.onclick = () => addPeriodType(config.id);
-                button.innerHTML = `<i class="fas fa-plus"></i> 添加${config.name}`;
+                button.innerHTML = `<i class="fas fa-plus"></i> ${addText}${config.name}`;
                 container.appendChild(button);
             });
         }
@@ -3792,8 +4296,13 @@
             timelineWarnings.innerHTML = '';
 
             if (periods.length === 0) {
-                coverageStats.innerHTML = '<span style="color: #ef4444;">未配置</span>';
-                timelineWarnings.innerHTML = '<div style="padding: 6px 10px; background: #fef2f2; border: 1px solid #fecaca; border-radius: 4px; color: #dc2626; font-size: 12px;"><i class="fas fa-exclamation-circle"></i> 请至少添加一个时段</div>';
+                const notConfiguredText = typeof getTranslation === 'function' ?
+                    getTranslation('elecPricePeriodNotConfigured') : '未配置';
+                const addAtLeastOneText = typeof getTranslation === 'function' ?
+                    getTranslation('elecPricePeriodAddAtLeastOne') : '请至少添加一个时段';
+
+                coverageStats.innerHTML = `<span style="color: #ef4444;">${notConfiguredText}</span>`;
+                timelineWarnings.innerHTML = `<div style="padding: 6px 10px; background: #fef2f2; border: 1px solid #fecaca; border-radius: 4px; color: #dc2626; font-size: 12px;"><i class="fas fa-exclamation-circle"></i> ${addAtLeastOneText}</div>`;
                 return;
             }
 
@@ -3861,9 +4370,14 @@
             // 渲染统计信息
             const coveragePercent = ((coverage / 1440) * 100).toFixed(1);
             const coverageHours = (coverage / 60).toFixed(1);
+
+            const coveredTemplate = typeof getTranslation === 'function' ?
+                getTranslation('elecPeriodCoverageCovered') : '已覆盖 {hours}h ({percent}%)';
+            const coveredText = coveredTemplate.replace('{hours}', coverageHours).replace('{percent}', coveragePercent);
+
             coverageStats.innerHTML = `
                 <span style="color: ${coverage === 1440 ? '#22c55e' : '#f59e0b'};">
-                    已覆盖 ${coverageHours}h (${coveragePercent}%)
+                    ${coveredText}
                 </span>
             `;
 
@@ -3872,15 +4386,24 @@
 
             if (coverage < 1440) {
                 const uncoveredHours = ((1440 - coverage) / 60).toFixed(1);
-                warnings.push(`<i class="fas fa-exclamation-triangle"></i> 还有 ${uncoveredHours}h 未配置`);
+                const uncoveredTemplate = typeof getTranslation === 'function' ?
+                    getTranslation('elecPeriodCoverageRemaining') : '还有 {hours}h 未覆盖';
+                const uncoveredText = uncoveredTemplate.replace('{hours}', uncoveredHours);
+                warnings.push(`<i class="fas fa-exclamation-triangle"></i> ${uncoveredText}`);
             }
 
             if (overlaps.length > 0) {
-                warnings.push(`<i class="fas fa-exclamation-circle"></i> ${overlaps.length} 处重叠`);
+                const overlapsTemplate = typeof getTranslation === 'function' ?
+                    getTranslation('elecPeriodCoverageOverlaps') : '{count} 处重叠';
+                const overlapsText = overlapsTemplate.replace('{count}', overlaps.length);
+                warnings.push(`<i class="fas fa-exclamation-circle"></i> ${overlapsText}`);
             }
 
             if (gaps.length > 0) {
-                warnings.push(`<i class="fas fa-info-circle"></i> ${gaps.length} 处间隙`);
+                const gapsTemplate = typeof getTranslation === 'function' ?
+                    getTranslation('elecPeriodCoverageGaps') : '{count} 处间隙';
+                const gapsText = gapsTemplate.replace('{count}', gaps.length);
+                warnings.push(`<i class="fas fa-info-circle"></i> ${gapsText}`);
             }
 
             if (warnings.length > 0) {
@@ -4103,6 +4626,12 @@
             const container = document.getElementById('seasonConfigList');
             container.innerHTML = '';
 
+            // 获取翻译文本
+            const seasonNamePlaceholder = typeof getTranslation === 'function' ?
+                getTranslation('elecPriceSeasonNamePlaceholder') : '季节名称';
+            const deleteText = typeof getTranslation === 'function' ?
+                getTranslation('elecPriceSeasonDelete') : '删除';
+
             seasonConfigs.forEach((season, index) => {
                 const seasonDiv = document.createElement('div');
                 seasonDiv.style.cssText = 'margin-bottom: 12px; border-bottom: 1px solid #e2e8f0; padding-bottom: 12px;';
@@ -4116,26 +4645,35 @@
 
                 const allMonths = [...new Set([...availableMonths, ...season.months])].sort((a, b) => a - b);
 
+                // 生成月份标签HTML
+                const monthLabelsHTML = allMonths.map(m => {
+                    const monthKey = `elecPriceMonth${m}`;
+                    const monthText = typeof getTranslation === 'function' ?
+                        getTranslation(monthKey) : `${m}月`;
+
+                    return `
+                        <label style="display: inline-flex; align-items: center; padding: 4px 8px; background: ${season.months.includes(m) ? '#eff6ff' : '#f8fafc'}; border: 1px solid ${season.months.includes(m) ? '#3b82f6' : '#e2e8f0'}; border-radius: 4px; cursor: pointer; font-size: 12px;">
+                            <input type="checkbox" ${season.months.includes(m) ? 'checked' : ''}
+                                ${!availableMonths.includes(m) && !season.months.includes(m) ? 'disabled' : ''}
+                                onchange="toggleSeasonMonth('${season.id}', ${m}, this.checked)"
+                                style="margin-right: 4px; cursor: pointer;">
+                            <span style="color: ${season.months.includes(m) ? '#3b82f6' : '#6b7280'};">${monthText}</span>
+                        </label>
+                    `;
+                }).join('');
+
                 seasonDiv.innerHTML = `
                     <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px;">
                         <input type="text" value="${season.name}"
                             onchange="updateSeasonNameInline('${season.id}', this.value)"
-                            placeholder="季节名称"
+                            placeholder="${seasonNamePlaceholder}"
                             style="flex: 1; padding: 6px 10px; border: 1px solid #e2e8f0; border-radius: 4px; font-size: 13px;">
                         <button type="button" class="btn btn-sm btn-danger" onclick="removeSeasonInline('${season.id}')" style="min-width: 60px;">
-                            <i class="fas fa-trash"></i> 删除
+                            <i class="fas fa-trash"></i> ${deleteText}
                         </button>
                     </div>
                     <div style="display: flex; gap: 4px; flex-wrap: wrap;">
-                        ${allMonths.map(m => `
-                            <label style="display: inline-flex; align-items: center; padding: 4px 8px; background: ${season.months.includes(m) ? '#eff6ff' : '#f8fafc'}; border: 1px solid ${season.months.includes(m) ? '#3b82f6' : '#e2e8f0'}; border-radius: 4px; cursor: pointer; font-size: 12px;">
-                                <input type="checkbox" ${season.months.includes(m) ? 'checked' : ''}
-                                    ${!availableMonths.includes(m) && !season.months.includes(m) ? 'disabled' : ''}
-                                    onchange="toggleSeasonMonth('${season.id}', ${m}, this.checked)"
-                                    style="margin-right: 4px; cursor: pointer;">
-                                <span style="color: ${season.months.includes(m) ? '#3b82f6' : '#6b7280'};">${m}月</span>
-                            </label>
-                        `).join('')}
+                        ${monthLabelsHTML}
                     </div>
                 `;
 
@@ -4173,9 +4711,14 @@
         // 添加新季节（内联方式）
         function addSeasonInline() {
             seasonCounter++;
+
+            const seasonNameTemplate = typeof getTranslation === 'function' ?
+                getTranslation('elecPriceSeasonDefault') : '季节{n}';
+            const seasonName = seasonNameTemplate.replace('{n}', seasonCounter);
+
             const newSeason = {
                 id: `season-${seasonCounter}`,
-                name: `季节${seasonCounter}`,
+                name: seasonName,
                 months: [],
                 tiers: []
             };
@@ -4373,18 +4916,32 @@
             tierDiv.className = 'form-group';
             tierDiv.style.cssText = 'margin: 0; padding: 16px; background: white; border: 1px solid #e2e8f0; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);';
 
+            // 获取翻译文本
+            const tierTitleTemplate = typeof getTranslation === 'function' ?
+                getTranslation('elecPriceTierTitle') : '第{n}阶梯';
+            const tierTitle = tierTitleTemplate.replace('{n}', tierNumber);
+
+            const tierDeleteTitle = typeof getTranslation === 'function' ?
+                getTranslation('elecPriceTierDeleteTitle') : '删除此阶梯';
+
+            const tierUpperLimit = typeof getTranslation === 'function' ?
+                getTranslation('elecPriceTierUpperLimit') : '上限值（度/月）';
+
+            const tierPlaceholder = typeof getTranslation === 'function' ?
+                getTranslation('elecPriceTierPlaceholder') : '请输入上限值';
+
             tierDiv.innerHTML = `
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-                    <label class="form-label" style="margin: 0; font-size: 15px; font-weight: 600; color: #1f2937;">第${tierNumber}阶梯</label>
-                    <button type="button" onclick="removeTier('${tierId}')" style="background: none; border: none; color: #ef4444; cursor: pointer; padding: 6px; border-radius: 4px; font-size: 16px; transition: all 0.2s; line-height: 1;" onmouseover="this.style.background='rgba(239,68,68,0.1)'" onmouseout="this.style.background='none'" title="删除此阶梯">
+                    <label class="form-label" style="margin: 0; font-size: 15px; font-weight: 600; color: #1f2937;">${tierTitle}</label>
+                    <button type="button" onclick="removeTier('${tierId}')" style="background: none; border: none; color: #ef4444; cursor: pointer; padding: 6px; border-radius: 4px; font-size: 16px; transition: all 0.2s; line-height: 1;" onmouseover="this.style.background='rgba(239,68,68,0.1)'" onmouseout="this.style.background='none'" title="${tierDeleteTitle}">
                         <i class="fas fa-times"></i>
                     </button>
                 </div>
                 <div style="margin-bottom: 10px;">
                     <label style="display: block; font-size: 12px; color: #6b7280; margin-bottom: 6px;">
-                        <i class="fas fa-arrow-up" style="margin-right: 4px;"></i>上限值（度/月）
+                        <i class="fas fa-arrow-up" style="margin-right: 4px;"></i>${tierUpperLimit}
                     </label>
-                    <input type="number" class="form-input tier-limit" step="1" min="0" value="${limitValue !== null ? limitValue : ''}" placeholder="请输入上限值" style="width: 100%; height: 40px; text-align: center; font-size: 16px; font-weight: 500; border: 2px solid #e2e8f0; border-radius: 6px; transition: all 0.2s;" onfocus="this.style.borderColor='#3b82f6'; this.style.boxShadow='0 0 0 3px rgba(59,130,246,0.1)'" onblur="this.style.borderColor='#e2e8f0'; this.style.boxShadow='none'">
+                    <input type="number" class="form-input tier-limit" step="1" min="0" value="${limitValue !== null ? limitValue : ''}" placeholder="${tierPlaceholder}" style="width: 100%; height: 40px; text-align: center; font-size: 16px; font-weight: 500; border: 2px solid #e2e8f0; border-radius: 6px; transition: all 0.2s;" onfocus="this.style.borderColor='#3b82f6'; this.style.boxShadow='0 0 0 3px rgba(59,130,246,0.1)'" onblur="this.style.borderColor='#e2e8f0'; this.style.boxShadow='none'">
                 </div>
                 <input type="hidden" class="tier-start">
                 <input type="hidden" class="tier-end">
@@ -4436,9 +4993,13 @@
 
                 // 更新显示文本
                 if (end !== null) {
-                    rangeText.textContent = `${start}-${end}度/月`;
+                    const rangeTemplate = typeof getTranslation === 'function' ?
+                        getTranslation('elecPriceTierRange') : '{from}-{to}度/月';
+                    rangeText.textContent = rangeTemplate.replace('{from}', start).replace('{to}', end);
                 } else {
-                    rangeText.textContent = start !== null ? `${start}度以上/月` : '请设置上一阶梯';
+                    const rangeAboveTemplate = typeof getTranslation === 'function' ?
+                        getTranslation('elecPriceTierRangeAbove') : '{from}度以上/月';
+                    rangeText.textContent = start !== null ? rangeAboveTemplate.replace('{from}', start) : '请设置上一阶梯';
                 }
             });
 
@@ -4461,8 +5022,13 @@
             tierWarnings.innerHTML = '';
 
             if (tiers.length === 0) {
-                tierStats.innerHTML = '<span style="color: #ef4444;">未配置</span>';
-                tierWarnings.innerHTML = '<div style="padding: 6px 10px; background: #fef2f2; border: 1px solid #fecaca; border-radius: 4px; color: #dc2626; font-size: 12px;"><i class="fas fa-exclamation-circle"></i> 请至少添加一个阶梯</div>';
+                const notConfigured = typeof getTranslation === 'function' ?
+                    getTranslation('elecPricePeriodNotConfigured') : '未配置';
+                const addAtLeastOneTier = typeof getTranslation === 'function' ?
+                    getTranslation('elecPricePeriodAddAtLeastOne').replace('时段', '阶梯') : '请至少添加一个阶梯';
+
+                tierStats.innerHTML = `<span style="color: #ef4444;">${notConfigured}</span>`;
+                tierWarnings.innerHTML = `<div style="padding: 6px 10px; background: #fef2f2; border: 1px solid #fecaca; border-radius: 4px; color: #dc2626; font-size: 12px;"><i class="fas fa-exclamation-circle"></i> ${addAtLeastOneTier}</div>`;
                 return;
             }
 
@@ -4539,11 +5105,18 @@
                 }
 
                 // 提示信息
-                let tooltipText = `第${index + 1}阶梯: `;
+                const tierTitleTemplate = typeof getTranslation === 'function' ?
+                    getTranslation('elecPriceTierTitle') : '第{n}阶梯';
+                let tooltipText = tierTitleTemplate.replace('{n}', index + 1) + ': ';
+
                 if (tier.end === null) {
-                    tooltipText += `${tier.start}度以上`;
+                    const rangeAboveTemplate = typeof getTranslation === 'function' ?
+                        getTranslation('elecPriceTierRangeAbove') : '{from}度以上/月';
+                    tooltipText += rangeAboveTemplate.replace('{from}', tier.start).replace('/月', '');
                 } else {
-                    tooltipText += `${tier.start}-${tier.end}度`;
+                    const rangeTemplate = typeof getTranslation === 'function' ?
+                        getTranslation('elecPriceTierRange') : '{from}-{to}度/月';
+                    tooltipText += rangeTemplate.replace('{from}', tier.start).replace('{to}', tier.end).replace('/月', '');
                 }
                 block.title = tooltipText;
 
@@ -4555,13 +5128,19 @@
             });
 
             // 显示统计信息
-            tierStats.innerHTML = `<span style="color: #3b82f6;">共 ${tiers.length} 个阶梯</span>`;
+            const tierTotalTemplate = typeof getTranslation === 'function' ?
+                getTranslation('elecPriceTierTotal') : '共{count}个阶梯';
+            const tierTotalText = tierTotalTemplate.replace('{count}', tiers.length);
+            tierStats.innerHTML = `<span style="color: #3b82f6;">${tierTotalText}</span>`;
 
             // 显示警告信息
             if (hasIncomplete) {
+                const fillAllLimitsText = typeof getTranslation === 'function' ?
+                    getTranslation('elecPriceTierFillAllLimits') : '请先填写所有阶梯上限值';
+
                 tierWarnings.innerHTML = `
                     <div style="padding: 6px 10px; background: #fffbeb; border: 1px solid #fde68a; border-radius: 4px; color: #d97706; font-size: 12px;">
-                        <i class="fas fa-exclamation-triangle"></i> 请完善所有阶梯的上限值
+                        <i class="fas fa-exclamation-triangle"></i> ${fillAllLimitsText.replace('先填写', '完善')}
                     </div>
                 `;
             } else {
@@ -5279,10 +5858,15 @@
         }
 
         function deleteTemplate(id) {
-            if (confirm('确定要删除此模版吗？')) {
+            const confirmText = typeof getTranslation === 'function' ?
+                getTranslation('elecPriceConfirmDeleteTemplate') : '确定要删除此模版吗？';
+            const successText = typeof getTranslation === 'function' ?
+                getTranslation('elecPriceToastDeleteSuccess') : '删除成功';
+
+            if (confirm(confirmText)) {
                 templates = templates.filter(t => t.id !== id);
                 renderTemplates();
-                showToast('删除成功', 'success');
+                showToast(successText, 'success');
             }
         }
 
@@ -5291,11 +5875,34 @@
         function renderSites() {
             const list = document.getElementById('siteList');
 
+            // 获取翻译文本
+            const unitText = typeof getTranslation === 'function' ?
+                getTranslation('elecPriceUnitDeviceCount') : '台';
+            const notConfiguredText = typeof getTranslation === 'function' ?
+                getTranslation('elecPriceStatusNotConfigured') : '未配置';
+            const configBtnText = typeof getTranslation === 'function' ?
+                getTranslation('elecPriceBtnConfig') : '配置';
+            const siteNameHeader = typeof getTranslation === 'function' ?
+                getTranslation('elecPriceTableHeaderSiteName') : '站点名称';
+            const deviceCountHeader = typeof getTranslation === 'function' ?
+                getTranslation('elecPriceTableHeaderDeviceCount') : '设备数量';
+            const consumptionHeader = typeof getTranslation === 'function' ?
+                getTranslation('elecPriceTableHeaderConsumptionTemplate') : '购电模版';
+            const feedinHeader = typeof getTranslation === 'function' ?
+                getTranslation('elecPriceTableHeaderFeedinTemplate') : '上网模版';
+            const effectiveTimeHeader = typeof getTranslation === 'function' ?
+                getTranslation('elecPriceTableHeaderEffectiveTime') : '生效时间';
+            const actionsHeader = typeof getTranslation === 'function' ?
+                getTranslation('elecPriceTableHeaderActions') : '操作';
+
             if (sites.length === 0) {
+                const emptyText = typeof getTranslation === 'function' ?
+                    getTranslation('elecPriceEmptyStateSites') : '暂无电站';
+
                 list.innerHTML = `
                     <div class="empty-state">
                         <div class="empty-state-icon"><i class="fas fa-building"></i></div>
-                        <h3 class="empty-state-title">暂无电站</h3>
+                        <h3 class="empty-state-title">${emptyText}</h3>
                     </div>
                 `;
                 return;
@@ -5310,16 +5917,21 @@
                     ? templates.find(t => t.id === config.feedinTemplateId)
                     : null;
 
+                // 获取站点名称(根据当前语言)
+                const siteName = (typeof currentLang !== 'undefined' && currentLang === 'en' && site.nameEn)
+                    ? site.nameEn
+                    : site.name;
+
                 return `
                     <tr>
                         <td>
                             <div style="display: flex; align-items: center;">
                                 <i class="fas fa-building" style="color: #3b82f6; margin-right: 8px;"></i>
-                                ${site.name}
+                                ${siteName}
                             </div>
                         </td>
                         <td>
-                            <span style="font-weight: 500;">${site.deviceCount}</span> 台
+                            <span style="font-weight: 500;">${site.deviceCount}</span> ${unitText}
                         </td>
                         <td>
                             <div class="template-cell">
@@ -5330,7 +5942,7 @@
                                     `
                                     : `
                                         <i class="far fa-circle uncheck-icon"></i>
-                                        <span style="color: #94a3b8;">未配置</span>
+                                        <span style="color: #94a3b8;">${notConfiguredText}</span>
                                     `
                                 }
                             </div>
@@ -5344,7 +5956,7 @@
                                     `
                                     : `
                                         <i class="far fa-circle uncheck-icon"></i>
-                                        <span style="color: #94a3b8;">未配置</span>
+                                        <span style="color: #94a3b8;">${notConfiguredText}</span>
                                     `
                                 }
                             </div>
@@ -5368,7 +5980,7 @@
                                     `
                                     : `
                                         <button class="btn btn-sm btn-success" onclick="configureSite('${site.id}')">
-                                            <i class="fas fa-cog"></i> 配置
+                                            <i class="fas fa-cog"></i> ${configBtnText}
                                         </button>
                                     `
                                 }
@@ -5382,12 +5994,12 @@
                 <table class="data-table">
                     <thead>
                         <tr>
-                            <th><i class="fas fa-building" style="margin-right: 6px;"></i>站点名称</th>
-                            <th><i class="fas fa-server" style="margin-right: 6px;"></i>设备数量</th>
-                            <th><i class="fas fa-download" style="margin-right: 6px;"></i>购电模版</th>
-                            <th><i class="fas fa-upload" style="margin-right: 6px;"></i>上网模版</th>
-                            <th><i class="fas fa-clock" style="margin-right: 6px;"></i>生效时间</th>
-                            <th><i class="fas fa-tools" style="margin-right: 6px;"></i>操作</th>
+                            <th><i class="fas fa-building" style="margin-right: 6px;"></i>${siteNameHeader}</th>
+                            <th><i class="fas fa-server" style="margin-right: 6px;"></i>${deviceCountHeader}</th>
+                            <th><i class="fas fa-download" style="margin-right: 6px;"></i>${consumptionHeader}</th>
+                            <th><i class="fas fa-upload" style="margin-right: 6px;"></i>${feedinHeader}</th>
+                            <th><i class="fas fa-clock" style="margin-right: 6px;"></i>${effectiveTimeHeader}</th>
+                            <th><i class="fas fa-tools" style="margin-right: 6px;"></i>${actionsHeader}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -5402,19 +6014,37 @@
             const site = sites.find(s => s.id === siteId);
             const config = siteConfigs.find(c => c.siteId === siteId);
 
-            document.getElementById('siteConfigTitle').textContent = `配置电站电价 - ${site.name}`;
+            const siteConfigTitleText = typeof getTranslation === 'function' ?
+                getTranslation('elecPriceModalTitleSiteConfig') : '配置电站电价';
+            // 获取站点名称(根据当前语言)
+            const siteName = (typeof currentLang !== 'undefined' && currentLang === 'en' && site.nameEn)
+                ? site.nameEn
+                : site.name;
+            document.getElementById('siteConfigTitle').textContent = `${siteConfigTitleText} - ${siteName}`;
 
             // 填充购电模版选择器
             const consumptionSelect = document.getElementById('consumptionTemplate');
-            consumptionSelect.innerHTML = '<option value="">请选择购电模版</option>' +
+            const consumptionPlaceholder = typeof getTranslation === 'function' ?
+                getTranslation('elecPriceFormPlaceholderSelectConsumption') : '请选择购电模版';
+            consumptionSelect.innerHTML = `<option value="">${consumptionPlaceholder}</option>` +
                 templates.filter(t => t.purpose === 'consumption')
-                    .map(t => `<option value="${t.id}">${t.name} (${t.typeName})</option>`).join('');
+                    .map(t => {
+                        const translatedName = getTemplateI18nText(t.name);
+                        const translatedTypeName = getTemplateI18nText(t.typeName);
+                        return `<option value="${t.id}">${translatedName} (${translatedTypeName})</option>`;
+                    }).join('');
 
             // 填充上网模版选择器
             const feedinSelect = document.getElementById('feedinTemplate');
-            feedinSelect.innerHTML = '<option value="">请选择上网模版</option>' +
+            const feedinPlaceholder = typeof getTranslation === 'function' ?
+                getTranslation('elecPriceFormPlaceholderSelectFeedin') : '请选择上网模版';
+            feedinSelect.innerHTML = `<option value="">${feedinPlaceholder}</option>` +
                 templates.filter(t => t.purpose === 'feed-in')
-                    .map(t => `<option value="${t.id}">${t.name} (${t.typeName})</option>`).join('');
+                    .map(t => {
+                        const translatedName = getTemplateI18nText(t.name);
+                        const translatedTypeName = getTemplateI18nText(t.typeName);
+                        return `<option value="${t.id}">${translatedName} (${translatedTypeName})</option>`;
+                    }).join('');
 
             // 设置默认生效时间
             const now = new Date();
@@ -5446,219 +6076,274 @@
         }
 
         // 生成价格配置HTML的辅助函数
-        function generatePriceHTML(template) {
-            if (template.type === 'fixed') {
+        // 生成价格配置HTML的辅助函数 - 国际化修复版
+function generatePriceHTML(template) {
+    if (template.type === 'fixed') {
+        const fixedPriceLabel = typeof getTranslation === 'function' ? getTranslation('elecPriceFixedPriceLabel') : '固定电价';
+        const priceUnit = typeof getTranslation === 'function' ? getTranslation('cabinetChartAxisElectricityPrice') : '电价 (元/kWh)';
+        return `
+            <div class="price-item" style="background: white; padding: 12px; border: 1px solid #e2e8f0; border-radius: 6px; margin-bottom: 8px;">
+                <div style="font-size: 13px; font-weight: 600; color: #374151; margin-bottom: 8px;">${fixedPriceLabel}</div>
+                <div style="display: grid; grid-template-columns: 1fr; gap: 12px;">
+                    <div>
+                        <label style="font-size: 12px; color: #6b7280; display: block; margin-bottom: 4px;">${priceUnit}</label>
+                        <input type="number" class="form-input price-input" step="0.01" min="0" placeholder="0.00" data-type="fixed" required>
+                    </div>
+                </div>
+            </div>
+        `;
+    } else if (template.type === 'tiered') {
+        // 阶梯电价
+        const priceUnit = typeof getTranslation === 'function' ? getTranslation('cabinetChartAxisElectricityPrice') : '电价 (元/kWh)';
+
+        if (template.tiers.mode === 'fixed') {
+            // 固定模式：一套阶梯
+            return template.tiers.data.map((tier, index) => {
+                const tierTitle = typeof getTranslation === 'function'
+                    ? getTranslation('elecPriceTierTitle').replace('{n}', index + 1)
+                    : `第${index + 1}阶梯`;
+                const tierRange = tier.end !== null
+                    ? `${tier.start}-${tier.end}${typeof getTranslation === 'function' ? getTranslation('elecPriceUnitDegree') || '度' : '度'}`
+                    : (typeof getTranslation === 'function' ? getTranslation('elecPriceTierRangeAbove').replace('{from}', tier.start) : `${tier.start}度以上/月`);
                 return `
-                    <div class="price-item" style="background: white; padding: 12px; border: 1px solid #e2e8f0; border-radius: 6px; margin-bottom: 8px;">
-                        <div style="font-size: 13px; font-weight: 600; color: #374151; margin-bottom: 8px;">固定电价</div>
-                        <div style="display: grid; grid-template-columns: 1fr; gap: 12px;">
-                            <div>
-                                <label style="font-size: 12px; color: #6b7280; display: block; margin-bottom: 4px;">电价 (元/kWh)</label>
-                                <input type="number" class="form-input price-input" step="0.01" min="0" placeholder="0.00" data-type="fixed" required>
+                <div class="price-item" style="background: white; padding: 12px; border: 1px solid #e2e8f0; border-radius: 6px; margin-bottom: 8px;">
+                    <div style="font-size: 13px; font-weight: 600; color: #374151; margin-bottom: 8px;">
+                        ${tierTitle} (${tierRange})
+                    </div>
+                    <div>
+                        <label style="font-size: 12px; color: #6b7280; display: block; margin-bottom: 4px;">${priceUnit}</label>
+                        <input type="number" class="form-input price-input" step="0.01" min="0" placeholder="0.00" data-mode="fixed" data-tier="${index}" required>
+                    </div>
+                </div>
+            `;
+            }).join('');
+        } else if (template.tiers.mode === 'seasonal') {
+            // 分季节模式：每个季节有自己的阶梯 - Tab导航
+            const containerId = `seasonal-container-${Date.now()}`;
+            const tabsHtml = template.tiers.seasons.map((season, idx) => `
+                <button class="config-tab ${idx === 0 ? 'active' : ''}" data-tab="season-${season.id}" onclick="switchPriceTab('${containerId}', 'season-${season.id}')">
+                    ${getTemplateI18nText(season.name)}
+                </button>
+            `).join('');
+
+            const contentsHtml = template.tiers.seasons.map((season, idx) => {
+                const seasonName = getTemplateI18nText(season.name);
+                const monthUnit = typeof getTranslation === 'function' ? getTranslation('elecPriceUnitMonth') || '月' : '月';
+                const monthsText = season.months.map(m => m + monthUnit).join('、');
+
+                return `
+                <div id="season-${season.id}" class="config-tab-content ${idx === 0 ? 'active' : ''}">
+                    <div style="background: #f0f9ff; padding: 16px; border-radius: 8px; margin-bottom: 16px; border: 2px solid #3b82f6;">
+                        <h5 style="font-size: 14px; font-weight: 600; color: #1e40af; margin: 0 0 12px 0;">
+                            ${seasonName} (${monthsText})
+                        </h5>
+                        ${season.tiers.map((tier, index) => {
+                            const tierTitle = typeof getTranslation === 'function'
+                                ? getTranslation('elecPriceTierTitle').replace('{n}', index + 1)
+                                : `第${index + 1}阶梯`;
+                            const tierRange = tier.end !== null
+                                ? `${tier.start}-${tier.end}${typeof getTranslation === 'function' ? getTranslation('elecPriceUnitDegree') || '度' : '度'}`
+                                : (typeof getTranslation === 'function' ? getTranslation('elecPriceTierRangeAbove').replace('{from}', tier.start) : `${tier.start}度以上/月`);
+                            return `
+                            <div class="price-item" style="background: white; padding: 12px; border: 1px solid #e2e8f0; border-radius: 6px; margin-bottom: 8px;">
+                                <div style="font-size: 13px; font-weight: 600; color: #374151; margin-bottom: 8px;">
+                                    ${tierTitle} (${tierRange})
+                                </div>
+                                <div>
+                                    <label style="font-size: 12px; color: #6b7280; display: block; margin-bottom: 4px;">${priceUnit}</label>
+                                    <input type="number" class="form-input price-input" step="0.01" min="0" placeholder="0.00" data-mode="seasonal" data-season="${season.id}" data-tier="${index}" required>
+                                </div>
                             </div>
+                        `;
+                        }).join('')}
+                    </div>
+                </div>
+            `;
+            }).join('');
+
+            return `
+                <div id="${containerId}">
+                    <div class="config-tabs" style="margin-bottom: 16px;">
+                        ${tabsHtml}
+                    </div>
+                    ${contentsHtml}
+                </div>
+            `;
+        } else if (template.tiers.mode === 'monthly') {
+            // 逐月模式：每个月有自己的阶梯 - Tab导航
+            const months = typeof getTranslation === 'function' ? [
+                getTranslation('elecPriceMonthJan'), getTranslation('elecPriceMonthFeb'), getTranslation('elecPriceMonthMar'),
+                getTranslation('elecPriceMonthApr'), getTranslation('elecPriceMonthMay'), getTranslation('elecPriceMonthJun'),
+                getTranslation('elecPriceMonthJul'), getTranslation('elecPriceMonthAug'), getTranslation('elecPriceMonthSep'),
+                getTranslation('elecPriceMonthOct'), getTranslation('elecPriceMonthNov'), getTranslation('elecPriceMonthDec')
+            ] : ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'];
+            const containerId = `monthly-container-${Date.now()}`;
+
+            const tabsHtml = months.map((monthName, idx) => `
+                <button class="config-tab ${idx === 0 ? 'active' : ''}" data-tab="month-${idx + 1}" onclick="switchPriceTab('${containerId}', 'month-${idx + 1}')">
+                    ${monthName}
+                </button>
+            `).join('');
+
+            const contentsHtml = months.map((monthName, monthIndex) => {
+                const month = monthIndex + 1;
+                const monthTiers = template.tiers.data[month] || [];
+                return `
+                    <div id="month-${month}" class="config-tab-content ${monthIndex === 0 ? 'active' : ''}">
+                        <div style="background: #fef3c7; padding: 16px; border-radius: 8px; margin-bottom: 16px; border: 2px solid #f59e0b;">
+                            <h5 style="font-size: 14px; font-weight: 600; color: #92400e; margin: 0 0 12px 0;">
+                                ${monthName}
+                            </h5>
+                            ${monthTiers.map((tier, index) => {
+                                const tierTitle = typeof getTranslation === 'function'
+                                    ? getTranslation('elecPriceTierTitle').replace('{n}', index + 1)
+                                    : `第${index + 1}阶梯`;
+                                const tierRange = tier.end !== null
+                                    ? `${tier.start}-${tier.end}${typeof getTranslation === 'function' ? getTranslation('elecPriceUnitDegree') || '度' : '度'}`
+                                    : (typeof getTranslation === 'function' ? getTranslation('elecPriceTierRangeAbove').replace('{from}', tier.start) : `${tier.start}度以上/月`);
+                                return `
+                                <div class="price-item" style="background: white; padding: 12px; border: 1px solid #e2e8f0; border-radius: 6px; margin-bottom: 8px;">
+                                    <div style="font-size: 13px; font-weight: 600; color: #374151; margin-bottom: 8px;">
+                                        ${tierTitle} (${tierRange})
+                                    </div>
+                                    <div>
+                                        <label style="font-size: 12px; color: #6b7280; display: block; margin-bottom: 4px;">${priceUnit}</label>
+                                        <input type="number" class="form-input price-input" step="0.01" min="0" placeholder="0.00" data-mode="monthly" data-month="${month}" data-tier="${index}" required>
+                                    </div>
+                                </div>
+                            `;
+                            }).join('')}
                         </div>
                     </div>
                 `;
-            } else if (template.type === 'tiered') {
-                // 阶梯电价
-                if (template.tiers.mode === 'fixed') {
-                    // 固定模式：一套阶梯
-                    return template.tiers.data.map((tier, index) => `
-                        <div class="price-item" style="background: white; padding: 12px; border: 1px solid #e2e8f0; border-radius: 6px; margin-bottom: 8px;">
-                            <div style="font-size: 13px; font-weight: 600; color: #374151; margin-bottom: 8px;">
-                                第${index + 1}阶梯 (${tier.end !== null ? `${tier.start}-${tier.end}度` : `${tier.start}度以上`})
-                            </div>
-                            <div>
-                                <label style="font-size: 12px; color: #6b7280; display: block; margin-bottom: 4px;">电价 (元/kWh)</label>
-                                <input type="number" class="form-input price-input" step="0.01" min="0" placeholder="0.00" data-mode="fixed" data-tier="${index}" required>
-                            </div>
-                        </div>
-                    `).join('');
-                } else if (template.tiers.mode === 'seasonal') {
-                    // 分季节模式：每个季节有自己的阶梯 - Tab导航
-                    const containerId = `seasonal-container-${Date.now()}`;
-                    const tabsHtml = template.tiers.seasons.map((season, idx) => `
-                        <button class="config-tab ${idx === 0 ? 'active' : ''}" data-tab="season-${season.id}" onclick="switchPriceTab('${containerId}', 'season-${season.id}')">
-                            ${season.name}
-                        </button>
-                    `).join('');
+            }).join('');
 
-                    const contentsHtml = template.tiers.seasons.map((season, idx) => `
-                        <div id="season-${season.id}" class="config-tab-content ${idx === 0 ? 'active' : ''}">
-                            <div style="background: #f0f9ff; padding: 16px; border-radius: 8px; margin-bottom: 16px; border: 2px solid #3b82f6;">
-                                <h5 style="font-size: 14px; font-weight: 600; color: #1e40af; margin: 0 0 12px 0;">
-                                    ${season.name} (${season.months.map(m => m + '月').join('、')})
-                                </h5>
-                                ${season.tiers.map((tier, index) => `
-                                    <div class="price-item" style="background: white; padding: 12px; border: 1px solid #e2e8f0; border-radius: 6px; margin-bottom: 8px;">
-                                        <div style="font-size: 13px; font-weight: 600; color: #374151; margin-bottom: 8px;">
-                                            第${index + 1}阶梯 (${tier.end !== null ? `${tier.start}-${tier.end}度` : `${tier.start}度以上`})
-                                        </div>
-                                        <div>
-                                            <label style="font-size: 12px; color: #6b7280; display: block; margin-bottom: 4px;">电价 (元/kWh)</label>
-                                            <input type="number" class="form-input price-input" step="0.01" min="0" placeholder="0.00" data-mode="seasonal" data-season="${season.id}" data-tier="${index}" required>
-                                        </div>
-                                    </div>
-                                `).join('')}
-                            </div>
-                        </div>
-                    `).join('');
-
-                    return `
-                        <div id="${containerId}">
-                            <div class="config-tabs" style="margin-bottom: 16px;">
-                                ${tabsHtml}
-                            </div>
-                            ${contentsHtml}
-                        </div>
-                    `;
-                } else if (template.tiers.mode === 'monthly') {
-                    // 逐月模式：每个月有自己的阶梯 - Tab导航
-                    const months = ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'];
-                    const containerId = `monthly-container-${Date.now()}`;
-
-                    const tabsHtml = months.map((monthName, idx) => `
-                        <button class="config-tab ${idx === 0 ? 'active' : ''}" data-tab="month-${idx + 1}" onclick="switchPriceTab('${containerId}', 'month-${idx + 1}')">
-                            ${monthName}
-                        </button>
-                    `).join('');
-
-                    const contentsHtml = months.map((monthName, monthIndex) => {
-                        const month = monthIndex + 1;
-                        const monthTiers = template.tiers.data[month] || [];
-                        return `
-                            <div id="month-${month}" class="config-tab-content ${monthIndex === 0 ? 'active' : ''}">
-                                <div style="background: #fef3c7; padding: 16px; border-radius: 8px; margin-bottom: 16px; border: 2px solid #f59e0b;">
-                                    <h5 style="font-size: 14px; font-weight: 600; color: #92400e; margin: 0 0 12px 0;">
-                                        ${monthName}
-                                    </h5>
-                                    ${monthTiers.map((tier, index) => `
-                                        <div class="price-item" style="background: white; padding: 12px; border: 1px solid #e2e8f0; border-radius: 6px; margin-bottom: 8px;">
-                                            <div style="font-size: 13px; font-weight: 600; color: #374151; margin-bottom: 8px;">
-                                                第${index + 1}阶梯 (${tier.end !== null ? `${tier.start}-${tier.end}度` : `${tier.start}度以上`})
-                                            </div>
-                                            <div>
-                                                <label style="font-size: 12px; color: #6b7280; display: block; margin-bottom: 4px;">电价 (元/kWh)</label>
-                                                <input type="number" class="form-input price-input" step="0.01" min="0" placeholder="0.00" data-mode="monthly" data-month="${month}" data-tier="${index}" required>
-                                            </div>
-                                        </div>
-                                    `).join('')}
-                                </div>
-                            </div>
-                        `;
-                    }).join('');
-
-                    return `
-                        <div id="${containerId}">
-                            <div class="config-tabs" style="margin-bottom: 16px;">
-                                ${tabsHtml}
-                            </div>
-                            ${contentsHtml}
-                        </div>
-                    `;
-                }
-            } else {
-                // 分时电价
-                if (template.periods.mode === 'fixed') {
-                    // 固定模式：一套时段
-                    return template.periods.data.map(p => `
-                        <div class="price-item" style="background: white; padding: 12px; border: 1px solid #e2e8f0; border-radius: 6px; margin-bottom: 8px;">
-                            <div style="font-size: 13px; font-weight: 600; color: #374151; margin-bottom: 8px;">
-                                ${p.name} (${p.start} - ${p.end})
-                            </div>
-                            <div>
-                                <label style="font-size: 12px; color: #6b7280; display: block; margin-bottom: 4px;">电价 (元/kWh)</label>
-                                <input type="number" class="form-input price-input" step="0.01" min="0" placeholder="0.00" data-mode="fixed" data-period="${p.type}" required>
-                            </div>
-                        </div>
-                    `).join('');
-                } else if (template.periods.mode === 'seasonal') {
-                    // 分季节模式：每个季节有自己的时段 - Tab导航
-                    const containerId = `seasonal-tou-container-${Date.now()}`;
-                    const tabsHtml = template.periods.seasons.map((season, idx) => `
-                        <button class="config-tab ${idx === 0 ? 'active' : ''}" data-tab="tou-season-${season.id}" onclick="switchPriceTab('${containerId}', 'tou-season-${season.id}')">
-                            ${season.name}
-                        </button>
-                    `).join('');
-
-                    const contentsHtml = template.periods.seasons.map((season, idx) => `
-                        <div id="tou-season-${season.id}" class="config-tab-content ${idx === 0 ? 'active' : ''}">
-                            <div style="background: #f0f9ff; padding: 16px; border-radius: 8px; margin-bottom: 16px; border: 2px solid #3b82f6;">
-                                <h5 style="font-size: 14px; font-weight: 600; color: #1e40af; margin: 0 0 12px 0;">
-                                    ${season.name} (${season.months.map(m => m + '月').join('、')})
-                                </h5>
-                                ${season.periods.map(p => `
-                                    <div class="price-item" style="background: white; padding: 12px; border: 1px solid #e2e8f0; border-radius: 6px; margin-bottom: 8px;">
-                                        <div style="font-size: 13px; font-weight: 600; color: #374151; margin-bottom: 8px;">
-                                            ${p.name} (${p.start} - ${p.end})
-                                        </div>
-                                        <div>
-                                            <label style="font-size: 12px; color: #6b7280; display: block; margin-bottom: 4px;">电价 (元/kWh)</label>
-                                            <input type="number" class="form-input price-input" step="0.01" min="0" placeholder="0.00" data-mode="seasonal" data-season="${season.id}" data-period="${p.type}" required>
-                                        </div>
-                                    </div>
-                                `).join('')}
-                            </div>
-                        </div>
-                    `).join('');
-
-                    return `
-                        <div id="${containerId}">
-                            <div class="config-tabs" style="margin-bottom: 16px;">
-                                ${tabsHtml}
-                            </div>
-                            ${contentsHtml}
-                        </div>
-                    `;
-                } else if (template.periods.mode === 'monthly') {
-                    // 逐月模式：每个月有自己的时段 - Tab导航
-                    const months = ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'];
-                    const containerId = `monthly-tou-container-${Date.now()}`;
-
-                    const tabsHtml = months.map((monthName, idx) => `
-                        <button class="config-tab ${idx === 0 ? 'active' : ''}" data-tab="tou-month-${idx + 1}" onclick="switchPriceTab('${containerId}', 'tou-month-${idx + 1}')">
-                            ${monthName}
-                        </button>
-                    `).join('');
-
-                    const contentsHtml = months.map((monthName, monthIndex) => {
-                        const month = monthIndex + 1;
-                        const monthPeriods = template.periods.data[month] || [];
-                        return `
-                            <div id="tou-month-${month}" class="config-tab-content ${monthIndex === 0 ? 'active' : ''}">
-                                <div style="background: #fef3c7; padding: 16px; border-radius: 8px; margin-bottom: 16px; border: 2px solid #f59e0b;">
-                                    <h5 style="font-size: 14px; font-weight: 600; color: #92400e; margin: 0 0 12px 0;">
-                                        ${monthName}
-                                    </h5>
-                                    ${monthPeriods.map(p => `
-                                        <div class="price-item" style="background: white; padding: 12px; border: 1px solid #e2e8f0; border-radius: 6px; margin-bottom: 8px;">
-                                            <div style="font-size: 13px; font-weight: 600; color: #374151; margin-bottom: 8px;">
-                                                ${p.name} (${p.start} - ${p.end})
-                                            </div>
-                                            <div>
-                                                <label style="font-size: 12px; color: #6b7280; display: block; margin-bottom: 4px;">电价 (元/kWh)</label>
-                                                <input type="number" class="form-input price-input" step="0.01" min="0" placeholder="0.00" data-mode="monthly" data-month="${month}" data-period="${p.type}" required>
-                                            </div>
-                                        </div>
-                                    `).join('')}
-                                </div>
-                            </div>
-                        `;
-                    }).join('');
-
-                    return `
-                        <div id="${containerId}">
-                            <div class="config-tabs" style="margin-bottom: 16px;">
-                                ${tabsHtml}
-                            </div>
-                            ${contentsHtml}
-                        </div>
-                    `;
-                }
-            }
-            return '';
+            return `
+                <div id="${containerId}">
+                    <div class="config-tabs" style="margin-bottom: 16px;">
+                        ${tabsHtml}
+                    </div>
+                    ${contentsHtml}
+                </div>
+            `;
         }
+    } else {
+        // 分时电价
+        const priceUnit = typeof getTranslation === 'function' ? getTranslation('cabinetChartAxisElectricityPrice') : '电价 (元/kWh)';
 
+        if (template.periods.mode === 'fixed') {
+            // 固定模式：一套时段
+            return template.periods.data.map(p => `
+                <div class="price-item" style="background: white; padding: 12px; border: 1px solid #e2e8f0; border-radius: 6px; margin-bottom: 8px;">
+                    <div style="font-size: 13px; font-weight: 600; color: #374151; margin-bottom: 8px;">
+                        ${getTemplateI18nText(p.name)} (${p.start} - ${p.end})
+                    </div>
+                    <div>
+                        <label style="font-size: 12px; color: #6b7280; display: block; margin-bottom: 4px;">${priceUnit}</label>
+                        <input type="number" class="form-input price-input" step="0.01" min="0" placeholder="0.00" data-mode="fixed" data-period="${p.type}" required>
+                    </div>
+                </div>
+            `).join('');
+        } else if (template.periods.mode === 'seasonal') {
+            // 分季节模式：每个季节有自己的时段 - Tab导航
+            const containerId = `seasonal-tou-container-${Date.now()}`;
+            const tabsHtml = template.periods.seasons.map((season, idx) => `
+                <button class="config-tab ${idx === 0 ? 'active' : ''}" data-tab="tou-season-${season.id}" onclick="switchPriceTab('${containerId}', 'tou-season-${season.id}')">
+                    ${getTemplateI18nText(season.name)}
+                </button>
+            `).join('');
+
+            const contentsHtml = template.periods.seasons.map((season, idx) => {
+                const seasonName = getTemplateI18nText(season.name);
+                const monthUnit = typeof getTranslation === 'function' ? getTranslation('elecPriceUnitMonth') || '月' : '月';
+                const monthsText = season.months.map(m => m + monthUnit).join('、');
+
+                return `
+                <div id="tou-season-${season.id}" class="config-tab-content ${idx === 0 ? 'active' : ''}">
+                    <div style="background: #f0f9ff; padding: 16px; border-radius: 8px; margin-bottom: 16px; border: 2px solid #3b82f6;">
+                        <h5 style="font-size: 14px; font-weight: 600; color: #1e40af; margin: 0 0 12px 0;">
+                            ${seasonName} (${monthsText})
+                        </h5>
+                        ${season.periods.map(p => `
+                            <div class="price-item" style="background: white; padding: 12px; border: 1px solid #e2e8f0; border-radius: 6px; margin-bottom: 8px;">
+                                <div style="font-size: 13px; font-weight: 600; color: #374151; margin-bottom: 8px;">
+                                    ${getTemplateI18nText(p.name)} (${p.start} - ${p.end})
+                                </div>
+                                <div>
+                                    <label style="font-size: 12px; color: #6b7280; display: block; margin-bottom: 4px;">${priceUnit}</label>
+                                    <input type="number" class="form-input price-input" step="0.01" min="0" placeholder="0.00" data-mode="seasonal" data-season="${season.id}" data-period="${p.type}" required>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            }).join('');
+
+            return `
+                <div id="${containerId}">
+                    <div class="config-tabs" style="margin-bottom: 16px;">
+                        ${tabsHtml}
+                    </div>
+                    ${contentsHtml}
+                </div>
+            `;
+        } else if (template.periods.mode === 'monthly') {
+            // 逐月模式：每个月有自己的时段 - Tab导航
+            const months = typeof getTranslation === 'function' ? [
+                getTranslation('elecPriceMonthJan'), getTranslation('elecPriceMonthFeb'), getTranslation('elecPriceMonthMar'),
+                getTranslation('elecPriceMonthApr'), getTranslation('elecPriceMonthMay'), getTranslation('elecPriceMonthJun'),
+                getTranslation('elecPriceMonthJul'), getTranslation('elecPriceMonthAug'), getTranslation('elecPriceMonthSep'),
+                getTranslation('elecPriceMonthOct'), getTranslation('elecPriceMonthNov'), getTranslation('elecPriceMonthDec')
+            ] : ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'];
+            const containerId = `monthly-tou-container-${Date.now()}`;
+
+            const tabsHtml = months.map((monthName, idx) => `
+                <button class="config-tab ${idx === 0 ? 'active' : ''}" data-tab="tou-month-${idx + 1}" onclick="switchPriceTab('${containerId}', 'tou-month-${idx + 1}')">
+                    ${monthName}
+                </button>
+            `).join('');
+
+            const contentsHtml = months.map((monthName, monthIndex) => {
+                const month = monthIndex + 1;
+                const monthPeriods = template.periods.data[month] || [];
+                return `
+                    <div id="tou-month-${month}" class="config-tab-content ${monthIndex === 0 ? 'active' : ''}">
+                        <div style="background: #fef3c7; padding: 16px; border-radius: 8px; margin-bottom: 16px; border: 2px solid #f59e0b;">
+                            <h5 style="font-size: 14px; font-weight: 600; color: #92400e; margin: 0 0 12px 0;">
+                                ${monthName}
+                            </h5>
+                            ${monthPeriods.map(p => `
+                                <div class="price-item" style="background: white; padding: 12px; border: 1px solid #e2e8f0; border-radius: 6px; margin-bottom: 8px;">
+                                    <div style="font-size: 13px; font-weight: 600; color: #374151; margin-bottom: 8px;">
+                                        ${getTemplateI18nText(p.name)} (${p.start} - ${p.end})
+                                    </div>
+                                    <div>
+                                        <label style="font-size: 12px; color: #6b7280; display: block; margin-bottom: 4px;">${priceUnit}</label>
+                                        <input type="number" class="form-input price-input" step="0.01" min="0" placeholder="0.00" data-mode="monthly" data-month="${month}" data-period="${p.type}" required>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            return `
+                <div id="${containerId}">
+                    <div class="config-tabs" style="margin-bottom: 16px;">
+                        ${tabsHtml}
+                    </div>
+                    ${contentsHtml}
+                </div>
+            `;
+        }
+    }
+    return '';
+}
+
+
+        
         function onConsumptionTemplateSelect() {
             const templateId = parseInt(document.getElementById('consumptionTemplate').value);
             const section = document.getElementById('consumptionPriceSection');

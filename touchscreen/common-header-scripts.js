@@ -1,8 +1,8 @@
 // 共享的头部脚本 - 语言切换和退出功能
 console.log('common-header-scripts.js loading...');
 
-// 当前语言设置
-let currentLang = localStorage.getItem('language') || 'zh';
+// 当前语言设置 - 默认英文
+let currentLang = localStorage.getItem('touchscreen_language') || 'en';
 
 // 翻译文本
 const translations = {
@@ -41,15 +41,23 @@ function changeLanguage(lang, event) {
     
     // 保存语言设置
     currentLang = lang;
-    localStorage.setItem('language', lang);
+    localStorage.setItem('touchscreen_language', lang);
     
     // 关闭下拉菜单
     document.getElementById('langDropdown').classList.remove('show');
     
+    // 调用 touchscreen-i18n.js 的语言切换函数
+    if (typeof switchTouchscreenLanguage === 'function') {
+        switchTouchscreenLanguage(lang);
+    }
+
     // 如果页面有语言切换功能，调用它
     if (typeof applyLanguage === 'function') {
         applyLanguage(lang);
     }
+
+    // 更新退出弹窗文本
+    updateLogoutModalText();
 }
 
 

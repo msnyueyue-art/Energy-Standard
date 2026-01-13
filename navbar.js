@@ -8,7 +8,7 @@ function createTopNavbar() {
         <div class="header-left">
             <div class="logo">
                 <img src="logo.png" alt="AlwaysControl Technology" />
-                <span class="version-badge" data-version="pro" style="
+                <span class="version-badge" data-version="pro" data-translate="versionBadgePro" style="
                     display: inline-flex;
                     align-items: center;
                     padding: 3px 8px;
@@ -91,7 +91,7 @@ function createSidebar(currentPage = 'dashboard') {
                     </a>
                     <a href="devices1.html" class="menu-item submenu-item ${currentPage === 'devices1' ? 'active' : ''}">
                         <span style="font-size: 16px; margin-right: 10px;">🔄</span>
-                        <span>EMS升级</span>
+                        <span id="menuEMSUpgrade" data-translate="menuEMSUpgrade">EMS升级</span>
                     </a>
                 </div>
             </div>
@@ -281,6 +281,15 @@ function initNavbar(currentPage = 'dashboard') {
             submenu.style.transition = '';
         });
     }, 50);
+
+    // 翻译导航栏中的所有文本
+    // 确保在导航栏HTML插入后应用翻译
+    if (typeof setLanguage === 'function' && typeof currentLang !== 'undefined') {
+        // 使用setTimeout确保DOM已完全更新
+        setTimeout(() => {
+            setLanguage(currentLang);
+        }, 0);
+    }
 }
 
 // 自动初始化（如果页面设置了data-page属性）

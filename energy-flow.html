@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>能量流设置 - 储能柜管理系统</title>
+    <title id="pageTitle" data-translate="energyFlowPageTitle">能量流设置</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <script src="common.js"></script>
     <script src="navbar.js"></script>
     <style>
         /* 页面布局 */
@@ -1049,30 +1050,30 @@
 
                 <div class="energy-flow-actions" style="display: flex; gap: 12px;">
                     <!-- 编辑/预览切换按钮 -->
-                    <button class="toolbar-btn primary" id="editModeBtn" onclick="toggleEditMode()" title="切换编辑模式">
+                    <button class="toolbar-btn primary" id="editModeBtn" onclick="toggleEditMode()" data-translate-title="energyFlowSwitchEditModeTooltip">
                         <i class="fas fa-edit"></i>
                         <span>编辑</span>
                     </button>
 
                     <!-- 保存按钮（只在编辑模式下显示） -->
-                    <button class="toolbar-btn" id="saveBtn" onclick="saveFlowConfig()" title="保存配置" style="display: none;">
+                    <button class="toolbar-btn" id="saveBtn" onclick="saveFlowConfig()" data-translate-title="energyFlowSaveConfigTooltip" style="display: none;">
                         <i class="fas fa-save"></i>
-                        <span>保存</span>
+                        <span data-translate="energyFlowSave">保存</span>
                     </button>
 
                     <!-- 对齐按钮组（只在编辑模式下显示） -->
                     <div id="alignmentBtns" style="display: none; gap: 8px;">
-                        <button class="toolbar-btn" onclick="alignDevicesHorizontal()" title="水平对齐选中的设备">
+                        <button class="toolbar-btn" onclick="alignDevicesHorizontal()" data-translate-title="energyFlowAlignHorizontalTooltip">
                             <i class="fas fa-arrows-alt-h"></i>
-                            <span>水平对齐</span>
+                            <span data-translate="energyFlowAlignHorizontal">水平对齐</span>
                         </button>
-                        <button class="toolbar-btn" onclick="alignDevicesVertical()" title="垂直对齐选中的设备">
+                        <button class="toolbar-btn" onclick="alignDevicesVertical()" data-translate-title="energyFlowAlignVerticalTooltip">
                             <i class="fas fa-arrows-alt-v"></i>
-                            <span>垂直对齐</span>
+                            <span data-translate="energyFlowAlignVertical">垂直对齐</span>
                         </button>
-                        <button class="toolbar-btn" onclick="straightenConnections()" title="将选中的连线拉直">
+                        <button class="toolbar-btn" onclick="straightenConnections()" data-translate-title="energyFlowStraightenConnectionsTitle">
                             <i class="fas fa-ruler"></i>
-                            <span>连线拉直</span>
+                            <span data-translate="energyFlowStraightenConnections">连线拉直</span>
                         </button>
                     </div>
                 </div>
@@ -1092,7 +1093,7 @@
             <!-- 设备列表面板 -->
             <div class="device-list-panel" id="deviceListPanel">
                 <div class="device-list-title">
-                    <span>可用设备</span>
+                    <span data-translate="energyFlowAvailableDevices">可用设备</span>
                     <button class="panel-toggle-btn" id="panelToggleBtn" onclick="toggleDevicePanel()" title="收起面板">
                         <i class="fas fa-chevron-left"></i>
                     </button>
@@ -1102,7 +1103,7 @@
                 <div class="device-category">
                     <div class="device-category-title">
                         <span class="device-category-icon">⚡</span>
-                        <span>电源设备</span>
+                        <span data-translate="energyFlowPowerDevices">电源设备</span>
                     </div>
                     <div id="powerDevicesList">
                         <!-- 将通过JavaScript动态生成 -->
@@ -1113,7 +1114,7 @@
                 <div class="device-category">
                     <div class="device-category-title">
                         <span class="device-category-icon">🔋</span>
-                        <span>储能设备</span>
+                        <span data-translate="energyFlowStorageDevices">储能设备</span>
                     </div>
                     <div id="storageDevicesList">
                         <!-- 将通过JavaScript动态生成 -->
@@ -1124,7 +1125,7 @@
                 <div class="device-category">
                     <div class="device-category-title">
                         <span class="device-category-icon">🏭</span>
-                        <span>负载设备</span>
+                        <span data-translate="energyFlowLoadDevices">负载设备</span>
                     </div>
                     <div id="loadDevicesList">
                         <!-- 将通过JavaScript动态生成 -->
@@ -1153,17 +1154,33 @@
 
     <script src="common.js"></script>
     <script>
+        // 获取翻译函数（确保在common.js加载后执行）
+        
+        // 翻译辅助函数
+        function t(key, replacements = {}) {
+            let text = typeof getTranslation === 'function' ? getTranslation(key) : key;
+            // 替换占位符 {key} 为实际值
+            Object.keys(replacements).forEach(k => {
+                text = text.replace(new RegExp(`\{${k}\}`, 'g'), replacements[k]);
+            });
+            return text;
+        }
+
+        function getDeviceLabel(key) {
+            return typeof getTranslation === 'function' ? getTranslation(key) : key;
+        }
+
         let availableDevices = {
             power: [
-                { id: 'grid-1', type: 'grid', label: '市电', icon: '电网.png', desc: '380V 3相' },
-                { id: 'gen-1', type: 'generator', label: '柴发', icon: '柜子打开.png', desc: '500KW' },
-                { id: 'solar-1', type: 'solar', label: '光伏', icon: '光伏.png', desc: '200KW' }
+                { id: 'grid-1', type: 'grid', labelKey: 'energyFlowDeviceGrid', get label() { return getDeviceLabel(this.labelKey); }, icon: '电网.png', desc: '380V 3相' },
+                { id: 'gen-1', type: 'generator', labelKey: 'energyFlowDeviceGenerator', get label() { return getDeviceLabel(this.labelKey); }, icon: '柜子打开.png', desc: '500KW' },
+                { id: 'solar-1', type: 'solar', labelKey: 'energyFlowDeviceSolar', get label() { return getDeviceLabel(this.labelKey); }, icon: '光伏.png', desc: '200KW' }
             ],
             storage: [
-                { id: 'pcs-1', type: 'pcs', label: '储能柜', icon: '储能柜.png', desc: '250KW/500KWh' }
+                { id: 'pcs-1', type: 'pcs', labelKey: 'energyFlowDevicePCS', get label() { return getDeviceLabel(this.labelKey); }, icon: '储能柜.png', desc: '250KW/500KWh' }
             ],
             load: [
-                { id: 'load-1', type: 'load', label: '负载', icon: '负载.png', desc: '工业负载' }
+                { id: 'load-1', type: 'load', labelKey: 'energyFlowDeviceLoad', get label() { return getDeviceLabel(this.labelKey); }, icon: '负载.png', desc: '工业负载' }
             ]
         };
 
@@ -1291,7 +1308,7 @@
 
             // 检查是否在编辑模式
             if (!isEditMode) {
-                showMiniToast('请先进入编辑模式', 'warning');
+                showMiniToast(t('energyFlowEnterEditModeFirst'), 'warning');
                 return;
             }
 
@@ -1307,7 +1324,7 @@
 
             // 重新渲染
             renderPlacedDevices();
-            showMiniToast(`已隐藏 ${paramType.toUpperCase()} 参数`, 'success');
+            showMiniToast(t('energyFlowParamHidden', {type: paramType.toUpperCase()}), 'success');
         }
 
         // 删除设备（点击×按钮）
@@ -1317,7 +1334,7 @@
 
             // 检查是否在编辑模式
             if (!isEditMode) {
-                showMiniToast('⚠️ 请先进入编辑模式', 'warning');
+                showMiniToast('⚠️ ' + t('energyFlowEnterEditModeFirst'), 'warning');
                 return;
             }
 
@@ -1337,7 +1354,7 @@
             // 保存到localStorage
             saveToLocalStorage();
 
-            showMiniToast(`✅ 已删除 ${deviceName}`, 'success');
+            showMiniToast('✅ ' + t('energyFlowDeviceDeleted', {name: deviceName}), 'success');
         }
 
         // 参数拖拽相关变量
@@ -1414,7 +1431,7 @@
             const contentEl = document.getElementById('settingsPanelContent');
 
             // 设置标题
-            titleEl.textContent = `${device.label} - 设置`;
+            titleEl.textContent = `${device.label} - ${t('energyFlowDeviceSettings')}`;
 
             // 初始化设备的显示参数和流向（如果不存在）
             if (!device.displayParams) {
@@ -1438,80 +1455,80 @@
             // 生成设置内容
             let settingsHTML = `
                 <div class="settings-item">
-                    <label class="settings-item-label">设备名称</label>
+                    <label class="settings-item-label">${t('energyFlowDeviceName')}</label>
                     <input type="text" class="settings-item-input" id="deviceName" value="${device.label}"
                            oninput="updateDeviceProperty('${deviceId}', 'label', this.value)" />
                 </div>
 
                 <div class="settings-item">
-                    <label class="settings-item-label">显示参数（可多选）</label>
+                    <label class="settings-item-label">${t('energyFlowDisplayParams')}</label>
                     <div style="margin-top: 8px; display: flex; flex-direction: column; gap: 8px;">
                         <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
                             <input type="checkbox" id="displayPower" ${device.displayParams.power.enabled ? 'checked' : ''}
                                    onchange="toggleDeviceParam('${deviceId}', 'power', this.checked)"
                                    style="width: 16px; height: 16px; cursor: pointer;">
-                            <span style="font-size: 13px; color: var(--text-primary);">功率 (P)</span>
+                            <span style="font-size: 13px; color: var(--text-primary);">${t('energyFlowParamPower')}</span>
                         </label>
                         <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
                             <input type="checkbox" id="displayVoltage" ${device.displayParams.voltage.enabled ? 'checked' : ''}
                                    onchange="toggleDeviceParam('${deviceId}', 'voltage', this.checked)"
                                    style="width: 16px; height: 16px; cursor: pointer;">
-                            <span style="font-size: 13px; color: var(--text-primary);">电压 (U)</span>
+                            <span style="font-size: 13px; color: var(--text-primary);">${t('energyFlowParamVoltage')}</span>
                         </label>
                         <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
                             <input type="checkbox" id="displayCurrent" ${device.displayParams.current.enabled ? 'checked' : ''}
                                    onchange="toggleDeviceParam('${deviceId}', 'current', this.checked)"
                                    style="width: 16px; height: 16px; cursor: pointer;">
-                            <span style="font-size: 13px; color: var(--text-primary);">电流 (I)</span>
+                            <span style="font-size: 13px; color: var(--text-primary);">${t('energyFlowParamCurrent')}</span>
                         </label>
                         <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
                             <input type="checkbox" id="displaySOC" ${device.displayParams.soc.enabled ? 'checked' : ''}
                                    onchange="toggleDeviceParam('${deviceId}', 'soc', this.checked)"
                                    style="width: 16px; height: 16px; cursor: pointer;">
-                            <span style="font-size: 13px; color: var(--text-primary);">SOC (%)</span>
+                            <span style="font-size: 13px; color: var(--text-primary);">${t('energyFlowParamSOC')}</span>
                         </label>
                     </div>
                 </div>
 
                 <div class="settings-item">
-                    <label class="settings-item-label">流向</label>
+                    <label class="settings-item-label">${t('energyFlowFlowDirection')}</label>
                     <div style="margin-top: 8px;">
                         <div style="margin-bottom: 16px; padding: 12px; background: rgba(53, 98, 227, 0.05); border-radius: 6px; border-left: 3px solid var(--primary-color);">
                             <label style="display: block; margin-bottom: 8px; font-size: 13px; font-weight: 500; color: var(--text-primary);">
-                                流入
+                                ${t('energyFlowFlowIn')}
                             </label>
                             <div style="display: flex; gap: 8px; align-items: center;">
                                 <select class="settings-item-select" id="flowInAttribute" style="flex: 1;">
-                                    <option value="power" ${device.flowControl.inAttribute === 'power' ? 'selected' : ''}>功率 (P)</option>
-                                    <option value="voltage" ${device.flowControl.inAttribute === 'voltage' ? 'selected' : ''}>电压 (U)</option>
-                                    <option value="current" ${device.flowControl.inAttribute === 'current' ? 'selected' : ''}>电流 (I)</option>
+                                    <option value="power" ${device.flowControl.inAttribute === 'power' ? 'selected' : ''}>${t('energyFlowParamPower')}</option>
+                                    <option value="voltage" ${device.flowControl.inAttribute === 'voltage' ? 'selected' : ''}>${t('energyFlowParamVoltage')}</option>
+                                    <option value="current" ${device.flowControl.inAttribute === 'current' ? 'selected' : ''}>${t('energyFlowParamCurrent')}</option>
                                     <option value="soc" ${device.flowControl.inAttribute === 'soc' ? 'selected' : ''}>SOC</option>
                                 </select>
                                 <select class="settings-item-select" id="flowInDirection" style="flex: 0 0 100px;">
-                                    <option value="positive" ${device.flowControl.inDirection === 'positive' ? 'selected' : ''}>正数</option>
-                                    <option value="negative" ${device.flowControl.inDirection === 'negative' ? 'selected' : ''}>负数</option>
+                                    <option value="positive" ${device.flowControl.inDirection === 'positive' ? 'selected' : ''}>${t('energyFlowDirectionPositive')}</option>
+                                    <option value="negative" ${device.flowControl.inDirection === 'negative' ? 'selected' : ''}>${t('energyFlowDirectionNegative')}</option>
                                 </select>
                             </div>
                         </div>
                         <div style="padding: 12px; background: rgba(239, 68, 68, 0.05); border-radius: 6px; border-left: 3px solid #ef4444;">
                             <label style="display: block; margin-bottom: 8px; font-size: 13px; font-weight: 500; color: var(--text-primary);">
-                                流出
+                                ${t('energyFlowFlowOut')}
                             </label>
                             <div style="display: flex; gap: 8px; align-items: center;">
                                 <select class="settings-item-select" id="flowOutAttribute" style="flex: 1;">
-                                    <option value="power" ${device.flowControl.outAttribute === 'power' ? 'selected' : ''}>功率 (P)</option>
-                                    <option value="voltage" ${device.flowControl.outAttribute === 'voltage' ? 'selected' : ''}>电压 (U)</option>
-                                    <option value="current" ${device.flowControl.outAttribute === 'current' ? 'selected' : ''}>电流 (I)</option>
+                                    <option value="power" ${device.flowControl.outAttribute === 'power' ? 'selected' : ''}>${t('energyFlowParamPower')}</option>
+                                    <option value="voltage" ${device.flowControl.outAttribute === 'voltage' ? 'selected' : ''}>${t('energyFlowParamVoltage')}</option>
+                                    <option value="current" ${device.flowControl.outAttribute === 'current' ? 'selected' : ''}>${t('energyFlowParamCurrent')}</option>
                                     <option value="soc" ${device.flowControl.outAttribute === 'soc' ? 'selected' : ''}>SOC</option>
                                 </select>
                                 <select class="settings-item-select" id="flowOutDirection" style="flex: 0 0 100px;">
-                                    <option value="positive" ${device.flowControl.outDirection === 'positive' ? 'selected' : ''}>正数</option>
-                                    <option value="negative" ${device.flowControl.outDirection === 'negative' ? 'selected' : ''}>负数</option>
+                                    <option value="positive" ${device.flowControl.outDirection === 'positive' ? 'selected' : ''}>${t('energyFlowDirectionPositive')}</option>
+                                    <option value="negative" ${device.flowControl.outDirection === 'negative' ? 'selected' : ''}>${t('energyFlowDirectionNegative')}</option>
                                 </select>
                             </div>
                         </div>
                         <div style="font-size: 12px; color: var(--text-secondary); margin-top: 8px; line-height: 1.5;">
-                            示例：选择"功率 + 正数"表示功率为正时流入/流出
+                            ${t('energyFlowFlowExample')}
                         </div>
                     </div>
                 </div>
@@ -1624,7 +1641,7 @@
             renderPlacedDevices();
 
             // 显示保存成功提示
-            showMiniToast('✅ 设备设置已保存', 'success');
+            showMiniToast('✅ ' + t('energyFlowDeviceSettingsSaved'), 'success');
         }
 
         // 应用编辑模式UI（不切换状态，仅应用UI）
@@ -1635,12 +1652,12 @@
             const deviceListPanel = document.getElementById('deviceListPanel');
 
             editModeBtn.style.display = 'inline-flex';
-            editModeBtn.innerHTML = '<i class="fas fa-eye" style="color: white;"></i><span>预览</span>';
+            editModeBtn.innerHTML = '<i class="fas fa-eye" style="color: white;"></i><span>' + (typeof getTranslation === 'function' ? getTranslation('energyFlowPreview') : '预览') + '</span>';
             editModeBtn.className = 'toolbar-btn';
             editModeBtn.style.background = '#6b7280';
             editModeBtn.style.borderColor = '#6b7280';
             editModeBtn.style.color = 'white';
-            editModeBtn.title = '切换到预览模式';
+            editModeBtn.title = t('energyFlowSwitchToPreviewTooltip');
             saveBtn.style.display = 'inline-flex';
             document.getElementById('alignmentBtns').style.display = 'flex';
             deviceListPanel.style.display = 'block';
@@ -1668,12 +1685,12 @@
                 // 进入编辑模式
                 console.log('✏️ 进入编辑模式');
                 editModeBtn.style.display = 'inline-flex'; // 显示编辑按钮
-                editModeBtn.innerHTML = '<i class="fas fa-eye" style="color: white;"></i><span>预览</span>';
+                editModeBtn.innerHTML = '<i class="fas fa-eye" style="color: white;"></i><span>' + (typeof getTranslation === 'function' ? getTranslation('energyFlowPreview') : '预览') + '</span>';
                 editModeBtn.className = 'toolbar-btn';
                 editModeBtn.style.background = '#6b7280';
                 editModeBtn.style.borderColor = '#6b7280';
                 editModeBtn.style.color = 'white';
-                editModeBtn.title = '切换到预览模式';
+                editModeBtn.title = t('energyFlowSwitchToPreviewTooltip');
                 saveBtn.style.display = 'inline-flex'; // 显示保存按钮
                 document.getElementById('alignmentBtns').style.display = 'flex'; // 显示对齐按钮组
                 deviceListPanel.style.display = 'block';
@@ -1690,12 +1707,12 @@
                 // 进入预览模式
                 console.log('👁️ 进入预览模式');
                 editModeBtn.style.display = 'inline-flex'; // 显示按钮
-                editModeBtn.innerHTML = '<i class="fas fa-edit"></i><span>返回编辑</span>';
+                editModeBtn.innerHTML = '<i class="fas fa-edit"></i><span>' + (typeof getTranslation === 'function' ? getTranslation('energyFlowBackToEdit') : '返回编辑') + '</span>';
                 editModeBtn.className = 'toolbar-btn primary';
                 editModeBtn.style.background = '';
                 editModeBtn.style.borderColor = '';
                 editModeBtn.style.color = '';
-                editModeBtn.title = '返回编辑模式';
+                editModeBtn.title = t('energyFlowBackToEditTooltip');
                 saveBtn.style.display = 'none'; // 隐藏保存按钮
                 document.getElementById('alignmentBtns').style.display = 'none'; // 隐藏对齐按钮组
                 deviceListPanel.style.display = 'none';
@@ -2033,7 +2050,7 @@
                 // 检查设备是否已经在画布上
                 const alreadyPlaced = placedDevices.some(d => d.id === draggedDeviceData.id);
                 if (alreadyPlaced) {
-                    showMiniToast('⚠️ 该设备已在画布上', 'warning');
+                    showMiniToast('⚠️ ' + t('energyFlowDeviceAlreadyOnCanvas'), 'warning');
                     draggedDeviceData = null;
                     return;
                 }
@@ -2899,9 +2916,9 @@
                                     deviceConnections[index].controlPoints.length > 0;
 
             if (hasControlPoints) {
-                showMiniToast('✏️ 连线已选中，拖拽控制点调整路径');
+                showMiniToast('✏️ ' + t('energyFlowConnectionSelected'));
             } else {
-                showMiniToast('✏️ 连线已选中，右键可添加控制点');
+                showMiniToast('✏️ ' + t('energyFlowConnectionSelectedRightClick'));
             }
         }
 
@@ -3011,7 +3028,7 @@
 
             deviceConnections[connIndex].controlPoints.push({ x, y });
             drawAllConnections();
-            showMiniToast('➕ 已添加控制点');
+            showMiniToast('➕ ' + t('energyFlowControlPointAdded'));
         }
 
         // 显示连线右键菜单
@@ -3047,7 +3064,7 @@
                         // 切换路径模式
                         deviceConnections[connIndex].pathMode = isOrthogonal ? 'straight' : 'orthogonal';
                         drawAllConnections();
-                        showMiniToast(isOrthogonal ? '📏 已切换为直线模式' : '📐 已切换为正交模式（90度拐弯）');
+                        showMiniToast(isOrthogonal ? '📏 ' + t('energyFlowSwitchToStraight') : '📐 ' + t('energyFlowSwitchToOrthogonal'));
                         menu.remove();
                     }
                 },
@@ -3075,7 +3092,7 @@
                             deviceConnections.splice(connIndex, 1);
                             selectedConnection = null;
                             drawAllConnections();
-                            showMiniToast('✅ 已删除连线');
+                            showMiniToast('✅ ' + t('energyFlowConnectionDeleted'));
                         }
                         menu.remove();
                     }
@@ -3126,7 +3143,7 @@
             deviceConnections[connIndex].controlPoints = [];
             selectedConnection = null;
             drawAllConnections();
-            showMiniToast('🔄 路径已重置');
+            showMiniToast('🔄 ' + t('energyFlowPathReset'));
         }
 
         // 显示连线编辑帮助
@@ -3255,14 +3272,14 @@
         // 清除所有连线
         function clearAllConnections() {
             if (deviceConnections.length === 0) {
-                showMiniToast('⚠️ 当前没有连线');
+                showMiniToast('⚠️ ' + t('energyFlowNoConnections'));
                 return;
             }
 
             if (confirm('确定要清除所有连线吗？')) {
                 deviceConnections = [];
                 drawAllConnections();
-                showMiniToast('✅ 已清除所有连线');
+                showMiniToast('✅ ' + t('energyFlowAllConnectionsCleared'));
             }
         }
 
@@ -3361,7 +3378,7 @@
 
             const selectedDevices = document.querySelectorAll('.flow-device.selected');
             if (selectedDevices.length < 2) {
-                showMiniToast('⚠️ 请先选中至少2个设备（按住Ctrl/Cmd点击多选）');
+                showMiniToast('⚠️ ' + t('energyFlowSelectTwoDevices'));
                 return;
             }
 
@@ -3380,7 +3397,7 @@
             renderPlacedDevices();
             drawAllConnections();
 
-            showMiniToast(`✅ 已水平对齐 ${devices.length} 个设备`);
+            showMiniToast('✅ ' + t('energyFlowDevicesAlignedHorizontal', {count: devices.length}));
         }
 
         // 垂直对齐选中的设备
@@ -3392,7 +3409,7 @@
 
             const selectedDevices = document.querySelectorAll('.flow-device.selected');
             if (selectedDevices.length < 2) {
-                showMiniToast('⚠️ 请先选中至少2个设备（按住Ctrl/Cmd点击多选）');
+                showMiniToast('⚠️ ' + t('energyFlowSelectTwoDevices'));
                 return;
             }
 
@@ -3411,7 +3428,7 @@
             renderPlacedDevices();
             drawAllConnections();
 
-            showMiniToast(`✅ 已垂直对齐 ${devices.length} 个设备`);
+            showMiniToast('✅ ' + t('energyFlowDevicesAlignedVertical', {count: devices.length}));
         }
 
         // 连线拉直（转为直线模式）
@@ -3422,7 +3439,7 @@
             }
 
             if (deviceConnections.length === 0) {
-                showMiniToast('⚠️ 没有连线可以拉直');
+                showMiniToast('⚠️ ' + t('energyFlowNoConnectionsToStraighten'));
                 return;
             }
 
@@ -3438,7 +3455,7 @@
             });
 
             if (changedCount === 0) {
-                showMiniToast('✅ 所有连线已经是直线');
+                showMiniToast('✅ ' + t('energyFlowAllConnectionsStraight'));
                 return;
             }
 
@@ -3448,7 +3465,7 @@
             // 重新绘制所有连线
             drawAllConnections();
 
-            showMiniToast(`✅ 已拉直 ${changedCount} 条连线`);
+            showMiniToast('✅ ' + t('energyFlowConnectionsStraightened', {count: changedCount}));
         }
 
         // 居中显示画布内容
@@ -3677,7 +3694,7 @@
             }
 
             if (!isEditMode) {
-                showMiniToast('请先进入编辑模式', 'warning');
+                showMiniToast(t('energyFlowEnterEditModeFirst'), 'warning');
                 if (saveBtn) {
                     saveBtn.style.background = '';
                     saveBtn.disabled = false;
@@ -3701,7 +3718,7 @@
                 localStorage.setItem('energyFlowConfig', configStr);
 
                 // 显示成功提示
-                showMiniToast(`保存成功 (${placedDevices.length} 个设备, ${deviceConnections.length} 条连线)`, 'success');
+                showMiniToast(t('energyFlowSaveSuccess', {devices: placedDevices.length, connections: deviceConnections.length}), 'success');
                 console.log('✅ 配置保存成功');
 
                 // 保存成功后跳转回仪表盘
@@ -3711,7 +3728,7 @@
 
             } catch (e) {
                 console.error('❌ 保存配置失败:', e);
-                showMiniToast('保存失败：' + e.message, 'error');
+                showMiniToast(t('energyFlowSaveFailed', {error: e.message}), 'error');
                 if (saveBtn) {
                     saveBtn.style.background = '';
                     saveBtn.disabled = false;
@@ -3743,11 +3760,11 @@
                     const saveTime = new Date(config.timestamp).toLocaleString('zh-CN');
                     showMiniToast(`✅ 配置加载成功！\n${placedDevices.length}个设备, ${deviceConnections.length}条连线\n保存时间: ${saveTime}`);
                 } else {
-                    showMiniToast('⚠️ 没有找到保存的配置');
+                    showMiniToast('⚠️ ' + t('energyFlowNoSavedConfig'));
                 }
             } catch (e) {
                 console.error('加载配置失败:', e);
-                showMiniToast('❌ 加载失败：' + e.message);
+                showMiniToast('❌ ' + t('energyFlowLoadFailed', {error: e.message}));
             }
         }
 
@@ -3895,6 +3912,15 @@
 
         // 页面加载时初始化
         window.addEventListener('load', function() {
+            // 初始化翻译
+            if (typeof applyTranslations === 'function') {
+                applyTranslations();
+                // 更新页面标题
+                const pageTitle = document.getElementById('pageTitle');
+                if (pageTitle && typeof getTranslation === 'function') {
+                    pageTitle.textContent = getTranslation('energyFlowPageTitle');
+                }
+            }
             initNavbar('energy-flow');
             // 自动显示并初始化能量流
             const container = document.getElementById('energy-flow-container');

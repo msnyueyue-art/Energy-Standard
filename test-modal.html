@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>弹框测试</title>
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 500px;
+            padding: 20px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 6px;
+            background: #3b82f6;
+            color: white;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+        }
+    </style>
+</head>
+<body>
+    <h1>弹框测试</h1>
+    <button class="btn" onclick="openModal()">打开弹框</button>
+
+    <div class="modal" id="testModal">
+        <div class="modal-content">
+            <h3>测试弹框</h3>
+            <p>这是一个测试弹框</p>
+            <button class="btn" onclick="alert('按钮被点击了！')">测试按钮1</button>
+            <button class="btn" onclick="alert('按钮2被点击了！')">测试按钮2</button>
+            <button class="btn" onclick="closeModal()">关闭</button>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            console.log('打开弹框');
+            document.getElementById('testModal').classList.add('active');
+        }
+
+        function closeModal() {
+            console.log('关闭弹框');
+            document.getElementById('testModal').classList.remove('active');
+        }
+
+        // 点击背景关闭弹框
+        document.getElementById('testModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

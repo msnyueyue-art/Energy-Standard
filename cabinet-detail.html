@@ -741,7 +741,7 @@
                     <div style="background: rgba(255, 255, 255, 0.95); padding: 12px 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: flex; flex-direction: row; flex-wrap: nowrap; align-items: center; gap: 16px; white-space: nowrap; min-width: max-content;">
                         <!-- 运行灯 -->
                         <div id="runningLight" style="display: flex; flex-direction: row; align-items: center; gap: 10px; flex-shrink: 0;">
-                            <span style="font-size: 13px; font-weight: 500; color: #1f2937;">运行灯</span>
+                            <span style="font-size: 13px; font-weight: 500; color: #1f2937;" data-translate="cabinetRunningLight">运行灯</span>
                             <i id="runningLightIcon" class="fas fa-lightbulb" style="font-size: 13px; color: #10b981; filter: drop-shadow(0 0 4px rgba(16,185,129,0.6));"></i>
                         </div>
 
@@ -750,7 +750,7 @@
 
                         <!-- 告警灯 -->
                         <div id="alarmLight" style="display: flex; flex-direction: row; align-items: center; gap: 10px; flex-shrink: 0;">
-                            <span style="font-size: 13px; font-weight: 500; color: #1f2937;">告警灯</span>
+                            <span style="font-size: 13px; font-weight: 500; color: #1f2937;" data-translate="cabinetAlarmLight">告警灯</span>
                             <i id="alarmLightIcon" class="fas fa-lightbulb" style="font-size: 13px; color: #9ca3af;"></i>
                         </div>
 
@@ -759,7 +759,7 @@
 
                         <!-- 急停开关 -->
                         <div onclick="handleEmergencyStop()" style="display: flex; flex-direction: row; align-items: center; gap: 10px; cursor: pointer; transition: all 0.2s; flex-shrink: 0;" title="紧急停止" id="emergencyStopBtn">
-                            <span style="font-size: 13px; font-weight: 500; color: #1f2937;">急停开关</span>
+                            <span style="font-size: 13px; font-weight: 500; color: #1f2937;" data-translate="cabinetEmergencyStop">急停开关</span>
                             <!-- 自定义Toggle开关 -->
                             <div id="customToggle" style="position: relative; width: 44px; height: 24px; background: #d1d5db; border-radius: 12px; transition: all 0.3s; flex-shrink: 0;">
                                 <div id="toggleCircle" style="position: absolute; top: 2px; left: 2px; width: 20px; height: 20px; background: white; border-radius: 50%; box-shadow: 0 2px 4px rgba(0,0,0,0.2); transition: all 0.3s;"></div>
@@ -796,7 +796,7 @@
                         <!-- 历史数据导出按钮 -->
                         <button onclick="navigateToExportPage()" style="height: 40px; padding: 0 14px; background: #3b82f6; color: white; border: none; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s; white-space: nowrap; flex-shrink: 0;" onmouseover="this.style.background='#2563eb'" onmouseout="this.style.background='#3b82f6'">
                             <i class="fas fa-download"></i>
-                            <span>历史数据导出</span>
+                            <span data-translate="cabinetHistoryExport">历史数据导出</span>
                         </button>
                     </div>
                 </div>
@@ -809,7 +809,7 @@
                             <div style="width: 32px; height: 32px; background: #fef3c7; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
                                 <i class="fas fa-exclamation-triangle" style="font-size: 14px; color: #f59e0b;"></i>
                             </div>
-                            <span style="font-size: 13px; font-weight: 600; color: #1f2937;">告警</span>
+                            <span style="font-size: 13px; font-weight: 600; color: #1f2937;" data-translate="cabinetAlarmTitle">告警</span>
                         </div>
 
                         <!-- 分隔线 -->
@@ -819,9 +819,10 @@
                         <div style="flex: 1; display: flex; flex-direction: row; align-items: center; justify-content: space-between; gap: 12px; min-width: 0;">
                             <div style="display: flex; align-items: center; gap: 6px; white-space: nowrap;">
                                 <span style="font-size: 12px; color: #78350f; flex-shrink: 0;">•</span>
-                                <span style="font-size: 12px; color: #78350f;">电池模组3温度偏高 (32.5°C)</span>
+                                <span style="font-size: 12px; color: #78350f;" data-translate="cabinetAlarmMessage">电池模组3温度偏高</span>
+                                <span style="font-size: 12px; color: #78350f;"> (32.5°C)</span>
                             </div>
-                            <span style="font-size: 11px; color: #9ca3af; flex-shrink: 0;">3分钟前</span>
+                            <span style="font-size: 11px; color: #9ca3af; flex-shrink: 0;">3<span data-translate="cabinetMinutesAgo">分钟前</span></span>
                         </div>
                     </div>
                 </div>
@@ -860,8 +861,8 @@
                                 <div style="display: flex; gap: 8px;">
                                     <button class="upgrade-btn" onclick="openUpgradeModal()" title="升级设备" style="padding: 4px 12px; font-size: 12px;">
                                         <i class="fas fa-arrow-up"></i>
-                                        <span id="cabinetBtnUpgrade">升级</span>
-                                        <span class="upgrade-badge">定制</span>
+                                        <span id="cabinetBtnUpgrade" data-translate="cabinetBtnUpgrade">升级</span>
+                                        <span class="upgrade-badge" data-translate="cabinetUpgradeBadge">定制</span>
                                     </button>
                                     <button class="settings-btn" onclick="openFieldSettings()" title="字段设置" data-translate-title="btnFieldSettings" style="margin-bottom: 0; padding: 4px 12px; font-size: 12px;">
                                         <i class="fas fa-cog"></i>
@@ -1261,19 +1262,19 @@
 
                             <!-- 液冷控制 -->
                             <div style="background: var(--bg-secondary); border-radius: 12px; padding: 20px; margin-bottom: 24px;">
-                                <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 16px; color: var(--text-primary);">液冷控制</h3>
+                                <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 16px; color: var(--text-primary);" data-translate="cabinetCoolingControl">液冷控制</h3>
                                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
                                     <div>
-                                        <label style="display: block; font-size: 14px; color: var(--text-secondary); margin-bottom: 6px;">模式</label>
+                                        <label style="display: block; font-size: 14px; color: var(--text-secondary); margin-bottom: 6px;" data-translate="cabinetCoolingMode">模式</label>
                                         <select id="coolantWorkMode" class="form-input" style="width: 100%;" onchange="updateCoolantSubMode()">
-                                            <option value="standby">待机</option>
-                                            <option value="auto">自循环</option>
-                                            <option value="cooling">制冷</option>
-                                            <option value="heating">制热</option>
+                                            <option value="standby" data-translate="cabinetCoolingModeStandby">待机</option>
+                                            <option value="auto" data-translate="cabinetCoolingModeAuto">自循环</option>
+                                            <option value="cooling" data-translate="cabinetCoolingModeCooling">制冷</option>
+                                            <option value="heating" data-translate="cabinetCoolingModeHeating">制热</option>
                                         </select>
                                     </div>
                                     <div id="coolantSubModeContainer" style="display: none;">
-                                        <label style="display: block; font-size: 14px; color: var(--text-secondary); margin-bottom: 6px;">工况</label>
+                                        <label style="display: block; font-size: 14px; color: var(--text-secondary); margin-bottom: 6px;" data-translate="cabinetCoolingCondition">工况</label>
                                         <select id="coolantSubMode" class="form-input" style="width: 100%;" onchange="updateCoolantRunData()">
                                             <option value="half">半工况</option>
                                             <option value="full">全工况</option>
@@ -1329,7 +1330,7 @@
             <!-- 模态框底部 -->
             <div style="padding: 20px; border-top: 1px solid var(--border-color); display: flex; justify-content: flex-end; gap: 12px;">
                 <button onclick="resetFieldSettings()" style="padding: 8px 20px; background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 6px; cursor: pointer;">
-                    <span id="cabinetFieldSettingsReset" data-translate="cabinetFieldSettingsReset">重置默认</span>
+                    <span id="cabinetFieldSettingsReset" data-translate="cabinetFieldSettingsReset">重置为默认</span>
                 </button>
                 <button onclick="saveFieldSettings()" style="padding: 8px 20px; background: var(--primary-color); color: white; border: none; border-radius: 6px; cursor: pointer;">
                     <span id="cabinetFieldSettingsSave" data-translate="cabinetFieldSettingsSave">保存设置</span>
@@ -1360,7 +1361,7 @@
 
             <!-- 模态框头部 -->
             <div style="padding: 20px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
-                <h3 style="margin: 0; font-size: 18px; font-weight: 600; color: var(--text-primary);">定制化升级</h3>
+                <h3 style="margin: 0; font-size: 18px; font-weight: 600; color: var(--text-primary);" data-translate="cabinetUpgradeModalTitle">定制化升级</h3>
                 <button onclick="closeUpgradeModal()" style="background: none; border: none; font-size: 20px; cursor: pointer; color: var(--text-secondary); padding: 0; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center;">
                     <i class="fas fa-times"></i>
                 </button>
@@ -1368,7 +1369,7 @@
 
             <!-- 模态框内容 -->
             <div style="padding: 24px; text-align: center;">
-                <p style="font-size: 15px; color: var(--text-secondary); margin-bottom: 24px; line-height: 1.6;">
+                <p style="font-size: 15px; color: var(--text-secondary); margin-bottom: 24px; line-height: 1.6;" data-translate="cabinetUpgradeModalDesc">
                     设备升级需要定制化开发，请联系我们
                 </p>
 
@@ -1376,7 +1377,7 @@
                 <div style="background: var(--bg-secondary); border-radius: 8px; padding: 20px; border: 1px solid var(--border-color);">
                     <div style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 12px;">
                         <i class="fas fa-phone-alt" style="color: var(--text-secondary); font-size: 16px;"></i>
-                        <span style="font-size: 14px; color: var(--text-secondary); font-weight: 500;">联系电话</span>
+                        <span style="font-size: 14px; color: var(--text-secondary); font-weight: 500;" data-translate="cabinetUpgradeContactPhone">联系电话</span>
                     </div>
                     <a href="tel:18576677649" style="font-size: 20px; color: var(--text-primary); font-weight: 600; text-decoration: none; display: block; margin-bottom: 6px; letter-spacing: 0.5px;">
                         185 7667 7649
@@ -1905,8 +1906,8 @@
             if (!emergencyStopActive) {
                 // 显示自定义确认弹窗
                 showCustomConfirm(
-                    '警告',
-                    '您确定要触发紧急停止吗？这将立即停止储能柜的所有运行操作！',
+                    getTranslation('cabinetEmergencyWarningTitle'),
+                    getTranslation('cabinetEmergencyWarningMessage'),
                     'warning',
                     () => {
                         emergencyStopActive = true;
@@ -1946,8 +1947,8 @@
                         `;
                         emergencyToast.innerHTML = `
                             <i class="fas fa-exclamation-triangle" style="font-size: 32px; margin-bottom: 12px;"></i>
-                            <div>急停已触发！</div>
-                            <div style="font-size: 14px; font-weight: 400; margin-top: 8px;">系统正在安全关闭中...</div>
+                            <div>${getTranslation('cabinetEmergencyTriggered')}</div>
+                            <div style="font-size: 14px; font-weight: 400; margin-top: 8px;">${getTranslation('cabinetEmergencyShuttingDown')}</div>
                         `;
                         document.body.appendChild(emergencyToast);
 
@@ -1965,8 +1966,8 @@
             } else {
                 // 关闭急停 - 显示自定义确认弹窗
                 showCustomConfirm(
-                    '确认关闭急停',
-                    '确认要关闭急停开关吗？\n系统将恢复正常运行。',
+                    getTranslation('cabinetEmergencyConfirmTitle'),
+                    getTranslation('cabinetEmergencyConfirmMessage'),
                     'success',
                     () => {
                         emergencyStopActive = false;
@@ -2115,9 +2116,16 @@
             
             // 更新当前组件
             currentComponent = tabComponent;
-            
+
             // 更新数据显示
             updateComponentData(tabComponent);
+
+            // 应用当前语言的翻译到动态生成的内容
+            setTimeout(() => {
+                if (typeof setLanguage === 'function' && typeof currentLang !== 'undefined') {
+                    setLanguage(currentLang);
+                }
+            }, 0);
         }
         
         // 获取组件对应的标签名称
@@ -3445,20 +3453,27 @@
             if (activeButton) {
                 activeButton.classList.add('active');
             }
-            
+
             // 重置为实时数据tab
             document.querySelectorAll('.data-tab').forEach(t => {
                 t.classList.remove('active');
             });
             document.querySelector('[onclick*="switchTab(\'realtime\'"]')?.classList.add('active');
-            
+
             // 显示实时数据，隐藏其他tab内容
             document.getElementById('realtimeData').style.display = 'block';
             document.getElementById('historyData').style.display = 'none';
             document.getElementById('controlPanel').style.display = 'none';
-            
+
             // 更新数据内容
             updateComponentData(component);
+
+            // 应用当前语言的翻译到动态生成的内容
+            setTimeout(() => {
+                if (typeof setLanguage === 'function' && typeof currentLang !== 'undefined') {
+                    setLanguage(currentLang);
+                }
+            }, 0);
         }
         
         // 切换数据标签页
@@ -5272,7 +5287,7 @@
                     data: {
                         labels: Array.from({length: 24}, (_, i) => `${i}:00`),
                         datasets: [{
-                            label: '出水温度',
+                            label: getTranslation('coolingChartOutletWaterTemp'),
                             data: Array.from({length: 24}, () => (18 + Math.random() * 2).toFixed(1)),
                             borderColor: '#3b82f6',
                             backgroundColor: 'rgba(59, 130, 246, 0.1)',
@@ -5280,7 +5295,7 @@
                             tension: 0.4,
                             fill: false
                         }, {
-                            label: '进水温度',
+                            label: getTranslation('coolingChartInletWaterTemp'),
                             data: Array.from({length: 24}, () => (22 + Math.random() * 2).toFixed(1)),
                             borderColor: '#ef4444',
                             backgroundColor: 'rgba(239, 68, 68, 0.1)',
@@ -5297,7 +5312,7 @@
                         },
                         scales: {
                             y: {
-                                title: { display: true, text: '温度 (°C)' },
+                                title: { display: true, text: getTranslation('coolingChartTempUnit') },
                                 min: 15,
                                 max: 30
                             }
@@ -5314,7 +5329,7 @@
                     data: {
                         labels: Array.from({length: 24}, (_, i) => `${i}:00`),
                         datasets: [{
-                            label: '出水压力',
+                            label: getTranslation('coolingChartOutletPressure'),
                             data: Array.from({length: 24}, () => (2.5 + Math.random() * 0.5).toFixed(2)),
                             borderColor: '#10b981',
                             backgroundColor: 'rgba(16, 185, 129, 0.1)',
@@ -5322,7 +5337,7 @@
                             tension: 0.4,
                             fill: false
                         }, {
-                            label: '进水压力',
+                            label: getTranslation('coolingChartInletPressure'),
                             data: Array.from({length: 24}, () => (2.2 + Math.random() * 0.3).toFixed(2)),
                             borderColor: '#f59e0b',
                             backgroundColor: 'rgba(245, 158, 11, 0.1)',
@@ -5339,7 +5354,7 @@
                         },
                         scales: {
                             y: {
-                                title: { display: true, text: '压力 (bar)' },
+                                title: { display: true, text: getTranslation('coolingChartPressureUnit') },
                                 min: 1.5,
                                 max: 3.5
                             }
@@ -5356,7 +5371,7 @@
                     data: {
                         labels: Array.from({length: 24}, (_, i) => `${i}:00`),
                         datasets: [{
-                            label: '水泵转速',
+                            label: getTranslation('coolingChartPumpSpeed'),
                             data: Array.from({length: 24}, () => (1200 + Math.random() * 300).toFixed(0)),
                             borderColor: '#8b5cf6',
                             backgroundColor: 'rgba(139, 92, 246, 0.1)',
@@ -5373,7 +5388,7 @@
                         },
                         scales: {
                             y: {
-                                title: { display: true, text: '转速 (RPM)' },
+                                title: { display: true, text: getTranslation('coolingChartPumpSpeedUnit') },
                                 min: 1000,
                                 max: 1800
                             }
@@ -5625,7 +5640,7 @@
                             },
                             ticks: {
                                 callback: function(value) {
-                                    return value.toLocaleString() + '元';
+                                    return value.toLocaleString() + getTranslation('currencySymbolYuan');
                                 }
                             }
                         }
@@ -6105,19 +6120,19 @@
                 if (random < 0.7) {
                     // 70% 在线
                     dotElement.className = 'status-dot online';
-                    textElement.textContent = '在线';
+                    textElement.textContent = getTranslation('statusOnline');
                     textElement.style.color = '#10b981';
                     borderColor = '#10b981';
                 } else if (random < 0.85) {
                     // 15% 离线
                     dotElement.className = 'status-dot offline';
-                    textElement.textContent = '离线';
+                    textElement.textContent = getTranslation('statusOffline');
                     textElement.style.color = '#f59e0b';
                     borderColor = '#f59e0b';
                 } else {
                     // 15% 异常
                     dotElement.className = 'status-dot fault';
-                    textElement.textContent = '异常';
+                    textElement.textContent = getTranslation('statusAbnormal');
                     textElement.style.color = '#ef4444';
                     borderColor = '#ef4444';
                 }
@@ -6147,38 +6162,38 @@
             overall: {
                 realtime: [
                     { 
-                        category: '策略调度参数',
+                        categoryKey: 'fieldCategoryStrategy',
                         fields: [
-                            { id: 'currentStrategy', name: '当前策略', checked: true },
-                            { id: 'dispatchCommand', name: '调度指令', checked: true },
-                            { id: 'targetSOC', name: '目标SOC', checked: true },
-                            { id: 'maxPower', name: '最大功率', checked: true }
+                            { id: 'currentStrategy', nameKey: 'fieldCurrentStrategy', checked: true },
+                            { id: 'dispatchCommand', nameKey: 'fieldDispatchCommand', checked: true },
+                            { id: 'targetSOC', nameKey: 'fieldTargetSOC', checked: true },
+                            { id: 'maxPower', nameKey: 'fieldMaxPower', checked: true }
                         ]
                     },
                     {
-                        category: '核心运行参数',
+                        categoryKey: 'fieldCategoryCore',
                         fields: [
-                            { id: 'soc', name: 'SOC', checked: true },
-                            { id: 'soh', name: 'SOH', checked: true },
-                            { id: 'temperature', name: '温度', checked: true },
-                            { id: 'power', name: '充放电功率', checked: true },
-                            { id: 'current', name: '电池电流', checked: true },
-                            { id: 'voltage', name: '电池电压', checked: true }
+                            { id: 'soc', nameKey: 'fieldSOC', checked: true },
+                            { id: 'soh', nameKey: 'fieldSOH', checked: true },
+                            { id: 'temperature', nameKey: 'fieldTemperature', checked: true },
+                            { id: 'power', nameKey: 'fieldPower', checked: true },
+                            { id: 'current', nameKey: 'fieldBatteryCurrent', checked: true },
+                            { id: 'voltage', nameKey: 'fieldBatteryVoltage', checked: true }
                         ]
                     },
                     {
-                        category: '运行统计',
+                        categoryKey: 'fieldCategoryStats',
                         fields: [
-                            { id: 'todayCharge', name: '今日充电量', checked: true },
-                            { id: 'todayDischarge', name: '今日放电量', checked: true },
-                            { id: 'totalCharge', name: '累计充电量', checked: true },
-                            { id: 'totalDischarge', name: '累计放电量', checked: true }
+                            { id: 'todayCharge', nameKey: 'fieldTodayCharge', checked: true },
+                            { id: 'todayDischarge', nameKey: 'fieldTodayDischarge', checked: true },
+                            { id: 'totalCharge', nameKey: 'fieldTotalCharge', checked: true },
+                            { id: 'totalDischarge', nameKey: 'fieldTotalDischarge', checked: true }
                         ]
                     },
                     {
-                        category: '其他参数',
+                        categoryKey: 'fieldCategoryOthers',
                         fields: [
-                            { id: 'cycles', name: '循环次数', checked: true }
+                            { id: 'cycles', nameKey: 'fieldCycles', checked: true }
                         ]
                     }
                 ],
@@ -6197,49 +6212,49 @@
                     {
                         categoryKey: 'emsCategoryCpuStatus',
                         fields: [
-                            { id: 'cpuUsage', name: '使用率', checked: true },
-                            { id: 'cpuTemp', name: '温度', checked: true }
+                            { id: 'cpuUsage', nameKey: 'fieldUsage', checked: true },
+                            { id: 'cpuTemp', nameKey: 'fieldTemperature', checked: true }
                         ]
                     },
                     {
                         categoryKey: 'emsCategoryMemoryStatus',
                         fields: [
-                            { id: 'memoryUsage', name: '占用率', checked: true }
+                            { id: 'memoryUsage', nameKey: 'fieldUsage', checked: true }
                         ]
                     },
                     {
                         categoryKey: 'emsCategoryDiskStatus',
                         fields: [
-                            { id: 'diskUsage', name: '空间使用率', checked: true }
+                            { id: 'diskUsage', nameKey: 'fieldDiskUsage', checked: true }
                         ]
                     },
                     {
                         categoryKey: 'emsCategoryBoardTemp',
                         fields: [
-                            { id: 'boardTemp', name: '当前温度', checked: true }
+                            { id: 'boardTemp', nameKey: 'fieldCurrentTemp', checked: true }
                         ]
                     },
                     {
                         categoryKey: 'emsCategory4GNetwork',
                         fields: [
-                            { id: 'signal4G', name: '信号强度', checked: true },
-                            { id: 'simStatus', name: 'SIM卡状态', checked: true },
-                            { id: 'networkInterface', name: '网络接口', checked: true }
+                            { id: 'signal4G', nameKey: 'fieldSignalStrength', checked: true },
+                            { id: 'simStatus', nameKey: 'fieldSimStatus', checked: true },
+                            { id: 'networkInterface', nameKey: 'fieldNetworkInterface', checked: true }
                         ]
                     },
                     {
                         categoryKey: 'emsCategoryWifiStatus',
                         fields: [
-                            { id: 'wifiSignal', name: '信号强度', checked: true },
-                            { id: 'wifiInterface', name: 'WiFi网络接口', checked: true }
+                            { id: 'wifiSignal', nameKey: 'fieldSignalStrength', checked: true },
+                            { id: 'wifiInterface', nameKey: 'fieldWifiInterface', checked: true }
                         ]
                     },
                     {
                         categoryKey: 'emsCategorySystemInfo',
                         fields: [
-                            { id: 'uptime', name: '系统运行时长', checked: true },
-                            { id: 'systemTime', name: '当前系统时间', checked: true },
-                            { id: 'hardwareTime', name: '当前硬件时间', checked: true }
+                            { id: 'uptime', nameKey: 'fieldSystemUptime', checked: true },
+                            { id: 'systemTime', nameKey: 'fieldSystemTime', checked: true },
+                            { id: 'hardwareTime', nameKey: 'fieldHardwareTime', checked: true }
                         ]
                     }
                 ],
@@ -6258,15 +6273,15 @@
                     {
                         categoryKey: 'pcsCategoryGridParams',
                         fields: [
-                            { id: 'gridVoltage', name: 'PCS电网侧电压', checked: true },
-                            { id: 'gridCurrent', name: 'PCS电网侧电流', checked: true },
-                            { id: 'gridPower', name: 'PCS电网侧功率', checked: true }
+                            { id: 'gridVoltage', nameKey: 'fieldPcsGridVoltage', checked: true },
+                            { id: 'gridCurrent', nameKey: 'fieldPcsGridCurrent', checked: true },
+                            { id: 'gridPower', nameKey: 'fieldPcsGridPower', checked: true }
                         ]
                     },
                     {
                         categoryKey: 'pcsCategoryTemp',
                         fields: [
-                            { id: 'pcsTemp', name: 'PCS温度', checked: true }
+                            { id: 'pcsTemp', nameKey: 'fieldPcsTemp', checked: true }
                         ]
                     }
                 ],
@@ -6284,59 +6299,59 @@
             bms: {
                 realtime: [
                     {
-                        category: '系统状态',
+                        categoryKey: 'bmsSystemStatusCategory',
                         fields: [
-                            { id: 'communicationStatus', name: '通讯状态', checked: true },
-                            { id: 'runningStatus', name: '运行状态', checked: true },
-                            { id: 'totalVoltage', name: '总压', checked: true },
-                            { id: 'insulationResistancePos', name: '绝缘电阻(正)', checked: true },
-                            { id: 'insulationResistanceNeg', name: '绝缘电阻(负)', checked: true },
-                            { id: 'availableChargeCapacity', name: '可充电量', checked: true },
-                            { id: 'availableDischargeCapacity', name: '可放电量', checked: true },
-                            { id: 'maxChargeCurrentAllowed', name: '允许最大充电电流', checked: true },
-                            { id: 'maxDischargeCurrentAllowed', name: '允许最大放电电流', checked: true }
+                            { id: 'communicationStatus', nameKey: 'bmsCommunicationStatusLabel', checked: true },
+                            { id: 'runningStatus', nameKey: 'bmsRunningStatusLabel', checked: true },
+                            { id: 'totalVoltage', nameKey: 'bmsTotalVoltageLabel', checked: true },
+                            { id: 'insulationResistancePos', nameKey: 'bmsInsulationResistancePosLabel', checked: true },
+                            { id: 'insulationResistanceNeg', nameKey: 'bmsInsulationResistanceNegLabel', checked: true },
+                            { id: 'availableChargeCapacity', nameKey: 'bmsAvailableChargeCapacityLabel', checked: true },
+                            { id: 'availableDischargeCapacity', nameKey: 'bmsAvailableDischargeCapacityLabel', checked: true },
+                            { id: 'maxChargeCurrentAllowed', nameKey: 'bmsMaxChargeCurrentAllowedLabel', checked: true },
+                            { id: 'maxDischargeCurrentAllowed', nameKey: 'bmsMaxDischargeCurrentAllowedLabel', checked: true }
                         ]
                     },
                     {
-                        category: '核心指标',
+                        categoryKey: 'bmsCoreMetricsCategory',
                         fields: [
-                            { id: 'totalCurrent', name: '总电流', checked: true },
-                            { id: 'power', name: '功率', checked: true },
-                            { id: 'soc', name: 'SOC', checked: true },
-                            { id: 'soh', name: 'SOH', checked: true },
-                            { id: 'packCount', name: 'Pack数量', checked: true },
-                            { id: 'cycles', name: '循环次数', checked: true }
+                            { id: 'totalCurrent', nameKey: 'bmsTotalCurrent', checked: true },
+                            { id: 'power', nameKey: 'bmsPowerLabel', checked: true },
+                            { id: 'soc', nameKey: 'bmsSOCLabel', checked: true },
+                            { id: 'soh', nameKey: 'bmsSOHLabel', checked: true },
+                            { id: 'packCount', nameKey: 'bmsPackCountLabel', checked: true },
+                            { id: 'cycles', nameKey: 'bmsCycleCountLabel', checked: true }
                         ]
                     },
                     {
-                        category: '运行统计',
+                        categoryKey: 'bmsOperationStatsCategory',
                         fields: [
-                            { id: 'todayCharge', name: '今日充电量', checked: true },
-                            { id: 'todayDischarge', name: '今日放电量', checked: true },
-                            { id: 'totalCharge', name: '累计充电量', checked: true },
-                            { id: 'totalDischarge', name: '累计放电量', checked: true }
+                            { id: 'todayCharge', nameKey: 'bmsTodayChargeLabel', checked: true },
+                            { id: 'todayDischarge', nameKey: 'bmsTodayDischargeLabel', checked: true },
+                            { id: 'totalCharge', nameKey: 'bmsTotalChargeLabel', checked: true },
+                            { id: 'totalDischarge', nameKey: 'bmsTotalDischargeLabel', checked: true }
                         ]
                     },
                     {
-                        category: '电压温度极值',
+                        categoryKey: 'bmsVoltTempExtremesCategory',
                         fields: [
-                            { id: 'maxCellVoltage', name: '最高单体电压', checked: true },
-                            { id: 'minCellVoltage', name: '最低单体电压', checked: true },
-                            { id: 'avgCellVoltage', name: '平均单体电压', checked: true },
-                            { id: 'maxCellTemp', name: '最高单体温度', checked: true },
-                            { id: 'minCellTemp', name: '最低单体温度', checked: true },
-                            { id: 'avgCellTemp', name: '平均单体温度', checked: true }
+                            { id: 'maxCellVoltage', nameKey: 'bmsMaxCellVoltageLabel', checked: true },
+                            { id: 'minCellVoltage', nameKey: 'bmsMinCellVoltageLabel', checked: true },
+                            { id: 'avgCellVoltage', nameKey: 'bmsAvgCellVoltageLabel', checked: true },
+                            { id: 'maxCellTemp', nameKey: 'bmsMaxCellTempLabel', checked: true },
+                            { id: 'minCellTemp', nameKey: 'bmsMinCellTempLabel', checked: true },
+                            { id: 'avgCellTemp', nameKey: 'bmsAvgCellTempLabel', checked: true }
                         ]
                     },
                     {
-                        category: 'Pack电池簇信息',
+                        categoryKey: 'bmsPackInfoCategory',
                         fields: [
-                            { id: 'packStatus', name: 'Pack状态', checked: true },
-                            { id: 'packVoltage', name: 'Pack电压', checked: true },
-                            { id: 'packCurrent', name: 'Pack电流', checked: true },
-                            { id: 'packSOC', name: 'Pack SOC', checked: true },
-                            { id: 'packSOH', name: 'Pack SOH', checked: true },
-                            { id: 'packTemp', name: 'Pack温度', checked: true }
+                            { id: 'packStatus', nameKey: 'bmsPackStatusLabel', checked: true },
+                            { id: 'packVoltage', nameKey: 'bmsPackVoltageLabel', checked: true },
+                            { id: 'packCurrent', nameKey: 'bmsPackCurrentLabel', checked: true },
+                            { id: 'packSOC', nameKey: 'bmsPackSOCLabel', checked: true },
+                            { id: 'packSOH', nameKey: 'bmsPackSOHLabel', checked: true },
+                            { id: 'packTemp', nameKey: 'bmsPackTempLabel', checked: true }
                         ]
                     }
                 ],
@@ -6356,37 +6371,37 @@
                     {
                         categoryKey: 'meterCategoryEnergyParams',
                         fields: [
-                            { id: 'totalActivePower', name: '总有功功率', checked: true },
-                            { id: 'totalReactivePower', name: '总无功功率', checked: true },
-                            { id: 'frequency', name: '频率', checked: true },
-                            { id: 'powerFactor', name: '功率因数', checked: true }
+                            { id: 'totalActivePower', nameKey: 'fieldTotalActivePower', checked: true },
+                            { id: 'totalReactivePower', nameKey: 'fieldTotalReactivePower', checked: true },
+                            { id: 'frequency', nameKey: 'fieldFrequency', checked: true },
+                            { id: 'powerFactor', nameKey: 'fieldPowerFactor', checked: true }
                         ]
                     },
                     {
                         categoryKey: 'meterCategoryThreePhaseVoltage',
                         fields: [
-                            { id: 'phaseAVoltage', name: 'A相电压', checked: true },
-                            { id: 'phaseBVoltage', name: 'B相电压', checked: true },
-                            { id: 'phaseCVoltage', name: 'C相电压', checked: true }
+                            { id: 'phaseAVoltage', nameKey: 'fieldPhaseAVoltage', checked: true },
+                            { id: 'phaseBVoltage', nameKey: 'fieldPhaseBVoltage', checked: true },
+                            { id: 'phaseCVoltage', nameKey: 'fieldPhaseCVoltage', checked: true }
                         ]
                     },
                     {
                         categoryKey: 'meterCategoryThreePhaseCurrent',
                         fields: [
-                            { id: 'phaseACurrent', name: 'A相电流', checked: true },
-                            { id: 'phaseBCurrent', name: 'B相电流', checked: true },
-                            { id: 'phaseCCurrent', name: 'C相电流', checked: true }
+                            { id: 'phaseACurrent', nameKey: 'fieldPhaseACurrent', checked: true },
+                            { id: 'phaseBCurrent', nameKey: 'fieldPhaseBCurrent', checked: true },
+                            { id: 'phaseCCurrent', nameKey: 'fieldPhaseCCurrent', checked: true }
                         ]
                     },
                     {
                         categoryKey: 'meterCategoryEnergyStats',
                         fields: [
-                            { id: 'dailyActiveEnergy', name: '日有功电量', checked: true },
-                            { id: 'dailyReactiveEnergy', name: '日无功电量', checked: true },
-                            { id: 'totalActiveEnergy', name: '累计有功电量', checked: true },
-                            { id: 'totalReactiveEnergy', name: '累计无功电量', checked: true },
-                            { id: 'totalApparentPower', name: '总视在功率', checked: true },
-                            { id: 'meterStatus', name: '电表状态', checked: true }
+                            { id: 'dailyActiveEnergy', nameKey: 'fieldDailyActiveEnergy', checked: true },
+                            { id: 'dailyReactiveEnergy', nameKey: 'fieldDailyReactiveEnergy', checked: true },
+                            { id: 'totalActiveEnergy', nameKey: 'fieldTotalActiveEnergy', checked: true },
+                            { id: 'totalReactiveEnergy', nameKey: 'fieldTotalReactiveEnergy', checked: true },
+                            { id: 'totalApparentPower', nameKey: 'fieldTotalApparentPower', checked: true },
+                            { id: 'meterStatus', nameKey: 'fieldMeterStatus', checked: true }
                         ]
                     }
                 ],
@@ -6407,21 +6422,21 @@
                     {
                         categoryKey: 'thermalCategoryRunningStatus',
                         fields: [
-                            { id: 'cabinetTemp', name: '储能柜温度', checked: true },
-                            { id: 'runningMode', name: '运行模式', checked: true },
-                            { id: 'humidity', name: '相对湿度', checked: true }
+                            { id: 'cabinetTemp', nameKey: 'fieldCabinetTemp', checked: true },
+                            { id: 'runningMode', nameKey: 'fieldRunningMode', checked: true },
+                            { id: 'humidity', nameKey: 'fieldHumidity', checked: true }
                         ]
                     },
                     {
                         categoryKey: 'thermalCategoryCoreParams',
                         fields: [
-                            { id: 'battMaxTemp', name: '电池包最高温度', checked: true },
-                            { id: 'battMinTemp', name: '电池包最低温度', checked: true },
-                            { id: 'battAvgTemp', name: '电池包平均温度', checked: true },
-                            { id: 'battTempDiff', name: '电池包温差', checked: true },
-                            { id: 'inletTemp', name: '进风温度', checked: true },
-                            { id: 'outletTemp', name: '出风温度', checked: true },
-                            { id: 'coolantTemp', name: '冷却液温度', checked: true }
+                            { id: 'battMaxTemp', nameKey: 'fieldBattMaxTemp', checked: true },
+                            { id: 'battMinTemp', nameKey: 'fieldBattMinTemp', checked: true },
+                            { id: 'battAvgTemp', nameKey: 'fieldBattAvgTemp', checked: true },
+                            { id: 'battTempDiff', nameKey: 'fieldBattTempDiff', checked: true },
+                            { id: 'inletTemp', nameKey: 'fieldInletTemp', checked: true },
+                            { id: 'outletTemp', nameKey: 'fieldOutletTemp', checked: true },
+                            { id: 'coolantTemp', nameKey: 'fieldCoolantTemp', checked: true }
                         ]
                     }
                 ],
@@ -6441,24 +6456,24 @@
                     {
                         categoryKey: 'coolingCategoryStatus',
                         fields: [
-                            { id: 'commStatus', name: '通讯状态', checked: true },
-                            { id: 'runningStatus', name: '运行状态', checked: true }
+                            { id: 'commStatus', nameKey: 'fieldCommStatus', checked: true },
+                            { id: 'runningStatus', nameKey: 'fieldRunningStatus', checked: true }
                         ]
                     },
                     {
                         categoryKey: 'coolingCategoryTemp',
                         fields: [
-                            { id: 'outletTemp', name: '出水温度', checked: true },
-                            { id: 'inletTemp', name: '进水温度', checked: true },
-                            { id: 'tempDiff', name: '温差', checked: true }
+                            { id: 'outletTemp', nameKey: 'fieldOutletWaterTemp', checked: true },
+                            { id: 'inletTemp', nameKey: 'fieldInletWaterTemp', checked: true },
+                            { id: 'tempDiff', nameKey: 'fieldTempDiff', checked: true }
                         ]
                     },
                     {
                         categoryKey: 'coolingCategoryPressure',
                         fields: [
-                            { id: 'outletPressure', name: '出水压力', checked: true },
-                            { id: 'inletPressure', name: '进水压力', checked: true },
-                            { id: 'pumpSpeed', name: '水泵转速', checked: true }
+                            { id: 'outletPressure', nameKey: 'fieldOutletPressure', checked: true },
+                            { id: 'inletPressure', nameKey: 'fieldInletPressure', checked: true },
+                            { id: 'pumpSpeed', nameKey: 'fieldPumpSpeed', checked: true }
                         ]
                     }
                 ],
@@ -6466,9 +6481,9 @@
                     {
                         categoryKey: 'coolingCategoryChart',
                         fields: [
-                            { id: 'tempHistory', nameKey: '温度历史', checked: true },
-                            { id: 'pressureHistory', nameKey: '压力历史', checked: true },
-                            { id: 'pumpSpeedHistory', nameKey: '水泵转速历史', checked: true }
+                            { id: 'tempHistory', nameKey: 'chartCoolingTempHistory', checked: true },
+                            { id: 'pressureHistory', nameKey: 'chartCoolingPressureHistory', checked: true },
+                            { id: 'pumpSpeedHistory', nameKey: 'chartCoolingPumpSpeedHistory', checked: true }
                         ]
                     }
                 ]
@@ -6478,16 +6493,16 @@
                     {
                         categoryKey: 'fireCategoryDetection',
                         fields: [
-                            { id: 'smokeDetector', name: '烟感探测器', checked: true },
-                            { id: 'fireAlarmStatus', name: '火警状态', checked: true }
+                            { id: 'smokeDetector', nameKey: 'fieldSmokeDetector', checked: true },
+                            { id: 'fireAlarmStatus', nameKey: 'fieldFireAlarmStatus', checked: true }
                         ]
                     },
                     {
                         categoryKey: 'fireCategoryLinkage',
                         fields: [
-                            { id: 'extinguisherStatus', name: '灭火器状态', checked: true },
-                            { id: 'emergencyShutdown', name: '紧急停机', checked: true },
-                            { id: 'alarmDevice', name: '声光报警器', checked: true }
+                            { id: 'extinguisherStatus', nameKey: 'fieldExtinguisherStatus', checked: true },
+                            { id: 'emergencyShutdown', nameKey: 'fieldEmergencyShutdown', checked: true },
+                            { id: 'alarmDevice', nameKey: 'fieldAlarmDevice', checked: true }
                         ]
                     }
                 ],
@@ -7047,10 +7062,16 @@
             
             // 关闭模态框
             closeFieldSettings();
-            
+
             // 刷新当前视图
             if (dataType === 'realtime') {
                 updateComponentData(currentComponent);
+                // 应用当前语言的翻译到动态生成的内容
+                setTimeout(() => {
+                    if (typeof setLanguage === 'function' && typeof currentLang !== 'undefined') {
+                        setLanguage(currentLang);
+                    }
+                }, 0);
             } else {
                 initHistoryCharts();
             }
@@ -7085,6 +7106,12 @@
             // 刷新当前视图
             if (dataType === 'realtime') {
                 updateComponentData(currentComponent);
+                // 应用当前语言的翻译到动态生成的内容
+                setTimeout(() => {
+                    if (typeof setLanguage === 'function' && typeof currentLang !== 'undefined') {
+                        setLanguage(currentLang);
+                    }
+                }, 0);
             } else {
                 initHistoryCharts();
             }
@@ -7137,86 +7164,86 @@
                     <!-- PCS 系统状态 -->
                     <div class="metrics-section">
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                            <h3 style="font-size: 16px; font-weight: 600; margin: 0; color: var(--text-primary);">PCS 系统状态</h3>
+                            <h3 style="font-size: 16px; font-weight: 600; margin: 0; color: var(--text-primary);" data-translate="cabinetPcsSystemStatus">PCS 系统状态</h3>
                             ${pcsId === 1 ? `
                                 <div style="display: flex; gap: 8px;">
                                     <button class="upgrade-btn" onclick="openUpgradeModal()" title="升级设备" style="padding: 4px 12px; font-size: 12px;">
                                         <i class="fas fa-arrow-up"></i>
-                                        <span>升级</span>
-                                        <span class="upgrade-badge">定制</span>
+                                        <span data-translate="cabinetBtnUpgrade">升级</span>
+                                        <span class="upgrade-badge" data-translate="cabinetUpgradeBadge">定制</span>
                                     </button>
-                                    <button class="settings-btn" onclick="openFieldSettings()" title="字段设置" style="margin-bottom: 0; padding: 4px 12px; font-size: 12px;">
+                                    <button class="settings-btn" onclick="openFieldSettings()" title="字段设置" data-translate-title="cabinetBtnFieldSettings" style="margin-bottom: 0; padding: 4px 12px; font-size: 12px;">
                                         <i class="fas fa-cog"></i>
-                                        <span>字段设置</span>
+                                        <span data-translate="cabinetBtnFieldSettings">字段设置</span>
                                     </button>
                                 </div>
                             ` : ''}
                         </div>
                         <div class="metrics-grid">
                             <div class="metric-card">
-                                <div class="metric-label">通讯状态</div>
+                                <div class="metric-label" data-translate="pcsCommStatus">通讯状态</div>
                                 <div class="metric-value">
                                     <span style="display: inline-flex; align-items: center; padding: 4px 12px; background: #10b98120; color: #10b981; border-radius: 6px; font-size: 14px; font-weight: 500;">
-                                        <i class="fas fa-check-circle" style="margin-right: 6px;"></i>在线
+                                        <i class="fas fa-check-circle" style="margin-right: 6px;"></i><span data-translate="statusOnline">在线</span>
                                     </span>
                                 </div>
                             </div>
                             <div class="metric-card">
-                                <div class="metric-label">运行状态</div>
+                                <div class="metric-label" data-translate="pcsRunStatus">运行状态</div>
                                 <div class="metric-value">
                                     <span style="display: inline-flex; align-items: center; padding: 4px 12px; background: #3b82f620; color: #3b82f6; border-radius: 6px; font-size: 14px; font-weight: 500;">
-                                        <i class="fas fa-bolt" style="margin-right: 6px;"></i>运行中
+                                        <i class="fas fa-bolt" style="margin-right: 6px;"></i><span data-translate="statusRunning">运行中</span>
                                     </span>
                                 </div>
                             </div>
                             <div class="metric-card">
-                                <div class="metric-label">内部温度</div>
+                                <div class="metric-label" data-translate="pcsInternalTemp">内部温度</div>
                                 <div class="metric-value">${(45 + Math.random() * 20).toFixed(1)} <span class="metric-unit">°C</span></div>
-                                <div style="font-size: 12px; color: #10b981; margin-top: 4px;">温度正常</div>
+                                <div style="font-size: 12px; color: #10b981; margin-top: 4px;" data-translate="statusTempNormal">温度正常</div>
                             </div>
                         </div>
                     </div>
 
                     <!-- PCS 直流侧参数 -->
                     <div class="metrics-section">
-                        <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 20px; color: var(--text-primary);">PCS 直流侧参数</h3>
+                        <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 20px; color: var(--text-primary);" data-translate="cabinetPcsDcParams">PCS 直流侧参数</h3>
                         <div class="metrics-grid">
                             <div class="metric-card">
-                                <div class="metric-label">直流电压</div>
+                                <div class="metric-label" data-translate="pcsDcVoltage">直流电压</div>
                                 <div class="metric-value">${dcVoltage.toFixed(1)} <span class="metric-unit">V</span></div>
-                                <div style="font-size: 12px; color: #10b981; margin-top: 4px;">电压稳定</div>
+                                <div style="font-size: 12px; color: #10b981; margin-top: 4px;" data-translate="statusVoltageStable">电压稳定</div>
                             </div>
                             <div class="metric-card">
-                                <div class="metric-label">直流电流</div>
+                                <div class="metric-label" data-translate="pcsDcCurrent">直流电流</div>
                                 <div class="metric-value">${dcCurrent.toFixed(1)} <span class="metric-unit">A</span></div>
-                                <div style="font-size: 12px; color: #10b981; margin-top: 4px;">电流正常</div>
+                                <div style="font-size: 12px; color: #10b981; margin-top: 4px;" data-translate="statusCurrentStable">电流稳定</div>
                             </div>
                             <div class="metric-card">
-                                <div class="metric-label">直流功率</div>
+                                <div class="metric-label" data-translate="pcsDcPower">直流功率</div>
                                 <div class="metric-value">${(dcVoltage * dcCurrent / 1000).toFixed(1)} <span class="metric-unit">kW</span></div>
-                                <div style="font-size: 12px; color: #10b981; margin-top: 4px;">功率稳定</div>
+                                <div style="font-size: 12px; color: #10b981; margin-top: 4px;" data-translate="statusPowerStable">功率稳定</div>
                             </div>
                         </div>
                     </div>
 
                     <!-- PCS交流侧参数 -->
                     <div class="metrics-section">
-                        <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 20px; color: var(--text-primary);">PCS交流侧参数</h3>
+                        <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 20px; color: var(--text-primary);" data-translate="cabinetPcsAcParams">PCS交流侧参数</h3>
                         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
                             <!-- 总功率卡片 -->
                             <div class="metric-card" style="padding: 20px;">
-                                <div style="text-align: center; color: var(--text-secondary); font-size: 14px; margin-bottom: 20px; font-weight: 500;">总功率</div>
+                                <div style="text-align: center; color: var(--text-secondary); font-size: 14px; margin-bottom: 20px; font-weight: 500;" data-translate="pcsTotalPower">总功率</div>
                                 <div style="display: flex; flex-direction: column; gap: 12px;">
                                     <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border-color);">
-                                        <span style="font-size: 14px; color: var(--text-secondary);">总有功功率</span>
+                                        <span style="font-size: 14px; color: var(--text-secondary);" data-translate="pcsTotalActivePower">总有功功率</span>
                                         <span style="font-size: 24px; font-weight: 700; color: var(--text-primary);">${(basePower * 3).toFixed(1)} <span style="font-size: 14px; font-weight: 400; color: var(--text-secondary);">kW</span></span>
                                     </div>
                                     <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border-color);">
-                                        <span style="font-size: 14px; color: var(--text-secondary);">总无功功率</span>
+                                        <span style="font-size: 14px; color: var(--text-secondary);" data-translate="pcsTotalReactivePower">总无功功率</span>
                                         <span style="font-size: 24px; font-weight: 700; color: var(--text-primary);">${(Math.random() * 20 - 10).toFixed(1)} <span style="font-size: 14px; font-weight: 400; color: var(--text-secondary);">kVar</span></span>
                                     </div>
                                     <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0;">
-                                        <span style="font-size: 14px; color: var(--text-secondary);">总视在功率</span>
+                                        <span style="font-size: 14px; color: var(--text-secondary);" data-translate="pcsTotalApparentPower">总视在功率</span>
                                         <span style="font-size: 24px; font-weight: 700; color: var(--text-primary);">${(basePower * 3 * 1.02).toFixed(1)} <span style="font-size: 14px; font-weight: 400; color: var(--text-secondary);">kVA</span></span>
                                     </div>
                                 </div>
@@ -7224,18 +7251,18 @@
 
                             <!-- 线电压卡片 -->
                             <div class="metric-card" style="padding: 20px;">
-                                <div style="text-align: center; color: var(--text-secondary); font-size: 14px; margin-bottom: 20px; font-weight: 500;">线电压</div>
+                                <div style="text-align: center; color: var(--text-secondary); font-size: 14px; margin-bottom: 20px; font-weight: 500;" data-translate="pcsLineVoltage">线电压</div>
                                 <div style="display: flex; flex-direction: column; gap: 12px;">
                                     <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border-color);">
-                                        <span style="font-size: 14px; color: var(--text-secondary);">AB线电压</span>
+                                        <span style="font-size: 14px; color: var(--text-secondary);" data-translate="pcsABLineVoltage">AB线电压</span>
                                         <span style="font-size: 24px; font-weight: 700; color: var(--text-primary);">${(baseVoltage * 1.732).toFixed(1)} <span style="font-size: 14px; font-weight: 400; color: var(--text-secondary);">V</span></span>
                                     </div>
                                     <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border-color);">
-                                        <span style="font-size: 14px; color: var(--text-secondary);">BC线电压</span>
+                                        <span style="font-size: 14px; color: var(--text-secondary);" data-translate="pcsBCLineVoltage">BC线电压</span>
                                         <span style="font-size: 24px; font-weight: 700; color: var(--text-primary);">${(baseVoltage * 1.732 + Math.random() * 5 - 2.5).toFixed(1)} <span style="font-size: 14px; font-weight: 400; color: var(--text-secondary);">V</span></span>
                                     </div>
                                     <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0;">
-                                        <span style="font-size: 14px; color: var(--text-secondary);">CA线电压</span>
+                                        <span style="font-size: 14px; color: var(--text-secondary);" data-translate="pcsCALineVoltage">CA线电压</span>
                                         <span style="font-size: 24px; font-weight: 700; color: var(--text-primary);">${(baseVoltage * 1.732 + Math.random() * 5 - 2.5).toFixed(1)} <span style="font-size: 14px; font-weight: 400; color: var(--text-secondary);">V</span></span>
                                     </div>
                                 </div>
@@ -7248,18 +7275,18 @@
                         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
                             <!-- 电压卡片 -->
                             <div class="metric-card" style="padding: 20px;">
-                                <div style="text-align: center; color: var(--text-secondary); font-size: 14px; margin-bottom: 20px; font-weight: 500;">三相电压</div>
+                                <div style="text-align: center; color: var(--text-secondary); font-size: 14px; margin-bottom: 20px; font-weight: 500;" data-translate="pcsThreePhaseVoltage">三相电压</div>
                                 <div style="display: flex; flex-direction: column; gap: 12px;">
                                     <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border-color);">
-                                        <span style="font-size: 14px; color: var(--text-secondary);">A相</span>
+                                        <span style="font-size: 14px; color: var(--text-secondary);" data-translate="pcsPhaseAVoltage">A相</span>
                                         <span style="font-size: 24px; font-weight: 700; color: var(--text-primary);">${baseVoltage.toFixed(1)} <span style="font-size: 14px; font-weight: 400; color: var(--text-secondary);">V</span></span>
                                     </div>
                                     <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border-color);">
-                                        <span style="font-size: 14px; color: var(--text-secondary);">B相</span>
+                                        <span style="font-size: 14px; color: var(--text-secondary);" data-translate="pcsPhaseBVoltage">B相</span>
                                         <span style="font-size: 24px; font-weight: 700; color: var(--text-primary);">${(baseVoltage + Math.random() * 3 - 1.5).toFixed(1)} <span style="font-size: 14px; font-weight: 400; color: var(--text-secondary);">V</span></span>
                                     </div>
                                     <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0;">
-                                        <span style="font-size: 14px; color: var(--text-secondary);">C相</span>
+                                        <span style="font-size: 14px; color: var(--text-secondary);" data-translate="pcsPhaseCVoltage">C相</span>
                                         <span style="font-size: 24px; font-weight: 700; color: var(--text-primary);">${(baseVoltage + Math.random() * 3 - 1.5).toFixed(1)} <span style="font-size: 14px; font-weight: 400; color: var(--text-secondary);">V</span></span>
                                     </div>
                                 </div>
@@ -7267,18 +7294,18 @@
 
                             <!-- 电流卡片 -->
                             <div class="metric-card" style="padding: 20px;">
-                                <div style="text-align: center; color: var(--text-secondary); font-size: 14px; margin-bottom: 20px; font-weight: 500;">三相电流</div>
+                                <div style="text-align: center; color: var(--text-secondary); font-size: 14px; margin-bottom: 20px; font-weight: 500;" data-translate="pcsThreePhaseCurrent">三相电流</div>
                                 <div style="display: flex; flex-direction: column; gap: 12px;">
                                     <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border-color);">
-                                        <span style="font-size: 14px; color: var(--text-secondary);">A相</span>
+                                        <span style="font-size: 14px; color: var(--text-secondary);" data-translate="pcsPhaseACurrent">A相</span>
                                         <span style="font-size: 24px; font-weight: 700; color: var(--text-primary);">${baseCurrent.toFixed(1)} <span style="font-size: 14px; font-weight: 400; color: var(--text-secondary);">A</span></span>
                                     </div>
                                     <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border-color);">
-                                        <span style="font-size: 14px; color: var(--text-secondary);">B相</span>
+                                        <span style="font-size: 14px; color: var(--text-secondary);" data-translate="pcsPhaseBCurrent">B相</span>
                                         <span style="font-size: 24px; font-weight: 700; color: var(--text-primary);">${(baseCurrent + Math.random() * 10 - 5).toFixed(1)} <span style="font-size: 14px; font-weight: 400; color: var(--text-secondary);">A</span></span>
                                     </div>
                                     <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0;">
-                                        <span style="font-size: 14px; color: var(--text-secondary);">C相</span>
+                                        <span style="font-size: 14px; color: var(--text-secondary);" data-translate="pcsPhaseCCurrent">C相</span>
                                         <span style="font-size: 24px; font-weight: 700; color: var(--text-primary);">${(baseCurrent + Math.random() * 10 - 5).toFixed(1)} <span style="font-size: 14px; font-weight: 400; color: var(--text-secondary);">A</span></span>
                                     </div>
                                 </div>
@@ -7286,18 +7313,18 @@
 
                             <!-- 功率卡片 -->
                             <div class="metric-card" style="padding: 20px;">
-                                <div style="text-align: center; color: var(--text-secondary); font-size: 14px; margin-bottom: 20px; font-weight: 500;">三相有功功率</div>
+                                <div style="text-align: center; color: var(--text-secondary); font-size: 14px; margin-bottom: 20px; font-weight: 500;" data-translate="pcsThreePhasePower">三相有功功率</div>
                                 <div style="display: flex; flex-direction: column; gap: 12px;">
                                     <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border-color);">
-                                        <span style="font-size: 14px; color: var(--text-secondary);">A相</span>
+                                        <span style="font-size: 14px; color: var(--text-secondary);" data-translate="pcsPhaseAPower">A相</span>
                                         <span style="font-size: 24px; font-weight: 700; color: var(--text-primary);">${basePower.toFixed(1)} <span style="font-size: 14px; font-weight: 400; color: var(--text-secondary);">kW</span></span>
                                     </div>
                                     <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border-color);">
-                                        <span style="font-size: 14px; color: var(--text-secondary);">B相</span>
+                                        <span style="font-size: 14px; color: var(--text-secondary);" data-translate="pcsPhaseBPower">B相</span>
                                         <span style="font-size: 24px; font-weight: 700; color: var(--text-primary);">${(basePower + Math.random() * 5 - 2.5).toFixed(1)} <span style="font-size: 14px; font-weight: 400; color: var(--text-secondary);">kW</span></span>
                                     </div>
                                     <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0;">
-                                        <span style="font-size: 14px; color: var(--text-secondary);">C相</span>
+                                        <span style="font-size: 14px; color: var(--text-secondary);" data-translate="pcsPhaseCPower">C相</span>
                                         <span style="font-size: 24px; font-weight: 700; color: var(--text-primary);">${(basePower + Math.random() * 5 - 2.5).toFixed(1)} <span style="font-size: 14px; font-weight: 400; color: var(--text-secondary);">kW</span></span>
                                     </div>
                                 </div>
@@ -7310,18 +7337,18 @@
                         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
                             <!-- 三相无功功率卡片 -->
                             <div class="metric-card" style="padding: 20px;">
-                                <div style="text-align: center; color: var(--text-secondary); font-size: 14px; margin-bottom: 20px; font-weight: 500;">三相无功功率</div>
+                                <div style="text-align: center; color: var(--text-secondary); font-size: 14px; margin-bottom: 20px; font-weight: 500;" data-translate="pcsThreePhaseReactivePower">三相无功功率</div>
                                 <div style="display: flex; flex-direction: column; gap: 12px;">
                                     <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border-color);">
-                                        <span style="font-size: 14px; color: var(--text-secondary);">A相无功</span>
+                                        <span style="font-size: 14px; color: var(--text-secondary);" data-translate="pcsABLineReactivePower">A相无功</span>
                                         <span style="font-size: 24px; font-weight: 700; color: var(--text-primary);">${(Math.random() * 10 - 5).toFixed(1)} <span style="font-size: 14px; font-weight: 400; color: var(--text-secondary);">kVar</span></span>
                                     </div>
                                     <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border-color);">
-                                        <span style="font-size: 14px; color: var(--text-secondary);">B相无功</span>
+                                        <span style="font-size: 14px; color: var(--text-secondary);" data-translate="pcsBCLineReactivePower">B相无功</span>
                                         <span style="font-size: 24px; font-weight: 700; color: var(--text-primary);">${(Math.random() * 10 - 5).toFixed(1)} <span style="font-size: 14px; font-weight: 400; color: var(--text-secondary);">kVar</span></span>
                                     </div>
                                     <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0;">
-                                        <span style="font-size: 14px; color: var(--text-secondary);">C相无功</span>
+                                        <span style="font-size: 14px; color: var(--text-secondary);" data-translate="pcsCCLineReactivePower">C相无功</span>
                                         <span style="font-size: 24px; font-weight: 700; color: var(--text-primary);">${(Math.random() * 10 - 5).toFixed(1)} <span style="font-size: 14px; font-weight: 400; color: var(--text-secondary);">kVar</span></span>
                                     </div>
                                 </div>
@@ -7329,18 +7356,18 @@
 
                             <!-- 三相视在功率卡片 -->
                             <div class="metric-card" style="padding: 20px;">
-                                <div style="text-align: center; color: var(--text-secondary); font-size: 14px; margin-bottom: 20px; font-weight: 500;">三相视在功率</div>
+                                <div style="text-align: center; color: var(--text-secondary); font-size: 14px; margin-bottom: 20px; font-weight: 500;" data-translate="pcsThreePhaseApparentPower">三相视在功率</div>
                                 <div style="display: flex; flex-direction: column; gap: 12px;">
                                     <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border-color);">
-                                        <span style="font-size: 14px; color: var(--text-secondary);">A相视在功率</span>
+                                        <span style="font-size: 14px; color: var(--text-secondary);" data-translate="pcsABLineApparentPower">A相视在功率</span>
                                         <span style="font-size: 24px; font-weight: 700; color: var(--text-primary);">${(basePower * 1.02).toFixed(1)} <span style="font-size: 14px; font-weight: 400; color: var(--text-secondary);">kVA</span></span>
                                     </div>
                                     <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border-color);">
-                                        <span style="font-size: 14px; color: var(--text-secondary);">B相视在功率</span>
+                                        <span style="font-size: 14px; color: var(--text-secondary);" data-translate="pcsBCLineApparentPower">B相视在功率</span>
                                         <span style="font-size: 24px; font-weight: 700; color: var(--text-primary);">${(basePower * 1.02 + Math.random() * 2 - 1).toFixed(1)} <span style="font-size: 14px; font-weight: 400; color: var(--text-secondary);">kVA</span></span>
                                     </div>
                                     <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0;">
-                                        <span style="font-size: 14px; color: var(--text-secondary);">C相视在功率</span>
+                                        <span style="font-size: 14px; color: var(--text-secondary);" data-translate="pcsCCLineApparentPower">C相视在功率</span>
                                         <span style="font-size: 24px; font-weight: 700; color: var(--text-primary);">${(basePower * 1.02 + Math.random() * 2 - 1).toFixed(1)} <span style="font-size: 14px; font-weight: 400; color: var(--text-secondary);">kVA</span></span>
                                     </div>
                                 </div>
@@ -7366,67 +7393,67 @@
             let systemStatusFields = '';
             if (shouldShowField('bms', 'realtime', 'communicationStatus')) {
                 systemStatusFields += '<div class="metric-card">' +
-                    '<div class="metric-label">通讯状态</div>' +
+                    '<div class="metric-label" data-translate="bmsCommunicationStatusLabel">' + getTranslation('bmsCommunicationStatusLabel') + '</div>' +
                     '<div class="metric-value">' +
                         '<span style="display: inline-flex; align-items: center; padding: 4px 12px; background: #10b98120; color: #10b981; border-radius: 6px; font-size: 14px; font-weight: 500;">' +
-                            '<i class="fas fa-check-circle" style="margin-right: 6px;"></i>在线' +
+                            '<i class="fas fa-check-circle" style="margin-right: 6px;"></i><span data-translate="bmsStatusOnline">' + getTranslation('bmsStatusOnline') + '</span>' +
                         '</span>' +
                     '</div>' +
                 '</div>';
             }
             if (shouldShowField('bms', 'realtime', 'runningStatus')) {
                 systemStatusFields += '<div class="metric-card">' +
-                    '<div class="metric-label">运行状态</div>' +
+                    '<div class="metric-label" data-translate="bmsRunningStatusLabel">' + getTranslation('bmsRunningStatusLabel') + '</div>' +
                     '<div class="metric-value">' +
                         '<span style="display: inline-flex; align-items: center; padding: 4px 12px; background: #3b82f620; color: #3b82f6; border-radius: 6px; font-size: 14px; font-weight: 500;">' +
-                            '<i class="fas fa-bolt" style="margin-right: 6px;"></i>放电中' +
+                            '<i class="fas fa-bolt" style="margin-right: 6px;"></i><span data-translate="bmsStatusDischarging">' + getTranslation('bmsStatusDischarging') + '</span>' +
                         '</span>' +
                     '</div>' +
-                    '<div style="font-size: 12px; color: #3b82f6; margin-top: 4px;">功率 141.6kW</div>' +
+                    '<div style="font-size: 12px; color: #3b82f6; margin-top: 4px;"><span data-translate="bmsPowerLabel2">' + getTranslation('bmsPowerLabel2') + '</span> 141.6kW</div>' +
                 '</div>';
             }
             if (shouldShowField('bms', 'realtime', 'totalVoltage')) {
                 systemStatusFields += '<div class="metric-card">' +
-                    '<div class="metric-label">总压</div>' +
+                    '<div class="metric-label" data-translate="bmsTotalVoltageLabel">' + getTranslation('bmsTotalVoltageLabel') + '</div>' +
                     '<div class="metric-value">766.0 <span class="metric-unit">V</span></div>' +
-                    '<div style="font-size: 12px; color: #10b981; margin-top: 4px;">电压正常</div>' +
+                    '<div style="font-size: 12px; color: #10b981; margin-top: 4px;" data-translate="bmsVoltageNormal">' + getTranslation('bmsVoltageNormal') + '</div>' +
                 '</div>';
             }
             if (shouldShowField('bms', 'realtime', 'insulationResistancePos')) {
                 systemStatusFields += '<div class="metric-card">' +
-                    '<div class="metric-label">绝缘电阻(正)</div>' +
+                    '<div class="metric-label" data-translate="bmsInsulationResistancePosLabel">' + getTranslation('bmsInsulationResistancePosLabel') + '</div>' +
                     '<div class="metric-value">852 <span class="metric-unit">kΩ</span></div>' +
-                    '<div style="font-size: 12px; color: #10b981; margin-top: 4px;">绝缘良好</div>' +
+                    '<div style="font-size: 12px; color: #10b981; margin-top: 4px;" data-translate="bmsInsulationGood">' + getTranslation('bmsInsulationGood') + '</div>' +
                 '</div>';
             }
             if (shouldShowField('bms', 'realtime', 'insulationResistanceNeg')) {
                 systemStatusFields += '<div class="metric-card">' +
-                    '<div class="metric-label">绝缘电阻(负)</div>' +
+                    '<div class="metric-label" data-translate="bmsInsulationResistanceNegLabel">' + getTranslation('bmsInsulationResistanceNegLabel') + '</div>' +
                     '<div class="metric-value">847 <span class="metric-unit">kΩ</span></div>' +
-                    '<div style="font-size: 12px; color: #10b981; margin-top: 4px;">绝缘良好</div>' +
+                    '<div style="font-size: 12px; color: #10b981; margin-top: 4px;" data-translate="bmsInsulationGood">' + getTranslation('bmsInsulationGood') + '</div>' +
                 '</div>';
             }
             if (shouldShowField('bms', 'realtime', 'availableChargeCapacity')) {
                 systemStatusFields += '<div class="metric-card">' +
-                    '<div class="metric-label">可充电量</div>' +
+                    '<div class="metric-label" data-translate="bmsAvailableChargeCapacityLabel">' + getTranslation('bmsAvailableChargeCapacityLabel') + '</div>' +
                     '<div class="metric-value">12.5 <span class="metric-unit">kWh</span></div>' +
                 '</div>';
             }
             if (shouldShowField('bms', 'realtime', 'availableDischargeCapacity')) {
                 systemStatusFields += '<div class="metric-card">' +
-                    '<div class="metric-label">可放电量</div>' +
+                    '<div class="metric-label" data-translate="bmsAvailableDischargeCapacityLabel">' + getTranslation('bmsAvailableDischargeCapacityLabel') + '</div>' +
                     '<div class="metric-value">487.5 <span class="metric-unit">kWh</span></div>' +
                 '</div>';
             }
             if (shouldShowField('bms', 'realtime', 'maxChargeCurrentAllowed')) {
                 systemStatusFields += '<div class="metric-card">' +
-                    '<div class="metric-label">允许最大充电电流</div>' +
+                    '<div class="metric-label" data-translate="bmsMaxChargeCurrentAllowedLabel">' + getTranslation('bmsMaxChargeCurrentAllowedLabel') + '</div>' +
                     '<div class="metric-value">200 <span class="metric-unit">A</span></div>' +
                 '</div>';
             }
             if (shouldShowField('bms', 'realtime', 'maxDischargeCurrentAllowed')) {
                 systemStatusFields += '<div class="metric-card">' +
-                    '<div class="metric-label">允许最大放电电流</div>' +
+                    '<div class="metric-label" data-translate="bmsMaxDischargeCurrentAllowedLabel">' + getTranslation('bmsMaxDischargeCurrentAllowedLabel') + '</div>' +
                     '<div class="metric-value">200 <span class="metric-unit">A</span></div>' +
                 '</div>';
             }
@@ -7434,12 +7461,12 @@
             if (systemStatusFields) {
                 html += '<div class="metrics-section">' +
                     '<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">' +
-                        '<h3 style="font-size: 16px; font-weight: 600; margin: 0; color: var(--text-primary);">系统状态</h3>' +
+                        '<h3 style="font-size: 16px; font-weight: 600; margin: 0; color: var(--text-primary);" data-translate="bmsSystemStatusCategory">' + getTranslation('bmsSystemStatusCategory') + '</h3>' +
                         '<div style="display: flex; gap: 8px;">' +
                             '<button class="upgrade-btn" onclick="openUpgradeModal()" title="升级设备" style="padding: 4px 12px; font-size: 12px;">' +
                                 '<i class="fas fa-arrow-up"></i>' +
-                                '<span>升级</span>' +
-                                '<span class="upgrade-badge">定制</span>' +
+                                '<span data-translate="cabinetBtnUpgrade">升级</span>' +
+                                '<span class="upgrade-badge" data-translate="cabinetUpgradeBadge">定制</span>' +
                             '</button>' +
                             '<button class="settings-btn" onclick="openFieldSettings()" title="字段设置" data-translate-title="btnFieldSettings" style="margin-bottom: 0; padding: 4px 12px; font-size: 12px;">' +
                                 '<i class="fas fa-cog"></i>' +
@@ -7455,40 +7482,40 @@
             let coreMetricsFields = '';
             if (shouldShowField('bms', 'realtime', 'totalCurrent')) {
                 coreMetricsFields += '<div class="metric-card">' +
-                    '<div class="metric-label" data-translate="coreMetricsTotalCurrent">' + getTranslation('coreMetricsTotalCurrent') + '</div>' +
+                    '<div class="metric-label" data-translate="bmsTotalCurrent">' + getTranslation('bmsTotalCurrent') + '</div>' +
                     '<div class="metric-value">173.0 <span class="metric-unit">A</span></div>' +
                     '<div style="font-size: 12px; color: #10b981; margin-top: 4px;" data-translate="coreMetricsCurrentStable">' + getTranslation('coreMetricsCurrentStable') + '</div>' +
                 '</div>';
             }
             if (shouldShowField('bms', 'realtime', 'power')) {
                 coreMetricsFields += '<div class="metric-card">' +
-                    '<div class="metric-label" data-translate="coreMetricsPower">' + getTranslation('coreMetricsPower') + '</div>' +
+                    '<div class="metric-label" data-translate="bmsPowerLabel">' + getTranslation('bmsPowerLabel') + '</div>' +
                     '<div class="metric-value">141.6 <span class="metric-unit">kW</span></div>' +
                     '<div style="font-size: 12px; color: #10b981; margin-top: 4px;" data-translate="coreMetricsPowerStable">' + getTranslation('coreMetricsPowerStable') + '</div>' +
                 '</div>';
             }
             if (shouldShowField('bms', 'realtime', 'soc')) {
                 coreMetricsFields += '<div class="metric-card">' +
-                    '<div class="metric-label">SOC</div>' +
+                    '<div class="metric-label" data-translate="bmsSOCLabel">' + getTranslation('bmsSOCLabel') + '</div>' +
                     '<div class="metric-value">100.0 <span class="metric-unit">%</span></div>' +
                 '</div>';
             }
             if (shouldShowField('bms', 'realtime', 'soh')) {
                 coreMetricsFields += '<div class="metric-card">' +
-                    '<div class="metric-label">SOH</div>' +
+                    '<div class="metric-label" data-translate="bmsSOHLabel">' + getTranslation('bmsSOHLabel') + '</div>' +
                     '<div class="metric-value">98.1 <span class="metric-unit">%</span></div>' +
                     '<div style="font-size: 12px; color: #10b981; margin-top: 4px;" data-translate="cabinetSOHGood">' + getTranslation('cabinetSOHGood') + '</div>' +
                 '</div>';
             }
             if (shouldShowField('bms', 'realtime', 'packCount')) {
                 coreMetricsFields += '<div class="metric-card">' +
-                    '<div class="metric-label" data-translate="coreMetricsPackCount">' + getTranslation('coreMetricsPackCount') + '</div>' +
+                    '<div class="metric-label" data-translate="bmsPackCountLabel">' + getTranslation('bmsPackCountLabel') + '</div>' +
                     '<div class="metric-value">4 <span class="metric-unit" data-translate="unitPiece">' + getTranslation('unitPiece') + '</span></div>' +
                 '</div>';
             }
             if (shouldShowField('bms', 'realtime', 'cycles')) {
                 coreMetricsFields += '<div class="metric-card">' +
-                    '<div class="metric-label" data-translate="coreMetricsCycleCount">' + getTranslation('coreMetricsCycleCount') + '</div>' +
+                    '<div class="metric-label" data-translate="bmsCycleCountLabel">' + getTranslation('bmsCycleCountLabel') + '</div>' +
                     '<div class="metric-value">2786 <span class="metric-unit" data-translate="unitTimes">' + getTranslation('unitTimes') + '</span></div>' +
                     '<div style="font-size: 12px; color: #10b981; margin-top: 4px;" data-translate="coreMetricsLifeNormal">' + getTranslation('coreMetricsLifeNormal') + '</div>' +
                 '</div>';
@@ -7497,7 +7524,7 @@
             if (coreMetricsFields) {
                 html += '<div class="metrics-section">' +
                     '<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">' +
-                        '<h3 style="font-size: 16px; font-weight: 600; margin: 0; color: var(--text-primary);" data-translate="coreMetricsTitle">' + getTranslation('coreMetricsTitle') + '</h3>' +
+                        '<h3 style="font-size: 16px; font-weight: 600; margin: 0; color: var(--text-primary);" data-translate="bmsCoreMetricsCategory">' + getTranslation('bmsCoreMetricsCategory') + '</h3>' +
                     '</div>' +
                     '<div class="metrics-grid">' + coreMetricsFields + '</div>' +
                 '</div>';
@@ -7507,25 +7534,25 @@
             let runStatsFields = '';
             if (shouldShowField('bms', 'realtime', 'todayCharge')) {
                 runStatsFields += '<div class="metric-card">' +
-                    '<div class="metric-label" data-translate="runStatsDailyCharge">' + getTranslation('runStatsDailyCharge') + '</div>' +
+                    '<div class="metric-label" data-translate="bmsTodayChargeLabel">' + getTranslation('bmsTodayChargeLabel') + '</div>' +
                     '<div class="metric-value">335.9 <span class="metric-unit">kWh</span></div>' +
                 '</div>';
             }
             if (shouldShowField('bms', 'realtime', 'todayDischarge')) {
                 runStatsFields += '<div class="metric-card">' +
-                    '<div class="metric-label" data-translate="runStatsDailyDischarge">' + getTranslation('runStatsDailyDischarge') + '</div>' +
+                    '<div class="metric-label" data-translate="bmsTodayDischargeLabel">' + getTranslation('bmsTodayDischargeLabel') + '</div>' +
                     '<div class="metric-value">261.9 <span class="metric-unit">kWh</span></div>' +
                 '</div>';
             }
             if (shouldShowField('bms', 'realtime', 'totalCharge')) {
                 runStatsFields += '<div class="metric-card">' +
-                    '<div class="metric-label" data-translate="runStatsTotalCharge">' + getTranslation('runStatsTotalCharge') + '</div>' +
+                    '<div class="metric-label" data-translate="bmsTotalChargeLabel">' + getTranslation('bmsTotalChargeLabel') + '</div>' +
                     '<div class="metric-value">1262 <span class="metric-unit">MWh</span></div>' +
                 '</div>';
             }
             if (shouldShowField('bms', 'realtime', 'totalDischarge')) {
                 runStatsFields += '<div class="metric-card">' +
-                    '<div class="metric-label" data-translate="runStatsTotalDischarge">' + getTranslation('runStatsTotalDischarge') + '</div>' +
+                    '<div class="metric-label" data-translate="bmsTotalDischargeLabel">' + getTranslation('bmsTotalDischargeLabel') + '</div>' +
                     '<div class="metric-value">1197 <span class="metric-unit">MWh</span></div>' +
                 '</div>';
             }
@@ -7533,7 +7560,7 @@
             if (runStatsFields) {
                 html += '<div class="metrics-section">' +
                     '<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">' +
-                        '<h3 style="font-size: 16px; font-weight: 600; margin: 0; color: var(--text-primary);" data-translate="runStatsTitle">' + getTranslation('runStatsTitle') + '</h3>' +
+                        '<h3 style="font-size: 16px; font-weight: 600; margin: 0; color: var(--text-primary);" data-translate="bmsOperationStatsCategory">' + getTranslation('bmsOperationStatsCategory') + '</h3>' +
                     '</div>' +
                     '<div class="metrics-grid">' + runStatsFields + '</div>' +
                 '</div>';
@@ -7543,63 +7570,63 @@
             let extremeFields = '';
             if (shouldShowField('bms', 'realtime', 'maxCellVoltage')) {
                 extremeFields += '<div class="metric-card" onclick="openPackDetailsModal(2, 87)" style="cursor: pointer; transition: all 0.2s;" onmouseover="this.style.transform=\'translateY(-2px)\'; this.style.boxShadow=\'0 4px 12px rgba(0,0,0,0.1)\'" onmouseout="this.style.transform=\'translateY(0)\'; this.style.boxShadow=\'none\'">' +
-                    '<div class="metric-label">最高单体电压</div>' +
+                    '<div class="metric-label" data-translate="bmsMaxCellVoltageLabel">' + getTranslation('bmsMaxCellVoltageLabel') + '</div>' +
                     '<div class="metric-value">3.652 <span class="metric-unit">V</span></div>' +
                     '<div style="font-size: 12px; color: #3b82f6; margin-top: 4px; display: flex; align-items: center; gap: 4px;">' +
                         '<i class="fas fa-mouse-pointer" style="font-size: 10px;"></i>' +
-                        '<span>位置: Pack2-Cell087</span>' +
+                        '<span><span data-translate="bmsLocationLabel">' + getTranslation('bmsLocationLabel') + '</span>: Pack2-Cell087</span>' +
                     '</div>' +
                 '</div>';
             }
             if (shouldShowField('bms', 'realtime', 'minCellVoltage')) {
                 extremeFields += '<div class="metric-card" onclick="openPackDetailsModal(3, 42)" style="cursor: pointer; transition: all 0.2s;" onmouseover="this.style.transform=\'translateY(-2px)\'; this.style.boxShadow=\'0 4px 12px rgba(0,0,0,0.1)\'" onmouseout="this.style.transform=\'translateY(0)\'; this.style.boxShadow=\'none\'">' +
-                    '<div class="metric-label">最低单体电压</div>' +
+                    '<div class="metric-label" data-translate="bmsMinCellVoltageLabel">' + getTranslation('bmsMinCellVoltageLabel') + '</div>' +
                     '<div class="metric-value">3.601 <span class="metric-unit">V</span></div>' +
                     '<div style="font-size: 12px; color: #3b82f6; margin-top: 4px; display: flex; align-items: center; gap: 4px;">' +
                         '<i class="fas fa-mouse-pointer" style="font-size: 10px;"></i>' +
-                        '<span>位置: Pack3-Cell042</span>' +
+                        '<span><span data-translate="bmsLocationLabel">' + getTranslation('bmsLocationLabel') + '</span>: Pack3-Cell042</span>' +
                     '</div>' +
                 '</div>';
             }
             if (shouldShowField('bms', 'realtime', 'avgCellVoltage')) {
                 extremeFields += '<div class="metric-card">' +
-                    '<div class="metric-label">平均单体电压</div>' +
+                    '<div class="metric-label" data-translate="bmsAvgCellVoltageLabel">' + getTranslation('bmsAvgCellVoltageLabel') + '</div>' +
                     '<div class="metric-value">3.628 <span class="metric-unit">V</span></div>' +
-                    '<div style="font-size: 12px; color: #10b981; margin-top: 4px;">压差: 51mV</div>' +
+                    '<div style="font-size: 12px; color: #10b981; margin-top: 4px;"><span data-translate="bmsVoltageDiffLabel">' + getTranslation('bmsVoltageDiffLabel') + '</span>: 51mV</div>' +
                 '</div>';
             }
             if (shouldShowField('bms', 'realtime', 'maxCellTemp')) {
                 extremeFields += '<div class="metric-card" onclick="openPackDetailsModal(1, 156, \'temp\')" style="cursor: pointer; transition: all 0.2s;" onmouseover="this.style.transform=\'translateY(-2px)\'; this.style.boxShadow=\'0 4px 12px rgba(0,0,0,0.1)\'" onmouseout="this.style.transform=\'translateY(0)\'; this.style.boxShadow=\'none\'">' +
-                    '<div class="metric-label">最高单体温度</div>' +
+                    '<div class="metric-label" data-translate="bmsMaxCellTempLabel">' + getTranslation('bmsMaxCellTempLabel') + '</div>' +
                     '<div class="metric-value">32.8 <span class="metric-unit">°C</span></div>' +
                     '<div style="font-size: 12px; color: #3b82f6; margin-top: 4px; display: flex; align-items: center; gap: 4px;">' +
                         '<i class="fas fa-mouse-pointer" style="font-size: 10px;"></i>' +
-                        '<span>位置: Pack1-Cell156</span>' +
+                        '<span><span data-translate="bmsLocationLabel">' + getTranslation('bmsLocationLabel') + '</span>: Pack1-Cell156</span>' +
                     '</div>' +
                 '</div>';
             }
             if (shouldShowField('bms', 'realtime', 'minCellTemp')) {
                 extremeFields += '<div class="metric-card" onclick="openPackDetailsModal(4, 28, \'temp\')" style="cursor: pointer; transition: all 0.2s;" onmouseover="this.style.transform=\'translateY(-2px)\'; this.style.boxShadow=\'0 4px 12px rgba(0,0,0,0.1)\'" onmouseout="this.style.transform=\'translateY(0)\'; this.style.boxShadow=\'none\'">' +
-                    '<div class="metric-label">最低单体温度</div>' +
+                    '<div class="metric-label" data-translate="bmsMinCellTempLabel">' + getTranslation('bmsMinCellTempLabel') + '</div>' +
                     '<div class="metric-value">28.5 <span class="metric-unit">°C</span></div>' +
                     '<div style="font-size: 12px; color: #3b82f6; margin-top: 4px; display: flex; align-items: center; gap: 4px;">' +
                         '<i class="fas fa-mouse-pointer" style="font-size: 10px;"></i>' +
-                        '<span>位置: Pack4-Cell028</span>' +
+                        '<span><span data-translate="bmsLocationLabel">' + getTranslation('bmsLocationLabel') + '</span>: Pack4-Cell028</span>' +
                     '</div>' +
                 '</div>';
             }
             if (shouldShowField('bms', 'realtime', 'avgCellTemp')) {
                 extremeFields += '<div class="metric-card">' +
-                    '<div class="metric-label">平均单体温度</div>' +
+                    '<div class="metric-label" data-translate="bmsAvgCellTempLabel">' + getTranslation('bmsAvgCellTempLabel') + '</div>' +
                     '<div class="metric-value">30.7 <span class="metric-unit">°C</span></div>' +
-                    '<div style="font-size: 12px; color: #10b981; margin-top: 4px;">温差: 4.3°C</div>' +
+                    '<div style="font-size: 12px; color: #10b981; margin-top: 4px;"><span data-translate="bmsTempDiffLabel">' + getTranslation('bmsTempDiffLabel') + '</span>: 4.3°C</div>' +
                 '</div>';
             }
 
             if (extremeFields) {
                 html += '<div class="metrics-section">' +
                     '<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">' +
-                        '<h3 style="font-size: 16px; font-weight: 600; margin: 0; color: var(--text-primary);">电压温度极值</h3>' +
+                        '<h3 style="font-size: 16px; font-weight: 600; margin: 0; color: var(--text-primary);" data-translate="bmsVoltTempExtremesCategory">' + getTranslation('bmsVoltTempExtremesCategory') + '</h3>' +
                     '</div>' +
                     '<div class="metrics-grid">' + extremeFields + '</div>' +
                 '</div>';
@@ -7616,8 +7643,8 @@
             if (shouldShowPack) {
                 html += '<div class="metrics-section">' +
                     '<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">' +
-                        '<h3 style="font-size: 16px; font-weight: 600; margin: 0; color: var(--text-primary);" data-translate="packBatteryTitle">' + getTranslation('packBatteryTitle') + '</h3>' +
-                        '<span style="font-size: 13px; color: #666;">点击Pack查看单体详情</span>' +
+                        '<h3 style="font-size: 16px; font-weight: 600; margin: 0; color: var(--text-primary);" data-translate="bmsPackInfoCategory">' + getTranslation('bmsPackInfoCategory') + '</h3>' +
+                        '<span style="font-size: 13px; color: #666;" data-translate="bmsClickPackToViewDetails">' + getTranslation('bmsClickPackToViewDetails') + '</span>' +
                     '</div>' +
                     '<div class="metrics-grid">' + generatePackCardsHTML() + '</div>' +
                 '</div>';
@@ -7643,14 +7670,14 @@
 
                 if (shouldShowField('bms', 'realtime', 'packVoltage')) {
                     packFieldsHtml += '<div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border-color);">' +
-                        '<span style="font-size: 14px; color: var(--text-secondary);">电压</span>' +
+                        '<span style="font-size: 14px; color: var(--text-secondary);" data-translate="bmsPackVoltageShort">' + getTranslation('bmsPackVoltageShort') + '</span>' +
                         '<span class="metric-value">' + pack.voltage + ' <span class="metric-unit">V</span></span>' +
                     '</div>';
                 }
 
                 if (shouldShowField('bms', 'realtime', 'packCurrent')) {
                     packFieldsHtml += '<div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border-color);">' +
-                        '<span style="font-size: 14px; color: var(--text-secondary);">电流</span>' +
+                        '<span style="font-size: 14px; color: var(--text-secondary);" data-translate="bmsPackCurrentShort">' + getTranslation('bmsPackCurrentShort') + '</span>' +
                         '<span class="metric-value">' + pack.current + ' <span class="metric-unit">A</span></span>' +
                     '</div>';
                 }
@@ -7671,7 +7698,7 @@
 
                 if (shouldShowField('bms', 'realtime', 'packTemp')) {
                     packFieldsHtml += '<div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0;">' +
-                        '<span style="font-size: 14px; color: var(--text-secondary);">温度</span>' +
+                        '<span style="font-size: 14px; color: var(--text-secondary);" data-translate="bmsPackTempShort">' + getTranslation('bmsPackTempShort') + '</span>' +
                         '<span class="metric-value">' + pack.temp + ' <span class="metric-unit">°C</span></span>' +
                     '</div>';
                 }
@@ -7689,7 +7716,7 @@
 
                     // Pack状态字段可见时才显示
                     if (showPackStatus) {
-                        html += '<span style="padding: 3px 10px; background: #10b98120; color: #10b981; border-radius: 4px; font-size: 13px; font-weight: 500;">' + pack.status + '</span>';
+                        html += '<span style="padding: 3px 10px; background: #10b98120; color: #10b981; border-radius: 4px; font-size: 13px; font-weight: 500;" data-translate="bmsStatusNormal">' + getTranslation('bmsStatusNormal') + '</span>';
                     }
 
                     html += '</div>' +
@@ -7783,14 +7810,14 @@
             const modalTitle = document.getElementById('packDetailsModalTitle');
             const modalContent = document.getElementById('packDetailsModalContent');
 
-            modalTitle.textContent = 'Pack' + packId + ' 单体详情';
+            modalTitle.innerHTML = 'Pack' + packId + ' <span data-translate="bmsPackDetailsTitle">' + getTranslation('bmsPackDetailsTitle') + '</span>';
 
             // 生成弹窗内容
             let content = '<div style="display: flex; flex-direction: column; gap: 24px;">';
 
             // 单体电压
             content += '<div id="voltageSection">' +
-                '<h5 style="margin: 0 0 16px 0; font-size: 15px; font-weight: 600; color: var(--text-primary); padding-bottom: 12px; border-bottom: 2px solid var(--border-color);">单体电压 (60节)</h5>' +
+                '<h5 style="margin: 0 0 16px 0; font-size: 15px; font-weight: 600; color: var(--text-primary); padding-bottom: 12px; border-bottom: 2px solid var(--border-color);" data-translate="bmsCellVoltageTitle">' + getTranslation('bmsCellVoltageTitle') + ' (60<span data-translate="bmsCellVoltageCount">' + getTranslation('bmsCellVoltageCount') + '</span>)</h5>' +
                 '<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: 8px; max-height: 400px; overflow-y: auto;">' +
                     generatePackCellVoltages(packId, type !== 'temp' ? highlightCell : null) +
                 '</div>' +
@@ -7798,7 +7825,7 @@
 
             // 单体温度
             content += '<div id="temperatureSection">' +
-                '<h5 style="margin: 0 0 16px 0; font-size: 15px; font-weight: 600; color: var(--text-primary); padding-bottom: 12px; border-bottom: 2px solid var(--border-color);">单体温度 (20点)</h5>' +
+                '<h5 style="margin: 0 0 16px 0; font-size: 15px; font-weight: 600; color: var(--text-primary); padding-bottom: 12px; border-bottom: 2px solid var(--border-color);" data-translate="bmsCellTempTitle">' + getTranslation('bmsCellTempTitle') + ' (20<span data-translate="bmsCellTempCount">' + getTranslation('bmsCellTempCount') + '</span>)</h5>' +
                 '<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: 8px;">' +
                     generatePackCellTemperatures(packId, type === 'temp' ? highlightCell : null) +
                 '</div>' +
@@ -7837,7 +7864,7 @@
                 html += `
                     <div style="margin-bottom: 24px;">
                         <div style="background: #f8fafc; padding: 12px 16px; border-radius: 8px 8px 0 0; border-bottom: 2px solid #e5e7eb;">
-                            <h4 style="margin: 0; font-size: 14px; font-weight: 600; color: #1e293b;">Pack${pack} - 单体电压 (60节)</h4>
+                            <h4 style="margin: 0; font-size: 14px; font-weight: 600; color: #1e293b;">Pack${pack} - <span data-translate="bmsCellVoltageTitle">${getTranslation('bmsCellVoltageTitle')}</span> (60<span data-translate="bmsCellVoltageCount">${getTranslation('bmsCellVoltageCount')}</span>)</h4>
                         </div>
                         <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px; padding: 16px; background: var(--bg-secondary); border-radius: 0 0 8px 8px;">
                 `;
@@ -7886,7 +7913,7 @@
                 html += `
                     <div style="margin-bottom: 24px;">
                         <div style="background: #f8fafc; padding: 12px 16px; border-radius: 8px 8px 0 0; border-bottom: 2px solid #e5e7eb;">
-                            <h4 style="margin: 0; font-size: 14px; font-weight: 600; color: #1e293b;">Pack${pack} - 单体温度 (20点)</h4>
+                            <h4 style="margin: 0; font-size: 14px; font-weight: 600; color: #1e293b;">Pack${pack} - <span data-translate="bmsCellTempTitle">${getTranslation('bmsCellTempTitle')}</span> (20<span data-translate="bmsCellTempCount">${getTranslation('bmsCellTempCount')}</span>)</h4>
                         </div>
                         <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px; padding: 16px; background: var(--bg-secondary); border-radius: 0 0 8px 8px;">
                 `;
@@ -7938,8 +7965,8 @@
                         <div style="display: flex; gap: 8px;">
                             <button class="upgrade-btn" onclick="openUpgradeModal()" title="升级设备" style="padding: 4px 12px; font-size: 12px;">
                                 <i class="fas fa-arrow-up"></i>
-                                <span>升级</span>
-                                <span class="upgrade-badge">定制</span>
+                                <span data-translate="cabinetBtnUpgrade">升级</span>
+                                <span class="upgrade-badge" data-translate="cabinetUpgradeBadge">定制</span>
                             </button>
                             <button class="settings-btn" onclick="openFieldSettings()" title="字段设置" data-translate-title="btnFieldSettings" style="margin-bottom: 0; padding: 4px 12px; font-size: 12px;">
                                 <i class="fas fa-cog"></i>
@@ -8169,29 +8196,29 @@
             html += `
                 <div class="metrics-section">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                        <h3 style="font-size: 16px; font-weight: 600; margin: 0; color: var(--text-primary);">系统状态</h3>
+                        <h3 style="font-size: 16px; font-weight: 600; margin: 0; color: var(--text-primary);" data-translate="cabinetCoolingSystemStatus">系统状态</h3>
                         <div style="display: flex; gap: 8px;">
                             <button class="upgrade-btn" onclick="openUpgradeModal()" title="升级设备" style="padding: 4px 12px; font-size: 12px;">
                                 <i class="fas fa-arrow-up"></i>
-                                <span>升级</span>
-                                <span class="upgrade-badge">定制</span>
+                                <span data-translate="cabinetBtnUpgrade">升级</span>
+                                <span class="upgrade-badge" data-translate="cabinetUpgradeBadge">定制</span>
                             </button>
                             <button class="settings-btn" onclick="openFieldSettings()" title="字段设置" style="margin-bottom: 0; padding: 4px 12px; font-size: 12px;">
                                 <i class="fas fa-cog"></i>
-                                <span>字段设置</span>
+                                <span data-translate="cabinetBtnFieldSettings">${getTranslation('cabinetBtnFieldSettings')}</span>
                             </button>
                         </div>
                     </div>
                     <div class="metrics-grid">
                         <div class="metric-card">
-                            <div class="metric-label">通讯状态</div>
-                            <div class="metric-value" style="color: #10b981;">正常</div>
-                            <div style="font-size: 12px; color: #10b981; margin-top: 4px;">在线</div>
+                            <div class="metric-label" data-translate="coolingCommStatus">${getTranslation('coolingCommStatus')}</div>
+                            <div class="metric-value" style="color: #10b981;"><span data-translate="coolingStatusNormal">${getTranslation('coolingStatusNormal')}</span></div>
+                            <div style="font-size: 12px; color: #10b981; margin-top: 4px;"><span data-translate="coolingStatusOnline">${getTranslation('coolingStatusOnline')}</span></div>
                         </div>
                         <div class="metric-card">
-                            <div class="metric-label">运行状态</div>
-                            <div class="metric-value" style="color: #10b981;">运行中</div>
-                            <div style="font-size: 12px; color: #10b981; margin-top: 4px;">制冷模式</div>
+                            <div class="metric-label" data-translate="coolingRunningStatus">${getTranslation('coolingRunningStatus')}</div>
+                            <div class="metric-value" style="color: #10b981;"><span data-translate="coolingStatusRunning">${getTranslation('coolingStatusRunning')}</span></div>
+                            <div style="font-size: 12px; color: #10b981; margin-top: 4px;"><span data-translate="coolingModeCooling">${getTranslation('coolingModeCooling')}</span></div>
                         </div>
                     </div>
                 </div>
@@ -8203,22 +8230,22 @@
 
             html += `
                 <div class="metrics-section">
-                    <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 20px; color: var(--text-primary);">温度参数</h3>
+                    <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 20px; color: var(--text-primary);" data-translate="cabinetCoolingTempParams">温度参数</h3>
                     <div class="metrics-grid">
                         <div class="metric-card">
-                            <div class="metric-label">出水温度</div>
+                            <div class="metric-label" data-translate="coolingOutletWaterTemp">${getTranslation('coolingOutletWaterTemp')}</div>
                             <div class="metric-value">${outletTemp} <span class="metric-unit">°C</span></div>
-                            <div style="font-size: 12px; color: #10b981; margin-top: 4px;">正常</div>
+                            <div style="font-size: 12px; color: #10b981; margin-top: 4px;"><span data-translate="coolingStatusNormal">${getTranslation('coolingStatusNormal')}</span></div>
                         </div>
                         <div class="metric-card">
-                            <div class="metric-label">进水温度</div>
+                            <div class="metric-label" data-translate="coolingInletWaterTemp">${getTranslation('coolingInletWaterTemp')}</div>
                             <div class="metric-value">${inletTemp} <span class="metric-unit">°C</span></div>
-                            <div style="font-size: 12px; color: #10b981; margin-top: 4px;">正常</div>
+                            <div style="font-size: 12px; color: #10b981; margin-top: 4px;"><span data-translate="coolingStatusNormal">${getTranslation('coolingStatusNormal')}</span></div>
                         </div>
                         <div class="metric-card">
-                            <div class="metric-label">温差</div>
+                            <div class="metric-label" data-translate="coolingTempDiff">${getTranslation('coolingTempDiff')}</div>
                             <div class="metric-value">${(parseFloat(inletTemp) - parseFloat(outletTemp)).toFixed(1)} <span class="metric-unit">°C</span></div>
-                            <div style="font-size: 12px; color: #10b981; margin-top: 4px;">正常</div>
+                            <div style="font-size: 12px; color: #10b981; margin-top: 4px;"><span data-translate="coolingStatusNormal">${getTranslation('coolingStatusNormal')}</span></div>
                         </div>
                     </div>
                 </div>
@@ -8231,22 +8258,22 @@
 
             html += `
                 <div class="metrics-section">
-                    <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 20px; color: var(--text-primary);">压力与流量</h3>
+                    <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 20px; color: var(--text-primary);" data-translate="cabinetCoolingPressureFlow">压力与流量</h3>
                     <div class="metrics-grid">
                         <div class="metric-card">
-                            <div class="metric-label">出水压力</div>
+                            <div class="metric-label" data-translate="coolingOutletPressure">${getTranslation('coolingOutletPressure')}</div>
                             <div class="metric-value">${outletPressure} <span class="metric-unit">bar</span></div>
-                            <div style="font-size: 12px; color: #10b981; margin-top: 4px;">正常</div>
+                            <div style="font-size: 12px; color: #10b981; margin-top: 4px;"><span data-translate="coolingStatusNormal">${getTranslation('coolingStatusNormal')}</span></div>
                         </div>
                         <div class="metric-card">
-                            <div class="metric-label">进水压力</div>
+                            <div class="metric-label" data-translate="coolingInletPressure">${getTranslation('coolingInletPressure')}</div>
                             <div class="metric-value">${inletPressure} <span class="metric-unit">bar</span></div>
-                            <div style="font-size: 12px; color: #10b981; margin-top: 4px;">正常</div>
+                            <div style="font-size: 12px; color: #10b981; margin-top: 4px;"><span data-translate="coolingStatusNormal">${getTranslation('coolingStatusNormal')}</span></div>
                         </div>
                         <div class="metric-card">
-                            <div class="metric-label">水泵转速</div>
+                            <div class="metric-label" data-translate="coolingPumpSpeed">${getTranslation('coolingPumpSpeed')}</div>
                             <div class="metric-value">${pumpSpeed} <span class="metric-unit">RPM</span></div>
-                            <div style="font-size: 12px; color: #10b981; margin-top: 4px;">正常</div>
+                            <div style="font-size: 12px; color: #10b981; margin-top: 4px;"><span data-translate="coolingStatusNormal">${getTranslation('coolingStatusNormal')}</span></div>
                         </div>
                     </div>
                 </div>
@@ -8323,8 +8350,8 @@
                                 <div style="display: flex; gap: 8px;">
                                     <button class="upgrade-btn" onclick="openUpgradeModal()" title="升级设备" style="padding: 4px 12px; font-size: 12px;">
                                         <i class="fas fa-arrow-up"></i>
-                                        <span>升级</span>
-                                        <span class="upgrade-badge">定制</span>
+                                        <span data-translate="cabinetBtnUpgrade">升级</span>
+                                        <span class="upgrade-badge" data-translate="cabinetUpgradeBadge">定制</span>
                                     </button>
                                     <button class="settings-btn" onclick="openFieldSettings()" title="字段设置" data-translate-title="btnFieldSettings" style="margin-bottom: 0; padding: 4px 12px; font-size: 12px;">
                                         <i class="fas fa-cog"></i>
@@ -8630,7 +8657,7 @@
                 },
                 'cooling': {
                     'tempHistory': {
-                        title: '温度历史',
+                        title: (typeof getTranslation === 'function' ? getTranslation('cabinetHistoryTemp') : '温度历史'),
                         canvasId: 'coolingTempChart',
                         controls: `<input type="date"
                                           id="cooling-temp-date"
@@ -8638,7 +8665,7 @@
                                           style="padding: 6px 12px; background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 6px; color: var(--text-primary); font-size: 14px;">`
                     },
                     'pressureHistory': {
-                        title: '压力历史',
+                        title: (typeof getTranslation === 'function' ? getTranslation('cabinetHistoryPressure') : '压力历史'),
                         canvasId: 'coolingPressureChart',
                         controls: `<input type="date"
                                           id="cooling-pressure-date"
@@ -8646,7 +8673,7 @@
                                           style="padding: 6px 12px; background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 6px; color: var(--text-primary); font-size: 14px;">`
                     },
                     'pumpSpeedHistory': {
-                        title: '水泵转速历史',
+                        title: (typeof getTranslation === 'function' ? getTranslation('cabinetHistoryWaterTemp') : '水泵转速历史'),
                         canvasId: 'coolingPumpChart',
                         controls: `<input type="date"
                                           id="cooling-pump-date"

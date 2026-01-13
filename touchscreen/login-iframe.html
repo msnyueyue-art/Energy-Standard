@@ -476,27 +476,27 @@
     <div class="login-container">
         <div class="login-header">
             <div class="logo">
-                <img src="logo.png" alt="储能柜管理系统" onerror="this.style.display='none'">
+                <img src="logo.png" alt="Energy Storage System" onerror="this.style.display='none'">
             </div>
-            <h1 class="login-title" data-lang="title">储能柜管理系统</h1>
-            <p class="login-subtitle" data-lang="subtitle">请登录您的账户</p>
+            <h1 class="login-title" data-lang="title">Energy Storage Cabinet System</h1>
+            <p class="login-subtitle" data-lang="subtitle">Please login to your account</p>
         </div>
 
         <form class="login-form" onsubmit="handleLogin(event)">
             <div class="form-group">
-                <label class="form-label" data-lang="username">用户名</label>
-                <input type="text" class="form-input" id="username" placeholder="请输入用户名">
+                <label class="form-label" data-lang="username">Username</label>
+                <input type="text" class="form-input" id="username" placeholder="Enter your username">
                 <span class="input-icon">👤</span>
             </div>
 
             <div class="form-group">
-                <label class="form-label" data-lang="password">密码</label>
-                <input type="password" class="form-input" id="password" placeholder="请输入密码">
+                <label class="form-label" data-lang="password">Password</label>
+                <input type="password" class="form-input" id="password" placeholder="Enter your password">
                 <span class="input-icon">🔐</span>
             </div>
 
             <button type="submit" class="login-button">
-                <span class="button-text" data-lang="login">登录</span>
+                <span class="button-text" data-lang="login">Login</span>
                 <span class="loading"></span>
             </button>
 
@@ -620,7 +620,7 @@
             }
         };
 
-        let currentLang = 'zh';
+        let currentLang = 'en';
 
         // 显示/隐藏语言下拉菜单
         function toggleLanguageDropdown() {
@@ -693,6 +693,17 @@
             errorMessage.textContent = message;
             errorMessage.style.display = 'block';
         }
+
+        // 页面加载时初始化
+        window.addEventListener('DOMContentLoaded', function() {
+            // 设置当前语言为英文(HTML内容已经是英文,无需切换)
+            currentLang = 'en';
+            // 更新语言选项的激活状态
+            document.querySelectorAll('.lang-option').forEach(option => {
+                const isEn = option.textContent.includes('English');
+                option.classList.toggle('active', isEn);
+            });
+        });
     </script>
 </body>
 </html>
