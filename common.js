@@ -2179,6 +2179,39 @@ const translations = {
 
         // === 公用导航栏翻译 ===
         accountSettings: '账号设置',
+
+        // === 账号设置页面翻译 ===
+        'accountSettings.pageTitle': '账号设置',
+        'accountSettings.pageSubtitle': '管理您的个人信息和账号安全',
+        'accountSettings.tabs.basicInfo': '基础信息',
+        'accountSettings.tabs.changePassword': '修改密码',
+        'accountSettings.messages.saveSuccess': '保存成功!',
+        'accountSettings.messages.saveFailed': '保存失败,请稍后重试',
+        'accountSettings.basicInfo.cardTitle': '基本信息',
+        'accountSettings.basicInfo.avatar': '头像',
+        'accountSettings.basicInfo.changeAvatar': '更换头像',
+        'accountSettings.basicInfo.removeAvatar': '删除',
+        'accountSettings.basicInfo.avatarHint': '支持 JPG、PNG 格式,大小不超过 2MB',
+        'accountSettings.basicInfo.nickname': '昵称',
+        'accountSettings.basicInfo.save': '保存',
+        'accountSettings.passwordSettings.cardTitle': '密码设置',
+        'accountSettings.passwordSettings.changeMethod': '修改方式',
+        'accountSettings.passwordSettings.usePassword': '使用原密码验证',
+        'accountSettings.passwordSettings.useEmail': '使用邮箱验证',
+        'accountSettings.passwordSettings.currentPassword': '原密码',
+        'accountSettings.passwordSettings.emailVerification': '邮箱验证',
+        'accountSettings.passwordSettings.getVerificationCode': '获取验证码',
+        'accountSettings.passwordSettings.verificationCode': '验证码',
+        'accountSettings.passwordSettings.newPassword': '新密码',
+        'accountSettings.passwordSettings.confirmPassword': '确认密码',
+        'accountSettings.passwordSettings.reset': '重置',
+        'accountSettings.passwordSettings.changePassword': '修改密码',
+        'accountSettings.basicInfo.nicknamePlaceholder': '请输入昵称',
+        'accountSettings.passwordSettings.currentPasswordPlaceholder': '请输入原密码',
+        'accountSettings.passwordSettings.verificationCodePlaceholder': '请输入验证码',
+        'accountSettings.passwordSettings.newPasswordPlaceholder': '请输入新密码',
+        'accountSettings.passwordSettings.confirmPasswordPlaceholder': '请再次输入新密码',
+
         logoutBtn: '退出登录',
         logoutModalTitle: '确认退出',
         logoutModalText: '您确定要退出登录吗？',
@@ -3038,11 +3071,11 @@ const translations = {
         // 表格表头
         dataAnalysisTableHeaderTime: '时间',
         dataAnalysisTableHeaderSiteName: '站点/设备名称',
-        dataAnalysisTableHeaderChargeCost: '充电成本(元)',
-        dataAnalysisTableHeaderSellProfit: '卖电利润(元)',
-        dataAnalysisTableHeaderNetProfit: '净利润(元)',
-        dataAnalysisTableHeaderSelfSaving: '自用节省(元)',
-        dataAnalysisTableHeaderTotalRevenue: '总收益(元)',
+        dataAnalysisTableHeaderChargeCost: '充电成本',
+        dataAnalysisTableHeaderSellProfit: '卖电利润',
+        dataAnalysisTableHeaderNetProfit: '净利润',
+        dataAnalysisTableHeaderSelfSaving: '自用节省',
+        dataAnalysisTableHeaderTotalRevenue: '总收益',
         dataAnalysisTableSummary: '合计',
 
         // 收益统计卡片
@@ -3104,6 +3137,7 @@ const translations = {
         elecPriceBtnUseTemplate: '使用此模版',
         elecPriceBtnConfirmConfig: '确认配置',
         elecPriceBtnEditTemplate: '编辑模版',
+        elecPriceBtnClose: '关闭',
         elecPriceBtnManagePeriodTypes: '管理时段类型',
         elecPriceBtnAddPeriodType: '增加时段类型',
         elecPriceBtnAddSeason: '添加季节',
@@ -3121,6 +3155,12 @@ const translations = {
         // 用途标签
         elecPricePurposeConsumption: '购电',
         elecPricePurposeFeedin: '上网',
+
+        // 空状态提示
+        elecPriceEmptyPurchaseTitle: '暂无购电模版',
+        elecPriceEmptyPurchaseDesc: '点击"新建规则"创建您的第一个购电电价策略模版',
+        elecPriceEmptyFeedinTitle: '暂无上网模版',
+        elecPriceEmptyFeedinDesc: '点击"新建规则"创建您的第一个上网电价策略模版',
 
         // 策略模式
         elecPriceModeFixed: '固定',
@@ -3160,6 +3200,7 @@ const translations = {
         elecPriceModalTitleSelectPreset: '选择预设模版',
         elecPriceModalTitleCustomCreate: '自定义创建模版',
         elecPriceModalTitleEditTemplate: '编辑电价模版',
+        elecPriceModalTitleViewTemplate: '模版详情',
         elecPriceModalTitleSiteConfig: '配置电站电价',
         elecPriceModalTitlePeriodTypeManage: '时段类型管理',
 
@@ -3180,6 +3221,7 @@ const translations = {
 
         // 表单标签
         elecPriceFormLabelTemplateName: '模版名称',
+        elecPriceFormLabelTemplatePurpose: '模版用途',
         elecPriceFormLabelTemplateType: '策略类型',
         elecPriceFormLabelTemplateDesc: '模版说明',
         elecPriceFormLabelEffectiveTime: '生效时间',
@@ -5557,6 +5599,39 @@ const translations = {
 
         // === Common Navbar Translations ===
         accountSettings: 'Account Settings',
+
+        // === Account Settings Page Translations ===
+        'accountSettings.pageTitle': 'Account Settings',
+        'accountSettings.pageSubtitle': 'Manage your personal information and account security',
+        'accountSettings.tabs.basicInfo': 'Basic Info',
+        'accountSettings.tabs.changePassword': 'Change Password',
+        'accountSettings.messages.saveSuccess': 'Saved successfully!',
+        'accountSettings.messages.saveFailed': 'Failed to save, please try again later',
+        'accountSettings.basicInfo.cardTitle': 'Basic Information',
+        'accountSettings.basicInfo.avatar': 'Avatar',
+        'accountSettings.basicInfo.changeAvatar': 'Change Avatar',
+        'accountSettings.basicInfo.removeAvatar': 'Remove',
+        'accountSettings.basicInfo.avatarHint': 'Supports JPG, PNG formats, max 2MB',
+        'accountSettings.basicInfo.nickname': 'Nickname',
+        'accountSettings.basicInfo.save': 'Save',
+        'accountSettings.passwordSettings.cardTitle': 'Password Settings',
+        'accountSettings.passwordSettings.changeMethod': 'Verification Method',
+        'accountSettings.passwordSettings.usePassword': 'Verify with Current Password',
+        'accountSettings.passwordSettings.useEmail': 'Verify with Email',
+        'accountSettings.passwordSettings.currentPassword': 'Current Password',
+        'accountSettings.passwordSettings.emailVerification': 'Email Verification',
+        'accountSettings.passwordSettings.getVerificationCode': 'Get Code',
+        'accountSettings.passwordSettings.verificationCode': 'Verification Code',
+        'accountSettings.passwordSettings.newPassword': 'New Password',
+        'accountSettings.passwordSettings.confirmPassword': 'Confirm Password',
+        'accountSettings.passwordSettings.reset': 'Reset',
+        'accountSettings.passwordSettings.changePassword': 'Change Password',
+        'accountSettings.basicInfo.nicknamePlaceholder': 'Please enter nickname',
+        'accountSettings.passwordSettings.currentPasswordPlaceholder': 'Please enter current password',
+        'accountSettings.passwordSettings.verificationCodePlaceholder': 'Please enter verification code',
+        'accountSettings.passwordSettings.newPasswordPlaceholder': 'Please enter new password',
+        'accountSettings.passwordSettings.confirmPasswordPlaceholder': 'Please re-enter new password',
+
         logoutBtn: 'Logout',
         logoutModalTitle: 'Confirm Logout',
         logoutModalText: 'Are you sure you want to logout?',
@@ -6416,11 +6491,11 @@ const translations = {
         // Table headers
         dataAnalysisTableHeaderTime: 'Time',
         dataAnalysisTableHeaderSiteName: 'Site/Device Name',
-        dataAnalysisTableHeaderChargeCost: 'Charge Cost(¥)',
-        dataAnalysisTableHeaderSellProfit: 'Selling Profit(¥)',
-        dataAnalysisTableHeaderNetProfit: 'Net Profit(¥)',
-        dataAnalysisTableHeaderSelfSaving: 'Self-use Saving(¥)',
-        dataAnalysisTableHeaderTotalRevenue: 'Total Revenue(¥)',
+        dataAnalysisTableHeaderChargeCost: 'Charge Cost',
+        dataAnalysisTableHeaderSellProfit: 'Selling Profit',
+        dataAnalysisTableHeaderNetProfit: 'Net Profit',
+        dataAnalysisTableHeaderSelfSaving: 'Self-use Saving',
+        dataAnalysisTableHeaderTotalRevenue: 'Total Revenue',
         dataAnalysisTableSummary: 'Total',
 
         // Revenue statistics card
@@ -6483,6 +6558,7 @@ const translations = {
         elecPriceBtnUseTemplate: 'Use Template',
         elecPriceBtnConfirmConfig: 'Confirm Config',
         elecPriceBtnEditTemplate: 'Edit Template',
+        elecPriceBtnClose: 'Close',
         elecPriceBtnManagePeriodTypes: 'Manage Period Types',
         elecPriceBtnAddPeriodType: 'Add Period Type',
         elecPriceBtnAddSeason: 'Add Season',
@@ -6500,6 +6576,12 @@ const translations = {
         // Purpose Labels
         elecPricePurposeConsumption: 'Consumption',
         elecPricePurposeFeedin: 'Feed-in',
+
+        // Empty State Messages
+        elecPriceEmptyPurchaseTitle: 'No Purchase Templates',
+        elecPriceEmptyPurchaseDesc: 'Click "New Rule" to create your first purchase electricity pricing template',
+        elecPriceEmptyFeedinTitle: 'No Feed-in Templates',
+        elecPriceEmptyFeedinDesc: 'Click "New Rule" to create your first feed-in electricity pricing template',
 
         // Strategy Modes
         elecPriceModeFixed: 'Fixed',
@@ -6539,6 +6621,7 @@ const translations = {
         elecPriceModalTitleSelectPreset: 'Select Preset Template',
         elecPriceModalTitleCustomCreate: 'Custom Create Template',
         elecPriceModalTitleEditTemplate: 'Edit Price Template',
+        elecPriceModalTitleViewTemplate: 'Template Details',
         elecPriceModalTitleSiteConfig: 'Configure Site Pricing',
         elecPriceModalTitlePeriodTypeManage: 'Period Type Management',
 
@@ -6559,6 +6642,7 @@ const translations = {
 
         // Form Labels
         elecPriceFormLabelTemplateName: 'Template Name',
+        elecPriceFormLabelTemplatePurpose: 'Template Purpose',
         elecPriceFormLabelTemplateType: 'Strategy Type',
         elecPriceFormLabelTemplateDesc: 'Template Description',
         elecPriceFormLabelEffectiveTime: 'Effective Time',
@@ -6990,6 +7074,11 @@ function selectLanguage(lang) {
         activeOption.classList.add('active');
     }
 
+    // 更新货币符号显示
+    if (typeof updateRevenueCurrency === 'function') {
+        updateRevenueCurrency();
+    }
+
     // 触发自定义事件，通知页面语言已切换
     const languageChangeEvent = new CustomEvent('languageChanged', {
         detail: { language: lang }
@@ -7016,6 +7105,54 @@ function selectLanguage(lang) {
 function getTranslation(key) {
     const t = translations[currentLang];
     return t && t[key] ? t[key] : key;
+}
+
+// 货币格式化函数 - 根据当前语言返回对应的货币符号
+function getCurrencySymbol() {
+    return currentLang === 'zh' ? '¥' : '$';
+}
+
+// 格式化收益金额 - 自动添加货币符号
+function formatRevenue(amount) {
+    const symbol = getCurrencySymbol();
+    // 如果 amount 是字符串且包含数字，提取数字部分
+    const numberStr = typeof amount === 'string' ? amount.replace(/[^\d,]/g, '') : amount.toString();
+    return `${symbol}${numberStr}`;
+}
+
+// 更新页面中所有收益显示的货币符号
+function updateRevenueCurrency() {
+    const symbol = getCurrencySymbol();
+
+    // 更新所有带有 data-revenue 属性的元素
+    document.querySelectorAll('[data-revenue]').forEach(element => {
+        const amount = element.getAttribute('data-revenue');
+        element.textContent = formatRevenue(amount);
+    });
+}
+
+// 更新表格表头中的货币符号
+function updateTableHeaderCurrency() {
+    const currencyUnit = currentLang === 'zh' ? '(元)' : `(${getCurrencySymbol()})`;
+
+    // Data Analysis 页面的表头
+    const revenueHeaders = [
+        'dataAnalysisTableHeaderChargeCost',
+        'dataAnalysisTableHeaderSellProfit',
+        'dataAnalysisTableHeaderNetProfit',
+        'dataAnalysisTableHeaderSelfSaving',
+        'dataAnalysisTableHeaderTotalRevenue'
+    ];
+
+    revenueHeaders.forEach(key => {
+        const elements = document.querySelectorAll(`[data-translate="${key}"]`);
+        elements.forEach(element => {
+            const baseText = translations[currentLang][key];
+            if (baseText) {
+                element.textContent = `${baseText}${currencyUnit}`;
+            }
+        });
+    });
 }
 
 function setLanguage(lang) {
@@ -7063,6 +7200,33 @@ function setLanguage(lang) {
         const key = el.getAttribute('data-translate-value');
         if (t[key]) {
             el.value = t[key];
+        }
+    });
+
+    // 处理data-i18n属性的元素（用于支持嵌套的翻译键，如 accountSettings.pageTitle）
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key]) {
+            // 根据元素类型设置不同的属性
+            if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                // 输入框设置 placeholder
+                if (el.type === 'text' || el.type === 'password' || el.type === 'email' || el.tagName === 'TEXTAREA') {
+                    el.placeholder = t[key];
+                } else {
+                    el.value = t[key];
+                }
+            } else {
+                // 其他元素设置 textContent
+                el.textContent = t[key];
+            }
+        }
+    });
+
+    // 处理data-i18n-placeholder属性的元素（专门用于输入框占位符翻译）
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (t[key]) {
+            el.placeholder = t[key];
         }
     });
 
@@ -7122,6 +7286,11 @@ function setLanguage(lang) {
     // 如果页面有updateDevicesTranslations函数，更新devices动态内容
     if (typeof updateDevicesTranslations === 'function') {
         updateDevicesTranslations();
+    }
+
+    // 更新表格表头中的货币符号
+    if (typeof updateTableHeaderCurrency === 'function') {
+        updateTableHeaderCurrency();
     }
 }
 

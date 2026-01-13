@@ -8416,12 +8416,48 @@
             // 重新应用翻译到所有元素
             applyTouchscreenTranslations();
 
+            // 控制历史数据标签的显示/隐藏
+            toggleHistoricalDataTabs();
+
             // 如果字段设置对话框打开,重新渲染内容
             const settingsPanel = document.getElementById('settingsPanel');
             if (settingsPanel && settingsPanel.classList.contains('show')) {
                 renderSettingsContent(currentComponent);
             }
         });
+
+        // 控制历史数据标签的显示/隐藏
+        function toggleHistoricalDataTabs() {
+            const currentLang = getTouchscreenLang();
+
+            // 定义在英文环境下需要隐藏历史数据标签的组件列表
+            // 如果将来需要恢复显示，只需从此数组中移除对应的组件名称
+            const hiddenComponents = [
+                'overall',  // 整机
+                'ems',      // EMS
+                'pcs',      // PCS
+                'bms',      // BMS
+                'meter',    // 电表
+                'thermal',  // 温度
+                'fire'      // 消防
+            ];
+
+            // 遍历需要隐藏的组件
+            hiddenComponents.forEach(component => {
+                // 使用 onclick 属性来精确定位特定组件的历史数据按钮
+                const button = document.querySelector(`button[onclick="switchSubTab('${component}', 'history')"]`);
+
+                if (button) {
+                    if (currentLang === 'en') {
+                        // 英文环境下隐藏
+                        button.style.display = 'none';
+                    } else {
+                        // 中文环境下显示
+                        button.style.display = '';
+                    }
+                }
+            });
+        }
 
         // 页面加载时初始化语言
         document.addEventListener('DOMContentLoaded', function() {
@@ -8435,6 +8471,9 @@
             if (currentLang === 'zh') {
                 applyTouchscreenTranslations();
             }
+
+            // 控制历史数据标签的显示/隐藏
+            toggleHistoricalDataTabs();
 
             // 更新语言切换器的激活状态
             document.querySelectorAll('.lang-option').forEach(option => {
