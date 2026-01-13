@@ -207,7 +207,7 @@
             transition: all 0.2s ease;
         }
 
-        .page-btn:hover {
+        .page-btn:hover:not(:disabled) {
             background: #f3f4f6;
         }
 
@@ -215,6 +215,14 @@
             background: #3b82f6;
             color: white;
             border-color: #3b82f6;
+        }
+
+        .page-btn:disabled {
+            background: #f9fafb;
+            color: #d1d5db;
+            border-color: #e5e7eb;
+            cursor: not-allowed;
+            opacity: 0.6;
         }
 
         /* 模态框样式 */
@@ -800,9 +808,12 @@
     <script>
         // 检查登录状态
         checkAuth();
-        
-        // 角色数据
-        let rolesData = [
+
+        // 角色数据 - 仅在中文环境下显示模拟数据
+        let rolesData = [];
+
+        // 中文环境的模拟数据
+        const mockRolesZh = [
             { id: 1, name: '超级管理员', nameKey: 'roleDataSuperAdmin', description: '拥有系统所有权限', descKey: 'roleDataSuperAdminDesc', userCount: 1, status: 'active', createTime: '2024-01-01 10:00:00', users: [
                 { id: 101, name: '张三', username: 'zhangsan', email: 'zhangsan@example.com' }
             ] },
@@ -820,6 +831,11 @@
                 { id: 106, name: '孙八', username: 'sunba', email: 'sunba@example.com' }
             ] }
         ];
+
+        // 根据语言环境初始化数据
+        if (currentLang === 'zh') {
+            rolesData = mockRolesZh;
+        }
 
         // 权限树数据
         const permissionTree = [
@@ -889,18 +905,30 @@
 
             // 监听语言切换事件，重新渲染角色表格和抽屉
             window.addEventListener('languageChanged', function(event) {
+                // 根据新语言重新加载数据
+                const newLang = localStorage.getItem('language') || 'zh';
+                if (newLang === 'zh') {
+                    rolesData = mockRolesZh;
+                } else {
+                    rolesData = [];  // 英文环境清空数据
+                }
+
+                // 重新渲染表格
                 renderRolesTable();
 
                 // 如果用户抽屉是打开状态，重新渲染抽屉内容
                 if (currentRoleId) {
                     const role = rolesData.find(r => r.id === currentRoleId);
                     if (role) {
-                        const lang = localStorage.getItem('language') === 'en' ? 'en' : 'zh';
+                        const lang = newLang;
                         const roleName = role.nameKey && translations[lang][role.nameKey]
                             ? translations[lang][role.nameKey]
                             : role.name;
                         document.getElementById('drawerRoleName').textContent = roleName;
                         renderUserList(role.users || []);
+                    } else {
+                        // 如果当前角色在新数据中不存在,关闭抽屉
+                        closeUserDrawer();
                     }
                 }
             });
@@ -996,8 +1024,13 @@
             const lang = localStorage.getItem('language') === 'en' ? 'en' : 'zh';
             let html = '';
 
+            // 当没有数据时,totalPages为0或小于1,需要禁用所有分页按钮
+            const hasData = totalPages > 0;
+            const disablePrev = currentPage === 1 || !hasData;
+            const disableNext = currentPage === totalPages || !hasData;
+
             // 上一页
-            html += `<button class="page-btn" onclick="goToPage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}>${translations[lang].rolesPaginationPrev}</button>`;
+            html += `<button class="page-btn" onclick="goToPage(${currentPage - 1})" ${disablePrev ? 'disabled' : ''}>${translations[lang].rolesPaginationPrev}</button>`;
 
             // 页码
             for (let i = 1; i <= totalPages; i++) {
@@ -1009,7 +1042,7 @@
             }
 
             // 下一页
-            html += `<button class="page-btn" onclick="goToPage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}>${translations[lang].rolesPaginationNext}</button>`;
+            html += `<button class="page-btn" onclick="goToPage(${currentPage + 1})" ${disableNext ? 'disabled' : ''}>${translations[lang].rolesPaginationNext}</button>`;
 
             controls.innerHTML = html;
         }

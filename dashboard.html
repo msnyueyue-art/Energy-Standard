@@ -1144,7 +1144,7 @@
                                     <div style="width: 1px; height: 50px; background: #e2e8f0; margin: 0 24px;"></div>
                                     <div style="text-align: center; flex: 1;">
                                         <div style="font-size: 11px; color: #64748b; margin-bottom: 12px; font-weight: 500;" data-translate="dashboardRevenue">收益</div>
-                                        <div style="font-size: 20px; font-weight: 700; color: #ea580c;">¥1,467</div>
+                                        <div style="font-size: 20px; font-weight: 700; color: #ea580c;" data-revenue="1,467">¥1,467</div>
                                     </div>
                                 </div>
                             </div>
@@ -1173,7 +1173,7 @@
                                     <div style="width: 1px; height: 50px; background: #e2e8f0; margin: 0 24px;"></div>
                                     <div style="text-align: center; flex: 1;">
                                         <div style="font-size: 11px; color: #64748b; margin-bottom: 12px; font-weight: 500;" data-translate="dashboardRevenue">收益</div>
-                                        <div style="font-size: 20px; font-weight: 700; color: #ea580c;">¥1,580</div>
+                                        <div style="font-size: 20px; font-weight: 700; color: #ea580c;" data-revenue="1,580">¥1,580</div>
                                     </div>
                                 </div>
                             </div>
@@ -1202,7 +1202,7 @@
                                     <div style="width: 1px; height: 50px; background: #e2e8f0; margin: 0 24px;"></div>
                                     <div style="text-align: center; flex: 1;">
                                         <div style="font-size: 11px; color: #64748b; margin-bottom: 12px; font-weight: 500;" data-translate="dashboardRevenue">收益</div>
-                                        <div style="font-size: 20px; font-weight: 700; color: #ea580c;">¥36,842</div>
+                                        <div style="font-size: 20px; font-weight: 700; color: #ea580c;" data-revenue="36,842">¥36,842</div>
                                     </div>
                                 </div>
                             </div>
@@ -1231,7 +1231,7 @@
                                     <div style="width: 1px; height: 50px; background: #e2e8f0; margin: 0 24px;"></div>
                                     <div style="text-align: center; flex: 1;">
                                         <div style="font-size: 11px; color: #64748b; margin-bottom: 12px; font-weight: 500;" data-translate="dashboardRevenue">收益</div>
-                                        <div style="font-size: 20px; font-weight: 700; color: #ea580c;">¥368,542</div>
+                                        <div style="font-size: 20px; font-weight: 700; color: #ea580c;" data-revenue="368,542">¥368,542</div>
                                     </div>
                                 </div>
                             </div>
@@ -1469,19 +1469,19 @@
                             <div class="energy-metrics-new" id="revenue-metrics" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; flex: 1;">
                                 <div class="energy-metric-item-new" data-metric-item="revenue-yesterday" style="text-align: center;">
                                     <div class="energy-metric-label-new" style="font-size: 12px; color: var(--text-secondary); margin-bottom: 4px;" data-translate="dashboardMetricYesterdayRevenue">昨日收益</div>
-                                    <div class="energy-metric-value-new revenue" style="font-size: 16px; font-weight: 600; color: #10b981;">¥141.72</div>
+                                    <div class="energy-metric-value-new revenue" style="font-size: 16px; font-weight: 600; color: #10b981;" data-revenue="141.72">¥141.72</div>
                                 </div>
                                 <div class="energy-metric-item-new" data-metric-item="revenue-today" style="text-align: center;">
                                     <div class="energy-metric-label-new" style="font-size: 12px; color: var(--text-secondary); margin-bottom: 4px;" data-translate="dashboardMetricTodayRevenue">今日收益</div>
-                                    <div class="energy-metric-value-new revenue" style="font-size: 16px; font-weight: 600; color: #10b981;">¥81.12</div>
+                                    <div class="energy-metric-value-new revenue" style="font-size: 16px; font-weight: 600; color: #10b981;" data-revenue="81.12">¥81.12</div>
                                 </div>
                                 <div class="energy-metric-item-new" data-metric-item="revenue-month" style="text-align: center;">
                                     <div class="energy-metric-label-new" style="font-size: 12px; color: var(--text-secondary); margin-bottom: 4px;" data-translate="dashboardMetricMonthRevenue">当月收益</div>
-                                    <div class="energy-metric-value-new revenue" style="font-size: 16px; font-weight: 600; color: #10b981;">¥2518.65</div>
+                                    <div class="energy-metric-value-new revenue" style="font-size: 16px; font-weight: 600; color: #10b981;" data-revenue="2518.65">¥2518.65</div>
                                 </div>
                                 <div class="energy-metric-item-new" data-metric-item="revenue-total" style="text-align: center;">
                                     <div class="energy-metric-label-new" style="font-size: 12px; color: var(--text-secondary); margin-bottom: 4px;" data-translate="dashboardMetricTotalRevenue">累计收益</div>
-                                    <div class="energy-metric-value-new revenue" style="font-size: 16px; font-weight: 600; color: #10b981;">¥40772.62</div>
+                                    <div class="energy-metric-value-new revenue" style="font-size: 16px; font-weight: 600; color: #10b981;" data-revenue="40772.62">¥40772.62</div>
                                 </div>
                             </div>
                         </div>
@@ -1990,10 +1990,10 @@
                 'cabinet-monthly-discharge': monthlyDischarge + ' kWh',
                 'cabinet-total-charge': totalCharge + ' kWh',
                 'cabinet-total-discharge': totalDischarge + ' kWh',
-                'revenue-yesterday': '¥' + yesterdayRevenue.toLocaleString(),
-                'revenue-today': '¥' + revenue.toLocaleString(),
-                'revenue-month': '¥' + parseFloat(monthRevenue).toLocaleString(),
-                'revenue-total': '¥' + parseFloat(totalRevenue).toLocaleString()
+                'revenue-yesterday': formatRevenue(yesterdayRevenue.toLocaleString()),
+                'revenue-today': formatRevenue(revenue.toLocaleString()),
+                'revenue-month': formatRevenue(parseFloat(monthRevenue).toLocaleString()),
+                'revenue-total': formatRevenue(parseFloat(totalRevenue).toLocaleString())
             };
 
             // 更新页面上的值
@@ -2007,6 +2007,11 @@
                     } else if (key === 'cabinet-fault') {
                         element.textContent = metrics[key];
                         element.style.color = metrics[key] > 0 ? '#f59e0b' : '#10b981';
+                    } else if (key.startsWith('revenue-')) {
+                        // 收益相关的指标 - 提取数字部分并设置 data-revenue 属性
+                        const numericValue = metrics[key].replace(/[^\d,.]/g, '');
+                        element.setAttribute('data-revenue', numericValue);
+                        element.textContent = metrics[key];
                     } else {
                         element.textContent = metrics[key];
                     }
@@ -2016,18 +2021,23 @@
 
         // 初始化能量流图
         window.addEventListener('DOMContentLoaded', function() {
+            // 初始化货币显示
+            if (typeof updateRevenueCurrency === 'function') {
+                updateRevenueCurrency();
+            }
+
             // 初始化指标显示状态
             document.querySelectorAll('input[data-metric-item]').forEach(checkbox => {
                 const metricId = checkbox.getAttribute('data-metric-item');
                 const metricElements = document.querySelectorAll(`[data-metric-item="${metricId}"]`);
-                
+
                 metricElements.forEach(element => {
                     if (element !== checkbox) {
                         element.style.display = checkbox.checked ? 'block' : 'none';
                     }
                 });
             });
-            
+
             // 初始化布局
             adjustPanelLayout();
             
@@ -2144,7 +2154,7 @@
                 '失联电站': data.offlineStations,
                 '当日充电量': data.dailyCharge + ' <span style="font-size: 14px; font-weight: 400;">kWh</span>',
                 '当日放电量': data.dailyDischarge + ' <span style="font-size: 14px; font-weight: 400;">kWh</span>',
-                '今日收益': '¥' + data.todayRevenue.toLocaleString()
+                '今日收益': formatRevenue(data.todayRevenue.toLocaleString())
             };
 
             // 查找并更新所有指标
@@ -2234,7 +2244,7 @@
                                     }
                                     const revenueLabel = translate('dashboardChartRevenue');
                                     if (context.dataset.label === revenueLabel) {
-                                        label += '¥' + context.parsed.y;
+                                        label += getCurrencySymbol() + context.parsed.y;
                                     } else {
                                         label += context.parsed.y + ' kWh';
                                     }
@@ -3556,7 +3566,7 @@
                     </div>
                     <div class="station-info-row">
                         <span class="station-info-label">${getText('dashboardRevenue', '收益')}</span>
-                        <span class="station-info-value" style="color: #10b981; font-weight: 600;">${station.revenue}</span>
+                        <span class="station-info-value" style="color: #10b981; font-weight: 600;" data-revenue="${station.revenue.replace(/[^\d,]/g, '')}">${formatRevenue(station.revenue.replace(/[^\d,]/g, ''))}</span>
                     </div>
                     <div class="station-info-divider"></div>
                     <div class="station-info-section">
@@ -3826,6 +3836,35 @@
         // 在页面加载时初始化表格排序
         document.addEventListener('DOMContentLoaded', function() {
             initStationTableSort();
+
+            // 监听语言切换事件，更新地图弹窗中的货币符号
+            window.addEventListener('languageChanged', function() {
+                // 更新仪表盘翻译（包括图表）
+                if (typeof updateDashboardTranslations === 'function') {
+                    updateDashboardTranslations();
+                }
+
+                // 如果地图已初始化且有打开的弹窗，关闭并重新生成标记
+                if (map && markers.length > 0) {
+                    // 关闭所有弹窗
+                    map.closePopup();
+
+                    // 清除现有标记
+                    markers.forEach(marker => marker.remove());
+                    markers = [];
+
+                    // 重新创建标记（这样会使用新的货币符号）
+                    createStationMarkers();
+                }
+            });
+
+            // 监听页面显示事件（处理从其他页面切换回来的情况）
+            window.addEventListener('pageshow', function() {
+                // 确保货币符号与当前语言一致
+                if (typeof updateRevenueCurrency === 'function') {
+                    updateRevenueCurrency();
+                }
+            });
         });
     </script>
 </body>

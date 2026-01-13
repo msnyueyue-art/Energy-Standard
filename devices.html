@@ -2422,24 +2422,24 @@
                             <div style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 12px; border-bottom: 1px solid #e5e7eb;">
                                 <div style="flex: 1; text-align: center;">
                                     <div style="font-size: 10px; color: #666; margin-bottom: 4px;" data-translate="devicesPanelYesterdayProfit">昨日收益</div>
-                                    <div style="font-size: 16px; font-weight: 700; color: #3b82f6;">¥<span id="yesterday-profit">12,350</span></div>
+                                    <div id="yesterday-profit" style="font-size: 16px; font-weight: 700; color: #3b82f6;" data-revenue="12,350">¥12,350</div>
                                 </div>
                                 <div style="width: 1px; height: 40px; background: #e5e7eb;"></div>
                                 <div style="flex: 1; text-align: center;">
                                     <div style="font-size: 10px; color: #666; margin-bottom: 4px;" data-translate="devicesPanelTodayProfit">今日收益</div>
-                                    <div style="font-size: 16px; font-weight: 700; color: #10b981;">¥<span id="today-profit">8,450</span></div>
+                                    <div id="today-profit" style="font-size: 16px; font-weight: 700; color: #10b981;" data-revenue="8,450">¥8,450</div>
                                 </div>
                             </div>
                             <!-- 第二排 -->
                             <div style="display: flex; align-items: center; justify-content: space-between; padding-top: 12px;">
                                 <div style="flex: 1; text-align: center;">
                                     <div style="font-size: 10px; color: #666; margin-bottom: 4px;" data-translate="devicesPanelMonthProfit">本月收益</div>
-                                    <div style="font-size: 16px; font-weight: 700; color: #f59e0b;">¥<span id="month-profit">326.5</span>K</div>
+                                    <div id="month-profit" style="font-size: 16px; font-weight: 700; color: #f59e0b;" data-revenue="326.5K">¥326.5K</div>
                                 </div>
                                 <div style="width: 1px; height: 40px; background: #e5e7eb;"></div>
                                 <div style="flex: 1; text-align: center;">
                                     <div style="font-size: 10px; color: #666; margin-bottom: 4px;" data-translate="devicesPanelTotalProfit">累计收益</div>
-                                    <div style="font-size: 16px; font-weight: 700; color: #8b5cf6;">¥<span id="total-profit">1.85</span>M</div>
+                                    <div id="total-profit" style="font-size: 16px; font-weight: 700; color: #8b5cf6;" data-revenue="1.85M">¥1.85M</div>
                                 </div>
                             </div>
                         </div>
@@ -7837,10 +7837,16 @@
 
         // 艹！初始化翻译，用正确的函数名
         document.addEventListener('DOMContentLoaded', function() {
-            // 应用当前语言的翻译
+            // 应用当前语言的翻译(必须先设置语言)
             if (typeof setLanguage === 'function') {
                 setLanguage(currentLang);
             }
+
+            // 初始化货币显示(在 setLanguage 之后调用)
+            if (typeof updateRevenueCurrency === 'function') {
+                updateRevenueCurrency();
+            }
+
             // 强制更新设备页面的翻译
             if (typeof updateDevicesTranslations === 'function') {
                 updateDevicesTranslations();
@@ -7925,9 +7931,22 @@
 
         // 监听语言切换事件
         window.addEventListener('languageChanged', function() {
+            // 更新货币符号
+            if (typeof updateRevenueCurrency === 'function') {
+                updateRevenueCurrency();
+            }
+
             // 重新渲染表格（因为表格中的模式和状态是动态生成的，需要用新语言重新渲染）
             if (typeof renderTable === 'function') {
                 renderTable();
+            }
+        });
+
+        // 监听页面显示事件（处理从其他页面切换回来的情况）
+        window.addEventListener('pageshow', function() {
+            // 确保货币符号与当前语言一致
+            if (typeof updateRevenueCurrency === 'function') {
+                updateRevenueCurrency();
             }
         });
 

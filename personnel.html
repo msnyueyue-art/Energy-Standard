@@ -217,7 +217,7 @@
             transition: all 0.2s ease;
         }
 
-        .page-btn:hover {
+        .page-btn:hover:not(:disabled) {
             background: #f3f4f6;
         }
 
@@ -225,6 +225,14 @@
             background: #3b82f6;
             color: white;
             border-color: #3b82f6;
+        }
+
+        .page-btn:disabled {
+            background: #f9fafb;
+            color: #d1d5db;
+            border-color: #e5e7eb;
+            cursor: not-allowed;
+            opacity: 0.6;
         }
 
         /* 模态框样式 */
@@ -590,8 +598,11 @@
         // 检查登录状态
         checkAuth();
         
-        // 人员数据
-        let personnelData = [
+        // 人员数据 - 仅在中文环境下显示
+        let personnelData = [];
+
+        // 中文环境的模拟数据
+        const mockPersonnelZh = [
             {
                 id: 1,
                 name: '张三',
@@ -642,6 +653,11 @@
             }
         ];
 
+        // 根据语言环境初始化数据
+        if (currentLang === 'zh') {
+            personnelData = mockPersonnelZh;
+        }
+
         const roleMap = {
             '1': '超级管理员',
             '2': '运维人员',
@@ -671,6 +687,13 @@
 
             // 监听语言切换事件，重新渲染人员表格
             window.addEventListener('languageChanged', function(event) {
+                // 根据新语言重新加载数据
+                const newLang = localStorage.getItem('language') || 'zh';
+                if (newLang === 'zh') {
+                    personnelData = mockPersonnelZh;
+                } else {
+                    personnelData = [];  // 英文环境清空数据
+                }
                 renderPersonnelTable();
             });
         });
@@ -946,11 +969,17 @@
         // 渲染分页控件
         function renderPagination(totalPages) {
             const controls = document.getElementById('paginationControls');
+            const lang = localStorage.getItem('language') === 'en' ? 'en' : 'zh';
             let html = '';
-            
+
+            // 当没有数据时,totalPages为0或小于1,需要禁用所有分页按钮
+            const hasData = totalPages > 0;
+            const disablePrev = currentPage === 1 || !hasData;
+            const disableNext = currentPage === totalPages || !hasData;
+
             // 上一页
-            html += `<button class="page-btn" onclick="goToPage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}>上一页</button>`;
-            
+            html += `<button class="page-btn" onclick="goToPage(${currentPage - 1})" ${disablePrev ? 'disabled' : ''}>${translations[lang].personnelPaginationPrev || '上一页'}</button>`;
+
             // 页码
             for (let i = 1; i <= totalPages; i++) {
                 if (i === 1 || i === totalPages || (i >= currentPage - 2 && i <= currentPage + 2)) {
@@ -959,10 +988,10 @@
                     html += `<span style="padding: 0 8px;">...</span>`;
                 }
             }
-            
+
             // 下一页
-            html += `<button class="page-btn" onclick="goToPage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}>下一页</button>`;
-            
+            html += `<button class="page-btn" onclick="goToPage(${currentPage + 1})" ${disableNext ? 'disabled' : ''}>${translations[lang].personnelPaginationNext || '下一页'}</button>`;
+
             controls.innerHTML = html;
         }
 
@@ -1032,32 +1061,26 @@
 
         // 保存人员
         function savePerson() {
+            const lang = localStorage.getItem('language') === 'en' ? 'en' : 'zh';
             const personName = document.getElementById('personName').value.trim();
             const personEmail = document.getElementById('personEmail').value.trim();
             const personStatus = document.getElementById('personStatus').value;
-            const personPassword = document.getElementById('personPassword').value;
-            
+
             // 获取选中的角色
             const selectedRoles = [];
             document.querySelectorAll('input[name="roles"]:checked').forEach(cb => {
                 selectedRoles.push(cb.value);
             });
-            
+
             if (!personName || !personEmail) {
-                alert('请填写必填项');
+                const alertMsg = lang === 'zh' ? '请填写必填项' : 'Please fill in required fields';
+                alert(alertMsg);
                 return;
             }
-            
-            // 新增用户时，使用默认密码123456，不需要验证
-            // if (!currentEditingPerson && !personPassword) {
-            //     alert('新增用户必须设置密码');
-            //     return;
-            // }
-            
-            
+
             // 获取选中的站点权限
             const selectedSites = getSelectedSites();
-            
+
             if (currentEditingPerson) {
                 // 更新人员
                 const person = personnelData.find(p => p.id === currentEditingPerson);
@@ -1065,26 +1088,25 @@
                     person.name = personName;
                     person.email = personEmail;
                     person.roles = selectedRoles;
-                    person.sites = selectedSites;
+                    person.sites = selectedSites.length > 0 ? selectedSites : ['全部站点'];
                     person.status = personStatus;
-                    
                 }
             } else {
                 // 新增人员
                 const newPerson = {
-                    id: Math.max(...personnelData.map(p => p.id)) + 1,
+                    id: personnelData.length > 0 ? Math.max(...personnelData.map(p => p.id)) + 1 : 1,
                     name: personName,
                     email: personEmail,
                     roles: selectedRoles,
-                    sites: selectedSites,
+                    sites: selectedSites.length > 0 ? selectedSites : ['全部站点'],
                     status: personStatus,
                     createTime: new Date().toLocaleString('zh-CN'),
                     password: '123456' // 默认密码
                 };
-                
+
                 personnelData.push(newPerson);
             }
-            
+
             renderPersonnelTable();
             closePersonModal();
         }

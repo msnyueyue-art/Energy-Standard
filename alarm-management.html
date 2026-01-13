@@ -1213,7 +1213,6 @@
             { type: '消防告警', description: '烟雾探测器触发', level: 'fault' },
             { type: '电池热失控', description: '检测到电池热失控风险', level: 'fault' },
             { type: '主接触器故障', description: '主接触器无法正常闭合', level: 'fault' },
-            { type: 'DC/DC故障', description: 'DC/DC转换器故障', level: 'fault' },
             { type: '紧急停机', description: '系统紧急停机保护', level: 'fault' },
 
             // 告警消息 (需要查看关注)
@@ -1355,7 +1354,6 @@
                 case '消防告警': return getTranslation('alarmUnitSmokeExcess');
                 case '电池热失控': return Math.floor(Math.random() * 20 + 70) + '°C';
                 case '主接触器故障': return getTranslation('alarmUnitNoResponse');
-                case 'DC/DC故障': return getTranslation('alarmUnitOutputAbnormal');
                 case '紧急停机': return getTranslation('alarmUnitProtectionAction');
                 case 'SOH低': return Math.floor(Math.random() * 10 + 70) + '%';
                 case '功率限制': return Math.floor(Math.random() * 50 + 150) + 'kW';
@@ -1392,7 +1390,6 @@
                 case '消防告警': return '200ppm';
                 case '电池热失控': return '65°C';
                 case '主接触器故障': return '-';
-                case 'DC/DC故障': return '-';
                 case '紧急停机': return '-';
                 case 'SOH低': return '80%';
                 case '功率限制': return '200kW';

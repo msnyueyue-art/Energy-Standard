@@ -1023,11 +1023,11 @@
                                 <tfoot>
                                     <tr class="summary-row">
                                         <td class="summary-label" colspan="2" data-translate="dataAnalysisTableSummary">合计</td>
-                                        <td id="summaryChargeCost" class="summary-value">¥0.00</td>
-                                        <td id="summarySellRevenue" class="summary-value">¥0.00</td>
-                                        <td id="summaryNetProfit" class="summary-value">¥0.00</td>
-                                        <td id="summarySelfSaving" class="summary-value">¥0.00</td>
-                                        <td id="summaryTotalRevenue" class="summary-value">¥0.00</td>
+                                        <td id="summaryChargeCost" class="summary-value" data-revenue="0.00">¥0.00</td>
+                                        <td id="summarySellRevenue" class="summary-value" data-revenue="0.00">¥0.00</td>
+                                        <td id="summaryNetProfit" class="summary-value" data-revenue="0.00">¥0.00</td>
+                                        <td id="summarySelfSaving" class="summary-value" data-revenue="0.00">¥0.00</td>
+                                        <td id="summaryTotalRevenue" class="summary-value" data-revenue="0.00">¥0.00</td>
                                     </tr>
                                 </tfoot>
                             </table>
@@ -1047,7 +1047,7 @@
                             <!-- 总利润行 -->
                             <div class="profit-row profit-row-main">
                                 <span class="profit-label" data-translate="dataAnalysisTotalProfit">总利润</span>
-                                <span class="profit-value" id="totalProfitValue">¥0.00</span>
+                                <span class="profit-value" id="totalProfitValue" data-revenue="0.00">¥0.00</span>
                                 <div class="profit-compare" id="totalProfitCompare">
                                     <span class="compare-label" data-translate="dataAnalysisCompareLabel">环比</span>
                                     <i class="fas fa-arrow-up"></i>
@@ -1058,7 +1058,7 @@
                             <!-- 卖电利润行 -->
                             <div class="profit-row">
                                 <span class="profit-label" data-translate="dataAnalysisSellProfit">卖电利润</span>
-                                <span class="profit-value" id="sellProfitDetail">¥0.00</span>
+                                <span class="profit-value" id="sellProfitDetail" data-revenue="0.00">¥0.00</span>
                                 <div class="profit-compare" id="sellProfitCompare">
                                     <span class="compare-label" data-translate="dataAnalysisCompareLabel">环比</span>
                                     <i class="fas fa-arrow-up"></i>
@@ -1069,7 +1069,7 @@
                             <!-- 自用节省行 -->
                             <div class="profit-row">
                                 <span class="profit-label" data-translate="dataAnalysisSelfSaving">自用节省</span>
-                                <span class="profit-value" id="selfSavingDetail">¥0.00</span>
+                                <span class="profit-value" id="selfSavingDetail" data-revenue="0.00">¥0.00</span>
                                 <div class="profit-compare" id="selfSavingCompare">
                                     <span class="compare-label" data-translate="dataAnalysisCompareLabel">环比</span>
                                     <i class="fas fa-arrow-up"></i>
@@ -1129,9 +1129,52 @@
 
         // 页面初始化
         document.addEventListener('DOMContentLoaded', function() {
+            // 初始化货币显示
+            if (typeof updateRevenueCurrency === 'function') {
+                updateRevenueCurrency();
+            }
+
+            // 初始化表头货币符号
+            if (typeof updateTableHeaderCurrency === 'function') {
+                updateTableHeaderCurrency();
+            }
+
             initStatisticTimePicker('monthly');
             initCharts();
             queryData();
+        });
+
+        // 监听语言切换事件
+        window.addEventListener('languageChanged', function() {
+            // 更新所有带 data-revenue 属性的元素
+            if (typeof updateRevenueCurrency === 'function') {
+                updateRevenueCurrency();
+            }
+
+            // 更新表头货币符号
+            if (typeof updateTableHeaderCurrency === 'function') {
+                updateTableHeaderCurrency();
+            }
+
+            // 更新图表（图表的 formatter 会自动使用 getCurrencySymbol()）
+            if (typeof updateRevenueTrendChart === 'function') {
+                updateRevenueTrendChart();
+            }
+            if (typeof updateRevenueStructureChart === 'function') {
+                updateRevenueStructureChart();
+            }
+        });
+
+        // 监听页面显示事件（处理从其他页面切换回来的情况）
+        window.addEventListener('pageshow', function() {
+            // 确保货币符号与当前语言一致
+            if (typeof updateRevenueCurrency === 'function') {
+                updateRevenueCurrency();
+            }
+            // 确保表头货币符号也更新
+            if (typeof updateTableHeaderCurrency === 'function') {
+                updateTableHeaderCurrency();
+            }
         });
 
         // 切换树形视图显示/隐藏
@@ -1399,11 +1442,11 @@
                         <tr>
                             <td>${hour}</td>
                             <td>${getSelectedLabelTranslated()}</td>
-                            <td>¥${chargeCost}</td>
-                            <td>¥${sellRevenue}</td>
-                            <td class="${netProfitClass}">¥${netProfit}</td>
-                            <td>¥${selfSaving}</td>
-                            <td class="${totalRevenueClass}">¥${totalRevenue}</td>
+                            <td data-revenue="${chargeCost}">${formatRevenue(chargeCost)}</td>
+                            <td data-revenue="${sellRevenue}">${formatRevenue(sellRevenue)}</td>
+                            <td class="${netProfitClass}" data-revenue="${netProfit}">${formatRevenue(netProfit)}</td>
+                            <td data-revenue="${selfSaving}">${formatRevenue(selfSaving)}</td>
+                            <td class="${totalRevenueClass}" data-revenue="${totalRevenue}">${formatRevenue(totalRevenue)}</td>
                         </tr>
                     `;
                 }
@@ -1458,11 +1501,11 @@
                         <tr>
                             <td>${day}</td>
                             <td>${getSelectedLabelTranslated()}</td>
-                            <td>¥${chargeCost}</td>
-                            <td>¥${sellRevenue}</td>
-                            <td class="${netProfitClass}">¥${netProfit}</td>
-                            <td>¥${selfSaving}</td>
-                            <td class="${totalRevenueClass}">¥${totalRevenue}</td>
+                            <td data-revenue="${chargeCost}">${formatRevenue(chargeCost)}</td>
+                            <td data-revenue="${sellRevenue}">${formatRevenue(sellRevenue)}</td>
+                            <td class="${netProfitClass}" data-revenue="${netProfit}">${formatRevenue(netProfit)}</td>
+                            <td data-revenue="${selfSaving}">${formatRevenue(selfSaving)}</td>
+                            <td class="${totalRevenueClass}" data-revenue="${totalRevenue}">${formatRevenue(totalRevenue)}</td>
                         </tr>
                     `;
                 }
@@ -1532,11 +1575,26 @@
             const totalNetProfit = totalRevenue - totalChargeCost;
 
             // 更新数值
-            document.getElementById('summaryChargeCost').textContent = '¥' + totalChargeCost.toFixed(2);
-            document.getElementById('summarySellRevenue').textContent = '¥' + totalSellRevenue.toFixed(2);
-            document.getElementById('summaryNetProfit').textContent = '¥' + totalNetProfit.toFixed(2);
-            document.getElementById('summarySelfSaving').textContent = '¥' + totalSelfSaving.toFixed(2);
-            document.getElementById('summaryTotalRevenue').textContent = '¥' + totalRevenue.toFixed(2);
+            const chargeCostEl = document.getElementById('summaryChargeCost');
+            const sellRevenueEl = document.getElementById('summarySellRevenue');
+            const netProfitEl = document.getElementById('summaryNetProfit');
+            const selfSavingEl = document.getElementById('summarySelfSaving');
+            const totalRevenueEl = document.getElementById('summaryTotalRevenue');
+
+            chargeCostEl.setAttribute('data-revenue', totalChargeCost.toFixed(2));
+            chargeCostEl.textContent = formatRevenue(totalChargeCost.toFixed(2));
+
+            sellRevenueEl.setAttribute('data-revenue', totalSellRevenue.toFixed(2));
+            sellRevenueEl.textContent = formatRevenue(totalSellRevenue.toFixed(2));
+
+            netProfitEl.setAttribute('data-revenue', totalNetProfit.toFixed(2));
+            netProfitEl.textContent = formatRevenue(totalNetProfit.toFixed(2));
+
+            selfSavingEl.setAttribute('data-revenue', totalSelfSaving.toFixed(2));
+            selfSavingEl.textContent = formatRevenue(totalSelfSaving.toFixed(2));
+
+            totalRevenueEl.setAttribute('data-revenue', totalRevenue.toFixed(2));
+            totalRevenueEl.textContent = formatRevenue(totalRevenue.toFixed(2));
 
             // 添加颜色类
             const netProfitElement = document.getElementById('summaryNetProfit');
@@ -1562,10 +1620,10 @@
 
         // 更新总收益卡片
         function updateTotalRevenueCard() {
-            // 从汇总行获取数据
-            const sellRevenue = parseFloat(document.getElementById('summarySellRevenue').textContent.replace('¥', ''));
-            const selfSaving = parseFloat(document.getElementById('summarySelfSaving').textContent.replace('¥', ''));
-            const totalRevenue = parseFloat(document.getElementById('summaryTotalRevenue').textContent.replace('¥', ''));
+            // 从汇总行的 data-revenue 属性获取数据
+            const sellRevenue = parseFloat(document.getElementById('summarySellRevenue').getAttribute('data-revenue') || '0');
+            const selfSaving = parseFloat(document.getElementById('summarySelfSaving').getAttribute('data-revenue') || '0');
+            const totalRevenue = parseFloat(document.getElementById('summaryTotalRevenue').getAttribute('data-revenue') || '0');
 
             // 生成模拟的上期数据（实际应用中从后端获取）
             const lastSellRevenue = sellRevenue * (0.85 + Math.random() * 0.3); // 上期数据波动±15%
@@ -1573,15 +1631,21 @@
             const lastTotalRevenue = totalRevenue * (0.85 + Math.random() * 0.3);
 
             // 更新总利润
-            document.getElementById('totalProfitValue').textContent = '¥' + totalRevenue.toFixed(2);
+            const totalProfitEl = document.getElementById('totalProfitValue');
+            totalProfitEl.setAttribute('data-revenue', totalRevenue.toFixed(2));
+            totalProfitEl.textContent = formatRevenue(totalRevenue.toFixed(2));
             updateCompareValue('totalProfitCompare', totalRevenue, lastTotalRevenue);
 
             // 更新卖电利润
-            document.getElementById('sellProfitDetail').textContent = '¥' + sellRevenue.toFixed(2);
+            const sellProfitEl = document.getElementById('sellProfitDetail');
+            sellProfitEl.setAttribute('data-revenue', sellRevenue.toFixed(2));
+            sellProfitEl.textContent = formatRevenue(sellRevenue.toFixed(2));
             updateCompareValue('sellProfitCompare', sellRevenue, lastSellRevenue);
 
             // 更新自用节省
-            document.getElementById('selfSavingDetail').textContent = '¥' + selfSaving.toFixed(2);
+            const selfSavingEl = document.getElementById('selfSavingDetail');
+            selfSavingEl.setAttribute('data-revenue', selfSaving.toFixed(2));
+            selfSavingEl.textContent = formatRevenue(selfSaving.toFixed(2));
             updateCompareValue('selfSavingCompare', selfSaving, lastSelfSaving);
         }
 
@@ -1626,11 +1690,11 @@
             tableRows.forEach(row => {
                 const cells = row.querySelectorAll('td');
 
-                // 提取数据
+                // 提取数据 - 使用 data-revenue 属性
                 const time = cells[0].textContent.trim();  // 时间
-                const sellRevenue = cells[3].textContent.replace('¥', '').trim();  // 卖电利润
-                const selfSaving = cells[5].textContent.replace('¥', '').trim();   // 自用节省
-                const totalRevenue = cells[6].textContent.replace('¥', '').trim(); // 总收益
+                const sellRevenue = cells[3].getAttribute('data-revenue') || '0';  // 卖电利润
+                const selfSaving = cells[5].getAttribute('data-revenue') || '0';   // 自用节省
+                const totalRevenue = cells[6].getAttribute('data-revenue') || '0'; // 总收益
 
                 // 添加到数组
                 xAxisData.push(time);
@@ -1646,13 +1710,14 @@
                         type: 'shadow'
                     },
                     formatter: function(params) {
+                        const currencySymbol = getCurrencySymbol();
                         let result = params[0].axisValue + '<br/>';
                         let total = 0;
                         params.forEach(item => {
-                            result += item.marker + ' ' + item.seriesName + ': ¥' + item.value + '<br/>';
+                            result += item.marker + ' ' + item.seriesName + ': ' + currencySymbol + item.value + '<br/>';
                             total += parseFloat(item.value);
                         });
-                        result += '<strong>' + (translations[currentLang].dataAnalysisChartLegendTotalRevenue || '总收益') + ': ¥' + total.toFixed(2) + '</strong>';
+                        result += '<strong>' + (translations[currentLang].dataAnalysisChartLegendTotalRevenue || '总收益') + ': ' + currencySymbol + total.toFixed(2) + '</strong>';
                         return result;
                     }
                 },
@@ -1678,7 +1743,9 @@
                 yAxis: {
                     type: 'value',
                     axisLabel: {
-                        formatter: '¥{value}'
+                        formatter: function(value) {
+                            return getCurrencySymbol() + value;
+                        }
                     }
                 },
                 series: [
@@ -1710,13 +1777,15 @@
 
         // 更新收益结构图
         function updateRevenueStructureChart() {
-            const sellRevenue = parseFloat(document.getElementById('summarySellRevenue').textContent.replace('¥', ''));
-            const selfSaving = parseFloat(document.getElementById('summarySelfSaving').textContent.replace('¥', ''));
+            const sellRevenue = parseFloat(document.getElementById('summarySellRevenue').getAttribute('data-revenue') || '0');
+            const selfSaving = parseFloat(document.getElementById('summarySelfSaving').getAttribute('data-revenue') || '0');
 
             const option = {
                 tooltip: {
                     trigger: 'item',
-                    formatter: '{a} <br/>{b}: ¥{c} ({d}%)'
+                    formatter: function(params) {
+                        return params.seriesName + '<br/>' + params.name + ': ' + getCurrencySymbol() + params.value + ' (' + params.percent + '%)';
+                    }
                 },
                 legend: {
                     orient: 'vertical',
@@ -1736,7 +1805,9 @@
                         },
                         label: {
                             show: true,
-                            formatter: '{b}\n¥{c}\n({d}%)'
+                            formatter: function(params) {
+                                return params.name + '\n' + getCurrencySymbol() + params.value + '\n(' + params.percent + '%)';
+                            }
                         },
                         emphasis: {
                             label: {

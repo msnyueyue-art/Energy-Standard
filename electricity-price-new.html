@@ -1903,6 +1903,10 @@
                 en: 'Time-of-Use',
                 zh: '分时电价'
             },
+            '峰谷平尖': {
+                en: 'Peak-Valley-Flat-Sharp',
+                zh: '峰谷平尖'
+            },
             '固定电价': {
                 en: 'Fixed Price',
                 zh: '固定电价'
@@ -1935,8 +1939,11 @@
             return templateI18n[text][currentLang] || text;
         }
 
-        // 电价模版（只定义结构，不含价格）
-        let templates = [
+        // 电价模版数据 - 仅在中文环境下显示
+        let templates = [];
+
+        // 中文环境的模拟模板数据
+        const mockTemplatesZh = [
             // ==================== 购电模版（9个）====================
 
             // 1. 阶梯电价 - 固定模式
@@ -2550,6 +2557,11 @@
             }
         ];
 
+        // 根据语言环境初始化数据
+        if (currentLang === 'zh') {
+            templates = mockTemplatesZh;
+        }
+
         // 电站数据
         let sites = [
             {
@@ -2789,6 +2801,10 @@
                         templateForm.reset();
                     }
 
+                    // 清除原始键属性
+                    document.getElementById('templateName').removeAttribute('data-original-key');
+                    document.getElementById('templateDesc').removeAttribute('data-original-key');
+
                     const periodsSection = document.getElementById('periodsSection');
                     if (periodsSection) {
                         periodsSection.style.display = 'none';
@@ -2996,6 +3012,13 @@
                 return;
             }
 
+            // 获取当前选择的用途
+            const purpose = document.getElementById('templatePurpose').value;
+            if (!purpose) {
+                showToast('无法确定模版用途', 'error');
+                return;
+            }
+
             // 创建新模版
             const typeNames = {
                 'peak-valley': '峰谷平尖',
@@ -3004,11 +3027,18 @@
                 'fixed': '固定电价'
             };
 
+            const purposeNames = {
+                'consumption': '用电电价',
+                'feed-in': '上网电价'
+            };
+
             const newTemplate = {
                 id: Date.now(),
                 name: preset.name,
                 type: preset.type,
                 typeName: typeNames[preset.type],
+                purpose: purpose,  // 添加用途字段
+                purposeName: purposeNames[purpose],  // 添加用途名称
                 description: preset.description,
                 periods: JSON.parse(JSON.stringify(preset.periods)), // 深拷贝
                 createTime: new Date().toLocaleString('zh-CN', { hour12: false })
@@ -3025,6 +3055,19 @@
         document.addEventListener('DOMContentLoaded', function() {
             renderTemplates();
             renderSites();
+
+            // 监听语言切换事件,重新加载数据
+            window.addEventListener('languageChanged', function(event) {
+                // 根据新语言重新加载数据
+                const newLang = localStorage.getItem('language') || 'zh';
+                if (newLang === 'zh') {
+                    templates = mockTemplatesZh;
+                } else {
+                    templates = [];  // 英文环境清空数据
+                }
+                renderTemplates();
+                renderSites();
+            });
         });
 
         // ==================== Tab切换 ====================
@@ -3054,13 +3097,18 @@
             });
 
             if (consumptionTemplates.length === 0) {
+                const emptyTitle = typeof getTranslation === 'function' ?
+                    getTranslation('elecPriceEmptyPurchaseTitle') : '暂无购电模版';
+                const emptyDesc = typeof getTranslation === 'function' ?
+                    getTranslation('elecPriceEmptyPurchaseDesc') : '点击"新建规则"创建您的第一个购电电价策略模版';
+
                 tbody.innerHTML = `
                     <tr>
                         <td colspan="6">
                             <div class="empty-state">
                                 <div class="empty-state-icon"><i class="fas fa-inbox"></i></div>
-                                <h3 class="empty-state-title">暂无购电模版</h3>
-                                <p class="empty-state-description">点击"新建规则"创建您的第一个购电电价策略模版</p>
+                                <h3 class="empty-state-title">${emptyTitle}</h3>
+                                <p class="empty-state-description">${emptyDesc}</p>
                             </div>
                         </td>
                     </tr>
@@ -3070,9 +3118,11 @@
 
             tbody.innerHTML = consumptionTemplates.map(template => {
                 const appliedSites = siteConfigs.filter(c => c.templateId === template.id);
-                const description = template.description || '暂无描述';
+                const lang = localStorage.getItem('language') || 'zh';
+                const noDescText = lang === 'zh' ? '暂无描述' : 'No description';
+                const description = template.description || noDescText;
                 const translatedName = getTemplateI18nText(template.name);
-                const translatedDesc = getTemplateI18nText(description);
+                const translatedDesc = template.description ? getTemplateI18nText(template.description) : noDescText;
 
                 return `
                     <tr>
@@ -3113,13 +3163,18 @@
             });
 
             if (feedinTemplates.length === 0) {
+                const emptyTitle = typeof getTranslation === 'function' ?
+                    getTranslation('elecPriceEmptyFeedinTitle') : '暂无上网模版';
+                const emptyDesc = typeof getTranslation === 'function' ?
+                    getTranslation('elecPriceEmptyFeedinDesc') : '点击"新建规则"创建您的第一个上网电价策略模版';
+
                 tbody.innerHTML = `
                     <tr>
                         <td colspan="6">
                             <div class="empty-state">
                                 <div class="empty-state-icon"><i class="fas fa-inbox"></i></div>
-                                <h3 class="empty-state-title">暂无上网模版</h3>
-                                <p class="empty-state-description">点击"新建规则"创建您的第一个上网电价策略模版</p>
+                                <h3 class="empty-state-title">${emptyTitle}</h3>
+                                <p class="empty-state-description">${emptyDesc}</p>
                             </div>
                         </td>
                     </tr>
@@ -3129,9 +3184,11 @@
 
             tbody.innerHTML = feedinTemplates.map(template => {
                 const appliedSites = siteConfigs.filter(c => c.templateId === template.id);
-                const description = template.description || '暂无描述';
+                const lang = localStorage.getItem('language') || 'zh';
+                const noDescText = lang === 'zh' ? '暂无描述' : 'No description';
+                const description = template.description || noDescText;
                 const translatedName = getTemplateI18nText(template.name);
-                const translatedDesc = getTemplateI18nText(description);
+                const translatedDesc = template.description ? getTemplateI18nText(template.description) : noDescText;
 
                 return `
                     <tr>
@@ -3521,7 +3578,7 @@
 
                 seasonDiv.innerHTML = `
                     <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px;">
-                        <input type="text" value="${season.name}"
+                        <input type="text" value="${getTemplateI18nText(season.name)}"
                             onchange="updatePeriodSeasonName('${season.id}', this.value)"
                             placeholder="${seasonNamePlaceholder}"
                             style="flex: 1; padding: 6px 10px; border: 1px solid #e2e8f0; border-radius: 4px; font-size: 13px;">
@@ -3548,7 +3605,7 @@
                 tab.type = 'button';
                 tab.className = 'period-season-tab';
                 tab.setAttribute('data-season-id', season.id);
-                tab.textContent = season.name;
+                tab.textContent = getTemplateI18nText(season.name);
                 tab.onclick = () => switchPeriodSeason(season.id);
 
                 if (season.id === currentPeriodSeasonId) {
@@ -3795,7 +3852,7 @@
 
                 seasonDiv.innerHTML = `
                     <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px;">
-                        <input type="text" value="${season.name}"
+                        <input type="text" value="${getTemplateI18nText(season.name)}"
                             onchange="updateFixedPriceSeasonName('${season.id}', this.value)"
                             placeholder="${seasonNamePlaceholder}"
                             style="flex: 1; padding: 6px 10px; border: 1px solid #e2e8f0; border-radius: 4px; font-size: 13px;">
@@ -3822,7 +3879,7 @@
                 tab.type = 'button';
                 tab.className = 'fixed-price-season-tab';
                 tab.setAttribute('data-season-id', season.id);
-                tab.textContent = season.name;
+                tab.textContent = getTemplateI18nText(season.name);
                 tab.onclick = () => switchFixedPriceSeason(season.id);
 
                 if (season.id === currentFixedPriceSeasonId) {
@@ -3965,7 +4022,7 @@
             groupDiv.innerHTML = `
                 <div class="period-type-header">
                     <div class="period-type-title">
-                        <span class="period-tag" style="background: ${config.bgColor}; color: ${config.color}; border-color: ${config.color};">${config.name}</span>
+                        <span class="period-tag" style="background: ${config.bgColor}; color: ${config.color}; border-color: ${config.color}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 150px;">${getTemplateI18nText(config.name)}</span>
                         <span style="font-size: 13px; color: #64748b;">${multiPeriodText}</span>
                     </div>
                     <div class="period-type-actions">
@@ -4117,7 +4174,7 @@
                         <input type="color" id="color-picker-${config.id}" value="${config.color}" onchange="updatePeriodTypeColor('${config.id}', this.value)" style="position: absolute; opacity: 0; pointer-events: none;">
                     </div>
                     <div>
-                        <input type="text" value="${config.name}" onchange="updatePeriodTypeName('${config.id}', this.value)" placeholder="${namePlaceholder}" style="width: 100%; padding: 8px 12px; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 14px;">
+                        <input type="text" value="${getTemplateI18nText(config.name)}" onchange="updatePeriodTypeName('${config.id}', this.value)" placeholder="${namePlaceholder}" style="width: 100%; padding: 8px 12px; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 14px;">
                     </div>
                     <div style="text-align: center;">
                         <button type="button" class="btn btn-sm" style="background: transparent; color: #ef4444; border: none; padding: 6px 12px;" onclick="deletePeriodTypeFromTable('${config.id}')" title="${deleteTitle}">
@@ -4273,7 +4330,10 @@
                 button.className = 'btn btn-sm';
                 button.style.cssText = `background: ${config.bgColor}; color: ${config.color}; border: 1px solid ${config.color}30;`;
                 button.onclick = () => addPeriodType(config.id);
-                button.innerHTML = `<i class="fas fa-plus"></i> ${addText}${config.name}`;
+
+                // 使用翻译函数获取时段名称
+                const periodName = getTemplateI18nText(config.name);
+                button.innerHTML = `<i class="fas fa-plus"></i> ${addText}${periodName}`;
                 container.appendChild(button);
             });
         }
@@ -4355,10 +4415,10 @@
 
                 // 只在宽度足够时显示文字
                 if (widthPercent > 5) {
-                    block.textContent = typeConfig.name;
+                    block.textContent = getTemplateI18nText(typeConfig.name);
                 }
 
-                block.title = `${range.start} - ${range.end} (${typeConfig.name})`;
+                block.title = `${range.start} - ${range.end} (${getTemplateI18nText(typeConfig.name)})`;
 
                 // 添加悬停效果
                 block.onmouseenter = () => { block.style.opacity = '0.8'; };
@@ -4664,7 +4724,7 @@
 
                 seasonDiv.innerHTML = `
                     <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px;">
-                        <input type="text" value="${season.name}"
+                        <input type="text" value="${getTemplateI18nText(season.name)}"
                             onchange="updateSeasonNameInline('${season.id}', this.value)"
                             placeholder="${seasonNamePlaceholder}"
                             style="flex: 1; padding: 6px 10px; border: 1px solid #e2e8f0; border-radius: 4px; font-size: 13px;">
@@ -4760,7 +4820,7 @@
                 tab.setAttribute('data-season-id', season.id);
                 tab.onclick = () => switchSeason(season.id);
                 tab.style.cssText = `padding: 6px 16px; font-size: 13px; border: none; background: none; cursor: pointer; transition: all 0.2s; white-space: nowrap; ${isActive ? 'color: #3b82f6; border-bottom: 2px solid #3b82f6; margin-bottom: -10px;' : 'color: #6b7280;'}`;
-                tab.innerHTML = `${season.name} (${monthsText})`;
+                tab.innerHTML = `${getTemplateI18nText(season.name)} (${monthsText})`;
 
                 container.appendChild(tab);
             });
@@ -5229,10 +5289,15 @@
         }
 
         function saveTemplate() {
-            const name = document.getElementById('templateName').value;
+            const nameInput = document.getElementById('templateName');
+            const descInput = document.getElementById('templateDesc');
+
+            // 如果是预设模板,使用原始键;否则使用输入的文本
+            const name = nameInput.getAttribute('data-original-key') || nameInput.value;
+            const desc = descInput.getAttribute('data-original-key') || descInput.value;
+
             const type = document.getElementById('templateType').value;
             const purpose = document.getElementById('templatePurpose').value;
-            const desc = document.getElementById('templateDesc').value;
 
             if (!name || !type || !purpose) {
                 showToast('请填写完整信息', 'error');
@@ -5468,9 +5533,31 @@
             const template = templates.find(t => t.id === id);
             if (!template) return;
 
-            document.getElementById('customModalTitle').textContent = '编辑电价模版';
-            document.getElementById('templateName').value = template.name;
-            document.getElementById('templateDesc').value = template.description || '';
+            // 使用翻译后的标题
+            const editTitleText = typeof getTranslation === 'function' ?
+                getTranslation('elecPriceModalTitleEditTemplate') : '编辑电价模版';
+            document.getElementById('customModalTitle').textContent = editTitleText;
+
+            // 判断是否为预设模板(有国际化翻译的模板)
+            const isPresetTemplate = templateI18n[template.name] !== undefined;
+
+            if (isPresetTemplate) {
+                // 预设模板:显示翻译后的文本,但保存时使用原始键
+                document.getElementById('templateName').value = getTemplateI18nText(template.name);
+                document.getElementById('templateDesc').value = getTemplateI18nText(template.description) || '';
+
+                // 存储原始键,用于保存时恢复
+                document.getElementById('templateName').setAttribute('data-original-key', template.name);
+                document.getElementById('templateDesc').setAttribute('data-original-key', template.description || '');
+            } else {
+                // 用户自定义模板:直接显示原始文本
+                document.getElementById('templateName').value = template.name;
+                document.getElementById('templateDesc').value = template.description || '';
+
+                // 清除原始键属性
+                document.getElementById('templateName').removeAttribute('data-original-key');
+                document.getElementById('templateDesc').removeAttribute('data-original-key');
+            }
 
             // 加载模版用途并更新UI
             if (template.purpose) {
@@ -5754,60 +5841,94 @@
             const template = templates.find(t => t.id === id);
             if (!template) return;
 
+            // 获取翻译文本
+            const lang = localStorage.getItem('language') || 'zh';
+            const feedinText = lang === 'zh' ? '上网电价' : 'Feed-in Price';
+            const consumptionText = lang === 'zh' ? '用电电价' : 'Consumption Price';
+            const noDescText = lang === 'zh' ? '暂无说明' : 'No description';
+            const tierText = lang === 'zh' ? '阶梯' : 'Tier';
+            const priceText = lang === 'zh' ? '电价' : 'Price';
+            const currencyUnit = lang === 'zh' ? '元/kWh' : 'CNY/kWh';
+
+            // 翻译策略类型名称 - 使用 getTemplateI18nText 统一处理
+            const translatedTypeName = getTemplateI18nText(template.typeName);
+
+            // 获取翻译文本
+            const modalTitleText = typeof getTranslation === 'function' ?
+                getTranslation('elecPriceModalTitleViewTemplate') : '模版详情';
+            const labelNameText = typeof getTranslation === 'function' ?
+                getTranslation('elecPriceFormLabelTemplateName') : '模版名称';
+            const labelPurposeText = typeof getTranslation === 'function' ?
+                getTranslation('elecPriceFormLabelTemplatePurpose') : '模版用途';
+            const labelTypeText = typeof getTranslation === 'function' ?
+                getTranslation('elecPriceFormLabelTemplateType') : '策略类型';
+            const labelDescText = typeof getTranslation === 'function' ?
+                getTranslation('elecPriceFormLabelTemplateDesc') : '模版说明';
+            const labelTierConfigText = typeof getTranslation === 'function' ?
+                getTranslation('elecPriceFormSectionTierConfig') : '阶梯配置';
+            const labelPeriodConfigText = typeof getTranslation === 'function' ?
+                getTranslation('elecPriceFormSectionPeriodConfig') : '时段配置';
+            const labelCreateTimeText = typeof getTranslation === 'function' ?
+                getTranslation('elecPriceTableHeaderCreateTime') : '创建时间';
+            const btnCloseText = typeof getTranslation === 'function' ?
+                getTranslation('elecPriceBtnClose') : '关闭';
+            const btnEditText = typeof getTranslation === 'function' ?
+                getTranslation('elecPriceBtnEditTemplate') : '编辑模版';
+
             const modalContent = `
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h3 class="modal-title">模版详情</h3>
+                        <h3 class="modal-title">${modalTitleText}</h3>
                         <button class="modal-close" onclick="closeViewTemplateModal()">
                             <i class="fas fa-times"></i>
                         </button>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label class="form-label">模版名称</label>
+                            <label class="form-label">${labelNameText}</label>
                             <div style="padding: 0.625rem 0.875rem; background: var(--gray-50); border-radius: 0.5rem; font-weight: 600;">
-                                ${template.name}
+                                ${getTemplateI18nText(template.name)}
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">模版用途</label>
+                            <label class="form-label">${labelPurposeText}</label>
                             <div style="padding: 0.625rem 0.875rem; background: var(--gray-50); border-radius: 0.5rem;">
                                 <span style="display: inline-flex; align-items: center; gap: 6px;">
                                     ${template.purpose === 'feed-in' ?
-                                        '<i class="fas fa-upload" style="color: #1890ff;"></i><span style="color: #1890ff;">上网电价</span>' :
-                                        '<i class="fas fa-download" style="color: #eb2f96;"></i><span style="color: #eb2f96;">用电电价</span>'}
+                                        `<i class="fas fa-upload" style="color: #1890ff;"></i><span style="color: #1890ff;">${feedinText}</span>` :
+                                        `<i class="fas fa-download" style="color: #eb2f96;"></i><span style="color: #eb2f96;">${consumptionText}</span>`}
                                 </span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">策略类型</label>
+                            <label class="form-label">${labelTypeText}</label>
                             <div style="padding: 0.625rem 0.875rem; background: var(--gray-50); border-radius: 0.5rem;">
-                                <span class="template-type">${template.typeName}</span>
+                                <span class="template-type">${translatedTypeName}</span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">模版说明</label>
+                            <label class="form-label">${labelDescText}</label>
                             <div style="padding: 0.625rem 0.875rem; background: var(--gray-50); border-radius: 0.5rem;">
-                                ${template.description || '暂无说明'}
+                                ${template.description ? getTemplateI18nText(template.description) : noDescText}
                             </div>
                         </div>
                         ${template.type === 'tiered' && template.tiers && template.tiers.length > 0 ? `
                             <div class="form-group">
-                                <label class="form-label">阶梯配置</label>
+                                <label class="form-label">${labelTierConfigText}</label>
                                 ${template.tiers.map((tier, index) => `
                                     <div class="period-config">
                                         <div class="period-config-header">
                                             <span class="period-name">
-                                                <span class="badge badge-primary">第${index + 1}阶梯</span>
+                                                <span class="badge badge-primary">${tierText} ${index + 1}</span>
                                             </span>
                                             <span class="period-time">${tier.start}${tier.end !== null ? ' - ' + tier.end : '+'} kWh</span>
                                         </div>
                                         <div style="padding: 0.5rem 0.75rem; background: ${template.purpose === 'feed-in' ? '#e6f4ff' : '#fff0f6'}; border-radius: 0.375rem; margin-top: 0.5rem; border: 1px solid ${template.purpose === 'feed-in' ? '#91d5ff' : '#ffadd2'};">
                                             <div style="font-size: 0.75rem; color: ${template.purpose === 'feed-in' ? '#1890ff' : '#eb2f96'}; margin-bottom: 2px;">
-                                                <i class="fas fa-${template.purpose === 'feed-in' ? 'upload' : 'download'}"></i> 电价
+                                                <i class="fas fa-${template.purpose === 'feed-in' ? 'upload' : 'download'}"></i> ${priceText}
                                             </div>
                                             <div style="font-size: 0.875rem; font-weight: 600; color: ${template.purpose === 'feed-in' ? '#1890ff' : '#eb2f96'};">
-                                                ${tier.price || 0} 元/kWh
+                                                ${tier.price || 0} ${currencyUnit}
                                             </div>
                                         </div>
                                     </div>
@@ -5816,12 +5937,12 @@
                         ` : ''}
                         ${template.periods && template.periods.length > 0 ? `
                             <div class="form-group">
-                                <label class="form-label">时段配置</label>
+                                <label class="form-label">${labelPeriodConfigText}</label>
                                 ${template.periods.map(p => `
                                     <div class="period-config">
                                         <div class="period-config-header">
                                             <span class="period-name">
-                                                <span class="period-tag ${p.type}">${p.name}</span>
+                                                <span class="period-tag ${p.type}">${getTemplateI18nText(p.name)}</span>
                                             </span>
                                             <span class="period-time">${p.start} - ${p.end}</span>
                                         </div>
@@ -5830,16 +5951,16 @@
                             </div>
                         ` : ''}
                         <div class="form-group">
-                            <label class="form-label">创建时间</label>
+                            <label class="form-label">${labelCreateTimeText}</label>
                             <div style="padding: 0.625rem 0.875rem; background: var(--gray-50); border-radius: 0.5rem; color: var(--gray-600);">
                                 <i class="fas fa-clock"></i> ${template.createTime}
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-secondary" onclick="closeViewTemplateModal()">关闭</button>
+                        <button class="btn btn-secondary" onclick="closeViewTemplateModal()">${btnCloseText}</button>
                         <button class="btn btn-primary" onclick="closeViewTemplateModal(); editTemplate(${template.id})">
-                            <i class="fas fa-edit"></i> 编辑模版
+                            <i class="fas fa-edit"></i> ${btnEditText}
                         </button>
                     </div>
                 </div>
