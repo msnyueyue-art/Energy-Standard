@@ -858,6 +858,14 @@
                 default: return status;
             }
         }
+
+        // 更新页面标题
+        document.title = getTranslation('pageTitleLogManagement') || '日志管理 - 储能柜管理系统';
+
+        // 监听语言切换事件
+        window.addEventListener('languageChanged', function() {
+            document.title = getTranslation('pageTitleLogManagement') || '日志管理 - 储能柜管理系统';
+        });
     </script>
 
     

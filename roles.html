@@ -832,10 +832,45 @@
             ] }
         ];
 
+        // 英文模拟数据
+        const mockRolesEn = [
+            { id: 1, name: 'Super Administrator', nameKey: 'roleDataSuperAdmin', description: 'Has all system permissions', descKey: 'roleDataSuperAdminDesc', userCount: 1, status: 'active', createTime: '2024-01-01 10:00:00', users: [
+                { id: 101, name: 'Zhang San', username: 'zhangsan', email: 'zhangsan@example.com' }
+            ] },
+            { id: 2, name: 'Operator', nameKey: 'roleDataOperator', description: 'Responsible for equipment maintenance and alarm handling', descKey: 'roleDataOperatorDesc', userCount: 3, status: 'active', createTime: '2024-01-02 14:30:00', users: [
+                { id: 102, name: 'Li Si', username: 'lisi', email: 'lisi@example.com' },
+                { id: 104, name: 'Zhao Liu', username: 'zhaoliu', email: 'zhaoliu@example.com' },
+                { id: 107, name: 'Zhou Jiu', username: 'zhoujiu', email: 'zhoujiu@example.com' }
+            ] },
+            { id: 3, name: 'User', nameKey: 'roleDataUser', description: 'Responsible for daily operations and monitoring', descKey: 'roleDataUserDesc', userCount: 3, status: 'active', createTime: '2024-01-03 09:15:00', users: [
+                { id: 103, name: 'Wang Wu', username: 'wangwu', email: 'wangwu@example.com' },
+                { id: 105, name: 'Qian Qi', username: 'qianqi', email: 'qianqi@example.com' },
+                { id: 108, name: 'Wu Shi', username: 'wushi', email: 'wushi@example.com' }
+            ] },
+            { id: 4, name: 'Guest', nameKey: 'roleDataGuest', description: 'Can only view data', descKey: 'roleDataGuestDesc', userCount: 1, status: 'inactive', createTime: '2024-01-05 16:20:00', users: [
+                { id: 106, name: 'Sun Ba', username: 'sunba', email: 'sunba@example.com' }
+            ] }
+        ];
+
         // 根据语言环境初始化数据
-        if (currentLang === 'zh') {
-            rolesData = mockRolesZh;
+        function loadRolesData() {
+            const lang = localStorage.getItem('language') || 'zh';
+            if (lang === 'en') {
+                rolesData = mockRolesEn;
+            } else {
+                rolesData = mockRolesZh;
+            }
         }
+
+        loadRolesData();
+
+        // 监听语言变化
+        window.addEventListener('storage', (e) => {
+            if (e.key === 'language') {
+                loadRolesData();
+                renderRolesTable();
+            }
+        });
 
         // 权限树数据
         const permissionTree = [
@@ -1689,6 +1724,14 @@
             document.getElementById('deleteUserModal').classList.remove('show');
             currentDeleteUserId = null;
         }
+
+        // 更新页面标题
+        document.title = getTranslation('pageTitleRoleManagement') || '角色管理 - 储能柜管理系统';
+
+        // 监听语言切换事件
+        window.addEventListener('languageChanged', function() {
+            document.title = getTranslation('pageTitleRoleManagement') || '角色管理 - 储能柜管理系统';
+        });
 
     </script>
 

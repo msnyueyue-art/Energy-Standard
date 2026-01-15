@@ -1492,19 +1492,19 @@
                 <div class="logo-icon">
                     <img src="logo.png" alt="Logo">
                 </div>
-                <div class="logo-text">Energy Storage System</div>
+                <div class="logo-text" data-i18n="systemName">Energy Storage System</div>
             </div>
         </div>
         
         <!-- 导航菜单 -->
         <nav class="nav-menu">
-            <div class="nav-item" onclick="smoothSwitchPage('home')">Home</div>
-            <a href="#data" class="nav-item" onclick="smoothSwitchPage('data')">Data</a>
-            <a href="#" class="nav-item" onclick="smoothSwitchPage('history')">History</a>
-            <a href="#control" class="nav-item" onclick="smoothSwitchPage('control')">Control</a>
-            <a href="#alarm" class="nav-item" onclick="smoothSwitchPage('alarm')">Alarm</a>
-            <a href="#log" class="nav-item" onclick="smoothSwitchPage('log')">Log</a>
-            <a href="#settings" class="nav-item active" onclick="smoothSwitchPage('settings')">Settings</a>
+            <div class="nav-item" data-i18n="navHome" onclick="smoothSwitchPage('home')">Home</div>
+            <a href="#data" class="nav-item" data-i18n="navData" onclick="smoothSwitchPage('data')">Data</a>
+            <a href="#" class="nav-item" data-i18n="navHistory" onclick="smoothSwitchPage('history')">History</a>
+            <a href="#control" class="nav-item" data-i18n="navControl" onclick="smoothSwitchPage('control')">Control</a>
+            <a href="#alarm" class="nav-item" data-i18n="navAlarm" onclick="smoothSwitchPage('alarm')">Alarm</a>
+            <a href="#log" class="nav-item" data-i18n="navLog" onclick="smoothSwitchPage('log')">Log</a>
+            <a href="#settings" class="nav-item active" data-i18n="navSettings" onclick="smoothSwitchPage('settings')">Settings</a>
         </nav>
         
         <div class="header-right">
@@ -1683,12 +1683,12 @@
                         </div>
                         <div class="setting-control">
                             <select class="form-select" id="lockTimeout">
-                                <option value="5">5 Minutes</option>
-                                <option value="10">10 Minutes</option>
-                                <option value="15" selected>15 Minutes</option>
-                                <option value="30">30 Minutes</option>
-                                <option value="60">1 Hour</option>
-                                <option value="never">Never</option>
+                                <option value="5" data-i18n="fiveMinutes">5 Minutes</option>
+                                <option value="10" data-i18n="tenMinutes">10 Minutes</option>
+                                <option value="15" selected data-i18n="fifteenMinutes">15 Minutes</option>
+                                <option value="30" data-i18n="thirtyMinutes">30 Minutes</option>
+                                <option value="60" data-i18n="oneHour">1 Hour</option>
+                                <option value="never" data-i18n="never">Never</option>
                             </select>
                         </div>
                     </div>
@@ -1715,10 +1715,10 @@
                         </div>
                         <div class="setting-control">
                             <select class="form-select" id="refreshInterval">
-                                <option value="1">1 Second</option>
-                                <option value="3" selected>3 Seconds</option>
-                                <option value="5">5 Seconds</option>
-                                <option value="10">10 Seconds</option>
+                                <option value="1" data-i18n="oneSecond">1 Second</option>
+                                <option value="3" selected data-i18n="threeSeconds">3 Seconds</option>
+                                <option value="5" data-i18n="fiveSeconds">5 Seconds</option>
+                                <option value="10" data-i18n="tenSeconds">10 Seconds</option>
                             </select>
                         </div>
                     </div>
@@ -2436,7 +2436,7 @@
             // 保存到localStorage
             localStorage.setItem('electricityPriceScheme', JSON.stringify(currentPriceScheme));
 
-            showNotification('模板应用成功', 'success');
+            showNotification(t('templateAppliedSuccess'), 'success');
             closeTemplateSelector();
         }
 
@@ -2567,7 +2567,7 @@
 
         // 添加时段
         function addPeriod() {
-            showNotification('添加时段功能开发中...', 'info');
+            showNotification(t('addPeriodInDevelopment'), 'info');
         }
 
         // 恢复默认

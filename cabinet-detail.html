@@ -794,7 +794,7 @@
                         </div>
 
                         <!-- 历史数据导出按钮 -->
-                        <button onclick="navigateToExportPage()" style="height: 40px; padding: 0 14px; background: #3b82f6; color: white; border: none; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: none; align-items: center; gap: 6px; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s; white-space: nowrap; flex-shrink: 0;" onmouseover="this.style.background='#2563eb'" onmouseout="this.style.background='#3b82f6'">
+                        <button onclick="navigateToExportPage()" style="height: 40px; padding: 0 14px; background: #3b82f6; color: white; border: none; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s; white-space: nowrap; flex-shrink: 0;" onmouseover="this.style.background='#2563eb'" onmouseout="this.style.background='#3b82f6'">
                             <i class="fas fa-download"></i>
                             <span data-translate="cabinetHistoryExport">历史数据导出</span>
                         </button>
@@ -952,7 +952,7 @@
                                 <button class="time-range-btn" onclick="changeTimeRange('30d')" data-translate="cabinetTimeRange30d">30天</button>
                                 <button class="time-range-btn" onclick="changeTimeRange('1y')" data-translate="cabinetTimeRange1y">1年</button>
                             </div>
-                            <button class="settings-btn export-data-btn" onclick="navigateToExportPage()" title="导出数据" data-translate-title="btnExportData" style="margin-bottom: 0; margin-right: 8px; display: none;">
+                            <button class="settings-btn export-data-btn" onclick="navigateToExportPage()" title="导出数据" data-translate-title="btnExportData" style="margin-bottom: 0; margin-right: 8px; display: inline-flex;">
                                 <i class="fas fa-download"></i>
                                 <span id="cabinetBtnExportData" data-translate="cabinetBtnExportData">导出数据</span>
                             </button>
@@ -2006,8 +2006,8 @@
                         `;
                         recoveryToast.innerHTML = `
                             <i class="fas fa-check-circle" style="font-size: 32px; margin-bottom: 12px;"></i>
-                            <div>急停已关闭！</div>
-                            <div style="font-size: 14px; font-weight: 400; margin-top: 8px;">系统正在恢复正常运行...</div>
+                            <div>${getTranslation('cabinetEmergencyClosed')}</div>
+                            <div style="font-size: 14px; font-weight: 400; margin-top: 8px;">${getTranslation('cabinetSystemRecovering')}</div>
                         `;
                         document.body.appendChild(recoveryToast);
 

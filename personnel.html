@@ -581,7 +581,7 @@
             </div>
 
             <div class="modal-body">
-                <p><span data-translate="personnelDeleteConfirm">确定要删除人员</span> "<span id="deletePersonName"></span>" 吗？</p>
+                <p id="deleteConfirmMessage"></p>
                 <p style="color: #ef4444; font-size: 14px; margin-top: 8px;" data-translate="personnelDeleteWarning">此操作不可撤销！</p>
             </div>
 
@@ -653,10 +653,77 @@
             }
         ];
 
+        // 英文模拟数据
+        const mockPersonnelEn = [
+            {
+                id: 1,
+                name: 'Zhang San',
+                nameKey: 'personnelDataZhangSan',
+                phone: '13800138001',
+                roles: ['1'],
+                email: 'zhangsan@example.com',
+                role: { id: 1, name: 'Super Administrator', nameKey: 'roleDataSuperAdmin' },
+                sites: ['All Sites'],
+                status: 'active',
+                createTime: '2024-01-01 10:00:00'
+            },
+            {
+                id: 2,
+                name: 'Li Si',
+                nameKey: 'personnelDataLiSi',
+                phone: '13800138002',
+                roles: ['2'],
+                email: 'lisi@example.com',
+                role: { id: 2, name: 'Operator', nameKey: 'roleDataOperator' },
+                sites: ['Beijing Data Center', 'Shanghai Industrial Park'],
+                status: 'active',
+                createTime: '2024-01-02 14:30:00'
+            },
+            {
+                id: 3,
+                name: 'Wang Wu',
+                nameKey: 'personnelDataWangWu',
+                phone: '13800138003',
+                roles: ['3'],
+                email: 'wangwu@example.com',
+                role: { id: 3, name: 'User', nameKey: 'roleDataUser' },
+                sites: ['Shenzhen Technology Park'],
+                status: 'active',
+                createTime: '2024-01-03 09:15:00'
+            },
+            {
+                id: 4,
+                name: 'Zhao Liu',
+                nameKey: 'personnelDataZhaoLiu',
+                phone: '13800138004',
+                roles: ['4'],
+                email: 'zhaoliu@example.com',
+                role: { id: 4, name: 'Guest', nameKey: 'roleDataGuest' },
+                sites: ['Guangzhou Business Center', 'Chengdu Logistics Base'],
+                status: 'inactive',
+                createTime: '2024-01-05 16:20:00'
+            }
+        ];
+
         // 根据语言环境初始化数据
-        if (currentLang === 'zh') {
-            personnelData = mockPersonnelZh;
+        function loadPersonnelData() {
+            const lang = localStorage.getItem('language') || 'zh';
+            if (lang === 'en') {
+                personnelData = mockPersonnelEn;
+            } else {
+                personnelData = mockPersonnelZh;
+            }
         }
+
+        loadPersonnelData();
+
+        // 监听语言变化
+        window.addEventListener('storage', (e) => {
+            if (e.key === 'language') {
+                loadPersonnelData();
+                renderPersonnelTable();
+            }
+        });
 
         const roleMap = {
             '1': '超级管理员',
@@ -1115,9 +1182,11 @@
         function deletePerson(personId) {
             const person = personnelData.find(p => p.id === personId);
             if (!person) return;
-            
+
             currentDeletePersonId = personId;
-            document.getElementById('deletePersonName').textContent = person.name;
+            const lang = localStorage.getItem('language') === 'en' ? 'en' : 'zh';
+            const confirmMsg = translations[lang].personnelDeleteConfirm || '确定要删除人员';
+            document.getElementById('deleteConfirmMessage').textContent = `${confirmMsg} "${person.name}" ?`;
             document.getElementById('deleteModal').classList.add('show');
         }
 
@@ -1147,6 +1216,14 @@
             alert('导出功能开发中...');
             // 实际实现时可以导出为 Excel 或 CSV 格式
         }
+
+        // 更新页面标题
+        document.title = getTranslation('pageTitlePersonnelManagement') || '人员管理 - 储能柜管理系统';
+
+        // 监听语言切换事件
+        window.addEventListener('languageChanged', function() {
+            document.title = getTranslation('pageTitlePersonnelManagement') || '人员管理 - 储能柜管理系统';
+        });
     </script>
 
     

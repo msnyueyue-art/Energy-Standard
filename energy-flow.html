@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="pageTitle" data-translate="energyFlowPageTitle">能量流设置</title>
+    <title id="pageTitle" data-translate="energyFlowPageTitle">Energy Flow Settings</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <script src="common.js"></script>
@@ -1431,7 +1431,8 @@
             const contentEl = document.getElementById('settingsPanelContent');
 
             // 设置标题
-            titleEl.textContent = `${device.label} - ${t('energyFlowDeviceSettings')}`;
+            const deviceLabel = device.labelKey ? getDeviceLabel(device.labelKey) : device.label;
+            titleEl.textContent = `${deviceLabel} - ${t('energyFlowDeviceSettings')}`;
 
             // 初始化设备的显示参数和流向（如果不存在）
             if (!device.displayParams) {
@@ -1456,7 +1457,7 @@
             let settingsHTML = `
                 <div class="settings-item">
                     <label class="settings-item-label">${t('energyFlowDeviceName')}</label>
-                    <input type="text" class="settings-item-input" id="deviceName" value="${device.label}"
+                    <input type="text" class="settings-item-input" id="deviceName" value="${device.labelKey ? getDeviceLabel(device.labelKey) : device.label}"
                            oninput="updateDeviceProperty('${deviceId}', 'label', this.value)" />
                 </div>
 
@@ -1535,14 +1536,14 @@
             `;
 
             // 根据设备类型添加特定设置
-            if (device.type === '市电' || device.type === '柴发' || device.type === '光伏') {
+            if (device.type === 'grid' || device.type === 'generator' || device.type === 'solar') {
                 settingsHTML += `
                     <div class="settings-item">
-                        <label class="settings-item-label">额定功率 (KW)</label>
+                        <label class="settings-item-label">${t('energyFlowRatedPower')}</label>
                         <input type="number" class="settings-item-input" id="devicePower" value="${device.power || 500}" />
                     </div>
                     <div class="settings-item">
-                        <label class="settings-item-label">电压等级</label>
+                        <label class="settings-item-label">${t('energyFlowVoltageLevel')}</label>
                         <select class="settings-item-select" id="deviceVoltage">
                             <option value="380V" ${device.voltage === '380V' ? 'selected' : ''}>380V</option>
                             <option value="220V" ${device.voltage === '220V' ? 'selected' : ''}>220V</option>
@@ -1550,33 +1551,33 @@
                         </select>
                     </div>
                 `;
-            } else if (device.type === '储能柜') {
+            } else if (device.type === 'pcs') {
                 settingsHTML += `
                     <div class="settings-item">
-                        <label class="settings-item-label">容量 (KWh)</label>
+                        <label class="settings-item-label">${t('energyFlowCapacity')}</label>
                         <input type="number" class="settings-item-input" id="deviceCapacity" value="${device.capacity || 1000}" />
                     </div>
                     <div class="settings-item">
-                        <label class="settings-item-label">充电功率 (KW)</label>
+                        <label class="settings-item-label">${t('energyFlowChargePower')}</label>
                         <input type="number" class="settings-item-input" id="deviceChargePower" value="${device.chargePower || 500}" />
                     </div>
                     <div class="settings-item">
-                        <label class="settings-item-label">放电功率 (KW)</label>
+                        <label class="settings-item-label">${t('energyFlowDischargePower')}</label>
                         <input type="number" class="settings-item-input" id="deviceDischargePower" value="${device.dischargePower || 500}" />
                     </div>
                 `;
-            } else if (device.type === '负载') {
+            } else if (device.type === 'load') {
                 settingsHTML += `
                     <div class="settings-item">
-                        <label class="settings-item-label">负载功率 (KW)</label>
+                        <label class="settings-item-label">${t('energyFlowLoadPower')}</label>
                         <input type="number" class="settings-item-input" id="deviceLoadPower" value="${device.loadPower || 300}" />
                     </div>
                     <div class="settings-item">
-                        <label class="settings-item-label">负载类型</label>
+                        <label class="settings-item-label">${t('energyFlowLoadType')}</label>
                         <select class="settings-item-select" id="deviceLoadType">
-                            <option value="恒定负载" ${device.loadType === '恒定负载' ? 'selected' : ''}>恒定负载</option>
-                            <option value="可调负载" ${device.loadType === '可调负载' ? 'selected' : ''}>可调负载</option>
-                            <option value="优先级负载" ${device.loadType === '优先级负载' ? 'selected' : ''}>优先级负载</option>
+                            <option value="constant" ${device.loadType === 'constant' ? 'selected' : ''}>${t('energyFlowLoadTypeConstant')}</option>
+                            <option value="adjustable" ${device.loadType === 'adjustable' ? 'selected' : ''}>${t('energyFlowLoadTypeAdjustable')}</option>
+                            <option value="priority" ${device.loadType === 'priority' ? 'selected' : ''}>${t('energyFlowLoadTypePriority')}</option>
                         </select>
                     </div>
                 `;
@@ -1618,19 +1619,19 @@
             }
 
             // 根据设备类型更新特定属性
-            if (device.type === '市电' || device.type === '柴发' || device.type === '光伏') {
+            if (device.type === 'grid' || device.type === 'generator' || device.type === 'solar') {
                 const powerInput = document.getElementById('devicePower');
                 const voltageSelect = document.getElementById('deviceVoltage');
                 if (powerInput) device.power = parseFloat(powerInput.value);
                 if (voltageSelect) device.voltage = voltageSelect.value;
-            } else if (device.type === '储能柜') {
+            } else if (device.type === 'pcs') {
                 const capacityInput = document.getElementById('deviceCapacity');
                 const chargePowerInput = document.getElementById('deviceChargePower');
                 const dischargePowerInput = document.getElementById('deviceDischargePower');
                 if (capacityInput) device.capacity = parseFloat(capacityInput.value);
                 if (chargePowerInput) device.chargePower = parseFloat(chargePowerInput.value);
                 if (dischargePowerInput) device.dischargePower = parseFloat(dischargePowerInput.value);
-            } else if (device.type === '负载') {
+            } else if (device.type === 'load') {
                 const loadPowerInput = document.getElementById('deviceLoadPower');
                 const loadTypeSelect = document.getElementById('deviceLoadType');
                 if (loadPowerInput) device.loadPower = parseFloat(loadPowerInput.value);
@@ -2228,9 +2229,9 @@
                         </div>
 
                         <div class="flow-device-icon">
-                            <img src="${device.icon}" alt="${device.label}" draggable="false" />
+                            <img src="${device.icon}" alt="${device.labelKey ? getDeviceLabel(device.labelKey) : device.label}" draggable="false" />
                         </div>
-                        <div class="flow-device-label" draggable="false">${device.label}</div>
+                        <div class="flow-device-label" draggable="false">${device.labelKey ? getDeviceLabel(device.labelKey) : device.label}</div>
 
                         ${externalParams}
                     </div>`;
@@ -3934,6 +3935,24 @@
                     applyEditModeUI();
                 }, 100);
             }
+
+            // 更新页面标题
+            document.title = getTranslation('energyFlowPageTitle') || 'Energy Flow Settings';
+            document.documentElement.lang = (localStorage.getItem('language') || 'en') === 'zh' ? 'zh-CN' : 'en-US';
+
+            // 监听语言切换事件
+            window.addEventListener('languageChanged', function() {
+                document.title = getTranslation('energyFlowPageTitle') || 'Energy Flow Settings';
+                document.documentElement.lang = (localStorage.getItem('language') || 'en') === 'zh' ? 'zh-CN' : 'en-US';
+
+                // 重新渲染已放置的设备,更新设备名称显示
+                renderPlacedDevices();
+
+                // 如果设置面板打开,也需要更新设置面板的内容
+                if (selectedDevice) {
+                    showDeviceSettings(selectedDevice);
+                }
+            });
         });
     </script>
 </body>

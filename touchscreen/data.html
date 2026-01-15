@@ -2797,10 +2797,10 @@
                                 </div>
                                 <div style="display: flex; gap: 12px; align-items: center;">
                                     <select id="revenueTimeType" class="form-input" style="width: 220px; height: 55px; padding: 12px 16px; font-size: 24px; font-weight: 600; background: rgba(15, 25, 42, 0.8); border: 1px solid rgba(0, 150, 255, 0.3); border-radius: 8px; color: rgba(255, 255, 255, 0.9);" onchange="updateRevenueAnalysisChart()">
-                                        <option value="day" selected data-i18n="day">Day</option>
-                                        <option value="month" data-i18n="month">Month</option>
-                                        <option value="year" data-i18n="year">Year</option>
-                                        <option value="total" data-i18n="total">Total</option>
+                                        <option value="day" selected data-i18n="day">${t('day')}</option>
+                                        <option value="month" data-i18n="month">${t('month')}</option>
+                                        <option value="year" data-i18n="year">${t('year')}</option>
+                                        <option value="total" data-i18n="total">${t('total')}</option>
                                     </select>
                                     <div class="custom-date-input" id="revenueDatePickerWrapper" style="display: inline-block;">
                                         <input type="text" id="revenueDatePicker" readonly style="width: 220px; height: 55px; padding: 12px 45px 12px 16px; font-size: 24px; font-weight: 600; background: rgba(15, 25, 42, 0.8); border: 1px solid rgba(0, 150, 255, 0.3); border-radius: 8px; color: rgba(255, 255, 255, 0.9); cursor: pointer;" onclick="showCustomCalendar('revenueDatePicker')">
@@ -2808,9 +2808,9 @@
                                     </div>
                                     <input type="month" id="revenueMonthPicker" class="form-input" style="width: 220px; height: 55px; padding: 12px 16px; font-size: 24px; font-weight: 600; display: none; background: rgba(15, 25, 42, 0.8); border: 1px solid rgba(0, 150, 255, 0.3); border-radius: 8px; color: rgba(255, 255, 255, 0.9);" onchange="updateRevenueAnalysisChart()">
                                     <select id="revenueYearPicker" class="form-input" style="width: 220px; height: 55px; padding: 12px 16px; font-size: 24px; font-weight: 600; display: none; background: rgba(15, 25, 42, 0.8); border: 1px solid rgba(0, 150, 255, 0.3); border-radius: 8px; color: rgba(255, 255, 255, 0.9);" onchange="updateRevenueAnalysisChart()">
-                                        <option value="2023">2023年</option>
-                                        <option value="2024">2024年</option>
-                                        <option value="2025" selected>2025年</option>
+                                        <option value="2023">2023</option>
+                                        <option value="2024">2024</option>
+                                        <option value="2025" selected>2025</option>
                                     </select>
                                 </div>
                             </div>
@@ -2946,10 +2946,10 @@
                                 </div>
                                 <div style="display: flex; gap: 12px; align-items: center;">
                                     <select id="pcsEfficiencyTimePicker" class="form-input" style="width: 120px; height: 55px; padding: 12px 16px; font-size: 24px; font-weight: 600; background: rgba(15, 25, 42, 0.8); border: 1px solid rgba(0, 150, 255, 0.3); border-radius: 8px; color: rgba(255, 255, 255, 0.9); cursor: pointer;" onchange="updatePcsEfficiencyTimePeriod()">
-                                        <option value="day" selected data-i18n="日">Day</option>
-                                        <option value="month" data-i18n="月">Month</option>
-                                        <option value="year" data-i18n="年">Year</option>
-                                        <option value="total" data-i18n="合计">Total</option>
+                                        <option value="day" selected data-i18n="day">${t('day')}</option>
+                                        <option value="month" data-i18n="month">${t('month')}</option>
+                                        <option value="year" data-i18n="year">${t('year')}</option>
+                                        <option value="total" data-i18n="total">${t('total')}</option>
                                     </select>
                                     <div class="custom-date-input" id="pcsEfficiencyDatePickerWrapper" style="display: inline-block;">
                                         <input type="text" id="pcsEfficiencyDatePicker" readonly style="width: 220px; height: 55px; padding: 12px 45px 12px 16px; font-size: 24px; font-weight: 600; background: rgba(15, 25, 42, 0.8); border: 1px solid rgba(0, 150, 255, 0.3); border-radius: 8px; color: rgba(255, 255, 255, 0.9); cursor: pointer;" onclick="showCustomCalendar('pcsEfficiencyDatePicker')">
@@ -2957,9 +2957,9 @@
                                     </div>
                                     <input type="month" id="pcsEfficiencyMonthPicker" class="form-input" style="width: 220px; height: 55px; padding: 12px 16px; font-size: 24px; font-weight: 600; display: none; background: rgba(15, 25, 42, 0.8); border: 1px solid rgba(0, 150, 255, 0.3); border-radius: 8px; color: rgba(255, 255, 255, 0.9);" onchange="updatePcsEfficiencyChart()">
                                     <select id="pcsEfficiencyYearPicker" class="form-input" style="width: 220px; height: 55px; padding: 12px 16px; font-size: 24px; font-weight: 600; display: none; background: rgba(15, 25, 42, 0.8); border: 1px solid rgba(0, 150, 255, 0.3); border-radius: 8px; color: rgba(255, 255, 255, 0.9);" onchange="updatePcsEfficiencyChart()">
-                                        <option value="2023">2023年</option>
-                                        <option value="2024">2024年</option>
-                                        <option value="2025" selected>2025年</option>
+                                        <option value="2023">2023</option>
+                                        <option value="2024">2024</option>
+                                        <option value="2025" selected>2025</option>
                                     </select>
                                 </div>
                             </div>
@@ -2998,6 +2998,10 @@
                         monthPicker.value = `${year}-${month}`;
                     }
                     
+                    
+                    // 应用国际化翻译到动态插入的内容
+                    applyTouchscreenTranslations();
+
                     initPCSHistoryCharts();
                 }, 100);
                 return;
@@ -4100,6 +4104,35 @@
         // 翻译字段标签
         function translateLabel(label) {
             const lang = getTouchscreenLang();
+
+            // 特殊状态值翻译 (这些值无论中英文都需要翻译)
+            const statusValueTranslations = {
+                'signalGood': lang === 'zh' ? '信号良好' : 'Good Signal',
+                'simInserted': lang === 'zh' ? 'SIM卡已插入' : 'Inserted',
+                'statusOn': lang === 'zh' ? '已开启' : 'ON',
+                'statusOff': lang === 'zh' ? '已关闭' : 'OFF'
+            };
+
+            // 如果是特殊状态值,直接返回翻译
+            if (statusValueTranslations[label]) {
+                return statusValueTranslations[label];
+            }
+
+            // PCS等组件的英文代码值字段,需要通过touchscreen-i18n.js翻译
+            // 这些字段在配置中使用英文代码值作为label
+            const codeValueFields = [
+                'pcsGridSideParams', 'pcsGridVoltage', 'pcsGridCurrent', 'pcsGridPower',
+                'pcsTemperature', 'pcsPowerConversionHistory', 'voltageCurrentTrend',
+                'conversionEfficiencyAnalysis', 'conversionEfficiency', 'acPowerOutput',
+                'dcPowerInput'
+            ];
+
+            // 如果是代码值字段,使用touchscreen-i18n.js的翻译
+            if (codeValueFields.includes(label) && typeof t === 'function') {
+                return t(label);
+            }
+
+            // 中文环境下,普通标签不需要翻译
             if (lang === 'zh') return label;
 
             const labelTranslations = {
@@ -4292,10 +4325,45 @@
                 '5月': 'May',
                 '6月': 'Jun',
 
+                // 时间单位
+                '时': ':00',
+                '时间': 'Time',
+
+                // 温度湿度相关
+                '湿度': 'Humidity',
+                '转速': 'Speed',
+                '功耗': 'Power Consumption',
+                '浓度': 'Concentration',
+                '告警次数': 'Alarm Count',
+
                 // 三相参数标签
                 'A相': 'Phase A',
                 'B相': 'Phase B',
                 'C相': 'Phase C',
+
+                // 谐波次数
+                '基波': 'Fundamental',
+                '2次': '2nd',
+                '3次': '3rd',
+                '4次': '4th',
+                '5次': '5th',
+                '6次': '6th',
+                '7次': '7th',
+                '8次': '8th',
+                '9次': '9th',
+                '10次': '10th',
+                '11次': '11th',
+                '12次': '12th',
+                '13次': '13th',
+                '14次': '14th',
+                '15次': '15th',
+                '16次': '16th',
+                '17次': '17th',
+                '18次': '18th',
+                '19次': '19th',
+                '20次': '20th',
+                '21次': '21st',
+                '谐波含量': 'Harmonic Content',
 
                 // 单位
                 '次': 'Times',
@@ -4323,6 +4391,14 @@
                 '电流': 'Current',
                 '电压': 'Voltage',
                 '功率': 'Power',
+                'DC电压': 'DC Voltage',
+                'DC电流': 'DC Current',
+                '效率': 'Efficiency',
+                '充电效率': 'Charging Efficiency',
+                '放电效率': 'Discharging Efficiency',
+                'conversionEfficiency': 'Conversion Efficiency',
+                'acPowerOutput': 'AC Power Output',
+                'dcPowerInput': 'DC Power Input',
                 '能量': 'Energy',
                 '电量': 'Energy',
                 '收益': 'Revenue',
@@ -4332,13 +4408,7 @@
                 '火警状态': 'Fire Alarm Status',
                 '灭火状态': 'Extinguisher Status',
                 '紧急停机': 'Emergency Stop',
-                '疏散警报': 'Evacuation Alarm',
-
-                // EMS状态值翻译
-                'signalGood': 'Good Signal',
-                'simInserted': 'Inserted',
-                'statusOn': 'ON',
-                'statusOff': 'OFF'
+                '疏散警报': 'Evacuation Alarm'
             };
 
             return labelTranslations[label] || label;
@@ -5016,20 +5086,20 @@
                     new Chart(ctx, {
                         type: 'bar',
                         data: {
-                            labels: ['1月', '2月', '3月', '4月', '5月', '6月'],
+                            labels: [translateLabel('1月'), translateLabel('2月'), translateLabel('3月'), translateLabel('4月'), translateLabel('5月'), translateLabel('6月')],
                             datasets: [{
-                                label: '充电效率 (%)',
+                                label: translateLabel('充电效率') + ' (%)',
                                 data: Array.from({length: 6}, () => 92 + Math.random() * 6),
                                 backgroundColor: 'rgba(16, 185, 129, 0.8)',
                                 borderColor: '#10b981'
                             }, {
-                                label: '放电效率 (%)',
+                                label: translateLabel('放电效率') + ' (%)',
                                 data: Array.from({length: 6}, () => 90 + Math.random() * 8),
                                 backgroundColor: 'rgba(59, 130, 246, 0.8)',
                                 borderColor: '#3b82f6'
                             }]
                         },
-                        options: getChartOptions('效率 (%)', 80, 100)
+                        options: getChartOptions(translateLabel('效率') + ' (%)', 80, 100)
                     });
                     break;
                     
@@ -6356,7 +6426,7 @@
                 meterChartInstances.meterPowerChart = new Chart(powerCtx.getContext('2d'), {
                     type: 'line',
                     data: {
-                        labels: Array.from({length: 24}, (_, i) => `${i}时`),
+                        labels: Array.from({length: 24}, (_, i) => `${i}${translateLabel('时')}`),
                         datasets: [{
                             label: translateLabel('有功功率'),
                             data: Array.from({length: 24}, () => Math.random() * 100 + 150),
@@ -6383,7 +6453,7 @@
                             fill: true
                         }]
                     },
-                    options: getChartOptions('功率 (kW/kVar/kVA)', 0, 300)
+                    options: getChartOptions(translateLabel('功率') + ' (kW/kVar/kVA)', 0, 300)
                 });
             }
             
@@ -6393,7 +6463,7 @@
                 meterChartInstances.meterEnergyChart = new Chart(energyCtx.getContext('2d'), {
                     type: 'bar',
                     data: {
-                        labels: Array.from({length: 24}, (_, i) => `${i}时`),
+                        labels: Array.from({length: 24}, (_, i) => `${i}${translateLabel('时')}`),
                         datasets: [{
                             label: translateLabel('有功电量'),
                             data: Array.from({length: 24}, () => Math.random() * 25 + 45),
@@ -6408,7 +6478,7 @@
                             borderWidth: 1
                         }]
                     },
-                    options: getChartOptions('电量 (kWh/kVarh)', 0, 80)
+                    options: getChartOptions(translateLabel('电量') + ' (kWh/kVarh)', 0, 80)
                 });
             }
             
@@ -6418,7 +6488,7 @@
                 meterChartInstances.meterVoltageChart = new Chart(voltageCtx.getContext('2d'), {
                     type: 'line',
                     data: {
-                        labels: Array.from({length: 24}, (_, i) => `${i}时`),
+                        labels: Array.from({length: 24}, (_, i) => `${i}${translateLabel('时')}`),
                         datasets: [{
                             label: translateLabel('A相电压'),
                             data: Array.from({length: 24}, () => Math.random() * 10 + 380),
@@ -6442,7 +6512,7 @@
                             tension: 0.4
                         }]
                     },
-                    options: getChartOptions('电压 (V)', 370, 400)
+                    options: getChartOptions(translateLabel('电压') + ' (V)', 370, 400)
                 });
             }
             
@@ -6452,9 +6522,9 @@
                 meterChartInstances.meterHarmonicChart = new Chart(harmonicCtx.getContext('2d'), {
                     type: 'bar',
                     data: {
-                        labels: ['基波', '2次', '3次', '4次', '5次', '6次', '7次', '8次', '9次', '10次', '11次', '12次', '13次', '14次', '15次', '16次', '17次', '18次', '19次', '20次', '21次'],
+                        labels: [translateLabel('基波'), translateLabel('2次'), translateLabel('3次'), translateLabel('4次'), translateLabel('5次'), translateLabel('6次'), translateLabel('7次'), translateLabel('8次'), translateLabel('9次'), translateLabel('10次'), translateLabel('11次'), translateLabel('12次'), translateLabel('13次'), translateLabel('14次'), translateLabel('15次'), translateLabel('16次'), translateLabel('17次'), translateLabel('18次'), translateLabel('19次'), translateLabel('20次'), translateLabel('21次')],
                         datasets: [{
-                            label: '谐波含量 (%)',
+                            label: translateLabel('谐波含量') + ' (%)',
                             data: [2.8, 2.3, 1.9, 1.4, 1.1, 0.8, 0.6, 0.5, 0.4, 0.3, 0.3, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2],
                             backgroundColor: [
                                 'rgba(59, 130, 246, 0.7)',
@@ -6505,7 +6575,7 @@
                             borderWidth: 1
                         }]
                     },
-                    options: getChartOptions('谐波含量 (%)', 0, 3)
+                    options: getChartOptions(translateLabel('谐波含量') + ' (%)', 0, 3)
                 });
             }
         }
@@ -6984,11 +7054,11 @@
                                 display: false
                             }
                         },
-                        scales: { 
-                            y: { 
-                                title: { 
-                                    display: true, 
-                                    text: '温度 (°C)',
+                        scales: {
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: translateLabel('温度') + ' (°C)',
                                     color: 'rgba(255, 255, 255, 0.7)'
                                 },
                                 min: 15,
@@ -7000,10 +7070,10 @@
                                     color: 'rgba(255, 255, 255, 0.7)'
                                 }
                             },
-                            x: { 
-                                title: { 
-                                    display: true, 
-                                    text: '时间',
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: translateLabel('时间'),
                                     color: 'rgba(255, 255, 255, 0.7)'
                                 },
                                 grid: {
@@ -7072,9 +7142,9 @@
                                 type: 'linear',
                                 display: true,
                                 position: 'left',
-                                title: { 
-                                    display: true, 
-                                    text: '温度 (°C)',
+                                title: {
+                                    display: true,
+                                    text: translateLabel('温度') + ' (°C)',
                                     color: 'rgba(255, 255, 255, 0.7)'
                                 },
                                 grid: {
@@ -7088,9 +7158,9 @@
                                 type: 'linear',
                                 display: true,
                                 position: 'right',
-                                title: { 
-                                    display: true, 
-                                    text: '湿度 (%RH)',
+                                title: {
+                                    display: true,
+                                    text: translateLabel('湿度') + ' (%RH)',
                                     color: 'rgba(255, 255, 255, 0.7)'
                                 },
                                 min: 0,
@@ -7163,9 +7233,9 @@
                                 type: 'linear',
                                 display: true,
                                 position: 'left',
-                                title: { 
-                                    display: true, 
-                                    text: '转速 (RPM)',
+                                title: {
+                                    display: true,
+                                    text: translateLabel('转速') + ' (RPM)',
                                     color: 'rgba(255, 255, 255, 0.7)'
                                 },
                                 grid: {
@@ -7179,9 +7249,9 @@
                                 type: 'linear',
                                 display: true,
                                 position: 'right',
-                                title: { 
-                                    display: true, 
-                                    text: '功耗 (kW)',
+                                title: {
+                                    display: true,
+                                    text: translateLabel('功耗') + ' (kW)',
                                     color: 'rgba(255, 255, 255, 0.7)'
                                 },
                                 grid: { 
@@ -7271,12 +7341,12 @@
                                 }
                             }
                         },
-                        scales: { 
-                            y: { 
-                                beginAtZero: true, 
-                                title: { 
-                                    display: true, 
-                                    text: '浓度 (ppm)',
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: translateLabel('浓度') + ' (ppm)',
                                     color: 'rgba(255, 255, 255, 0.7)'
                                 },
                                 grid: {
@@ -7343,7 +7413,7 @@
                                         if (label) {
                                             label += ': ';
                                         }
-                                        label += context.parsed.y + ' 次';
+                                        label += context.parsed.y + ' ' + translateLabel('次');
                                         return label;
                                     }
                                 }
@@ -7364,7 +7434,7 @@
                                 beginAtZero: true,
                                 title: {
                                     display: true,
-                                    text: '告警次数',
+                                    text: translateLabel('告警次数'),
                                     color: 'rgba(255, 255, 255, 0.7)'
                                 },
                                 grid: {
@@ -7613,12 +7683,12 @@
             // 模拟升级进度
             let progress = 0;
             const statusTexts = [
-                '准备升级...',
-                '下载固件...',
-                '校验固件...',
-                '安装更新...',
-                '重启设备...',
-                '升级完成！'
+                t('preparingUpgrade'),
+                t('downloadingFirmware'),
+                t('verifyingFirmware'),
+                t('installingUpdate'),
+                t('restartingDevice'),
+                t('upgradeComplete')
             ];
             
             const interval = setInterval(() => {
@@ -7635,7 +7705,7 @@
                 if (progress >= 100) {
                     clearInterval(interval);
                     setTimeout(() => {
-                        alert('固件升级成功！系统将在3秒后重启...');
+                        alert(t('upgradeSuccessMessage'));
                         setTimeout(() => {
                             closeOTAModal();
                         }, 3000);
@@ -7977,18 +8047,18 @@
             <button class="calendar-nav-btn" onclick="changeMonth(-1)">‹</button>
             <div class="calendar-month-year">
                 <select id="calendarMonth" onchange="updateCalendar()">
-                    <option value="0">一月</option>
-                    <option value="1">二月</option>
-                    <option value="2">三月</option>
-                    <option value="3">四月</option>
-                    <option value="4">五月</option>
-                    <option value="5">六月</option>
-                    <option value="6">七月</option>
-                    <option value="7">八月</option>
-                    <option value="8">九月</option>
-                    <option value="9">十月</option>
-                    <option value="10">十一月</option>
-                    <option value="11">十二月</option>
+                    <option value="0" data-i18n="calendarMonthJan">January</option>
+                    <option value="1" data-i18n="calendarMonthFeb">February</option>
+                    <option value="2" data-i18n="calendarMonthMar">March</option>
+                    <option value="3" data-i18n="calendarMonthApr">April</option>
+                    <option value="4" data-i18n="calendarMonthMay">May</option>
+                    <option value="5" data-i18n="calendarMonthJun">June</option>
+                    <option value="6" data-i18n="calendarMonthJul">July</option>
+                    <option value="7" data-i18n="calendarMonthAug">August</option>
+                    <option value="8" data-i18n="calendarMonthSep">September</option>
+                    <option value="9" data-i18n="calendarMonthOct">October</option>
+                    <option value="10" data-i18n="calendarMonthNov">November</option>
+                    <option value="11" data-i18n="calendarMonthDec">December</option>
                 </select>
                 <select id="calendarYear" onchange="updateCalendar()">
                     <!-- 年份选项将由JS动态生成 -->
@@ -7997,20 +8067,20 @@
             <button class="calendar-nav-btn" onclick="changeMonth(1)">›</button>
         </div>
         <div class="calendar-weekdays">
-            <div class="calendar-weekday">日</div>
-            <div class="calendar-weekday">一</div>
-            <div class="calendar-weekday">二</div>
-            <div class="calendar-weekday">三</div>
-            <div class="calendar-weekday">四</div>
-            <div class="calendar-weekday">五</div>
-            <div class="calendar-weekday">六</div>
+            <div class="calendar-weekday" data-i18n="calendarWeekdaySun">Sun</div>
+            <div class="calendar-weekday" data-i18n="calendarWeekdayMon">Mon</div>
+            <div class="calendar-weekday" data-i18n="calendarWeekdayTue">Tue</div>
+            <div class="calendar-weekday" data-i18n="calendarWeekdayWed">Wed</div>
+            <div class="calendar-weekday" data-i18n="calendarWeekdayThu">Thu</div>
+            <div class="calendar-weekday" data-i18n="calendarWeekdayFri">Fri</div>
+            <div class="calendar-weekday" data-i18n="calendarWeekdaySat">Sat</div>
         </div>
         <div class="calendar-days" id="calendarDays">
             <!-- 日期将由JS动态生成 -->
         </div>
         <div class="calendar-footer">
-            <button class="calendar-btn secondary" onclick="setToday()" ontouchend="setToday()">今天</button>
-            <button class="calendar-btn secondary" onclick="closeCustomCalendar()" ontouchend="closeCustomCalendar()">取消</button>
+            <button class="calendar-btn secondary" onclick="setToday()" ontouchend="setToday()" data-i18n="calendarToday">Today</button>
+            <button class="calendar-btn secondary" onclick="closeCustomCalendar()" ontouchend="closeCustomCalendar()" data-i18n="calendarCancel">Cancel</button>
         </div>
     </div>
     
@@ -8432,14 +8502,15 @@
 
             // 定义在英文环境下需要隐藏历史数据标签的组件列表
             // 如果将来需要恢复显示，只需从此数组中移除对应的组件名称
+            // 已恢复所有组件的历史数据标签显示
             const hiddenComponents = [
-                'overall',  // 整机
-                'ems',      // EMS
-                'pcs',      // PCS
-                'bms',      // BMS
-                'meter',    // 电表
-                'thermal',  // 温度
-                'fire'      // 消防
+                // 'overall',  // 整机 - 已恢复显示
+                // 'ems',      // EMS - 已恢复显示
+                // 'pcs',      // PCS - 已恢复显示
+                // 'bms',      // BMS - 已恢复显示
+                // 'meter',    // 电表 - 已恢复显示
+                // 'thermal',  // 温度 - 已恢复显示
+                // 'fire'      // 消防 - 已恢复显示
             ];
 
             // 遍历需要隐藏的组件

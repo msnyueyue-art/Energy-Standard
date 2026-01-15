@@ -2557,9 +2557,628 @@
             }
         ];
 
+        // 英文环境的模拟模板数据
+        const mockTemplatesEn = [
+            // ==================== Purchase Templates (9 templates) ====================
+
+            // 1. Tiered Pricing - Fixed
+            {
+                id: 1,
+                name: 'Tiered Pricing - Fixed',
+                type: 'tiered',
+                typeName: 'Tiered Pricing',
+                description: 'Use the same tier standard throughout the year',
+                purpose: 'consumption',
+                tiers: {
+                    mode: 'fixed',
+                    data: [
+                        { start: 0, end: 200, limit: 200 },
+                        { start: 201, end: 400, limit: 400 },
+                        { start: 401, end: null, limit: null }
+                    ]
+                },
+                createTime: '2024-01-10 08:45'
+            },
+
+            // 2. Tiered Pricing - Monthly
+            {
+                id: 2,
+                name: 'Tiered Pricing - Monthly',
+                type: 'tiered',
+                typeName: 'Tiered Pricing',
+                description: 'Use different tier standards for each month',
+                purpose: 'consumption',
+                tiers: {
+                    mode: 'monthly',
+                    data: {
+                        1: [{ start: 0, end: 200, limit: 200 }, { start: 201, end: 400, limit: 400 }, { start: 401, end: null, limit: null }],
+                        2: [{ start: 0, end: 200, limit: 200 }, { start: 201, end: 400, limit: 400 }, { start: 401, end: null, limit: null }],
+                        3: [{ start: 0, end: 200, limit: 200 }, { start: 201, end: 400, limit: 400 }, { start: 401, end: null, limit: null }],
+                        4: [{ start: 0, end: 200, limit: 200 }, { start: 201, end: 400, limit: 400 }, { start: 401, end: null, limit: null }],
+                        5: [{ start: 0, end: 200, limit: 200 }, { start: 201, end: 400, limit: 400 }, { start: 401, end: null, limit: null }],
+                        6: [{ start: 0, end: 200, limit: 200 }, { start: 201, end: 400, limit: 400 }, { start: 401, end: null, limit: null }],
+                        7: [{ start: 0, end: 200, limit: 200 }, { start: 201, end: 400, limit: 400 }, { start: 401, end: null, limit: null }],
+                        8: [{ start: 0, end: 200, limit: 200 }, { start: 201, end: 400, limit: 400 }, { start: 401, end: null, limit: null }],
+                        9: [{ start: 0, end: 200, limit: 200 }, { start: 201, end: 400, limit: 400 }, { start: 401, end: null, limit: null }],
+                        10: [{ start: 0, end: 200, limit: 200 }, { start: 201, end: 400, limit: 400 }, { start: 401, end: null, limit: null }],
+                        11: [{ start: 0, end: 200, limit: 200 }, { start: 201, end: 400, limit: 400 }, { start: 401, end: null, limit: null }],
+                        12: [{ start: 0, end: 200, limit: 200 }, { start: 201, end: 400, limit: 400 }, { start: 401, end: null, limit: null }]
+                    }
+                },
+                createTime: '2024-01-10 09:00'
+            },
+
+            // 3. Tiered Pricing - Seasonal
+            {
+                id: 3,
+                name: 'Tiered Pricing - Seasonal',
+                type: 'tiered',
+                typeName: 'Tiered Pricing',
+                description: 'Use different tier standards by season',
+                purpose: 'consumption',
+                tiers: {
+                    mode: 'seasonal',
+                    seasons: [
+                        {
+                            id: 'season-1',
+                            name: 'Summer',
+                            months: [6, 7, 8],
+                            tiers: [
+                                { start: 0, end: 200, limit: 200 },
+                                { start: 201, end: 400, limit: 400 },
+                                { start: 401, end: null, limit: null }
+                            ]
+                        },
+                        {
+                            id: 'season-2',
+                            name: 'Winter',
+                            months: [12, 1, 2],
+                            tiers: [
+                                { start: 0, end: 200, limit: 200 },
+                                { start: 201, end: 400, limit: 400 },
+                                { start: 401, end: null, limit: null }
+                            ]
+                        },
+                        {
+                            id: 'season-3',
+                            name: 'Spring and Autumn',
+                            months: [3, 4, 5, 9, 10, 11],
+                            tiers: [
+                                { start: 0, end: 200, limit: 200 },
+                                { start: 201, end: 400, limit: 400 },
+                                { start: 401, end: null, limit: null }
+                            ]
+                        }
+                    ]
+                },
+                createTime: '2024-01-10 09:15'
+            },
+
+            // 4. Time-of-Use - Fixed
+            {
+                id: 4,
+                name: 'Time-of-Use - Fixed',
+                type: 'tou',
+                typeName: 'Time-of-Use',
+                description: 'Use the same peak-valley periods throughout the year',
+                purpose: 'consumption',
+                periods: {
+                    mode: 'fixed',
+                    data: [
+                        { type: 'peak', name: 'Sharp Peak', start: '10:00', end: '12:00' },
+                        { type: 'peak', name: 'Peak', start: '18:00', end: '21:00' },
+                        { type: 'flat', name: 'Flat', start: '08:00', end: '10:00' },
+                        { type: 'flat', name: 'Flat', start: '12:00', end: '18:00' },
+                        { type: 'valley', name: 'Valley', start: '21:00', end: '08:00' }
+                    ]
+                },
+                createTime: '2024-01-20 14:20'
+            },
+
+            // 5. Time-of-Use - Monthly
+            {
+                id: 5,
+                name: 'Time-of-Use - Monthly',
+                type: 'tou',
+                typeName: 'Time-of-Use',
+                description: 'Use different peak-valley periods for each month',
+                purpose: 'consumption',
+                periods: {
+                    mode: 'monthly',
+                    data: {
+                        1: [
+                            { type: 'peak', name: 'Peak', start: '08:00', end: '11:00' },
+                            { type: 'peak', name: 'Peak', start: '18:00', end: '22:00' },
+                            { type: 'valley', name: 'Valley', start: '22:00', end: '08:00' },
+                            { type: 'flat', name: 'Flat', start: '11:00', end: '18:00' }
+                        ],
+                        2: [
+                            { type: 'peak', name: 'Peak', start: '08:00', end: '11:00' },
+                            { type: 'peak', name: 'Peak', start: '18:00', end: '22:00' },
+                            { type: 'valley', name: 'Valley', start: '22:00', end: '08:00' },
+                            { type: 'flat', name: 'Flat', start: '11:00', end: '18:00' }
+                        ],
+                        3: [
+                            { type: 'peak', name: 'Peak', start: '08:00', end: '11:00' },
+                            { type: 'peak', name: 'Peak', start: '18:00', end: '22:00' },
+                            { type: 'valley', name: 'Valley', start: '22:00', end: '08:00' },
+                            { type: 'flat', name: 'Flat', start: '11:00', end: '18:00' }
+                        ],
+                        4: [
+                            { type: 'peak', name: 'Peak', start: '08:00', end: '11:00' },
+                            { type: 'peak', name: 'Peak', start: '18:00', end: '22:00' },
+                            { type: 'valley', name: 'Valley', start: '22:00', end: '08:00' },
+                            { type: 'flat', name: 'Flat', start: '11:00', end: '18:00' }
+                        ],
+                        5: [
+                            { type: 'peak', name: 'Peak', start: '08:00', end: '11:00' },
+                            { type: 'peak', name: 'Peak', start: '18:00', end: '22:00' },
+                            { type: 'valley', name: 'Valley', start: '22:00', end: '08:00' },
+                            { type: 'flat', name: 'Flat', start: '11:00', end: '18:00' }
+                        ],
+                        6: [
+                            { type: 'peak', name: 'Peak', start: '08:00', end: '11:00' },
+                            { type: 'peak', name: 'Peak', start: '18:00', end: '22:00' },
+                            { type: 'valley', name: 'Valley', start: '22:00', end: '08:00' },
+                            { type: 'flat', name: 'Flat', start: '11:00', end: '18:00' }
+                        ],
+                        7: [
+                            { type: 'peak', name: 'Peak', start: '08:00', end: '11:00' },
+                            { type: 'peak', name: 'Peak', start: '18:00', end: '22:00' },
+                            { type: 'valley', name: 'Valley', start: '22:00', end: '08:00' },
+                            { type: 'flat', name: 'Flat', start: '11:00', end: '18:00' }
+                        ],
+                        8: [
+                            { type: 'peak', name: 'Peak', start: '08:00', end: '11:00' },
+                            { type: 'peak', name: 'Peak', start: '18:00', end: '22:00' },
+                            { type: 'valley', name: 'Valley', start: '22:00', end: '08:00' },
+                            { type: 'flat', name: 'Flat', start: '11:00', end: '18:00' }
+                        ],
+                        9: [
+                            { type: 'peak', name: 'Peak', start: '08:00', end: '11:00' },
+                            { type: 'peak', name: 'Peak', start: '18:00', end: '22:00' },
+                            { type: 'valley', name: 'Valley', start: '22:00', end: '08:00' },
+                            { type: 'flat', name: 'Flat', start: '11:00', end: '18:00' }
+                        ],
+                        10: [
+                            { type: 'peak', name: 'Peak', start: '08:00', end: '11:00' },
+                            { type: 'peak', name: 'Peak', start: '18:00', end: '22:00' },
+                            { type: 'valley', name: 'Valley', start: '22:00', end: '08:00' },
+                            { type: 'flat', name: 'Flat', start: '11:00', end: '18:00' }
+                        ],
+                        11: [
+                            { type: 'peak', name: 'Peak', start: '08:00', end: '11:00' },
+                            { type: 'peak', name: 'Peak', start: '18:00', end: '22:00' },
+                            { type: 'valley', name: 'Valley', start: '22:00', end: '08:00' },
+                            { type: 'flat', name: 'Flat', start: '11:00', end: '18:00' }
+                        ],
+                        12: [
+                            { type: 'peak', name: 'Peak', start: '08:00', end: '11:00' },
+                            { type: 'peak', name: 'Peak', start: '18:00', end: '22:00' },
+                            { type: 'valley', name: 'Valley', start: '22:00', end: '08:00' },
+                            { type: 'flat', name: 'Flat', start: '11:00', end: '18:00' }
+                        ]
+                    }
+                },
+                createTime: '2024-01-20 14:30'
+            },
+
+            // 6. Time-of-Use - Seasonal
+            {
+                id: 6,
+                name: 'Time-of-Use - Seasonal',
+                type: 'tou',
+                typeName: 'Time-of-Use',
+                description: 'Use different peak-valley periods by season',
+                purpose: 'consumption',
+                periods: {
+                    mode: 'seasonal',
+                    seasons: [
+                        {
+                            id: 'season-1',
+                            name: 'Summer',
+                            months: [6, 7, 8],
+                            periods: [
+                                { type: 'peak', name: 'Peak', start: '10:00', end: '12:00' },
+                                { type: 'peak', name: 'Peak', start: '18:00', end: '21:00' },
+                                { type: 'flat', name: 'Flat', start: '08:00', end: '10:00' },
+                                { type: 'flat', name: 'Flat', start: '12:00', end: '18:00' },
+                                { type: 'valley', name: 'Valley', start: '21:00', end: '08:00' }
+                            ]
+                        },
+                        {
+                            id: 'season-2',
+                            name: 'Winter',
+                            months: [12, 1, 2],
+                            periods: [
+                                { type: 'peak', name: 'Peak', start: '10:00', end: '12:00' },
+                                { type: 'peak', name: 'Peak', start: '18:00', end: '21:00' },
+                                { type: 'flat', name: 'Flat', start: '08:00', end: '10:00' },
+                                { type: 'flat', name: 'Flat', start: '12:00', end: '18:00' },
+                                { type: 'valley', name: 'Valley', start: '21:00', end: '08:00' }
+                            ]
+                        },
+                        {
+                            id: 'season-3',
+                            name: 'Spring and Autumn',
+                            months: [3, 4, 5, 9, 10, 11],
+                            periods: [
+                                { type: 'peak', name: 'Peak', start: '09:00', end: '12:00' },
+                                { type: 'peak', name: 'Peak', start: '17:00', end: '20:00' },
+                                { type: 'flat', name: 'Flat', start: '08:00', end: '09:00' },
+                                { type: 'flat', name: 'Flat', start: '12:00', end: '17:00' },
+                                { type: 'valley', name: 'Valley', start: '20:00', end: '08:00' }
+                            ]
+                        }
+                    ]
+                },
+                createTime: '2024-01-20 14:45'
+            },
+
+            // 7. Fixed Price - Fixed
+            {
+                id: 7,
+                name: 'Fixed Price - Fixed',
+                type: 'fixed',
+                typeName: 'Fixed Price',
+                description: 'Single price for the whole year',
+                purpose: 'consumption',
+                periods: {
+                    mode: 'fixed'
+                },
+                createTime: '2024-01-30 11:00'
+            },
+
+            // 8. Fixed Price - Monthly
+            {
+                id: 8,
+                name: 'Fixed Price - Monthly',
+                type: 'fixed',
+                typeName: 'Fixed Price',
+                description: 'Different fixed price for each month',
+                purpose: 'consumption',
+                periods: {
+                    mode: 'monthly',
+                    data: {
+                        1: [], 2: [], 3: [], 4: [], 5: [], 6: [],
+                        7: [], 8: [], 9: [], 10: [], 11: [], 12: []
+                    }
+                },
+                createTime: '2024-01-30 11:05'
+            },
+
+            // 9. Fixed Price - Seasonal
+            {
+                id: 9,
+                name: 'Fixed Price - Seasonal',
+                type: 'fixed',
+                typeName: 'Fixed Price',
+                description: 'Different fixed price by season',
+                purpose: 'consumption',
+                periods: {
+                    mode: 'seasonal',
+                    seasons: [
+                        { id: 'season-1', name: 'Summer', months: [6, 7, 8] },
+                        { id: 'season-2', name: 'Winter', months: [12, 1, 2] },
+                        { id: 'season-3', name: 'Spring and Autumn', months: [3, 4, 5, 9, 10, 11] }
+                    ]
+                },
+                createTime: '2024-01-30 11:10'
+            },
+
+            // ==================== Feed-in Templates (9 templates) ====================
+
+            // 10. Tiered Feed-in - Fixed
+            {
+                id: 10,
+                name: 'Tiered Feed-in - Fixed',
+                type: 'tiered',
+                typeName: 'Tiered Pricing',
+                description: 'Use the same tier standard throughout the year',
+                purpose: 'feed-in',
+                tiers: {
+                    mode: 'fixed',
+                    data: [
+                        { start: 0, end: 200, limit: 200 },
+                        { start: 201, end: 400, limit: 400 },
+                        { start: 401, end: null, limit: null }
+                    ]
+                },
+                createTime: '2024-01-10 10:00'
+            },
+
+            // 11. Tiered Feed-in - Monthly
+            {
+                id: 11,
+                name: 'Tiered Feed-in - Monthly',
+                type: 'tiered',
+                typeName: 'Tiered Pricing',
+                description: 'Use different tier standards for each month',
+                purpose: 'feed-in',
+                tiers: {
+                    mode: 'monthly',
+                    data: {
+                        1: [{ start: 0, end: 200, limit: 200 }, { start: 201, end: 400, limit: 400 }, { start: 401, end: null, limit: null }],
+                        2: [{ start: 0, end: 200, limit: 200 }, { start: 201, end: 400, limit: 400 }, { start: 401, end: null, limit: null }],
+                        3: [{ start: 0, end: 200, limit: 200 }, { start: 201, end: 400, limit: 400 }, { start: 401, end: null, limit: null }],
+                        4: [{ start: 0, end: 200, limit: 200 }, { start: 201, end: 400, limit: 400 }, { start: 401, end: null, limit: null }],
+                        5: [{ start: 0, end: 200, limit: 200 }, { start: 201, end: 400, limit: 400 }, { start: 401, end: null, limit: null }],
+                        6: [{ start: 0, end: 200, limit: 200 }, { start: 201, end: 400, limit: 400 }, { start: 401, end: null, limit: null }],
+                        7: [{ start: 0, end: 200, limit: 200 }, { start: 201, end: 400, limit: 400 }, { start: 401, end: null, limit: null }],
+                        8: [{ start: 0, end: 200, limit: 200 }, { start: 201, end: 400, limit: 400 }, { start: 401, end: null, limit: null }],
+                        9: [{ start: 0, end: 200, limit: 200 }, { start: 201, end: 400, limit: 400 }, { start: 401, end: null, limit: null }],
+                        10: [{ start: 0, end: 200, limit: 200 }, { start: 201, end: 400, limit: 400 }, { start: 401, end: null, limit: null }],
+                        11: [{ start: 0, end: 200, limit: 200 }, { start: 201, end: 400, limit: 400 }, { start: 401, end: null, limit: null }],
+                        12: [{ start: 0, end: 200, limit: 200 }, { start: 201, end: 400, limit: 400 }, { start: 401, end: null, limit: null }]
+                    }
+                },
+                createTime: '2024-01-10 10:15'
+            },
+
+            // 12. Tiered Feed-in - Seasonal
+            {
+                id: 12,
+                name: 'Tiered Feed-in - Seasonal',
+                type: 'tiered',
+                typeName: 'Tiered Pricing',
+                description: 'Use different tier standards by season',
+                purpose: 'feed-in',
+                tiers: {
+                    mode: 'seasonal',
+                    seasons: [
+                        {
+                            id: 'season-1',
+                            name: 'Summer',
+                            months: [6, 7, 8],
+                            tiers: [
+                                { start: 0, end: 200, limit: 200 },
+                                { start: 201, end: 400, limit: 400 },
+                                { start: 401, end: null, limit: null }
+                            ]
+                        },
+                        {
+                            id: 'season-2',
+                            name: 'Winter',
+                            months: [12, 1, 2],
+                            tiers: [
+                                { start: 0, end: 200, limit: 200 },
+                                { start: 201, end: 400, limit: 400 },
+                                { start: 401, end: null, limit: null }
+                            ]
+                        },
+                        {
+                            id: 'season-3',
+                            name: 'Spring and Autumn',
+                            months: [3, 4, 5, 9, 10, 11],
+                            tiers: [
+                                { start: 0, end: 200, limit: 200 },
+                                { start: 201, end: 400, limit: 400 },
+                                { start: 401, end: null, limit: null }
+                            ]
+                        }
+                    ]
+                },
+                createTime: '2024-01-10 10:30'
+            },
+
+            // 13. Time-of-Use Feed-in - Fixed
+            {
+                id: 13,
+                name: 'Time-of-Use Feed-in - Fixed',
+                type: 'tou',
+                typeName: 'Time-of-Use',
+                description: 'Use the same peak-valley periods throughout the year',
+                purpose: 'feed-in',
+                periods: {
+                    mode: 'fixed',
+                    data: [
+                        { type: 'peak', name: 'Sharp Peak', start: '10:00', end: '12:00' },
+                        { type: 'peak', name: 'Peak', start: '18:00', end: '21:00' },
+                        { type: 'flat', name: 'Flat', start: '08:00', end: '10:00' },
+                        { type: 'flat', name: 'Flat', start: '12:00', end: '18:00' },
+                        { type: 'valley', name: 'Valley', start: '21:00', end: '08:00' }
+                    ]
+                },
+                createTime: '2024-01-20 15:00'
+            },
+
+            // 14. Time-of-Use Feed-in - Monthly
+            {
+                id: 14,
+                name: 'Time-of-Use Feed-in - Monthly',
+                type: 'tou',
+                typeName: 'Time-of-Use',
+                description: 'Use different peak-valley periods for each month',
+                purpose: 'feed-in',
+                periods: {
+                    mode: 'monthly',
+                    data: {
+                        1: [
+                            { type: 'peak', name: 'Peak', start: '08:00', end: '11:00' },
+                            { type: 'peak', name: 'Peak', start: '18:00', end: '22:00' },
+                            { type: 'valley', name: 'Valley', start: '22:00', end: '08:00' },
+                            { type: 'flat', name: 'Flat', start: '11:00', end: '18:00' }
+                        ],
+                        2: [
+                            { type: 'peak', name: 'Peak', start: '08:00', end: '11:00' },
+                            { type: 'peak', name: 'Peak', start: '18:00', end: '22:00' },
+                            { type: 'valley', name: 'Valley', start: '22:00', end: '08:00' },
+                            { type: 'flat', name: 'Flat', start: '11:00', end: '18:00' }
+                        ],
+                        3: [
+                            { type: 'peak', name: 'Peak', start: '08:00', end: '11:00' },
+                            { type: 'peak', name: 'Peak', start: '18:00', end: '22:00' },
+                            { type: 'valley', name: 'Valley', start: '22:00', end: '08:00' },
+                            { type: 'flat', name: 'Flat', start: '11:00', end: '18:00' }
+                        ],
+                        4: [
+                            { type: 'peak', name: 'Peak', start: '08:00', end: '11:00' },
+                            { type: 'peak', name: 'Peak', start: '18:00', end: '22:00' },
+                            { type: 'valley', name: 'Valley', start: '22:00', end: '08:00' },
+                            { type: 'flat', name: 'Flat', start: '11:00', end: '18:00' }
+                        ],
+                        5: [
+                            { type: 'peak', name: 'Peak', start: '08:00', end: '11:00' },
+                            { type: 'peak', name: 'Peak', start: '18:00', end: '22:00' },
+                            { type: 'valley', name: 'Valley', start: '22:00', end: '08:00' },
+                            { type: 'flat', name: 'Flat', start: '11:00', end: '18:00' }
+                        ],
+                        6: [
+                            { type: 'peak', name: 'Peak', start: '08:00', end: '11:00' },
+                            { type: 'peak', name: 'Peak', start: '18:00', end: '22:00' },
+                            { type: 'valley', name: 'Valley', start: '22:00', end: '08:00' },
+                            { type: 'flat', name: 'Flat', start: '11:00', end: '18:00' }
+                        ],
+                        7: [
+                            { type: 'peak', name: 'Peak', start: '08:00', end: '11:00' },
+                            { type: 'peak', name: 'Peak', start: '18:00', end: '22:00' },
+                            { type: 'valley', name: 'Valley', start: '22:00', end: '08:00' },
+                            { type: 'flat', name: 'Flat', start: '11:00', end: '18:00' }
+                        ],
+                        8: [
+                            { type: 'peak', name: 'Peak', start: '08:00', end: '11:00' },
+                            { type: 'peak', name: 'Peak', start: '18:00', end: '22:00' },
+                            { type: 'valley', name: 'Valley', start: '22:00', end: '08:00' },
+                            { type: 'flat', name: 'Flat', start: '11:00', end: '18:00' }
+                        ],
+                        9: [
+                            { type: 'peak', name: 'Peak', start: '08:00', end: '11:00' },
+                            { type: 'peak', name: 'Peak', start: '18:00', end: '22:00' },
+                            { type: 'valley', name: 'Valley', start: '22:00', end: '08:00' },
+                            { type: 'flat', name: 'Flat', start: '11:00', end: '18:00' }
+                        ],
+                        10: [
+                            { type: 'peak', name: 'Peak', start: '08:00', end: '11:00' },
+                            { type: 'peak', name: 'Peak', start: '18:00', end: '22:00' },
+                            { type: 'valley', name: 'Valley', start: '22:00', end: '08:00' },
+                            { type: 'flat', name: 'Flat', start: '11:00', end: '18:00' }
+                        ],
+                        11: [
+                            { type: 'peak', name: 'Peak', start: '08:00', end: '11:00' },
+                            { type: 'peak', name: 'Peak', start: '18:00', end: '22:00' },
+                            { type: 'valley', name: 'Valley', start: '22:00', end: '08:00' },
+                            { type: 'flat', name: 'Flat', start: '11:00', end: '18:00' }
+                        ],
+                        12: [
+                            { type: 'peak', name: 'Peak', start: '08:00', end: '11:00' },
+                            { type: 'peak', name: 'Peak', start: '18:00', end: '22:00' },
+                            { type: 'valley', name: 'Valley', start: '22:00', end: '08:00' },
+                            { type: 'flat', name: 'Flat', start: '11:00', end: '18:00' }
+                        ]
+                    }
+                },
+                createTime: '2024-01-20 15:15'
+            },
+
+            // 15. Time-of-Use Feed-in - Seasonal
+            {
+                id: 15,
+                name: 'Time-of-Use Feed-in - Seasonal',
+                type: 'tou',
+                typeName: 'Time-of-Use',
+                description: 'Use different peak-valley periods by season',
+                purpose: 'feed-in',
+                periods: {
+                    mode: 'seasonal',
+                    seasons: [
+                        {
+                            id: 'season-1',
+                            name: 'Summer',
+                            months: [6, 7, 8],
+                            periods: [
+                                { type: 'peak', name: 'Peak', start: '10:00', end: '12:00' },
+                                { type: 'peak', name: 'Peak', start: '18:00', end: '21:00' },
+                                { type: 'flat', name: 'Flat', start: '08:00', end: '10:00' },
+                                { type: 'flat', name: 'Flat', start: '12:00', end: '18:00' },
+                                { type: 'valley', name: 'Valley', start: '21:00', end: '08:00' }
+                            ]
+                        },
+                        {
+                            id: 'season-2',
+                            name: 'Winter',
+                            months: [12, 1, 2],
+                            periods: [
+                                { type: 'peak', name: 'Peak', start: '10:00', end: '12:00' },
+                                { type: 'peak', name: 'Peak', start: '18:00', end: '21:00' },
+                                { type: 'flat', name: 'Flat', start: '08:00', end: '10:00' },
+                                { type: 'flat', name: 'Flat', start: '12:00', end: '18:00' },
+                                { type: 'valley', name: 'Valley', start: '21:00', end: '08:00' }
+                            ]
+                        },
+                        {
+                            id: 'season-3',
+                            name: 'Spring and Autumn',
+                            months: [3, 4, 5, 9, 10, 11],
+                            periods: [
+                                { type: 'peak', name: 'Peak', start: '09:00', end: '12:00' },
+                                { type: 'peak', name: 'Peak', start: '17:00', end: '20:00' },
+                                { type: 'flat', name: 'Flat', start: '08:00', end: '09:00' },
+                                { type: 'flat', name: 'Flat', start: '12:00', end: '17:00' },
+                                { type: 'valley', name: 'Valley', start: '20:00', end: '08:00' }
+                            ]
+                        }
+                    ]
+                },
+                createTime: '2024-01-20 15:30'
+            },
+
+            // 16. Fixed Feed-in - Fixed
+            {
+                id: 16,
+                name: 'Fixed Feed-in - Fixed',
+                type: 'fixed',
+                typeName: 'Fixed Price',
+                description: 'Single price for the whole year',
+                purpose: 'feed-in',
+                periods: {
+                    mode: 'fixed'
+                },
+                createTime: '2024-02-01 10:00'
+            },
+
+            // 17. Fixed Feed-in - Monthly
+            {
+                id: 17,
+                name: 'Fixed Feed-in - Monthly',
+                type: 'fixed',
+                typeName: 'Fixed Price',
+                description: 'Different fixed price for each month',
+                purpose: 'feed-in',
+                periods: {
+                    mode: 'monthly',
+                    data: {
+                        1: [], 2: [], 3: [], 4: [], 5: [], 6: [],
+                        7: [], 8: [], 9: [], 10: [], 11: [], 12: []
+                    }
+                },
+                createTime: '2024-02-01 10:05'
+            },
+
+            // 18. Fixed Feed-in - Seasonal
+            {
+                id: 18,
+                name: 'Fixed Feed-in - Seasonal',
+                type: 'fixed',
+                typeName: 'Fixed Price',
+                description: 'Different fixed price by season',
+                purpose: 'feed-in',
+                periods: {
+                    mode: 'seasonal',
+                    seasons: [
+                        { id: 'season-1', name: 'Summer', months: [6, 7, 8] },
+                        { id: 'season-2', name: 'Winter', months: [12, 1, 2] },
+                        { id: 'season-3', name: 'Spring and Autumn', months: [3, 4, 5, 9, 10, 11] }
+                    ]
+                },
+                createTime: '2024-02-01 10:10'
+            }
+        ];
+
         // 根据语言环境初始化数据
         if (currentLang === 'zh') {
             templates = mockTemplatesZh;
+        } else {
+            templates = mockTemplatesEn;
         }
 
         // 电站数据
@@ -3063,7 +3682,7 @@
                 if (newLang === 'zh') {
                     templates = mockTemplatesZh;
                 } else {
-                    templates = [];  // 英文环境清空数据
+                    templates = mockTemplatesEn;
                 }
                 renderTemplates();
                 renderSites();
@@ -4826,10 +5445,25 @@
             });
         }
 
-        // 格式化月份范围显示
+        // 格式化单个月份显示
+        function formatMonth(month) {
+            const lang = localStorage.getItem('language') || 'zh';
+            return lang === 'zh' ? `${month}月` : `${month}`;
+        }
+
+        // 格式化月份列表显示 (用于简单列表,如 "6月、7月、8月" 或 "6, 7, 8")
+        function formatMonthsList(months) {
+            if (!months || months.length === 0) return '';
+            const lang = localStorage.getItem('language') || 'zh';
+            const separator = lang === 'zh' ? '、' : ', ';
+            return months.map(m => formatMonth(m)).join(separator);
+        }
+
+        // 格式化月份范围显示 (用于连续范围,如 "6-8月" 或 "6-8")
         function formatMonthsRange(months) {
             if (!months || months.length === 0) return '';
             const sorted = [...months].sort((a, b) => a - b);
+            const lang = localStorage.getItem('language') || 'zh';
 
             // 检查是否连续
             let ranges = [];
@@ -4840,12 +5474,20 @@
                 if (sorted[i] === end + 1 || (end === 12 && sorted[i] === 1)) {
                     end = sorted[i];
                 } else {
-                    ranges.push(start === end ? `${start}月` : `${start}-${end}月`);
+                    if (lang === 'zh') {
+                        ranges.push(start === end ? `${start}月` : `${start}-${end}月`);
+                    } else {
+                        ranges.push(start === end ? `${start}` : `${start}-${end}`);
+                    }
                     start = sorted[i];
                     end = sorted[i];
                 }
             }
-            ranges.push(start === end ? `${start}月` : `${start}-${end}月`);
+            if (lang === 'zh') {
+                ranges.push(start === end ? `${start}月` : `${start}-${end}月`);
+            } else {
+                ranges.push(start === end ? `${start}` : `${start}-${end}`);
+            }
 
             return ranges.join(', ');
         }
@@ -5979,16 +6621,81 @@
         }
 
         function deleteTemplate(id) {
+            const confirmTitle = typeof getTranslation === 'function' ?
+                getTranslation('elecPriceConfirmDeleteTitle') : '确认删除';
             const confirmText = typeof getTranslation === 'function' ?
                 getTranslation('elecPriceConfirmDeleteTemplate') : '确定要删除此模版吗？';
-            const successText = typeof getTranslation === 'function' ?
-                getTranslation('elecPriceToastDeleteSuccess') : '删除成功';
+            const confirmBtn = typeof getTranslation === 'function' ?
+                getTranslation('elecPriceBtnConfirm') : '确定';
+            const cancelBtn = typeof getTranslation === 'function' ?
+                getTranslation('elecPriceBtnCancel') : '取消';
 
-            if (confirm(confirmText)) {
+            showConfirmDialog(confirmTitle, confirmText, confirmBtn, cancelBtn, () => {
+                const successText = typeof getTranslation === 'function' ?
+                    getTranslation('elecPriceToastDeleteSuccess') : '删除成功';
                 templates = templates.filter(t => t.id !== id);
                 renderTemplates();
                 showToast(successText, 'success');
+            });
+        }
+
+        // 显示自定义确认对话框
+        function showConfirmDialog(title, message, confirmText, cancelText, onConfirm) {
+            // 移除已存在的确认对话框
+            const existingDialog = document.getElementById('customConfirmDialog');
+            if (existingDialog) existingDialog.remove();
+
+            // 创建对话框
+            const dialog = document.createElement('div');
+            dialog.id = 'customConfirmDialog';
+            dialog.className = 'modal';
+            dialog.style.display = 'flex';
+            dialog.innerHTML = `
+                <div class="modal-content" style="max-width: 400px;">
+                    <div class="modal-header">
+                        <h3 class="modal-title">${title}</h3>
+                        <button class="modal-close" onclick="closeConfirmDialog()">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="padding: 24px;">
+                        <p style="color: #374151; font-size: 14px; line-height: 1.6; margin: 0;">
+                            ${message}
+                        </p>
+                    </div>
+                    <div class="modal-footer" style="display: flex; justify-content: flex-end; gap: 12px;">
+                        <button class="btn btn-secondary" onclick="closeConfirmDialog()">${cancelText}</button>
+                        <button class="btn btn-primary" onclick="confirmDialogAction()">${confirmText}</button>
+                    </div>
+                </div>
+            `;
+
+            document.body.appendChild(dialog);
+
+            // 保存确认回调
+            window._confirmDialogCallback = onConfirm;
+
+            // 点击背景关闭
+            dialog.addEventListener('click', (e) => {
+                if (e.target === dialog) {
+                    closeConfirmDialog();
+                }
+            });
+        }
+
+        // 关闭确认对话框
+        function closeConfirmDialog() {
+            const dialog = document.getElementById('customConfirmDialog');
+            if (dialog) dialog.remove();
+            window._confirmDialogCallback = null;
+        }
+
+        // 执行确认操作
+        function confirmDialogAction() {
+            if (window._confirmDialogCallback) {
+                window._confirmDialogCallback();
             }
+            closeConfirmDialog();
         }
 
         // ==================== 电站配置 ====================
@@ -6817,7 +7524,7 @@ function generatePriceHTML(template) {
                                 <div style="background: #f0f9ff; padding: 16px; border: 2px solid #3b82f6; border-radius: 8px; margin-bottom: 16px;">
                                     <h5 style="margin: 0 0 12px 0; color: #1e40af;">
                                         <i class="fas fa-calendar-alt"></i> ${season.name}
-                                        <span style="font-size: 0.875rem; color: #64748b;">(${season.months.map(m => m + '月').join('、')})</span>
+                                        <span style="font-size: 0.875rem; color: #64748b;">(${formatMonthsList(season.months)})</span>
                                     </h5>
                                     ${season.tiers.map((tier, index) => {
                                         const priceData = config.consumptionPrices.find(p => p.mode === 'seasonal' && p.season === season.id && p.tier === index);
@@ -6921,7 +7628,7 @@ function generatePriceHTML(template) {
                                 <div style="background: #f0f9ff; padding: 16px; border: 2px solid #3b82f6; border-radius: 8px; margin-bottom: 16px;">
                                     <h5 style="margin: 0 0 12px 0; color: #1e40af;">
                                         <i class="fas fa-calendar-alt"></i> ${season.name}
-                                        <span style="font-size: 0.875rem; color: #64748b;">(${season.months.map(m => m + '月').join('、')})</span>
+                                        <span style="font-size: 0.875rem; color: #64748b;">(${formatMonthsList(season.months)})</span>
                                     </h5>
                                     ${season.periods.map(period => {
                                         const priceData = config.consumptionPrices.find(p => p.mode === 'seasonal' && p.season === season.id && p.periodType === period.type);
@@ -7040,7 +7747,7 @@ function generatePriceHTML(template) {
                                 <div style="background: #f0f9ff; padding: 16px; border: 2px solid #3b82f6; border-radius: 8px; margin-bottom: 16px;">
                                     <h5 style="margin: 0 0 12px 0; color: #1e40af;">
                                         <i class="fas fa-calendar-alt"></i> ${season.name}
-                                        <span style="font-size: 0.875rem; color: #64748b;">(${season.months.map(m => m + '月').join('、')})</span>
+                                        <span style="font-size: 0.875rem; color: #64748b;">(${formatMonthsList(season.months)})</span>
                                     </h5>
                                     ${season.tiers.map((tier, index) => {
                                         const priceData = config.feedinPrices.find(p => p.mode === 'seasonal' && p.season === season.id && p.tier === index);
@@ -7144,7 +7851,7 @@ function generatePriceHTML(template) {
                                 <div style="background: #f0f9ff; padding: 16px; border: 2px solid #3b82f6; border-radius: 8px; margin-bottom: 16px;">
                                     <h5 style="margin: 0 0 12px 0; color: #1e40af;">
                                         <i class="fas fa-calendar-alt"></i> ${season.name}
-                                        <span style="font-size: 0.875rem; color: #64748b;">(${season.months.map(m => m + '月').join('、')})</span>
+                                        <span style="font-size: 0.875rem; color: #64748b;">(${formatMonthsList(season.months)})</span>
                                     </h5>
                                     ${season.periods.map(period => {
                                         const priceData = config.feedinPrices.find(p => p.mode === 'seasonal' && p.season === season.id && p.periodType === period.type);

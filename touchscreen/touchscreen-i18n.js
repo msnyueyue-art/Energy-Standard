@@ -7,7 +7,7 @@ const touchscreenTranslations = {
     zh: {
         // ========== 通用 ==========
         systemTitle: '储能柜管理系统',
-        systemName: '储能系统',
+        systemName: '储能柜管理系统',
         confirmBtn: '确认',
         cancelBtn: '取消',
         closeBtn: '关闭',
@@ -115,6 +115,12 @@ const touchscreenTranslations = {
         latestVersion: '最新版本：',
         upgradeProgress: '升级进度',
         preparingUpgrade: '准备升级...',
+        downloadingFirmware: '下载固件...',
+        verifyingFirmware: '校验固件...',
+        installingUpdate: '安装更新...',
+        restartingDevice: '重启设备...',
+        upgradeComplete: '升级完成！',
+        upgradeSuccessMessage: '固件升级成功！系统将在3秒后重启...',
         startUpgrade: '开始升级',
         cancel: '取消',
         timeRange: '时间范围',
@@ -233,6 +239,8 @@ const touchscreenTranslations = {
         // ========== 历史页 ==========
         historyTitle: '历史记录',
         historyData: '历史数据',
+        powerTrendAnalysis: '功率趋势分析',
+        revenueAnalysis: '收益分析',
         selectDate: '选择日期',
         historyAlarm: '历史告警',
         historyOperation: '操作记录',
@@ -458,6 +466,18 @@ const touchscreenTranslations = {
         alarmNotification: '告警通知',
         alarmNotificationDesc: '接收设备告警通知',
         soundAlert: '声音提醒',
+        
+        // 时间单位
+        oneSecond: '1秒',
+        threeSeconds: '3秒',
+        fiveSeconds: '5秒',
+        tenSeconds: '10秒',
+        fiveMinutes: '5分钟',
+        tenMinutes: '10分钟',
+        fifteenMinutes: '15分钟',
+        thirtyMinutes: '30分钟',
+        oneHour: '1小时',
+        never: '永不',
         soundAlertDesc: '播放提示音',
 
         // 电价设置
@@ -531,8 +551,37 @@ const touchscreenTranslations = {
         deleteConfirm: '确认删除？',
         operationSuccess: '操作成功',
         operationFailed: '操作失败',
+        enteredEditMode: '已进入编辑模式',
+        savingSettings: '正在保存设置...',
         saveSuccess: '保存成功',
+        settingsSaveSuccess: '设置保存成功',
         saveFailed: '保存失败',
+        templateAppliedSuccess: '模板应用成功',
+        addPeriodInDevelopment: '添加时段功能开发中...',
+
+        // ========== 日历相关 ==========
+        calendarMonthJan: '一月',
+        calendarMonthFeb: '二月',
+        calendarMonthMar: '三月',
+        calendarMonthApr: '四月',
+        calendarMonthMay: '五月',
+        calendarMonthJun: '六月',
+        calendarMonthJul: '七月',
+        calendarMonthAug: '八月',
+        calendarMonthSep: '九月',
+        calendarMonthOct: '十月',
+        calendarMonthNov: '十一月',
+        calendarMonthDec: '十二月',
+        calendarWeekdaySun: '日',
+        calendarWeekdayMon: '一',
+        calendarWeekdayTue: '二',
+        calendarWeekdayWed: '三',
+        calendarWeekdayThu: '四',
+        calendarWeekdayFri: '五',
+        calendarWeekdaySat: '六',
+        calendarToday: '今天',
+        calendarCancel: '取消',
+
         networkError: '网络错误',
         serverError: '服务器错误',
         permissionDenied: '权限不足',
@@ -693,6 +742,12 @@ const touchscreenTranslations = {
         latestVersion: 'Latest Version:',
         upgradeProgress: 'Upgrade Progress',
         preparingUpgrade: 'Preparing to upgrade...',
+        downloadingFirmware: 'Downloading firmware...',
+        verifyingFirmware: 'Verifying firmware...',
+        installingUpdate: 'Installing update...',
+        restartingDevice: 'Restarting device...',
+        upgradeComplete: 'Upgrade complete!',
+        upgradeSuccessMessage: 'Firmware upgrade successful! System will restart in 3 seconds...',
         startUpgrade: 'Start Upgrade',
         cancel: 'Cancel',
         timeRange: 'Time Range',
@@ -812,6 +867,8 @@ const touchscreenTranslations = {
         // ========== History ==========
         historyTitle: 'History',
         historyData: 'Historical Data',
+        powerTrendAnalysis: 'Power Trend Analysis',
+        revenueAnalysis: 'Revenue Analysis',
         selectDate: 'Select Date',
         historyAlarm: 'Alarm History',
         historyOperation: 'Operation History',
@@ -1024,6 +1081,18 @@ const touchscreenTranslations = {
         // Security settings
         loginSecurity: 'Login Security',
         autoLock: 'Auto Lock',
+        
+        // Time units
+        oneSecond: '1 Second',
+        threeSeconds: '3 Seconds',
+        fiveSeconds: '5 Seconds',
+        tenSeconds: '10 Seconds',
+        fiveMinutes: '5 Minutes',
+        tenMinutes: '10 Minutes',
+        fifteenMinutes: '15 Minutes',
+        thirtyMinutes: '30 Minutes',
+        oneHour: '1 Hour',
+        never: 'Never',
         autoLockDesc: 'Auto lock system when idle',
         lockTimeout: 'Lock Timeout',
         lockTimeoutDesc: 'Auto lock after idle time',
@@ -1109,8 +1178,37 @@ const touchscreenTranslations = {
         deleteConfirm: 'Confirm delete?',
         operationSuccess: 'Operation successful',
         operationFailed: 'Operation failed',
+        enteredEditMode: 'Entered edit mode',
+        savingSettings: 'Saving settings...',
         saveSuccess: 'Save successful',
+        settingsSaveSuccess: 'Settings saved successfully',
         saveFailed: 'Save failed',
+        templateAppliedSuccess: 'Template applied successfully',
+        addPeriodInDevelopment: 'Add period feature is under development...',
+
+        // ========== Calendar ==========
+        calendarMonthJan: 'January',
+        calendarMonthFeb: 'February',
+        calendarMonthMar: 'March',
+        calendarMonthApr: 'April',
+        calendarMonthMay: 'May',
+        calendarMonthJun: 'June',
+        calendarMonthJul: 'July',
+        calendarMonthAug: 'August',
+        calendarMonthSep: 'September',
+        calendarMonthOct: 'October',
+        calendarMonthNov: 'November',
+        calendarMonthDec: 'December',
+        calendarWeekdaySun: 'Sun',
+        calendarWeekdayMon: 'Mon',
+        calendarWeekdayTue: 'Tue',
+        calendarWeekdayWed: 'Wed',
+        calendarWeekdayThu: 'Thu',
+        calendarWeekdayFri: 'Fri',
+        calendarWeekdaySat: 'Sat',
+        calendarToday: 'Today',
+        calendarCancel: 'Cancel',
+
         networkError: 'Network error',
         serverError: 'Server error',
         permissionDenied: 'Permission denied',
@@ -1163,7 +1261,9 @@ const touchscreenTranslations = {
 
 // 获取当前语言
 function getTouchscreenLang() {
-    return localStorage.getItem('touchscreen_language') || 'en';
+    const result = localStorage.getItem('touchscreen_language') || 'en';
+    console.log("[DEBUG getTouchscreenLang] localStorage:", localStorage.getItem('touchscreen_language'), "→ returning:", result);
+    return result;
 }
 
 // 设置语言

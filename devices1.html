@@ -9167,6 +9167,14 @@
                 if (total) total.textContent = '1.18';
             }, 2000);
         }
+
+        // 更新页面标题
+        document.title = getTranslation('pageTitleEMSUpgrade') || 'EMS升级 - 储能柜管理系统';
+
+        // 监听语言切换事件
+        window.addEventListener('languageChanged', function() {
+            document.title = getTranslation('pageTitleEMSUpgrade') || 'EMS升级 - 储能柜管理系统';
+        });
     </script>
 
     <!-- 面板蒙版 -->

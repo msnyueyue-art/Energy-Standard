@@ -1287,6 +1287,158 @@
         [data-theme="dark"] .stats-card:hover {
             box-shadow: 0 4px 12px rgba(0,0,0,0.5) !important;
         }
+
+        /* 模态框样式 */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: modalFadeIn 0.3s ease;
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #111827;
+            margin: 0;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #6b7280;
+            cursor: pointer;
+            padding: 0;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .modal-close:hover {
+            background-color: #f3f4f6;
+            color: #111827;
+        }
+
+        .modal-body {
+            padding: 24px;
+        }
+
+        .modal-footer {
+            padding: 16px 24px;
+            border-top: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+        }
+
+        .btn-secondary {
+            background-color: #f3f4f6;
+            color: #374151;
+            border: 1px solid #d1d5db;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-secondary:hover {
+            background-color: #e5e7eb;
+            border-color: #9ca3af;
+        }
+
+        .btn-primary {
+            background-color: #3b82f6;
+            color: white;
+            border: 1px solid #3b82f6;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-primary:hover {
+            background-color: #2563eb;
+            border-color: #2563eb;
+        }
+
+        /* 暗色主题适配 */
+        [data-theme="dark"] .modal-content {
+            background-color: #1f2937;
+        }
+
+        [data-theme="dark"] .modal-title {
+            color: #f9fafb;
+        }
+
+        [data-theme="dark"] .modal-header,
+        [data-theme="dark"] .modal-footer {
+            border-color: #374151;
+        }
+
+        [data-theme="dark"] .modal-close {
+            color: #9ca3af;
+        }
+
+        [data-theme="dark"] .modal-close:hover {
+            background-color: #374151;
+            color: #f9fafb;
+        }
+
+        [data-theme="dark"] .btn-secondary {
+            background-color: #374151;
+            color: #f9fafb;
+            border-color: #4b5563;
+        }
+
+        [data-theme="dark"] .btn-secondary:hover {
+            background-color: #4b5563;
+            border-color: #6b7280;
+        }
     </style>
 </head>
 <body data-page="rule-engine">
@@ -1501,7 +1653,7 @@
 
                         <div class="rule-form-group" style="margin-bottom: 0;">
                             <label class="rule-form-label" data-translate="ruleStrategyDescLabel">策略描述</label>
-                            <input type="text" class="form-input" id="ruleDescription" placeholder="Rule Description">
+                            <input type="text" class="form-input" id="ruleDescription" data-translate-placeholder="ruleStrategyDescPlaceholder" placeholder="请输入策略描述 (可选)">
                         </div>
                     </div>
 
@@ -1525,18 +1677,18 @@
                             <div>
                                 <select class="form-select" id="ruleOperator">
                                     <option value="" data-translate="ruleSelectConditionPlaceholder">选择条件</option>
-                                    <option value="gt">Greater than (&gt;)</option>
-                                    <option value="lt">Less than (&lt;)</option>
-                                    <option value="gte">Greater than or equal (&gt;=)</option>
-                                    <option value="lte">Less than or equal (&lt;=)</option>
-                                    <option value="eq">Equal (=)</option>
+                                    <option value="gt" data-translate="ruleOperatorGt">大于 (&gt;)</option>
+                                    <option value="lt" data-translate="ruleOperatorLt">小于 (&lt;)</option>
+                                    <option value="gte" data-translate="ruleOperatorGte">大于或等于 (&gt;=)</option>
+                                    <option value="lte" data-translate="ruleOperatorLte">小于或等于 (&lt;=)</option>
+                                    <option value="eq" data-translate="ruleOperatorEq">等于 (=)</option>
                                 </select>
                             </div>
                             <div>
-                                <input type="number" class="form-input" id="ruleThreshold" placeholder="Threshold">
+                                <input type="number" class="form-input" id="ruleThreshold" data-translate-placeholder="ruleThresholdPlaceholder" placeholder="阈值">
                             </div>
                             <div>
-                                <input type="number" class="form-input" id="ruleDuration" placeholder="Duration (minutes)">
+                                <input type="number" class="form-input" id="ruleDuration" data-translate-placeholder="ruleDurationPlaceholder" placeholder="持续时间 (分钟)">
                             </div>
                         </div>
                     </div>
@@ -1606,9 +1758,9 @@
                                 <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 12px; font-size: 13px; line-height: 1.6;">
                                     <div style="font-weight: 500; color: #1e40af; margin-bottom: 6px;">
                                         <i class="fas fa-info-circle" style="margin-right: 6px;"></i>
-                                        说明
+                                        <span data-translate="ruleDedupExplanation">说明</span>
                                     </div>
-                                    <div style="color: #1e3a8a;">
+                                    <div style="color: #1e3a8a;" data-translate="ruleDedupDescription">
                                         同一设备的相同消息在时间窗口内只保留一条，避免重复通知
                                     </div>
                                 </div>
@@ -2596,10 +2748,39 @@
                     }
                 };
 
+                // 模板ID到翻译键的映射
+                const templateI18nMap = {
+                    'inverterOverload': { name: 'ruleTemplateNameInverterOverload', desc: 'ruleTemplateDescInverterOverload' },
+                    'inverterFault': { name: 'ruleTemplateNameInverterFault', desc: 'ruleTemplateDescInverterFault' },
+                    'inverterTemp': { name: 'ruleTemplateNameInverterTemp', desc: 'ruleTemplateDescInverterTemp' },
+                    'batteryHighTemp': { name: 'ruleTemplateNameBatteryHighTemp', desc: 'ruleTemplateDescBatteryHighTemp' },
+                    'batteryLowSOC': { name: 'ruleTemplateNameBatteryLowSOC', desc: 'ruleTemplateDescBatteryLowSOC' },
+                    'batteryVoltageDiff': { name: 'ruleTemplateNameBatteryVoltageDiff', desc: 'ruleTemplateDescBatteryVoltageDiff' },
+                    'batteryOverCurrent': { name: 'ruleTemplateNameBatteryOverCurrent', desc: 'ruleTemplateDescBatteryOverCurrent' },
+                    'energyAbnormal': { name: 'ruleTemplateNameEnergyAbnormal', desc: 'ruleTemplateDescEnergyAbnormal' },
+                    'powerOverload': { name: 'ruleTemplateNamePowerOverload', desc: 'ruleTemplateDescPowerOverload' },
+                    'voltageAbnormal': { name: 'ruleTemplateNameVoltageAbnormal', desc: 'ruleTemplateDescVoltageAbnormal' },
+                    'currentAbnormal': { name: 'ruleTemplateNameCurrentAbnormal', desc: 'ruleTemplateDescCurrentAbnormal' },
+                    'envTempHigh': { name: 'ruleTemplateNameEnvTempHigh', desc: 'ruleTemplateDescEnvTempHigh' },
+                    'envTempLow': { name: 'ruleTemplateNameEnvTempLow', desc: 'ruleTemplateDescEnvTempLow' },
+                    'humidityHigh': { name: 'ruleTemplateNameHumidityHigh', desc: 'ruleTemplateDescHumidityHigh' },
+                    'deviceTempHigh': { name: 'ruleTemplateNameDeviceTempHigh', desc: 'ruleTemplateDescDeviceTempHigh' },
+                    'smokeAlarm': { name: 'ruleTemplateNameSmokeAlarm', desc: 'ruleTemplateDescSmokeAlarm' },
+                    'fireAlarm': { name: 'ruleTemplateNameFireAlarm', desc: 'ruleTemplateDescFireAlarm' },
+                    'waterLeakage': { name: 'ruleTemplateNameWaterLeakage', desc: 'ruleTemplateDescWaterLeakage' },
+                    'gasLeakage': { name: 'ruleTemplateNameGasLeakage', desc: 'ruleTemplateDescGasLeakage' }
+                };
+
                 const template = templates[templateId];
-                if (template) {
-                    document.getElementById('ruleName').value = template.name + ' (副本)';
-                    document.getElementById('ruleDescription').value = template.description;
+                const i18nKeys = templateI18nMap[templateId];
+                if (template && i18nKeys) {
+                    // 使用翻译函数获取模板名称和描述
+                    const templateName = getTranslation(i18nKeys.name) || template.name;
+                    const templateDesc = getTranslation(i18nKeys.desc) || template.description;
+                    const copySuffix = getTranslation('ruleTemplateCopySuffix') || ' (副本)';
+
+                    document.getElementById('ruleName').value = templateName + copySuffix;
+                    document.getElementById('ruleDescription').value = templateDesc;
                     document.getElementById('ruleParameter').value = template.parameter;
                     document.getElementById('ruleOperator').value = template.operator;
                     document.getElementById('ruleThreshold').value = template.threshold;
@@ -2615,7 +2796,7 @@
             const modalTitle = document.getElementById('modalTitle');
 
             if (ruleId) {
-                modalTitle.textContent = '编辑规则';
+                modalTitle.textContent = getTranslation('ruleEditRule') || '编辑规则';
                 // 加载规则数据
                 const rule = allRules.find(r => r.id === ruleId);
                 if (rule) {
@@ -2787,12 +2968,76 @@
                 return;
             }
 
-            if (confirm(getTranslation('ruleDeleteConfirmMessage'))) {
+            const confirmTitle = getTranslation('ruleDeleteConfirmTitle') || '确认删除';
+            const confirmMessage = getTranslation('ruleDeleteConfirmMessage') || '确定要删除这条规则吗?';
+            const confirmBtn = getTranslation('btnConfirm') || '确定';
+            const cancelBtn = getTranslation('btnCancelAlt') || '取消';
+
+            showConfirmDialog(confirmTitle, confirmMessage, confirmBtn, cancelBtn, () => {
                 allRules = allRules.filter(r => r.id !== ruleId);
                 filteredRules = filteredRules.filter(r => r.id !== ruleId);
                 renderRulesTable();
                 showNotification(getTranslation('ruleDeleteSuccess'), 'success');
+            });
+        }
+
+        // 显示自定义确认对话框
+        function showConfirmDialog(title, message, confirmText, cancelText, onConfirm) {
+            // 移除已存在的确认对话框
+            const existingDialog = document.getElementById('customConfirmDialog');
+            if (existingDialog) existingDialog.remove();
+
+            // 创建对话框
+            const dialog = document.createElement('div');
+            dialog.id = 'customConfirmDialog';
+            dialog.className = 'modal';
+            dialog.style.display = 'flex';
+            dialog.innerHTML = `
+                <div class="modal-content" style="max-width: 400px;">
+                    <div class="modal-header">
+                        <h3 class="modal-title">${title}</h3>
+                        <button class="modal-close" onclick="closeConfirmDialog()">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="padding: 24px;">
+                        <p style="color: #374151; font-size: 14px; line-height: 1.6; margin: 0;">
+                            ${message}
+                        </p>
+                    </div>
+                    <div class="modal-footer" style="display: flex; justify-content: flex-end; gap: 12px;">
+                        <button class="btn btn-secondary" onclick="closeConfirmDialog()">${cancelText}</button>
+                        <button class="btn btn-primary" onclick="confirmDialogAction()">${confirmText}</button>
+                    </div>
+                </div>
+            `;
+
+            document.body.appendChild(dialog);
+
+            // 保存确认回调
+            window._confirmDialogCallback = onConfirm;
+
+            // 点击背景关闭
+            dialog.addEventListener('click', (e) => {
+                if (e.target === dialog) {
+                    closeConfirmDialog();
+                }
+            });
+        }
+
+        // 关闭确认对话框
+        function closeConfirmDialog() {
+            const dialog = document.getElementById('customConfirmDialog');
+            if (dialog) dialog.remove();
+            window._confirmDialogCallback = null;
+        }
+
+        // 执行确认操作
+        function confirmDialogAction() {
+            if (window._confirmDialogCallback) {
+                window._confirmDialogCallback();
             }
+            closeConfirmDialog();
         }
 
         // 切换规则状态
@@ -3440,6 +3685,14 @@
                     openNotificationPanel();
                 }, 300);
             }
+
+            // 更新页面标题
+            document.title = getTranslation('pageTitleMessagePolicy') || '消息策略管理 - 储能柜管理系统';
+
+            // 监听语言切换事件
+            window.addEventListener('languageChanged', function() {
+                document.title = getTranslation('pageTitleMessagePolicy') || '消息策略管理 - 储能柜管理系统';
+            });
         });
     </script>
 </body>

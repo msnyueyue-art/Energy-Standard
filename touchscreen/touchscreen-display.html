@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>触摸屏展示 - 13.3寸</title>
+    <title>Touchscreen Display - 13.3"</title>
     <style>
         * {
             margin: 0;
@@ -825,6 +825,68 @@
             createFloatingParticles();
             createScreenParticles();
         });
+    </script>
+    <script src="../common.js"></script>
+    <script>
+        // 更新页面标题的函数
+        function updatePageTitle() {
+            try {
+                // 获取当前语言设置
+                const savedLang = localStorage.getItem('language') || 'en';
+
+                // 查找title元素
+                const titleElement = document.querySelector('title[data-translate]');
+                if (!titleElement) {
+                    console.warn('Title element with data-translate not found');
+                    return;
+                }
+
+                // 获取翻译键
+                const titleKey = titleElement.getAttribute('data-translate');
+
+                // 检查translations对象是否存在
+                if (typeof translations === 'undefined') {
+                    console.warn('translations object not found');
+                    return;
+                }
+
+                // 获取对应语言的翻译
+                if (translations[savedLang] && translations[savedLang][titleKey]) {
+                    document.title = translations[savedLang][titleKey];
+                    console.log('Title updated to:', document.title, 'Language:', savedLang);
+                } else {
+                    console.warn('Translation not found for key:', titleKey, 'language:', savedLang);
+                }
+            } catch (error) {
+                console.error('Error updating title:', error);
+            }
+        }
+
+        // 在DOM加载完成后更新标题
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(updatePageTitle, 200);
+        });
+
+        // 在页面完全加载后再次更新标题
+        window.addEventListener('load', function() {
+            setTimeout(updatePageTitle, 300);
+        });
+
+        // 监听语言变化(如果currentLang变量被更新)
+        if (typeof MutationObserver !== 'undefined') {
+            const observer = new MutationObserver(function() {
+                updatePageTitle();
+            });
+            // 观察localStorage的变化需要定期检查
+            let lastLang = localStorage.getItem('language');
+            setInterval(function() {
+                const currentStoredLang = localStorage.getItem('language');
+                if (currentStoredLang !== lastLang) {
+                    lastLang = currentStoredLang;
+                    updatePageTitle();
+                }
+            }, 500);
+        }
     </script>
 </body>
 </html>

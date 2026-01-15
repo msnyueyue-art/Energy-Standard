@@ -46,6 +46,16 @@
             background: #475569;
         }
         
+        /* 删除弹窗单选框样式 */
+        #deleteConfirmModal input[type="radio"]:checked + div {
+            color: #1e40af;
+        }
+
+        #deleteConfirmModal label:has(input[type="radio"]:checked) {
+            border-color: #3b82f6 !important;
+            background: #eff6ff !important;
+        }
+
         /* 深色主题下的删除确认弹窗 */
         [data-theme="dark"] #deleteConfirmModal > div {
             background: #1e293b;
@@ -2789,16 +2799,53 @@
     <!-- 删除确认弹窗 -->
     <div id="deleteConfirmModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.5); z-index: 1000; align-items: center; justify-content: center;">
         <div style="background: white; border-radius: 12px; padding: 24px; width: 90%; max-width: 400px; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
-            <div style="text-align: center; margin-bottom: 24px;">
+            <!-- 警告图标和标题 -->
+            <div style="text-align: center; margin-bottom: 20px;">
                 <div style="width: 60px; height: 60px; background: #fee2e2; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 16px;">
                     <i class="fas fa-exclamation-triangle" style="font-size: 24px; color: #ef4444;"></i>
                 </div>
-                <h3 style="margin: 0 0 8px 0; font-size: 18px; color: var(--text-primary);">确认删除</h3>
-                <p style="margin: 0; font-size: 14px; color: var(--text-secondary);">您确定要删除设备 <span id="deleteDeviceName" style="font-weight: 600;"></span> 吗？此操作无法撤销。</p>
+                <h3 id="deleteConfirmTitle" style="margin: 0 0 8px 0; font-size: 18px; color: var(--text-primary);">确认删除</h3>
+                <p style="margin: 0; font-size: 14px; color: var(--text-secondary);">
+                    <span id="deleteConfirmText1">您确定要删除设备</span>
+                    <span id="deleteDeviceName" style="font-weight: 600;"></span>
+                    <span id="deleteConfirmText2">吗？</span>
+                </p>
             </div>
+
+            <!-- 历史数据处理选项 -->
+            <div style="background: #f8fafc; border-radius: 8px; padding: 16px; margin-bottom: 20px; text-align: left;">
+                <div style="display: flex; align-items: center; margin-bottom: 12px; color: var(--text-primary);">
+                    <i class="fas fa-database" style="font-size: 14px; margin-right: 8px; color: #3b82f6;"></i>
+                    <span id="historyDataTitle" style="font-size: 14px; font-weight: 500;">历史数据处理</span>
+                </div>
+
+                <!-- 保留历史数据选项 -->
+                <label style="display: flex; align-items: flex-start; padding: 12px; background: white; border: 2px solid #3b82f6; border-radius: 8px; cursor: pointer; margin-bottom: 8px;">
+                    <input type="radio" name="historyDataOption" value="keep" checked
+                           style="margin-top: 2px; margin-right: 12px; width: 18px; height: 18px; cursor: pointer; flex-shrink: 0;">
+                    <div style="flex: 1;">
+                        <div id="keepHistoryLabel" style="font-size: 14px; font-weight: 500; color: var(--text-primary); margin-bottom: 4px;">保留历史数据</div>
+                        <div id="keepHistoryDesc" style="font-size: 12px; color: var(--text-secondary);">删除设备后仍可查询历史记录</div>
+                    </div>
+                </label>
+
+                <!-- 清除历史数据选项 -->
+                <label style="display: flex; align-items: flex-start; padding: 12px; background: white; border: 1px solid #e2e8f0; border-radius: 8px; cursor: pointer;">
+                    <input type="radio" name="historyDataOption" value="clear"
+                           style="margin-top: 2px; margin-right: 12px; width: 18px; height: 18px; cursor: pointer; flex-shrink: 0;">
+                    <div style="flex: 1;">
+                        <div id="clearHistoryLabel" style="font-size: 14px; font-weight: 500; color: var(--text-primary); margin-bottom: 4px;">清除历史数据</div>
+                        <div id="clearHistoryDesc" style="font-size: 12px; color: var(--text-secondary);">彻底删除设备及所有历史记录</div>
+                    </div>
+                </label>
+            </div>
+
+            <!-- 按钮 -->
             <div style="display: flex; gap: 12px;">
-                <button class="btn" onclick="closeDeleteConfirm()" style="flex: 1; height: 40px;">取消</button>
-                <button class="btn" onclick="confirmDelete()" style="flex: 1; height: 40px; background: #ef4444; color: white;">删除</button>
+                <button id="deleteCancelBtn" class="btn" onclick="closeDeleteConfirm()"
+                        style="flex: 1; height: 44px; font-size: 15px;">取消</button>
+                <button id="deleteConfirmBtn" class="btn" onclick="confirmDelete()"
+                        style="flex: 1; height: 44px; background: #ef4444; color: white; font-size: 15px; font-weight: 500;">确认删除</button>
             </div>
         </div>
     </div>
@@ -2884,7 +2931,7 @@
                         <button class="btn" onclick="editDevice(${device.id})" style="padding: 0; width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; margin-right: 8px; border: none; background: transparent; border-radius: 6px; cursor: pointer;" title="编辑">
                             <i class="far fa-edit" style="font-size: 16px; color: var(--text-secondary);"></i>
                         </button>
-                        <button class="btn" onclick="deleteDevice(${device.id})" style="padding: 0; width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; border: none; background: transparent; border-radius: 6px; cursor: pointer;" title="删除">
+                        <button class="btn" onclick="deleteDeviceFromList(${device.id})" style="padding: 0; width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; border: none; background: transparent; border-radius: 6px; cursor: pointer;" title="删除">
                             <i class="far fa-trash-alt" style="font-size: 16px; color: #ef4444;"></i>
                         </button>
                     </td>
@@ -3242,14 +3289,31 @@
             }
         }
 
-        // 删除设备
+        // 删除设备(列表)
         let deleteDeviceId = null;
-        function deleteDevice(id) {
+        function deleteDeviceFromList(id) {
             const device = devices.find(d => d.id === id);
             if (device) {
                 deleteDeviceId = id;
                 // 艹！修复name对象显示问题，使用getDeviceDisplayName获取正确的名称
                 document.getElementById('deleteDeviceName').textContent = getDeviceDisplayName(device);
+
+                // 更新弹窗所有文本使用国际化
+                document.getElementById('deleteConfirmTitle').textContent = getTranslation('devicesDeleteModalTitle');
+                document.getElementById('deleteConfirmText1').textContent = getTranslation('devicesDeleteModalText1');
+                document.getElementById('deleteConfirmText2').textContent = getTranslation('devicesDeleteModalText2');
+                document.getElementById('historyDataTitle').textContent = getTranslation('historyDataTitle');
+                document.getElementById('keepHistoryLabel').textContent = getTranslation('keepHistoryLabel');
+                document.getElementById('keepHistoryDesc').textContent = getTranslation('keepHistoryDesc');
+                document.getElementById('clearHistoryLabel').textContent = getTranslation('clearHistoryLabel');
+                document.getElementById('clearHistoryDesc').textContent = getTranslation('clearHistoryDesc');
+                document.getElementById('deleteCancelBtn').textContent = getTranslation('devicesDeleteModalBtnCancel');
+                document.getElementById('deleteConfirmBtn').textContent = getTranslation('devicesDeleteModalBtnDelete');
+
+                // 重置单选框为默认选中"保留历史数据"
+                const keepRadio = document.querySelector('input[name="historyDataOption"][value="keep"]');
+                if (keepRadio) keepRadio.checked = true;
+
                 document.getElementById('deleteConfirmModal').style.display = 'flex';
             }
         }
@@ -3262,7 +3326,7 @@
                 closeDeleteConfirm();
                 
                 // 显示成功提示
-                showToast('设备删除成功！', '#ef4444');
+                showToast(getTranslation('deviceDeleteSuccess') || '设备删除成功！', '#ef4444');
             }
         }
 
@@ -3270,6 +3334,9 @@
         function closeDeleteConfirm() {
             document.getElementById('deleteConfirmModal').style.display = 'none';
             deleteDeviceId = null;
+            // 重置单选框为默认选项
+            const keepRadio = document.querySelector('input[name="historyDataOption"][value="keep"]');
+            if (keepRadio) keepRadio.checked = true;
         }
 
         // 显示添加设备抽屉
@@ -8381,6 +8448,14 @@
                 if (total) total.textContent = '1.18';
             }, 2000);
         }
+
+        // 更新页面标题
+        document.title = getTranslation('pageTitleDeviceManagement') || '设备管理 - 储能柜管理系统';
+
+        // 监听语言切换事件
+        window.addEventListener('languageChanged', function() {
+            document.title = getTranslation('pageTitleDeviceManagement') || '设备管理 - 储能柜管理系统';
+        });
     </script>
 
     <!-- 面板蒙版 -->
