@@ -2253,7 +2253,7 @@ const translations = {
         stationCQ: '重庆储能站',
 
         // === 新增翻译 - 系统版本标识 ===
-        versionBadgePro: '专业版',
+        versionBadgeStandard: '标准版',
 
         // === 新增翻译 - 仪表盘时间维度 ===
         dashboardRankingYesterday: '昨日',
@@ -6005,7 +6005,7 @@ const translations = {
         stationCQ: 'Chongqing Energy Storage Station',
 
         // === New Translations - System Version Badge ===
-        versionBadgePro: 'Pro',
+        versionBadgeStandard: 'Standard',
 
         // === New Translations - Dashboard Time Dimensions ===
         dashboardRankingYesterday: 'Yesterday',

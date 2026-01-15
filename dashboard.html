@@ -1285,16 +1285,16 @@
                         <option value="station4" data-translate="dashboardStation4">物流园区站</option>
                         <option value="station5" data-translate="dashboardStation5">产业园区站</option>
                     </select>
-                    <!-- 自定义icon提示 -->
-                    <a href="personalization.html" style="font-size: 12px; color: #64748b; text-decoration: none; display: flex; align-items: center; gap: 4px; transition: color 0.2s;" onmouseover="this.style.color='#3b82f6'" onmouseout="this.style.color='#64748b'">
+                    <!-- 自定义icon提示 - 标准版禁用 -->
+                    <span style="font-size: 12px; color: #9ca3af; text-decoration: none; display: flex; align-items: center; gap: 4px; cursor: not-allowed; opacity: 0.6;">
                         <span data-translate="dashboardCustomizeDeviceIcon">可根据自己品牌自定义设备icon，</span>
-                        <span style="color: #3b82f6; font-weight: 500;" data-translate="dashboardGoNow">立即前往</span>
-                        <i class="fas fa-arrow-right" style="font-size: 10px; color: #3b82f6;"></i>
-                    </a>
+                        <span style="color: #9ca3af; font-weight: 500;" data-translate="dashboardGoNow">立即前往</span>
+                        <i class="fas fa-arrow-right" style="font-size: 10px; color: #9ca3af;"></i>
+                    </span>
                 </div>
                 <div class="energy-buttons-container">
-                    <!-- 编辑能量流按钮 -->
-                    <button id="energy-flow-settings-btn" onclick="window.location.href='energy-flow.html'">
+                    <!-- 编辑能量流按钮 - 标准版禁用 -->
+                    <button id="energy-flow-settings-btn" disabled style="background: #d1d5db !important; cursor: not-allowed !important; opacity: 0.6;">
                         <span data-translate="dashboardEnergyFlowSettings">编辑能量流</span>
                     </button>
                     <button id="energy-settings-btn" onclick="toggleEnergySettingsPanel()">

@@ -8,20 +8,20 @@ function createTopNavbar() {
         <div class="header-left">
             <div class="logo">
                 <img src="logo.png" alt="AlwaysControl Technology" />
-                <span class="version-badge" data-version="pro" data-translate="versionBadgePro" style="
+                <span class="version-badge" data-version="standard" data-translate="versionBadgeStandard" style="
                     display: inline-flex;
                     align-items: center;
                     padding: 3px 8px;
                     margin-left: 12px;
-                    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
-                    color: #78350f;
+                    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+                    color: #ffffff;
                     font-size: 11px;
                     font-weight: 700;
                     border-radius: 4px;
                     letter-spacing: 0.5px;
                     text-transform: uppercase;
-                    box-shadow: 0 2px 4px rgba(251, 191, 36, 0.3);
-                ">专业版</span>
+                    box-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);
+                ">标准版</span>
             </div>
         </div>
 
@@ -102,18 +102,18 @@ function createSidebar(currentPage = 'dashboard') {
                     <i class="fas fa-chevron-down" style="margin-left: auto; font-size: 12px;"></i>
                 </a>
                 <div class="submenu">
-                    <a href="alarm-statistics.html" class="menu-item submenu-item ${currentPage === 'alarm-statistics' ? 'active' : ''}">
+                    <span class="menu-item submenu-item disabled-menu" style="color: #9ca3af; cursor: not-allowed; opacity: 0.6; pointer-events: none;">
                         <span style="font-size: 16px; margin-right: 10px;">📈</span>
                         <span id="menuAlarmStatistics" data-translate="menuAlarmStatistics">消息分析</span>
-                    </a>
+                    </span>
                     <a href="alarm-management.html" class="menu-item submenu-item ${currentPage === 'alarm-management' ? 'active' : ''}">
                         <span style="font-size: 16px; margin-right: 10px;">📋</span>
                         <span id="menuAlarmList" data-translate="menuAlarmList">消息列表</span>
                     </a>
-                    <a href="rule-engine.html" class="menu-item submenu-item ${currentPage === 'rule-engine' ? 'active' : ''}">
+                    <span class="menu-item submenu-item disabled-menu" style="color: #9ca3af; cursor: not-allowed; opacity: 0.6; pointer-events: none;">
                         <span style="font-size: 16px; margin-right: 10px;">⚙️</span>
                         <span id="menuAlarmConfig" data-translate="menuAlarmConfig">消息策略</span>
-                    </a>
+                    </span>
                 </div>
             </div>
             <div class="menu-item-group">
@@ -140,10 +140,10 @@ function createSidebar(currentPage = 'dashboard') {
                     <i class="fas fa-chevron-down" style="margin-left: auto; font-size: 12px;"></i>
                 </a>
                 <div class="submenu">
-                    <a href="roles.html" class="menu-item submenu-item ${currentPage === 'roles' ? 'active' : ''}">
+                    <span class="menu-item submenu-item disabled-menu" style="color: #9ca3af; cursor: not-allowed; opacity: 0.6; pointer-events: none;">
                         <span style="font-size: 16px; margin-right: 10px;">👥</span>
                         <span id="menuRoles" data-translate="menuRoles">角色管理</span>
-                    </a>
+                    </span>
                     <a href="personnel.html" class="menu-item submenu-item ${currentPage === 'personnel' ? 'active' : ''}">
                         <span style="font-size: 16px; margin-right: 10px;">👤</span>
                         <span id="menuPersonnel" data-translate="menuPersonnel">人员管理</span>
@@ -156,10 +156,10 @@ function createSidebar(currentPage = 'dashboard') {
                         <span style="font-size: 16px; margin-right: 10px;">💰</span>
                         <span id="menuElectricityPrice" data-translate="menuElectricityPrice">电价设置</span>
                     </a>
-                    <a href="personalization.html" class="menu-item submenu-item ${currentPage === 'personalization' ? 'active' : ''}">
+                    <span class="menu-item submenu-item disabled-menu" style="color: #9ca3af; cursor: not-allowed; opacity: 0.6; pointer-events: none;">
                         <span style="font-size: 16px; margin-right: 10px;">🎨</span>
                         <span id="menuPersonalization" data-translate="menuPersonalization">个性化设置</span>
-                    </a>
+                    </span>
                 </div>
             </div>
         </div>

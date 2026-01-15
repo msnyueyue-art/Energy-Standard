@@ -1261,7 +1261,7 @@
                         <i class="fas fa-chart-area"></i>
                         <span data-translate="powerReportChartTab">图表</span>
                     </button>
-                    <button class="tab-btn" onclick="switchTab('table')">
+                    <button class="tab-btn" disabled style="color: #9ca3af; cursor: not-allowed; opacity: 0.6; pointer-events: none;">
                         <i class="fas fa-table"></i>
                         <span data-translate="powerReportTableTab">表格</span>
                     </button>
@@ -1387,11 +1387,11 @@
                                 </label>
                             </div>
                         </div>
-                        <div class="energy-split-selector" id="energySplitSelector">
-                            <label class="checkbox-option" style="cursor: pointer;" onclick="toggleEnergySplitUI()">
-                                <i class="fas fa-eye-slash" id="energySplitIcon" style="font-size: 16px;"></i>
-                                <span data-translate="powerEnergySplit">能量拆分</span>
-                                <input type="checkbox" id="energySplitCheckbox" style="display: none;">
+                        <div class="energy-split-selector" id="energySplitSelector" style="opacity: 0.6; pointer-events: none;">
+                            <label class="checkbox-option" style="cursor: not-allowed; color: #9ca3af;">
+                                <i class="fas fa-eye-slash" id="energySplitIcon" style="font-size: 16px; color: #9ca3af;"></i>
+                                <span data-translate="powerEnergySplit" style="color: #9ca3af;">能量拆分</span>
+                                <input type="checkbox" id="energySplitCheckbox" style="display: none;" disabled>
                             </label>
                         </div>
                     </div>
