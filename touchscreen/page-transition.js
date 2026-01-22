@@ -12,7 +12,7 @@ function createLoadingOverlay() {
     overlay.innerHTML = `
         <div style="text-align: center;">
             <div class="page-loading-spinner"></div>
-            <div class="page-loading-text">Loading...</div>
+            <div class="page-loading-text"></div>
         </div>
     `;
     document.body.appendChild(overlay);
